@@ -6,7 +6,7 @@
   <link href="http://hyd0.cc/atom.xml" rel="self"/>
   
   <link href="http://hyd0.cc/"/>
-  <updated>2021-09-18T06:11:54.603Z</updated>
+  <updated>2021-09-18T06:15:01.175Z</updated>
   <id>http://hyd0.cc/</id>
   
   <author>
@@ -21,12 +21,16 @@
     <link href="http://hyd0.cc/2021/09/18/13/"/>
     <id>http://hyd0.cc/2021/09/18/13/</id>
     <published>2021-09-18T01:19:32.383Z</published>
-    <updated>2021-09-18T06:11:54.603Z</updated>
+    <updated>2021-09-18T06:15:01.175Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;基础知识&quot;&gt;&lt;a href=&quot;#基础知识&quot; class=&quot;headerlink&quot; title=&quot;基础知识&quot;&gt;&lt;/a&gt;基础知识&lt;/h1&gt;&lt;h2 id=&quot;分布式基础理论&quot;&gt;&lt;a href=&quot;#分布式基础理论&quot; class=&quot;headerlink&quot; title=&quot;分布式基础理论&quot;&gt;&lt;/a&gt;分布式基础理论&lt;/h2&gt;&lt;h3 id=&quot;什么是分布式系统？&quot;&gt;&lt;a href=&quot;#什么是分布式系统？&quot; class=&quot;headerlink&quot; title=&quot;什么是分布式系统？&quot;&gt;&lt;/a&gt;什么是分布式系统？&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;《分布式系统原理与范型》定义：&lt;/strong&gt;“分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统”。&lt;/p&gt;
-&lt;p&gt;分布式系统（distributed system）是建立在网络之上的软件系统。随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需&lt;strong&gt;一个治理系统&lt;/strong&gt;确保架构有条不紊的演进。&lt;/p&gt;
-&lt;h3 id=&quot;发展演变&quot;&gt;&lt;a href=&quot;#发展演变&quot; class=&quot;headerlink&quot; title=&quot;发展演变&quot;&gt;&lt;/a&gt;发展演变&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E5%8F%91%E5%B1%95%E5%8F%B2.png&quot; alt=&quot;发展演变&quot;&gt;&lt;/p&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;基础知识&quot;&gt;&lt;a href=&quot;#基础知识&quot; class=&quot;headerlink&quot; title=&quot;基础知识&quot;&gt;&lt;/a&gt;基础知识&lt;/h1&gt;&lt;h2 id=&quot;分布式基础理论&quot;&gt;&lt;a href=&quot;#分布式基础理论&quot; class=&quot;headerlink&quot;</summary>
+        
+      
     
     
     
@@ -241,7 +245,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;须知：&lt;/strong&gt;本文是根据JDK8来介绍的。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;https://wanglin.love/hyd/bdqn/blog/images/JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%86%E5%B8%83%E4%B8%8E%E4%BD%9C%E7%94%A8/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F.png&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;</summary>
+&lt;p&gt;&lt;img data-src=&quot;https://wanglin.love/hyd/bdqn/blog/images/JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%86%E5%B8%83%E4%B8%8E%E4%BD%9C%E7%94%A8/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F.png&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;</summary>
     
     
     
@@ -263,7 +267,7 @@
     
     
     <summary type="html">&lt;h1 id=&quot;Aliyun-Java-Initializr&quot;&gt;&lt;a href=&quot;#Aliyun-Java-Initializr&quot; class=&quot;headerlink&quot; title=&quot;Aliyun Java Initializr&quot;&gt;&lt;/a&gt;Aliyun Java Initializr&lt;/h1&gt;&lt;p&gt;在日常开发工作和自己学习跑&lt;code&gt;demo&lt;/code&gt;的时候，往往都需要快速构建一个&lt;code&gt;springboot&lt;/code&gt;基础工程。除了用&lt;code&gt;IDEA&lt;/code&gt;开发工具构建，更多就是用&lt;code&gt;Spring Initializr&lt;/code&gt;来生成，但用的时间长了发现，它也就仅仅只能帮我们引入一些必要的&lt;code&gt;jar&lt;/code&gt;包，其他插件轮子还是得自己配置。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/Aliyun%20Java%20Initializr1.png&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;</summary>
+&lt;p&gt;&lt;img data-src=&quot;https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/Aliyun%20Java%20Initializr1.png&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;</summary>
     
     
     
@@ -284,7 +288,7 @@
     
     <summary type="html">&lt;h1 id=&quot;GenerateAllSetter&quot;&gt;&lt;a href=&quot;#GenerateAllSetter&quot; class=&quot;headerlink&quot; title=&quot;GenerateAllSetter&quot;&gt;&lt;/a&gt;GenerateAllSetter&lt;/h1&gt;&lt;p&gt;实际的开发中，可能会经常为某个对象中多个属性进行 &lt;code&gt;set&lt;/code&gt; 赋值，尽管可以用&lt;code&gt;BeanUtil.copyProperties()&lt;/code&gt;方式批量赋值，但这种方式有一些弊端，存在属性值覆盖的问题，所以不少场景还是需要手动 &lt;code&gt;set&lt;/code&gt;。如果一个对象属性太多 &lt;code&gt;set&lt;/code&gt; 起来也很痛苦，&lt;code&gt;GenerateAllSetter&lt;/code&gt;可以一键将对象属性都 &lt;code&gt;set&lt;/code&gt; 出来。&lt;/p&gt;
 &lt;p&gt;快捷键：&lt;code&gt;Alt+Enter&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/GenerateAllSetter.gif&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;</summary>
+&lt;p&gt;&lt;img data-src=&quot;https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/GenerateAllSetter.gif&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;</summary>
     
     
     

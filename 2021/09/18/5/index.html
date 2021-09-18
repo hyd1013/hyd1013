@@ -14,10 +14,11 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"hyd0.cc","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"hyd0.cc","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="Aliyun Java Initializr在日常开发工作和自己学习跑demo的时候，往往都需要快速构建一个springboot基础工程。除了用IDEA开发工具构建，更多就是用Spring Initializr来生成，但用的时间长了发现，它也就仅仅只能帮我们引入一些必要的jar包，其他插件轮子还是得自己配置。">
@@ -91,6 +92,8 @@
   </style>
 </noscript>
 
+  <!--搞怪欺骗-->
+  <script type="text/javascript" src="/js/src/funny_title.js"></script>
 <link rel="alternate" href="/atom.xml" title="黄耀栋的个人博客" type="application/atom+xml">
 </head>
 
@@ -167,6 +170,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 
     <main class="main">
@@ -186,7 +190,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://wanglin.love/images/网站配置/avatar.png">
       <meta itemprop="name" content="黄耀栋">
-      <meta itemprop="description" content="年少不知富婆香，错把青春插稻秧">
+      <meta itemprop="description" content="年少不富婆香，错把青春插稻秧">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -224,6 +228,27 @@
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -235,61 +260,61 @@
 
       
         <h1 id="Aliyun-Java-Initializr"><a href="#Aliyun-Java-Initializr" class="headerlink" title="Aliyun Java Initializr"></a>Aliyun Java Initializr</h1><p>在日常开发工作和自己学习跑<code>demo</code>的时候，往往都需要快速构建一个<code>springboot</code>基础工程。除了用<code>IDEA</code>开发工具构建，更多就是用<code>Spring Initializr</code>来生成，但用的时间长了发现，它也就仅仅只能帮我们引入一些必要的<code>jar</code>包，其他插件轮子还是得自己配置。</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/Aliyun%20Java%20Initializr1.png" alt="img"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/Aliyun%20Java%20Initializr1.png" alt="img"></p>
 <span id="more"></span>
 
 <p><code>Aliyun Java Initializr</code>覆盖了<code>Spring Initializr</code> 的所有功能，又在其基础上增加了很多实用功能，它几乎可以集成当下所有主流技术，只要勾选相应的模块就可以自动集成进来。</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/Aliyun%20Java%20Initializr2.png" alt="img"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/Aliyun%20Java%20Initializr2.png" alt="img"></p>
 <p><strong>可不是简单的引入jar包，而是帮你把工程目录，相关配置文件和基础 java 代码全部生成了</strong>，省了很多环境搭建的时间。</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/Aliyun%20Java%20Initializr3.png" alt="img"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/Aliyun%20Java%20Initializr3.png" alt="img"></p>
 <blockquote>
 <p>地址：<a target="_blank" rel="noopener" href="https://start.aliyun.com/bootstrap.html">https://start.aliyun.com/bootstrap.html</a></p>
 </blockquote>
 <h1 id="magicalcoder"><a href="#magicalcoder" class="headerlink" title="magicalcoder"></a>magicalcoder</h1><p><code>magicalcoder</code>是一个自动生成代码的工具，JAVA代码自动生成，还有H5样式布局器。</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/magicalcoder1.png" alt="img"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/magicalcoder1.png" alt="img"></p>
 <p>对于有写页面需求的后端开发来说是个神器，可以拖拽控件布局直接生成<code>css</code>、<code>js</code>，支持<code>element</code>、<code>layui</code>、<code>bootstrap4</code>这些常用的前端框架。</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/magicalcoder2.png" alt="img"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/magicalcoder2.png" alt="img"></p>
 <blockquote>
 <p>地址：<a target="_blank" rel="noopener" href="http://bbs.magicalcoder.com/">http://bbs.magicalcoder.com/</a></p>
 </blockquote>
 <h1 id="菜鸟工具"><a href="#菜鸟工具" class="headerlink" title="菜鸟工具"></a>菜鸟工具</h1><p>这是一个非常强大的工具类站点，我个人常用得就是<code>JSON</code>格式化工和<code>python</code>在线工具，虽然主做<code>Java</code>但平时还是会写一些<code>python</code>脚本，在线运行随时随地写很方便。</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/%E8%8F%9C%E9%B8%9F%E5%B7%A5%E5%85%B7.png" alt="img"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/%E8%8F%9C%E9%B8%9F%E5%B7%A5%E5%85%B7.png" alt="img"></p>
 <blockquote>
 <p>地址：<a target="_blank" rel="noopener" href="http://c.runoob.com/">http://c.runoob.com/</a></p>
 </blockquote>
 <h1 id="BEJSON"><a href="#BEJSON" class="headerlink" title="BEJSON"></a>BEJSON</h1><p><code>BEJSON</code>站内提供了很多实用的小工具。像我最近正在开发一个调度任务的配置平台，免不了要写<code>Cron</code>表达式，但搞过定时任务的都知道<code>Cron</code>表达式可不太好记，而且用的频率相对不高，花太多时间在死记硬背上就有点不值当。这个在线工具提供了图形化界面，只要我们输入想要定时执行的周期，就可以自动生成<code>Cron</code>表达式。</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/BEJSON.png" alt="img"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/BEJSON.png" alt="img"></p>
 <blockquote>
 <p>地址：<a target="_blank" rel="noopener" href="https://www.bejson.com/othertools/cron">https://www.bejson.com/othertools/cron</a></p>
 </blockquote>
 <h1 id="在线正则表达式"><a href="#在线正则表达式" class="headerlink" title="在线正则表达式"></a>在线正则表达式</h1><p>正则表达式的写法既复杂又麻烦，而且通常还需要经过大量的测试和验证才能被采用。这个在线工具提供了几乎所有常见的正则校验规则。</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/%E5%9C%A8%E7%BA%BF%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.png" alt="img"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/%E5%9C%A8%E7%BA%BF%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.png" alt="img"></p>
 <blockquote>
 <p>地址：<a target="_blank" rel="noopener" href="http://tool.chinaz.com/tools/regexgenerate">http://tool.chinaz.com/tools/regexgenerate</a></p>
 </blockquote>
 <h1 id="在线工具"><a href="#在线工具" class="headerlink" title="在线工具"></a>在线工具</h1><p>这个也是一个在线工具站点，但是他的功能相对就比较杂了</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7.png" alt="img"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7.png" alt="img"></p>
 <blockquote>
 <p>地址：<a target="_blank" rel="noopener" href="https://tool.lu/">https://tool.lu/</a></p>
 </blockquote>
 <h1 id="文图"><a href="#文图" class="headerlink" title="文图"></a>文图</h1><p>工作中时不时就会有运营人员或者老板直接甩个任务，给我统计一下某某销量的指标，用<code>SQL</code>查询很简单，但给外行人看这类数据，还要是更直观一点，<strong>反正都是干活为啥不完成的出彩一点</strong>。</p>
 <p>文图可以根据<code>excel</code>里的数据，自动生成对应的统计图形，样式可以自由切换，生成PDF、JPG等格式。</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/%E6%96%87%E5%9B%BE.png" alt="img"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/%E6%96%87%E5%9B%BE.png" alt="img"></p>
 <blockquote>
 <p>地址：<a target="_blank" rel="noopener" href="https://www.wentu.io/">https://www.wentu.io/</a></p>
 </blockquote>
 <h1 id="在线比对"><a href="#在线比对" class="headerlink" title="在线比对"></a>在线比对</h1><p><code>Diffchecker</code>是一个使用很不错代码差异对比工具，使过<code>svn</code>或者<code>git</code>的人对<code>diffcheck</code>肯定不陌生，而且他支持比对的类型比较丰富，excel、pdf支持。</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7.png" alt="img"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7.png" alt="img"></p>
 <blockquote>
 <p>地址：<a target="_blank" rel="noopener" href="https://www.diffchecker.com/">https://www.diffchecker.com/</a></p>
 </blockquote>
 <h1 id="nginx在线格式化"><a href="#nginx在线格式化" class="headerlink" title="nginx在线格式化"></a>nginx在线格式化</h1><p>总修改<code>nginx</code>配置，这个可以治愈你的强迫症</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/nginx%E5%9C%A8%E7%BA%BF%E6%A0%BC%E5%BC%8F%E5%8C%96.png" alt="img"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/nginx%E5%9C%A8%E7%BA%BF%E6%A0%BC%E5%BC%8F%E5%8C%96.png" alt="img"></p>
 <blockquote>
 <p>地址：<a target="_blank" rel="noopener" href="http://www.html580.com/tool/nginx/index.php">http://www.html580.com/tool/nginx/index.php</a></p>
 </blockquote>
 <h1 id="在线生成代码图片"><a href="#在线生成代码图片" class="headerlink" title="在线生成代码图片"></a>在线生成代码图片</h1><p>代码生成图片，这个不写博客的可能不太常用，像我会时常分享一些技术类的文章，里边难免会贴出代码块，出于观看方便和样式美观就会转成图片。</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/%E5%9C%A8%E7%BA%BF%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81%E5%9B%BE%E7%89%87.png" alt="img"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/%E5%9C%A8%E7%BA%BF%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81%E5%9B%BE%E7%89%87.png" alt="img"></p>
 <p>地址：<a target="_blank" rel="noopener" href="https://www.dute.org/code-snapshot">https://www.dute.org/code-snapshot</a></p>
 
     </div>
@@ -336,8 +361,9 @@
 
 
       <footer class="post-footer">
+          
           <div class="post-tags">
-              <a href="/tags/%E7%BD%91%E7%AB%99/" rel="tag"># 网站</a>
+              <a href="/tags/%E7%BD%91%E7%AB%99/" rel="tag"><i class="fa fa-tag"></i> 网站</a>
           </div>
 
         
@@ -420,7 +446,7 @@
     <img class="site-author-image" itemprop="image" alt="黄耀栋"
       src="https://wanglin.love/images/网站配置/avatar.png">
   <p class="site-author-name" itemprop="name">黄耀栋</p>
-  <div class="site-description" itemprop="description">年少不知富婆香，错把青春插稻秧</div>
+  <div class="site-description" itemprop="description">年少不富婆香，错把青春插稻秧</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -448,13 +474,23 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-fas fa-rss"></i>RSS</a>
       </span>
   </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
 
 
 
       </div>
+
+          
+            <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+            <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+            <div class="widget-wrap">
+                <h3 class="widget-title">标签</h3>
+                <div id="myCanvasContainer" class="widget tagcloud">
+                    <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/" rel="tag">JDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Loading%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB/" rel="tag">Loading加载动画</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/" rel="tag">RabbitMQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-js/" rel="tag">vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88/" rel="tag">实施工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag">微服务</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">消息中间件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" rel="tag">源码解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag">面试题</a><span class="tag-list-count">4</span></li></ul>
+                    </canvas>
+                </div>
+            </div>
+          
 
     </div>
   </aside>
@@ -475,14 +511,68 @@
   &copy; 
   <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heartbeat"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">黄耀栋</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">177k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:41</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
-  </div>
+      <!-- 网站运行时间的设置 -->
+    <span id="timeDate">载入天数...</span>
+    <span id="times">载入时分秒...</span>  Sometimes your whole life boils down to one insame move.
+    <script>
+        var now = new Date();
+        function createtime() {
+            var grt= new Date("01/05/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+            now.setTime(now.getTime()+250);
+            days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+            hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+            if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+            mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+            seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+            snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+            document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+            document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+    setInterval("createtime()",250);
+    </script>
+    <div class="BbeiAn-info">
+        闽ICP备 -
+        <a target="_blank" href="http://www.miitbeian.gov.cn/" rel="nofollow">2021005289号-2</a> <!--a标签中增加nofollow属性，避免爬虫出站。-->| 
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42090202000295" style="text-decoration:none;padding-left:30px;background:url(https://s1.ax1x.com/2018/09/29/ilmwIH.png) no-repeat left center" rel="nofollow">闽公网安备 42090202000295</a>    <!--这里将图标作为了背景，以使得能和后面的文字在同一行-->
+    </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
@@ -497,6 +587,9 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 

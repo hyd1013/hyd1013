@@ -14,18 +14,19 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"hyd0.cc","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"hyd0.cc","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="基础知识分布式基础理论什么是分布式系统？《分布式系统原理与范型》定义：“分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统”。 分布式系统（distributed system）是建立在网络之上的软件系统。随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需一个治理系统确保架构有条不紊的演进。 发展演变">
+  <meta name="description" content="基础知识分布式基础理论什么是分布式系统？《分布式系统原理与范型》定义：“分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统”。 分布式系统（distributed system）是建立在网络之上的软件系统。随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需一个治理系统确保架构有条不紊的演进。 发展演变 单一应用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dubbon">
 <meta property="og:url" content="http://hyd0.cc/2021/09/18/13/index.html">
 <meta property="og:site_name" content="黄耀栋的个人博客">
-<meta property="og:description" content="基础知识分布式基础理论什么是分布式系统？《分布式系统原理与范型》定义：“分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统”。 分布式系统（distributed system）是建立在网络之上的软件系统。随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需一个治理系统确保架构有条不紊的演进。 发展演变">
+<meta property="og:description" content="基础知识分布式基础理论什么是分布式系统？《分布式系统原理与范型》定义：“分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统”。 分布式系统（distributed system）是建立在网络之上的软件系统。随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需一个治理系统确保架构有条不紊的演进。 发展演变 单一应用">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E5%8F%91%E5%B1%95%E5%8F%B2.png">
 <meta property="og:image" content="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E5%8D%95%E4%B8%80%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84.png">
@@ -64,7 +65,7 @@
 <meta property="og:image" content="https://wanglin.love/hyd/bdqn/blog/images/dubbo/Dubbo-%E5%8E%9F%E7%90%86-%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8.png">
 <meta property="og:image" content="https://wanglin.love/hyd/bdqn/blog/images/dubbo/dubbo%E5%8E%9F%E7%90%86-%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8.png">
 <meta property="article:published_time" content="2021-09-18T01:19:32.383Z">
-<meta property="article:modified_time" content="2021-09-18T06:11:54.603Z">
+<meta property="article:modified_time" content="2021-09-18T06:15:01.175Z">
 <meta property="article:author" content="黄耀栋">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="SpringBoot">
@@ -116,6 +117,8 @@
   </style>
 </noscript>
 
+  <!--搞怪欺骗-->
+  <script type="text/javascript" src="/js/src/funny_title.js"></script>
 <link rel="alternate" href="/atom.xml" title="黄耀栋的个人博客" type="application/atom+xml">
 </head>
 
@@ -192,6 +195,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 
     <main class="main">
@@ -211,7 +215,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://wanglin.love/images/网站配置/avatar.png">
       <meta itemprop="name" content="黄耀栋">
-      <meta itemprop="description" content="年少不知富婆香，错把青春插稻秧">
+      <meta itemprop="description" content="年少不富婆香，错把青春插稻秧">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -230,10 +234,31 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-09-18 09:19:32 / 修改时间：14:11:54" itemprop="dateCreated datePublished" datetime="2021-09-18T09:19:32+08:00">2021-09-18</time>
+              <time title="创建时间：2021-09-18 09:19:32 / 修改时间：14:15:01" itemprop="dateCreated datePublished" datetime="2021-09-18T09:19:32+08:00">2021-09-18</time>
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>20k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>18 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -246,11 +271,9 @@
       
         <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="分布式基础理论"><a href="#分布式基础理论" class="headerlink" title="分布式基础理论"></a>分布式基础理论</h2><h3 id="什么是分布式系统？"><a href="#什么是分布式系统？" class="headerlink" title="什么是分布式系统？"></a>什么是分布式系统？</h3><p><strong>《分布式系统原理与范型》定义：</strong>“分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统”。</p>
 <p>分布式系统（distributed system）是建立在网络之上的软件系统。随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需<strong>一个治理系统</strong>确保架构有条不紊的演进。</p>
-<h3 id="发展演变"><a href="#发展演变" class="headerlink" title="发展演变"></a>发展演变</h3><p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E5%8F%91%E5%B1%95%E5%8F%B2.png" alt="发展演变"></p>
-<span id="more"></span>
-
+<h3 id="发展演变"><a href="#发展演变" class="headerlink" title="发展演变"></a>发展演变</h3><p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E5%8F%91%E5%B1%95%E5%8F%B2.png" alt="发展演变"></p>
 <h4 id="单一应用架构"><a href="#单一应用架构" class="headerlink" title="单一应用架构"></a>单一应用架构</h4><p>当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。此时，用于简化增删改查工作量的数据访问框架(ORM)是关键。</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E5%8D%95%E4%B8%80%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84.png" alt="单一应用架构"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E5%8D%95%E4%B8%80%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84.png" alt="单一应用架构"></p>
 <blockquote>
 <p>优点：适用于小型网站，小型管理系统，将所有功能都部署到一个功能里，简单易用。</p>
 <p>缺点： </p>
@@ -261,22 +284,22 @@
 </ol>
 </blockquote>
 <h4 id="垂直应用架构"><a href="#垂直应用架构" class="headerlink" title="垂直应用架构"></a>垂直应用架构</h4><p>当访问量逐渐增大，单一应用增加机器带来的加速度越来越小，将应用拆成互不相干的几个应用，以提升效率。此时，用于加速前端页面开发的Web框架(MVC)是关键。</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E5%9E%82%E7%9B%B4%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84.jpg" alt="垂直应用架构"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E5%9E%82%E7%9B%B4%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84.jpg" alt="垂直应用架构"></p>
 <blockquote>
 <p>优点：通过切分业务来实现各个模块独立部署，降低了维护和部署的难度，团队各司其职更易管理，性能扩展也更方便，更有针对性。</p>
 <p>缺点： 公用模块无法重复利用，开发性的浪费</p>
 </blockquote>
 <h4 id="分布式服务架构"><a href="#分布式服务架构" class="headerlink" title="分布式服务架构"></a>分布式服务架构</h4><p>当垂直应用越来越多，应用之间交互不可避免，将核心业务抽取出来，作为独立的服务，逐渐形成稳定的服务中心，使前端应用能更快速的响应多变的市场需求。此时，用于提高业务复用及整合的<span style="color:red"><strong>分布式服务框架(RPC)</strong></span>是关键。</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84.jpg" alt="分布式服务架构"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84.jpg" alt="分布式服务架构"></p>
 <h4 id="流动计算架构"><a href="#流动计算架构" class="headerlink" title="流动计算架构"></a>流动计算架构</h4><p>当服务越来越多，容量的评估，小服务资源的浪费等问题逐渐显现，此时需增加一个调度中心基于访问压力实时管理集群容量，提高集群利用率。此时，用于**提高机器利用率的资源调度和治理中心<span style="color:red">(SOA)[ Service Oriented Architecture]</span>**是关键。</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84.jpg" alt="流动计算架构"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84.jpg" alt="流动计算架构"></p>
 <h3 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h3><h4 id="什么叫RPC"><a href="#什么叫RPC" class="headerlink" title="什么叫RPC"></a>什么叫RPC</h4><p>RPC【Remote Procedure Call】是指远程过程调用，是一种进程间通信方式，他是一种技术的思想，而不是规范。它允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，而不用程序员显式编码这个远程调用的细节。即程序员无论是调用本地的还是远程的函数，本质上编写的调用代码基本相同。</p>
-<h4 id="RPC基本原理"><a href="#RPC基本原理" class="headerlink" title="RPC基本原理"></a>RPC基本原理</h4><p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/RPC%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.jpg" alt="RPC基本原理"></p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/RPC%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86-01.jpg"></p>
+<h4 id="RPC基本原理"><a href="#RPC基本原理" class="headerlink" title="RPC基本原理"></a>RPC基本原理</h4><p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/RPC%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.jpg" alt="RPC基本原理"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/RPC%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86-01.jpg"></p>
 <p>RPC两个核心模块：通讯，序列化。</p>
 <h2 id="dubbo核心概念"><a href="#dubbo核心概念" class="headerlink" title="dubbo核心概念"></a>dubbo核心概念</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Apache Dubbo (incubating) |ˈdʌbəʊ| 是一款高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡，以及服务自动注册和发现。</p>
 <p>官网：<a target="_blank" rel="noopener" href="http://dubbo.apache.org/">http://dubbo.apache.org/</a></p>
-<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/dubbo%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.jpg" alt="dubbo基本概念"></p>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/dubbo%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.jpg" alt="dubbo基本概念"></p>
 <p><strong>服务提供者(provider)：</strong></p>
 <p>暴露服务的服务提供方，服务提供者在启动时，向注册中心注册自己提供的服务。</p>
 <p><strong>服务消费者(consumer)：</strong></p>
@@ -298,30 +321,30 @@
 </blockquote>
 <h2 id="dubbo环境搭建"><a href="#dubbo环境搭建" class="headerlink" title="dubbo环境搭建"></a>dubbo环境搭建</h2><h3 id="【windows】-安装zookeeper"><a href="#【windows】-安装zookeeper" class="headerlink" title="【windows】-安装zookeeper"></a>【windows】-安装zookeeper</h3><h4 id="下载zookeeper"><a href="#下载zookeeper" class="headerlink" title="下载zookeeper"></a>下载zookeeper</h4><p>官网（不一定找得到本教材对应版本）：<a target="_blank" rel="noopener" href="https://archive.apache.org/dist/zookeeper/zookeeper-3.4.13/">https://archive.apache.org/dist/zookeeper/zookeeper-3.4.13/</a></p>
 <p>zookeeper的oss下载地址（推荐）：<a target="_blank" rel="noopener" href="https://wanglin.love/hyd/bdqn/blog/images/dubbo/zookeeper-3.4.11.tar.gz">https://wanglin.love/hyd/bdqn/blog/images/dubbo/zookeeper-3.4.11.tar.gz</a></p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/zookeeper-3.4.11.tar.gz.jpg"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/zookeeper-3.4.11.tar.gz.jpg"></p>
 <h4 id="解压zookeeper"><a href="#解压zookeeper" class="headerlink" title="解压zookeeper"></a>解压zookeeper</h4><p>解压完成后，打开cmd进入zookeeper文件夹下bin目录，运行zkServer.cmd </p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E8%BF%90%E8%A1%8Czookeeper%E6%8A%A5%E9%94%99.gif"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E8%BF%90%E8%A1%8Czookeeper%E6%8A%A5%E9%94%99.gif"></p>
 <p>运行后报错，原因：找不到配置文件</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/zookeeper%E6%8A%A5%E9%94%99.png"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/zookeeper%E6%8A%A5%E9%94%99.png"></p>
 <h4 id="修改zoo-cfg配置文件"><a href="#修改zoo-cfg配置文件" class="headerlink" title="修改zoo.cfg配置文件"></a>修改zoo.cfg配置文件</h4><p>打开安装目录下的conf文件夹，复制粘贴zoo_sample.cfg文件，修改文件名为zoo.cfg，编辑此文件，修改其配置参数</p>
 <ul>
 <li>dataDir = ../data  临时数据存储的目录（可写相对路径）</li>
 <li>clientPort = 2181  zookeeper的端口号</li>
 </ul>
 <p>修改完成后再次启动zookeeper</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E4%BF%AE%E6%94%B9zoo.cfg%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.gif"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E4%BF%AE%E6%94%B9zoo.cfg%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.gif"></p>
 <h4 id="使用zkCli-cmd测试"><a href="#使用zkCli-cmd测试" class="headerlink" title="使用zkCli.cmd测试"></a>使用zkCli.cmd测试</h4><p>运行zkCli.cmd（<span style="color:red"><strong>zkServer.cmd不能关闭</strong></span>）</p>
 <ul>
 <li>ls /：列出zookeeper根下保存的所有节点</li>
 <li>create –e /hyd 123：创建一个hyd节点，值为123</li>
 <li>get /hyd：获取/hyd节点的值</li>
 </ul>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E4%BD%BF%E7%94%A8zkCli.cmd%E6%B5%8B%E8%AF%95.gif"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E4%BD%BF%E7%94%A8zkCli.cmd%E6%B5%8B%E8%AF%95.gif"></p>
 <h3 id="【windows】-安装dubbo-admin管理控制台"><a href="#【windows】-安装dubbo-admin管理控制台" class="headerlink" title="【windows】-安装dubbo-admin管理控制台"></a>【windows】-安装dubbo-admin管理控制台</h3><p>dubbo本身并不是一个服务软件。它其实就是一个jar包能够帮你的java程序连接到zookeeper，并利用zookeeper消费、提供服务。所以你不用在Linux上启动什么dubbo服务。</p>
 <p>但是为了让用户更好的管理监控众多的dubbo服务，官方提供了一个可视化的监控程序，不过这个监控即使不装也不影响使用。</p>
 <h4 id="下载dubbo-admin"><a href="#下载dubbo-admin" class="headerlink" title="下载dubbo-admin"></a>下载dubbo-admin</h4><p>官方下载：<a target="_blank" rel="noopener" href="https://github.com/apache/incubator-dubbo-ops">https://github.com/apache/incubator-dubbo-ops</a></p>
 <p>dubbo-admin的oss下载（推荐）：<a target="_blank" rel="noopener" href="https://wanglin.love/hyd/bdqn/blog/images/dubbo/dubbo-admin.zip">https://wanglin.love/hyd/bdqn/blog/images/dubbo/dubbo-admin.zip</a></p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/dubbo-admin.zip.png"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/dubbo-admin.zip.png"></p>
 <h4 id="进入目录，修改dubbo-admin配置"><a href="#进入目录，修改dubbo-admin配置" class="headerlink" title="进入目录，修改dubbo-admin配置"></a>进入目录，修改dubbo-admin配置</h4><p>修改 src\main\resources\application.properties 指定zookeeper地址</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.guest.password</span>=<span class="string">guest</span></span><br><span class="line"><span class="meta">dubbo.registry.addres</span>=<span class="string">zookeeper://127.0.0.1:2181</span></span><br></pre></td></tr></table></figure>
 
@@ -332,15 +355,15 @@
 
 <p><strong>注意：【有可能控制台看着启动了，但是网页打不开，需要在控制台按下ctrl+c即可】</strong></p>
 <p>默认使用root/root 登陆</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/dubbo-admin%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA.png"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/dubbo-admin%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA.png"></p>
 <h3 id="【linux】-安装zookeeper"><a href="#【linux】-安装zookeeper" class="headerlink" title="【linux】-安装zookeeper"></a>【linux】-安装zookeeper</h3><h4 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h4><ol>
 <li><p>下载jdk</p>
 <p><a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/jdk%E4%B8%8B%E8%BD%BD.png"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/jdk%E4%B8%8B%E8%BD%BD.png"></p>
 <p>不要使用wget命令获取jdk链接，这是默认不同意，导致下载来的jdk压缩内容错误</p>
 </li>
 <li><p>上传到服务器并解压</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E4%B8%8A%E4%BC%A0%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E8%A7%A3%E5%8E%8B.png"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E4%B8%8A%E4%BC%A0%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E8%A7%A3%E5%8E%8B.png"></p>
 </li>
 <li><p>设置环境变量</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/java/jdk1.8.0_171</span><br><span class="line">vim /etc/profile</span><br></pre></td></tr></table></figure>
@@ -348,7 +371,7 @@
 <p>在文件末尾加上如下配置</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">export</span> <span class="string">JAVA_HOME=/usr/local/java/jdk1.8.0_171</span></span><br><span class="line"><span class="attr">export</span> <span class="string">JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span></span><br><span class="line"><span class="attr">export</span> <span class="string">CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span></span><br><span class="line"><span class="attr">export</span> <span class="string">PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span></span><br></pre></td></tr></table></figure></li>
 <li><p>使环境变量生效&amp;测试JDK</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E6%B5%8B%E8%AF%95jdk%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.png"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E6%B5%8B%E8%AF%95jdk%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.png"></p>
 </li>
 </ol>
 <h4 id="安装zookeeper"><a href="#安装zookeeper" class="headerlink" title="安装zookeeper"></a>安装zookeeper</h4><ol>
@@ -365,7 +388,7 @@
 <li><p>复制如下脚本</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash">chkconfig:2345 20 90</span></span><br><span class="line"><span class="meta">#</span><span class="bash">description:zookeeper</span></span><br><span class="line"><span class="meta">#</span><span class="bash">processname:zookeeper</span></span><br><span class="line">ZK_PATH=/usr/local/zookeeper</span><br><span class="line">export JAVA_HOME=/usr/local/java/jdk1.8.0_171</span><br><span class="line">case $1 in</span><br><span class="line">         start) sh  $ZK_PATH/bin/zkServer.sh start;;</span><br><span class="line">         stop)  sh  $ZK_PATH/bin/zkServer.sh stop;;</span><br><span class="line">         status) sh  $ZK_PATH/bin/zkServer.sh status;;</span><br><span class="line">         restart) sh $ZK_PATH/bin/zkServer.sh restart;;</span><br><span class="line">         *)  echo &quot;require start|stop|status|restart&quot;  ;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure></li>
 <li><p>把脚本注册为Service</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E6%8A%8A%E8%84%9A%E6%9C%AC%E6%B3%A8%E5%86%8C%E4%B8%BAService.png"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E6%8A%8A%E8%84%9A%E6%9C%AC%E6%B3%A8%E5%86%8C%E4%B8%BAService.png"></p>
 </li>
 <li><p>增加权限</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /etc/init.d/zookeeper</span><br></pre></td></tr></table></figure></li>
@@ -375,7 +398,7 @@
 <p>拷贝/usr/local/zookeeper/conf/zoo_sample.cfg 到同一个目录下改个名字叫zoo.cfg</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp zoo_sample.cfg zoo.cfg</span><br></pre></td></tr></table></figure></li>
 <li><p>启动zookeeper</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E5%90%AF%E5%8A%A8zookeeper.png"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E5%90%AF%E5%8A%A8zookeeper.png"></p>
 </li>
 </ol>
 <h3 id="【linux】-安装dubbo-admin管理控制台"><a href="#【linux】-安装dubbo-admin管理控制台" class="headerlink" title="【linux】-安装dubbo-admin管理控制台"></a>【linux】-安装dubbo-admin管理控制台</h3><h4 id="安装Tomcat8（旧版dubbo-admin是war，新版是jar不需要安装Tomcat）"><a href="#安装Tomcat8（旧版dubbo-admin是war，新版是jar不需要安装Tomcat）" class="headerlink" title="安装Tomcat8（旧版dubbo-admin是war，新版是jar不需要安装Tomcat）"></a>安装Tomcat8（旧版dubbo-admin是war，新版是jar不需要安装Tomcat）</h4><ol>
@@ -393,7 +416,7 @@
 <li><p>注册服务&amp;添加权限</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --add tomcat8</span><br><span class="line">chmod +x tomcat8</span><br></pre></td></tr></table></figure></li>
 <li><p>启动服务&amp;访问tomcat测试</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E5%90%AF%E5%8A%A8.png"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E5%90%AF%E5%8A%A8.png"></p>
 </li>
 </ol>
 <h4 id="安装dubbo-admin"><a href="#安装dubbo-admin" class="headerlink" title="安装dubbo-admin"></a>安装dubbo-admin</h4><p>dubbo本身并不是一个服务软件。它其实就是一个jar包能够帮你的java程序连接到zookeeper，并利用zookeeper消费、提供服务。所以你不用在Linux上启动什么dubbo服务。</p>
@@ -425,7 +448,7 @@
 <h4 id="粒度"><a href="#粒度" class="headerlink" title="粒度"></a>粒度</h4><p>服务接口尽可能大粒度，每个服务方法应代表一个功能，而不是某功能的一个步骤，否则将面临分布式事务问题，Dubbo 暂未提供分布式事务支持。</p>
 <p>服务接口建议以业务场景为单位划分，并对相近业务做抽象，防止接口数量爆炸。</p>
 <p>不建议使用过于抽象的通用接口，如：Map query(Map)，这样的接口没有明确语义，会给后期维护带来不便。</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E6%A8%A1%E5%9D%97%E5%88%92%E5%88%86.png"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E6%A8%A1%E5%9D%97%E5%88%92%E5%88%86.png"></p>
 <h3 id="创建模块"><a href="#创建模块" class="headerlink" title="创建模块"></a>创建模块</h3><h4 id="gmall-interface：公共接口层（model，service，exception…）"><a href="#gmall-interface：公共接口层（model，service，exception…）" class="headerlink" title="gmall-interface：公共接口层（model，service，exception…）"></a>gmall-interface：公共接口层（model，service，exception…）</h4><p>作用：定义公共接口，也可以导入公共依赖</p>
 <ol>
 <li><p>Bean模型</p>
@@ -433,7 +456,7 @@
 <li><p>Service接口</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">UserService</span></span><br><span class="line"><span class="function">	<span class="keyword">public</span> List&lt;UserAddress&gt; <span class="title">getUserAddressList</span><span class="params">(String userId)</span></span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E5%8C%85%E7%BB%93%E6%9E%84.png"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E5%8C%85%E7%BB%93%E6%9E%84.png"></p>
 </li>
 </ol>
 <h4 id="gmall-user：用户模块（对用户接口的实现）"><a href="#gmall-user：用户模块（对用户接口的实现）" class="headerlink" title="gmall-user：用户模块（对用户接口的实现）"></a>gmall-user：用户模块（对用户接口的实现）</h4><ol>
@@ -487,7 +510,7 @@
 <li><p>修改配置指定注册中心地址</p>
 <p>进入 dubbo-monitor-simple\src\main\resources\conf</p>
 <p>修改 dubbo.properties文件</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E4%BF%AE%E6%94%B9ops%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E4%BF%AE%E6%94%B9ops%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png"></p>
 </li>
 <li><p>Dos打包dubbo-monitor-simple</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean package -Dmaven.test.skip=true</span><br></pre></td></tr></table></figure></li>
@@ -495,7 +518,7 @@
 <p>进入打包后生成的target文件夹，解压tar.gz 文件，并运行start.bat</p>
 </li>
 <li><p>启动访问8080</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E8%AE%BF%E9%97%AEdubbo-simpl.png"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E8%AE%BF%E9%97%AEdubbo-simpl.png"></p>
 </li>
 </ol>
 <h4 id="监控中心配置"><a href="#监控中心配置" class="headerlink" title="监控中心配置"></a>监控中心配置</h4><p>所有服务配置连接监控中心，进行监控统计</p>
@@ -534,7 +557,7 @@
 
 <h3 id="dubbo注解"><a href="#dubbo注解" class="headerlink" title="dubbo注解"></a>dubbo注解</h3><p>@Service、@Reference</p>
 <p><strong>【如果没有在配置中写dubbo.scan.base-package,还需要使用@EnableDubbo注解】</strong></p>
-<h1 id="dubbo配置"><a href="#dubbo配置" class="headerlink" title="dubbo配置"></a>dubbo配置</h1><h2 id="配置原则"><a href="#配置原则" class="headerlink" title="配置原则"></a>配置原则</h2><p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/dubbo%E9%85%8D%E7%BD%AE%E5%8E%9F%E5%88%99.png"></p>
+<h1 id="dubbo配置"><a href="#dubbo配置" class="headerlink" title="dubbo配置"></a>dubbo配置</h1><h2 id="配置原则"><a href="#配置原则" class="headerlink" title="配置原则"></a>配置原则</h2><p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/dubbo%E9%85%8D%E7%BD%AE%E5%8E%9F%E5%88%99.png"></p>
 <p>JVM 启动 -D 参数优先，这样可以使用户在部署和启动时进行参数重写，比如在启动时需改变协议的端口。</p>
 <p>XML 次之，如果在 XML 中有配置，则 dubbo.properties 中的相应配置项无效。</p>
 <p>Properties 最后，相当于缺省值，只有 XML 没有配置时，dubbo.properties 的相应配置项才会生效，通常用于共享公共配置，比如应用名。</p>
@@ -566,7 +589,7 @@
 <li>Consumer端配置 优于 Provider配置 优于 全局配置，</li>
 <li>最后是Dubbo Hard Code的配置值（见配置文档）</li>
 </ol>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E9%85%8D%E7%BD%AE%E5%8E%9F%E5%88%99.png"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/%E9%85%8D%E7%BD%AE%E5%8E%9F%E5%88%99.png"></p>
 <h2 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h2><p>当一个接口实现，出现不兼容升级时，可以用版本号过渡，版本号不同的服务相互间不引用。</p>
 <p>可以按照以下的步骤进行版本迁移：</p>
 <ul>
@@ -640,7 +663,7 @@
 <h4 id="配置Consumer端"><a href="#配置Consumer端" class="headerlink" title="配置Consumer端"></a>配置Consumer端</h4><p>对于Consumer端，则可以增加一层method调用，并在method上配置@HystrixCommand。当调用出错时，会走到fallbackMethod = “reliable”的调用里。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Reference(version = &quot;1.0.0&quot;)</span></span><br><span class="line"><span class="keyword">private</span> HelloService demoService;</span><br><span class="line"></span><br><span class="line"><span class="meta">@HystrixCommand(fallbackMethod = &quot;reliable&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">doSayHello</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> demoService.sayHello(name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">reliable</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;hystrix fallback value&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="dubbo原理"><a href="#dubbo原理" class="headerlink" title="dubbo原理"></a>dubbo原理</h1><h2 id="RPC原理"><a href="#RPC原理" class="headerlink" title="RPC原理"></a>RPC原理</h2><p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/RPC%E5%8E%9F%E5%88%99.png"></p>
+<h1 id="dubbo原理"><a href="#dubbo原理" class="headerlink" title="dubbo原理"></a>dubbo原理</h1><h2 id="RPC原理"><a href="#RPC原理" class="headerlink" title="RPC原理"></a>RPC原理</h2><p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/RPC%E5%8E%9F%E5%88%99.png"></p>
 <p>一次完整的RPC调用流程（同步调用，异步另说）如下：</p>
 <ol>
 <li>服务消费方（client）调用以本地调用方式调用服务;</li>
@@ -656,14 +679,14 @@
 <p>RPC框架的目标就是要2~8这些步骤都封装起来，这些细节对用户来说是透明的，不可见的。</p>
 <h2 id="netty通信原理"><a href="#netty通信原理" class="headerlink" title="netty通信原理"></a>netty通信原理</h2><p>Netty是一个异步事件驱动的网络应用程序框架， 用于快速开发可维护的高性能协议服务器和客户端。它极大地简化并简化了TCP和UDP套接字服务器等网络编程。</p>
 <p>BIO：(Blocking IO)</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/BIO.png"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/BIO.png"></p>
 <p>NIO (Non-Blocking IO)</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/NIO.png"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/NIO.png"></p>
 <p>Selector 一般称 为<strong>选择器</strong> ，也可以翻译为 <strong>多路复用器，</strong></p>
 <p>Connect（连接就绪）、Accept（接受就绪）、Read（读就绪）、Write（写就绪）</p>
 <p>Netty基本原理：</p>
-<p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/Netty%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.png"></p>
-<h2 id="dubbo原理-1"><a href="#dubbo原理-1" class="headerlink" title="dubbo原理"></a>dubbo原理</h2><h3 id="dubbo原理-框架设计"><a href="#dubbo原理-框架设计" class="headerlink" title="dubbo原理 -框架设计"></a>dubbo原理 -框架设计</h3><p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/Dubbo-%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86.png"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/Netty%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.png"></p>
+<h2 id="dubbo原理-1"><a href="#dubbo原理-1" class="headerlink" title="dubbo原理"></a>dubbo原理</h2><h3 id="dubbo原理-框架设计"><a href="#dubbo原理-框架设计" class="headerlink" title="dubbo原理 -框架设计"></a>dubbo原理 -框架设计</h3><p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/Dubbo-%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86.png"></p>
 <ul>
 <li>config 配置层：对外配置接口，以 ServiceConfig, ReferenceConfig 为中心，可以直接初始化配置类，也可以通过 spring 解析配置生成配置类</li>
 <li>proxy 服务代理层：服务接口透明代理，生成服务的客户端 Stub 和服务器端 Skeleton, 以 ServiceProxy 为中心，扩展接口为 ProxyFactory</li>
@@ -675,10 +698,10 @@
 <li>transport 网络传输层：抽象 mina 和 netty 为统一接口，以 Message 为中心，扩展接口为 Channel, Transporter, Client, Server, Codec</li>
 <li>serialize 数据序列化层：可复用的一些工具，扩展接口为 Serialization, ObjectInput, ObjectOutput, ThreadPool</li>
 </ul>
-<h3 id="dubbo原理-启动解析、加载配置信息"><a href="#dubbo原理-启动解析、加载配置信息" class="headerlink" title="dubbo原理 -启动解析、加载配置信息"></a>dubbo原理 -启动解析、加载配置信息</h3><p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/Dubbo%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86.png"></p>
-<h3 id="dubbo原理-服务暴露"><a href="#dubbo原理-服务暴露" class="headerlink" title="dubbo原理 -服务暴露"></a>dubbo原理 -服务暴露</h3><p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/Dubbo%E5%8E%9F%E7%90%86-%E6%9C%8D%E5%8A%A1%E6%9A%B4%E9%9C%B2.png"></p>
-<h3 id="dubbo原理-服务引用"><a href="#dubbo原理-服务引用" class="headerlink" title="dubbo原理 -服务引用"></a>dubbo原理 -服务引用</h3><p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/Dubbo-%E5%8E%9F%E7%90%86-%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8.png"></p>
-<h3 id="dubbo原理-服务调用"><a href="#dubbo原理-服务调用" class="headerlink" title="dubbo原理 -服务调用"></a>dubbo原理 -服务调用</h3><p><img src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/dubbo%E5%8E%9F%E7%90%86-%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8.png"></p>
+<h3 id="dubbo原理-启动解析、加载配置信息"><a href="#dubbo原理-启动解析、加载配置信息" class="headerlink" title="dubbo原理 -启动解析、加载配置信息"></a>dubbo原理 -启动解析、加载配置信息</h3><p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/Dubbo%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86.png"></p>
+<h3 id="dubbo原理-服务暴露"><a href="#dubbo原理-服务暴露" class="headerlink" title="dubbo原理 -服务暴露"></a>dubbo原理 -服务暴露</h3><p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/Dubbo%E5%8E%9F%E7%90%86-%E6%9C%8D%E5%8A%A1%E6%9A%B4%E9%9C%B2.png"></p>
+<h3 id="dubbo原理-服务引用"><a href="#dubbo原理-服务引用" class="headerlink" title="dubbo原理 -服务引用"></a>dubbo原理 -服务引用</h3><p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/Dubbo-%E5%8E%9F%E7%90%86-%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8.png"></p>
+<h3 id="dubbo原理-服务调用"><a href="#dubbo原理-服务调用" class="headerlink" title="dubbo原理 -服务调用"></a>dubbo原理 -服务调用</h3><p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/dubbo/dubbo%E5%8E%9F%E7%90%86-%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8.png"></p>
 
     </div>
 
@@ -724,10 +747,11 @@
 
 
       <footer class="post-footer">
+          
           <div class="post-tags">
-              <a href="/tags/Java/" rel="tag"># Java</a>
-              <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
-              <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag"># 微服务</a>
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+              <a href="/tags/SpringBoot/" rel="tag"><i class="fa fa-tag"></i> SpringBoot</a>
+              <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag"><i class="fa fa-tag"></i> 微服务</a>
           </div>
 
         
@@ -807,7 +831,7 @@
     <img class="site-author-image" itemprop="image" alt="黄耀栋"
       src="https://wanglin.love/images/网站配置/avatar.png">
   <p class="site-author-name" itemprop="name">黄耀栋</p>
-  <div class="site-description" itemprop="description">年少不知富婆香，错把青春插稻秧</div>
+  <div class="site-description" itemprop="description">年少不富婆香，错把青春插稻秧</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -835,13 +859,23 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-fas fa-rss"></i>RSS</a>
       </span>
   </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
 
 
 
       </div>
+
+          
+            <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+            <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+            <div class="widget-wrap">
+                <h3 class="widget-title">标签</h3>
+                <div id="myCanvasContainer" class="widget tagcloud">
+                    <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/" rel="tag">JDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Loading%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB/" rel="tag">Loading加载动画</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/" rel="tag">RabbitMQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-js/" rel="tag">vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88/" rel="tag">实施工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag">微服务</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">消息中间件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" rel="tag">源码解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag">面试题</a><span class="tag-list-count">4</span></li></ul>
+                    </canvas>
+                </div>
+            </div>
+          
 
     </div>
   </aside>
@@ -862,14 +896,68 @@
   &copy; 
   <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heartbeat"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">黄耀栋</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">177k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:41</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
-  </div>
+      <!-- 网站运行时间的设置 -->
+    <span id="timeDate">载入天数...</span>
+    <span id="times">载入时分秒...</span>  Sometimes your whole life boils down to one insame move.
+    <script>
+        var now = new Date();
+        function createtime() {
+            var grt= new Date("01/05/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+            now.setTime(now.getTime()+250);
+            days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+            hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+            if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+            mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+            seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+            snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+            document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+            document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+    setInterval("createtime()",250);
+    </script>
+    <div class="BbeiAn-info">
+        闽ICP备 -
+        <a target="_blank" href="http://www.miitbeian.gov.cn/" rel="nofollow">2021005289号-2</a> <!--a标签中增加nofollow属性，避免爬虫出站。-->| 
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42090202000295" style="text-decoration:none;padding-left:30px;background:url(https://s1.ax1x.com/2018/09/29/ilmwIH.png) no-repeat left center" rel="nofollow">闽公网安备 42090202000295</a>    <!--这里将图标作为了背景，以使得能和后面的文字在同一行-->
+    </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
@@ -884,6 +972,9 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
