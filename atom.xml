@@ -6,7 +6,7 @@
   <link href="http://hyd0.cc/atom.xml" rel="self"/>
   
   <link href="http://hyd0.cc/"/>
-  <updated>2021-09-18T06:15:01.175Z</updated>
+  <updated>2021-09-18T08:47:30.569Z</updated>
   <id>http://hyd0.cc/</id>
   
   <author>
@@ -21,16 +21,11 @@
     <link href="http://hyd0.cc/2021/09/18/13/"/>
     <id>http://hyd0.cc/2021/09/18/13/</id>
     <published>2021-09-18T01:19:32.383Z</published>
-    <updated>2021-09-18T06:15:01.175Z</updated>
+    <updated>2021-09-18T08:47:30.569Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;基础知识&quot;&gt;&lt;a href=&quot;#基础知识&quot; class=&quot;headerlink&quot; title=&quot;基础知识&quot;&gt;&lt;/a&gt;基础知识&lt;/h1&gt;&lt;h2 id=&quot;分布式基础理论&quot;&gt;&lt;a href=&quot;#分布式基础理论&quot; class=&quot;headerlink&quot;</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;基础知识&quot;&gt;&lt;a href=&quot;#基础知识&quot; class=&quot;headerlink&quot; title=&quot;基础知识&quot;&gt;&lt;/a&gt;基础知识&lt;/h1&gt;&lt;h2 id=&quot;分布式基础理论&quot;&gt;&lt;a href=&quot;#分布式基础理论&quot; class=&quot;headerlink&quot; title=&quot;分布式基础理论&quot;&gt;&lt;/a&gt;分布式基础理论&lt;/h2&gt;&lt;h3 id=&quot;什么是分布式系统？&quot;&gt;&lt;a href=&quot;#什么是分布式系统？&quot; class=&quot;headerlink&quot; title=&quot;什么是分布式系统？&quot;&gt;&lt;/a&gt;什么是分布式系统？&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;《分布式系统原理与范型》定义：&lt;/strong&gt;“分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统”。&lt;/p&gt;
+&lt;p&gt;分布式系统（distributed system）是建立在网络之上的软件系统。随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需&lt;strong&gt;一个治理系统&lt;/strong&gt;确保架构有条不紊的演进。&lt;/p&gt;</summary>
     
     
     
@@ -48,16 +43,10 @@
     <link href="http://hyd0.cc/2021/09/18/%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     <id>http://hyd0.cc/2021/09/18/%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9D%A2%E8%AF%95%E9%A2%98/</id>
     <published>2021-09-18T01:19:32.383Z</published>
-    <updated>2021-06-25T06:58:37.516Z</updated>
+    <updated>2021-09-18T08:46:28.248Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;两电脑都在同一个网络环境中，A-电脑访问不到-B-电脑的共享文件。此现象可能是哪些-方面所导致？怎样处理？&quot;&gt;&lt;a href=&quot;#两电脑都在同一个网络环境中，A-电脑访问不到-B-电脑的共享文件。此现象可能是哪些-方面所导致？怎样处理？&quot;</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;两电脑都在同一个网络环境中，A-电脑访问不到-B-电脑的共享文件。此现象可能是哪些-方面所导致？怎样处理？&quot;&gt;&lt;a href=&quot;#两电脑都在同一个网络环境中，A-电脑访问不到-B-电脑的共享文件。此现象可能是哪些-方面所导致？怎样处理？&quot; class=&quot;headerlink&quot; title=&quot;两电脑都在同一个网络环境中，A 电脑访问不到 B 电脑的共享文件。此现象可能是哪些 方面所导致？怎样处理？&quot;&gt;&lt;/a&gt;两电脑都在同一个网络环境中，A 电脑访问不到 B 电脑的共享文件。此现象可能是哪些 方面所导致？怎样处理？&lt;/h1&gt;&lt;p&gt;首先你要确定是不是在一个工作组内，只有在一个工作组内才可以共享文件，然后看一个看一看有没有防火墙之类的，然后确定文件是不是已经共享&lt;/p&gt;</summary>
     
     
     
@@ -75,16 +64,10 @@
     <link href="http://hyd0.cc/2021/09/18/11/"/>
     <id>http://hyd0.cc/2021/09/18/11/</id>
     <published>2021-09-18T01:19:32.352Z</published>
-    <updated>2021-07-12T03:19:26.362Z</updated>
+    <updated>2021-09-18T08:47:23.043Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;MQ引言&quot;&gt;&lt;a href=&quot;#MQ引言&quot; class=&quot;headerlink&quot; title=&quot;MQ引言&quot;&gt;&lt;/a&gt;MQ引言&lt;/h1&gt;&lt;h2 id=&quot;什么是MQ&quot;&gt;&lt;a href=&quot;#什么是MQ&quot; class=&quot;headerlink&quot;</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;MQ引言&quot;&gt;&lt;a href=&quot;#MQ引言&quot; class=&quot;headerlink&quot; title=&quot;MQ引言&quot;&gt;&lt;/a&gt;MQ引言&lt;/h1&gt;&lt;h2 id=&quot;什么是MQ&quot;&gt;&lt;a href=&quot;#什么是MQ&quot; class=&quot;headerlink&quot; title=&quot;什么是MQ&quot;&gt;&lt;/a&gt;什么是MQ&lt;/h2&gt;&lt;p&gt;&lt;code&gt;MQ&lt;/code&gt;(Message Quene) :  翻译为 &lt;code&gt;消息队列&lt;/code&gt;,通过典型的 &lt;code&gt;生产者&lt;/code&gt;和&lt;code&gt;消费者&lt;/code&gt;模型,生产者不断向消息队列中生产消息，消费者不断的从队列中获取消息。因为消息的生产和消费都是异步的，而且只关心消息的发送和接收，没有业务逻辑的侵入,轻松的实现系统间解耦。别名为 &lt;code&gt;消息中间件&lt;/code&gt;    通过利用高效可靠的消息传递机制进行平台无关的数据交流，并基于数据通信来进行分布式系统的集成。&lt;/p&gt;</summary>
     
     
     
@@ -104,20 +87,16 @@
     <link href="http://hyd0.cc/2021/09/18/12/"/>
     <id>http://hyd0.cc/2021/09/18/12/</id>
     <published>2021-09-18T01:19:32.352Z</published>
-    <updated>2021-07-15T09:27:34.094Z</updated>
+    <updated>2021-09-18T08:47:27.109Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;MyBatis&quot;&gt;&lt;a href=&quot;#MyBatis&quot; class=&quot;headerlink&quot; title=&quot;MyBatis&quot;&gt;&lt;/a&gt;MyBatis&lt;/h1&gt;&lt;h2 id=&quot;什么是Mybatis？&quot;&gt;&lt;a href=&quot;#什么是Mybatis？&quot;</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;MyBatis&quot;&gt;&lt;a href=&quot;#MyBatis&quot; class=&quot;headerlink&quot; title=&quot;MyBatis&quot;&gt;&lt;/a&gt;MyBatis&lt;/h1&gt;&lt;h2 id=&quot;什么是Mybatis？&quot;&gt;&lt;a href=&quot;#什么是Mybatis？&quot; class=&quot;headerlink&quot; title=&quot;什么是Mybatis？&quot;&gt;&lt;/a&gt;什么是Mybatis？&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;Mybatis是一个半ORM（对象关系映射）框架，它内部封装了JDBC，开发时只需要关注SQL语句本身，不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。程序员直接编写原生态sql，可以严格控制sql执行性能，灵活度高。&lt;/li&gt;
+&lt;li&gt;Mybatis是一个半ORM（对象关系映射）框架，它内部封装了JDBC，开发时只需要关注SQL语句本身，不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。程序员直接编写原生态sql，可以严格控制sql执行性能，灵活度高。&lt;/li&gt;
+&lt;li&gt;通过xml 文件或注解的方式将要执行的各种 statement 配置起来，并通过java对象和 statement中sql的动态参数进行映射生成最终执行的sql语句，最后由mybatis框架执行sql并将结果映射为java对象并返回。（从执行sql到返回result的过程）。&lt;/li&gt;
+&lt;/ol&gt;</summary>
     
     
-    
-    <category term="面试" scheme="http://hyd0.cc/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="Java" scheme="http://hyd0.cc/tags/Java/"/>
@@ -131,16 +110,11 @@
     <link href="http://hyd0.cc/2021/09/18/10/"/>
     <id>http://hyd0.cc/2021/09/18/10/</id>
     <published>2021-09-18T01:19:32.321Z</published>
-    <updated>2021-06-29T08:19:42.433Z</updated>
+    <updated>2021-09-18T08:47:18.866Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;在-java-中守护线程和本地线程区别？&quot;&gt;&lt;a href=&quot;#在-java-中守护线程和本地线程区别？&quot; class=&quot;headerlink&quot; title=&quot;在 java 中守护线程和本地线程区别？&quot;&gt;&lt;/a&gt;在 java</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;在-java-中守护线程和本地线程区别？&quot;&gt;&lt;a href=&quot;#在-java-中守护线程和本地线程区别？&quot; class=&quot;headerlink&quot; title=&quot;在 java 中守护线程和本地线程区别？&quot;&gt;&lt;/a&gt;在 java 中守护线程和本地线程区别？&lt;/h1&gt;&lt;p&gt;java 中的线程分为两种：守护线程（Daemon）和用户线程（User）。&lt;/p&gt;
+&lt;p&gt;任何线程都可以设置为守护线程和用户线程，通过方法 Thread.setDaemon(布尔类型)；true 则把该线程设置为守护线程，反之则为用户线程。Thread.setDaemon()必须在 Thread.start()之前调用，否则运行时会抛出异常。&lt;/p&gt;</summary>
     
     
     
@@ -158,21 +132,23 @@
     <link href="http://hyd0.cc/2021/09/18/9/"/>
     <id>http://hyd0.cc/2021/09/18/9/</id>
     <published>2021-09-18T01:19:32.305Z</published>
-    <updated>2021-06-17T09:45:59.336Z</updated>
+    <updated>2021-09-18T08:47:14.279Z</updated>
     
     
-      
-      
-        
-        
     <summary type="html">&lt;div class=&quot;note warning simple&quot;&gt;
-           </summary>
-        
-      
+            &lt;p&gt;说明：该文档是在&lt;code&gt;linux&lt;/code&gt;上安装&lt;code&gt;jdk&lt;/code&gt;、&lt;code&gt;mysql&lt;/code&gt;、&lt;code&gt;tomcat&lt;/code&gt;软件，以便于建立一个&lt;code&gt;linux&lt;/code&gt;系统下的&lt;code&gt;web&lt;/code&gt;环境&lt;/p&gt;
+          &lt;/div&gt;
+
+&lt;div class=&quot;note info simple&quot;&gt;
+            &lt;p&gt;建议：保留该安装文档 以便于复用&lt;/p&gt;
+          &lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;软件安装命令：&lt;code&gt;rpm&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;作用：相当于软件助手，可以查询已安装的软件、卸载软件和安装软件。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
     
     
-    
-    <category term="教程" scheme="http://hyd0.cc/categories/%E6%95%99%E7%A8%8B/"/>
     
     
     <category term="JDK" scheme="http://hyd0.cc/tags/JDK/"/>
@@ -186,50 +162,40 @@
   </entry>
   
   <entry>
-    <title>源码级别理解 Redis 持久化</title>
-    <link href="http://hyd0.cc/2021/09/18/8/"/>
-    <id>http://hyd0.cc/2021/09/18/8/</id>
-    <published>2021-09-18T01:19:32.289Z</published>
-    <updated>2021-06-17T08:09:15.286Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;大家都知道 Redis 是一个内存数据库，数据都存储在内存中，这也是 Redis</summary>
-        
-      
-    
-    
-    
-    <category term="后端" scheme="http://hyd0.cc/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    
-    <category term="Redis" scheme="http://hyd0.cc/tags/Redis/"/>
-    
-    <category term="源码解析" scheme="http://hyd0.cc/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
-    
-  </entry>
-  
-  <entry>
     <title>虚拟DOM与Diff算法的实现原理</title>
     <link href="http://hyd0.cc/2021/09/18/7/"/>
     <id>http://hyd0.cc/2021/09/18/7/</id>
     <published>2021-09-18T01:19:32.289Z</published>
-    <updated>2021-06-15T18:27:36.457Z</updated>
+    <updated>2021-09-18T08:47:03.932Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;Vue 源码中虚拟 DOM 与 Diff 算法的实现借鉴了 &lt;code&gt;snabbdom&lt;/code&gt; 这个库，&lt;code&gt;snabbdom&lt;/code&gt; 是一个虚拟 DOM 库，它专注于简单，模块化，强大的功能和性能。要彻底明白虚拟 DOM 与 Diff 算法就得分析 &lt;code&gt;snabbdom&lt;/code&gt; 这个库到底做了什么？&lt;/p&gt;</summary>
     
     
     
-    <category term="前端" scheme="http://hyd0.cc/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="vue.js" scheme="http://hyd0.cc/tags/vue-js/"/>
+    
+    <category term="源码解析" scheme="http://hyd0.cc/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>源码级别理解 Redis 持久化</title>
+    <link href="http://hyd0.cc/2021/09/18/8/"/>
+    <id>http://hyd0.cc/2021/09/18/8/</id>
+    <published>2021-09-18T01:19:32.289Z</published>
+    <updated>2021-09-18T08:47:08.434Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;大家都知道 Redis 是一个内存数据库，数据都存储在内存中，这也是 Redis 非常快的原因之一。虽然速度提上来了，但是如果数据一直放在内存中，是非常容易丢失的。比如 服务器关闭或宕机了，内存中的数据就木有了。为了解决这一问题，Redis 提供了 持久化 机制。分别是 &lt;strong&gt;RDB&lt;/strong&gt; 以及 &lt;strong&gt;AOF&lt;/strong&gt; 持久化。&lt;/p&gt;</summary>
+    
+    
     
     
     <category term="源码解析" scheme="http://hyd0.cc/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
     
-    <category term="vue.js" scheme="http://hyd0.cc/tags/vue-js/"/>
+    <category term="Redis" scheme="http://hyd0.cc/tags/Redis/"/>
     
   </entry>
   
@@ -238,7 +204,7 @@
     <link href="http://hyd0.cc/2021/09/18/6/"/>
     <id>http://hyd0.cc/2021/09/18/6/</id>
     <published>2021-09-18T01:19:32.274Z</published>
-    <updated>2021-06-15T18:27:17.571Z</updated>
+    <updated>2021-09-18T08:46:59.642Z</updated>
     
     
     <summary type="html">&lt;p&gt;在开始介绍Java内存区域之前，先放一张内存区域的图，方便后面介绍的时候可以对照着看。&lt;/p&gt;
@@ -248,8 +214,6 @@
 &lt;p&gt;&lt;img data-src=&quot;https://wanglin.love/hyd/bdqn/blog/images/JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%86%E5%B8%83%E4%B8%8E%E4%BD%9C%E7%94%A8/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F.png&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;</summary>
     
     
-    
-    <category term="后端" scheme="http://hyd0.cc/categories/%E5%90%8E%E7%AB%AF/"/>
     
     
     <category term="Java" scheme="http://hyd0.cc/tags/Java/"/>
@@ -263,15 +227,13 @@
     <link href="http://hyd0.cc/2021/09/18/5/"/>
     <id>http://hyd0.cc/2021/09/18/5/</id>
     <published>2021-09-18T01:19:32.258Z</published>
-    <updated>2021-06-15T18:27:00.565Z</updated>
+    <updated>2021-09-18T08:46:55.481Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;Aliyun-Java-Initializr&quot;&gt;&lt;a href=&quot;#Aliyun-Java-Initializr&quot; class=&quot;headerlink&quot; title=&quot;Aliyun Java Initializr&quot;&gt;&lt;/a&gt;Aliyun Java Initializr&lt;/h1&gt;&lt;p&gt;在日常开发工作和自己学习跑&lt;code&gt;demo&lt;/code&gt;的时候，往往都需要快速构建一个&lt;code&gt;springboot&lt;/code&gt;基础工程。除了用&lt;code&gt;IDEA&lt;/code&gt;开发工具构建，更多就是用&lt;code&gt;Spring Initializr&lt;/code&gt;来生成，但用的时间长了发现，它也就仅仅只能帮我们引入一些必要的&lt;code&gt;jar&lt;/code&gt;包，其他插件轮子还是得自己配置。&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&quot;https://wanglin.love/hyd/bdqn/blog/images/10%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%E8%B6%85%E5%AE%9E%E7%94%A8%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/Aliyun%20Java%20Initializr1.png&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;</summary>
     
     
-    
-    <category term="工具" scheme="http://hyd0.cc/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
     <category term="网站" scheme="http://hyd0.cc/tags/%E7%BD%91%E7%AB%99/"/>
@@ -283,7 +245,7 @@
     <link href="http://hyd0.cc/2021/09/18/4/"/>
     <id>http://hyd0.cc/2021/09/18/4/</id>
     <published>2021-09-18T01:19:32.242Z</published>
-    <updated>2021-06-15T18:26:27.399Z</updated>
+    <updated>2021-09-18T08:46:50.316Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;GenerateAllSetter&quot;&gt;&lt;a href=&quot;#GenerateAllSetter&quot; class=&quot;headerlink&quot; title=&quot;GenerateAllSetter&quot;&gt;&lt;/a&gt;GenerateAllSetter&lt;/h1&gt;&lt;p&gt;实际的开发中，可能会经常为某个对象中多个属性进行 &lt;code&gt;set&lt;/code&gt; 赋值，尽管可以用&lt;code&gt;BeanUtil.copyProperties()&lt;/code&gt;方式批量赋值，但这种方式有一些弊端，存在属性值覆盖的问题，所以不少场景还是需要手动 &lt;code&gt;set&lt;/code&gt;。如果一个对象属性太多 &lt;code&gt;set&lt;/code&gt; 起来也很痛苦，&lt;code&gt;GenerateAllSetter&lt;/code&gt;可以一键将对象属性都 &lt;code&gt;set&lt;/code&gt; 出来。&lt;/p&gt;
@@ -291,8 +253,6 @@
 &lt;p&gt;&lt;img data-src=&quot;https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/GenerateAllSetter.gif&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;</summary>
     
     
-    
-    <category term="工具" scheme="http://hyd0.cc/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
     <category term="IDEA" scheme="http://hyd0.cc/tags/IDEA/"/>
@@ -306,7 +266,7 @@
     <link href="http://hyd0.cc/2021/09/18/2/"/>
     <id>http://hyd0.cc/2021/09/18/2/</id>
     <published>2021-09-18T01:19:32.227Z</published>
-    <updated>2021-06-15T18:22:19.302Z</updated>
+    <updated>2021-09-18T08:46:40.510Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;就业阶段工作流程&quot;&gt;&lt;a href=&quot;#就业阶段工作流程&quot; class=&quot;headerlink&quot; title=&quot;就业阶段工作流程&quot;&gt;&lt;/a&gt;就业阶段工作流程&lt;/h1&gt;&lt;p&gt;简历→面试→入职→试用期→转正&lt;/p&gt;
@@ -317,8 +277,6 @@
 &lt;/ul&gt;</summary>
     
     
-    
-    <category term="面试" scheme="http://hyd0.cc/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="Java" scheme="http://hyd0.cc/tags/Java/"/>
@@ -332,7 +290,7 @@
     <link href="http://hyd0.cc/2021/09/18/3/"/>
     <id>http://hyd0.cc/2021/09/18/3/</id>
     <published>2021-09-18T01:19:32.227Z</published>
-    <updated>2021-06-24T06:34:28.593Z</updated>
+    <updated>2021-09-18T08:46:45.954Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;JDK-常用的包&quot;&gt;&lt;a href=&quot;#JDK-常用的包&quot; class=&quot;headerlink&quot; title=&quot;JDK 常用的包&quot;&gt;&lt;/a&gt;JDK 常用的包&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;java.lang：&lt;/strong&gt; 这个是系统的基础类，比如 &lt;code&gt;String&lt;/code&gt;、&lt;code&gt;Math&lt;/code&gt;、&lt;code&gt;Integer&lt;/code&gt;、&lt;code&gt;System&lt;/code&gt; 和 &lt;code&gt;Thread&lt;/code&gt;，提供常用功能。&lt;/p&gt;
@@ -342,8 +300,6 @@
 &lt;p&gt;&lt;strong&gt;java.sql:&lt;/strong&gt; 这个是数据库操作的类，&lt;code&gt;Connection&lt;/code&gt;, &lt;code&gt;Statememt&lt;/code&gt;，&lt;code&gt;ResultSet&lt;/code&gt; 等&lt;/p&gt;</summary>
     
     
-    
-    <category term="面试" scheme="http://hyd0.cc/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="Java" scheme="http://hyd0.cc/tags/Java/"/>
@@ -357,17 +313,16 @@
     <link href="http://hyd0.cc/2021/09/18/1/"/>
     <id>http://hyd0.cc/2021/09/18/1/</id>
     <published>2021-09-18T01:19:32.211Z</published>
-    <updated>2021-06-15T18:06:37.706Z</updated>
+    <updated>2021-09-18T08:46:33.661Z</updated>
     
     
     <summary type="html">&lt;p&gt;在编写网站或应用程序时，要么它的速度就得像闪电一般，要么就使用加载提示动画。我想我们大多数人都会选择的第二个方案。&lt;/p&gt;
 &lt;p&gt;那么问题来了：我们该使用什么样的加载提示动画呢？是“loading”文本，省略号，进度条，还是其它怪诞的符号？&lt;/p&gt;
 &lt;p&gt;不用在苦思冥想了。下面我提供了100个不同的CSS加载提示动画。从简单到复杂，总有你想要的那一款。&lt;/p&gt;
-&lt;p&gt;每个加载提示动画都使用单个元素完成。是的，你没听错，就只有一个&lt;code&gt;div&lt;/code&gt;而已。因此，没有必要复制大量代码，添加一个类到&lt;code&gt;div&lt;/code&gt;中，就可以开始loading！&lt;/p&gt;</summary>
+&lt;p&gt;每个加载提示动画都使用单个元素完成。是的，你没听错，就只有一个&lt;code&gt;div&lt;/code&gt;而已。因此，没有必要复制大量代码，添加一个类到&lt;code&gt;div&lt;/code&gt;中，就可以开始loading！&lt;/p&gt;
+&lt;h1 id=&quot;经典款&quot;&gt;&lt;a href=&quot;#经典款&quot; class=&quot;headerlink&quot; title=&quot;经典款&quot;&gt;&lt;/a&gt;经典款&lt;/h1&gt;&lt;p&gt;&lt;img data-src=&quot;https://wanglin.love/hyd/bdqn/blog/images/%E7%BA%AFCSS%E5%81%9A%E7%9A%84200%E4%B8%AALoading%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210606174831.gif&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;</summary>
     
     
-    
-    <category term="前端" scheme="http://hyd0.cc/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
     <category term="CSS" scheme="http://hyd0.cc/tags/CSS/"/>
