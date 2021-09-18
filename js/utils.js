@@ -237,6 +237,8 @@ NexT.utils = {
       link.addEventListener('click', event => {
         event.preventDefault();
         var target = document.getElementById(event.currentTarget.getAttribute('href').replace('#', ''));
+        // 对获取到的url进行重编码
+        target = decodeURI(this.getAttribute('href'))
         var offset = target.getBoundingClientRect().top + window.scrollY;
         window.anime({
           targets  : document.scrollingElement,
