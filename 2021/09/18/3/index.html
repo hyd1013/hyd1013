@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hyd0.cc","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="JDK 常用的包java.lang： 这个是系统的基础类，比如 String、Math、Integer、System 和 Thread，提供常用功能。 java.io: 这里面是所有输入输出有关的类，比如文件操作等 java.net: 这里面是与网络有关的类，比如 URL,URLConnection 等。 java.util : 这个是系统辅助类，特别是集合类 Collection,List,Ma">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础篇">
+<meta property="og:url" content="http://hyd0.cc/2021/09/18/3/index.html">
+<meta property="og:site_name" content="黄耀栋的个人博客">
+<meta property="og:description" content="JDK 常用的包java.lang： 这个是系统的基础类，比如 String、Math、Integer、System 和 Thread，提供常用功能。 java.io: 这里面是所有输入输出有关的类，比如文件操作等 java.net: 这里面是与网络有关的类，比如 URL,URLConnection 等。 java.util : 这个是系统辅助类，特别是集合类 Collection,List,Ma">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-18T01:19:32.227Z">
+<meta property="article:modified_time" content="2021-06-24T06:34:28.593Z">
+<meta property="article:author" content="黄耀栋">
+<meta property="article:tag" content="面试题">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hyd0.cc/2021/09/18/3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>基础篇 | 黄耀栋的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="黄耀栋的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">黄耀栋的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hyd0.cc/2021/09/18/3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://wanglin.love/images/网站配置/avatar.png">
+      <meta itemprop="name" content="黄耀栋">
+      <meta itemprop="description" content="年少不知富婆香，错把青春插稻秧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄耀栋的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基础篇
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-18 09:19:32" itemprop="dateCreated datePublished" datetime="2021-09-18T09:19:32+08:00">2021-09-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-24 14:34:28" itemprop="dateModified" datetime="2021-06-24T14:34:28+08:00">2021-06-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="JDK-常用的包"><a href="#JDK-常用的包" class="headerlink" title="JDK 常用的包"></a>JDK 常用的包</h1><p><strong>java.lang：</strong> 这个是系统的基础类，比如 <code>String</code>、<code>Math</code>、<code>Integer</code>、<code>System</code> 和 <code>Thread</code>，提供常用功能。</p>
+<p><strong>java.io:</strong> 这里面是所有输入输出有关的类，比如文件操作等</p>
+<p><strong>java.net:</strong> 这里面是与网络有关的类，比如 <code>URL</code>,<code>URLConnection</code> 等。</p>
+<p><strong>java.util :</strong> 这个是系统辅助类，特别是集合类 <code>Collection</code>,<code>List</code>,<code>Map</code> 等。</p>
+<p><strong>java.sql:</strong> 这个是数据库操作的类，<code>Connection</code>, <code>Statememt</code>，<code>ResultSet</code> 等</p>
+<span id="more"></span>
+
+<h1 id="Get-和-Post-的区别"><a href="#Get-和-Post-的区别" class="headerlink" title="Get 和 Post 的区别"></a>Get 和 Post 的区别</h1><h2 id="初级回答："><a href="#初级回答：" class="headerlink" title="初级回答："></a>初级回答：</h2><ol>
+<li><code>get</code> 是从服务器上获取数据，<code>post</code> 是向服务器传送数据， </li>
+<li><code>get</code> 传送的数据量较小，不能大于 2KB。<code>post</code> 传送的数据量较大，一般被默认为不</li>
+<li><code>get</code> 安全性非常低，<code>post</code> 安全性较高。但是执行效率却比 <code>Post</code> 方法好。 </li>
+<li>在进行文件上传时只能使用 <code>post</code> 而不能是 <code>get</code>。</li>
+</ol>
+<h2 id="中级回答：【推荐】"><a href="#中级回答：【推荐】" class="headerlink" title="中级回答：【推荐】"></a><span style="color:red">中级回答：【推荐】</span></h2><ol>
+<li><p><code>get</code> 是从服务器上获取数据，post 是向服务器传送数据。 </p>
+</li>
+<li><p>get 是把参数数据队列加到提交表单的 <code>ACTION</code> 属性所指的 <code>URL</code> 中，值和表单内各个字段一一对应，在 <code>URL</code> 中可以看到。<code>post</code> 是通过 <code>HTTP post</code> 机制，将表单内各个 字段与其内容放置在 <code>HTML HEADER</code> 内一起传送到 <code>ACTION</code> 属性所指的 <code>URL</code> 地址。用户看不到这个过程。 </p>
+</li>
+<li><p>对于 <code>get</code> 方式，服务器端用 <code>Request.QueryString</code> 获取变量的值，对于 <code>post</code> 方式，服务器端用 <code>Request.Form</code> 获取提交的数据 </p>
+</li>
+<li><p><code>get</code> 传送的数据量较小，不能大于 2KB。<code>post</code> 传送的数据量较大，一般被默认为不受限制。但理论上，<code>IIS4</code> 中最大量为 80KB，<code>IIS5</code>中为 100KB。 </p>
+</li>
+<li><p><code>get</code> 安全性非常低，<code>post</code> 安全性较高</p>
+</li>
+<li><p><code>get</code> 传递参数的时候【有时候】服务端获取的参数不会乱码，而 <code>post</code> 不会，<code>get</code> 请求参数是通过 <code>URL</code> 传递的，浏览器默认的会对中文进行 <code>gbk</code> 编码(<code>URL</code> 中如果含有中文等非 <code>ASCII</code> 字符，则浏览器会对它们进行 <code>URLEncode</code> </p>
+</li>
+</ol>
+<h1 id="Java-多态的具体体现"><a href="#Java-多态的具体体现" class="headerlink" title="Java 多态的具体体现"></a>Java 多态的具体体现</h1><p>面向对象编程有四个特征：抽象，封装，继承，多态。</p>
+<blockquote>
+<p>多态有四种体现形式：</p>
+<ol>
+<li>接口和接口的继承</li>
+<li>类和类的继承</li>
+<li>重载</li>
+<li>重写</li>
+</ol>
+</blockquote>
+<p>其中重载和重写为核心：</p>
+<blockquote>
+<p><strong>重载</strong>：重载发生在同一个类中，在该类中如果存在多个同名方法，但是方法的参数类型和个数不一样，那么说明该方法被重载了。</p>
+<p><strong>重写</strong>：重写发生在子类继承父类的关系中，父类中的方法被子类继承，方法名，返回值类型，参数完全一样，但是方法体不一样，那么说明父类中的该方法被子类重写了。</p>
+</blockquote>
+<h1 id="StringBuffer-StringBuilder-String-区别"><a href="#StringBuffer-StringBuilder-String-区别" class="headerlink" title="StringBuffer StringBuilder String 区别"></a>StringBuffer StringBuilder String 区别</h1><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">底层</th>
+<th align="center">可变性</th>
+<th align="center">安全性</th>
+<th align="center">拼接方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">String</td>
+<td align="center">字符串常量</td>
+<td align="center">不可变</td>
+<td align="center">线程安全</td>
+<td align="center">使用字符串拼接时是不同的 2 个空间</td>
+</tr>
+<tr>
+<td align="center">StringBuffer</td>
+<td align="center">字符串变量</td>
+<td align="center">可变</td>
+<td align="center">线程安全</td>
+<td align="center">字符串拼接直接在字符串后追加</td>
+</tr>
+<tr>
+<td align="center">StringBuilder</td>
+<td align="center">字符串变量</td>
+<td align="center">可变</td>
+<td align="center">非线程安全</td>
+<td align="center">字符串拼接直接在字符串后追加</td>
+</tr>
+</tbody></table>
+<ol>
+<li><code>StringBuilder</code> 执行效率高于 <code>StringBuffer</code> 高于 <code>String</code></li>
+<li><code>String</code> 是一个常量，是不可变的，所以对于每一次+=赋值都会创建一个新的对象， <code>StringBuffer</code> 和 <code>StringBuilder</code> 都是可变的，当进行字符串拼接时采用 <code>append</code> 方法，在原来的基础上进行追加，所以性能比 <code>String</code> 要高，又因为 <code>StringBuffer</code> 是线程安全的而 <code>StringBuilder</code> 是线程非安全的，所以 <code>StringBuilder</code> 的效率高于<code>StringBuffer</code></li>
+<li>对于大数据量的字符串的拼接，采用 <code>StringBuffer</code>,<code>StringBuilder</code></li>
+</ol>
+<h1 id="Hashtable-与-HashMap-的区别"><a href="#Hashtable-与-HashMap-的区别" class="headerlink" title="Hashtable 与 HashMap 的区别"></a>Hashtable 与 HashMap 的区别</h1><blockquote>
+<p><code>HashMap</code> 不是线程安全的，<code>HashTable</code> 是线程安全。 </p>
+<p><code>HashMap</code> 允许空（<code>null</code>）的键和值（<code>key</code>），<code>HashTable</code> 则不允许。 </p>
+<p><code>HashMap</code> 性能优于 <code>Hashtable</code>。 </p>
+</blockquote>
+<ol>
+<li><code>Map</code> 是一个以键值对存储的接口。<code>Map</code> 下有两个具体的实现，分别是 <code>HashMap</code> 和 <code>HashTable</code></li>
+<li><code>HashMap</code> 是线程非安全的，<code>HashTable</code> 是线程安全的，所以 <code>HashMap</code> 的效率高于 <code>HashTable</code></li>
+<li><code>HashMap</code> 允许键或值为空，而 <code>HashTable</code> 不允许键或值为空</li>
+</ol>
+<h1 id="九大隐式对象"><a href="#九大隐式对象" class="headerlink" title="九大隐式对象"></a>九大隐式对象</h1><p>输入/输出对象： <code>request</code>、<code>response</code>、<code>out</code></p>
+<p>作用域通信对象： <code>session</code>、<code>application</code>、<code>pageContext</code></p>
+<p>Servlet 对象： <code>page</code>、<code>config</code></p>
+<p>错误对象： <code>exception</code></p>
+<h1 id="Forword-请求转发-与-Redirect-重定向"><a href="#Forword-请求转发-与-Redirect-重定向" class="headerlink" title="Forword(请求转发)与 Redirect(重定向)"></a>Forword(请求转发)与 Redirect(重定向)</h1><ol>
+<li>从数据共享上<ol>
+<li><code>Forword</code> 是一个请求的延续，可以共享 <code>request</code> 的数据</li>
+<li><code>Redirect</code> 开启一个新的请求，不可以共享 <code>request</code> 的数据</li>
+</ol>
+</li>
+<li>从地址栏<ol>
+<li><code>Forword</code> 转发地址栏不发生变化</li>
+<li><code>Redirect</code> 转发地址栏发生变化</li>
+</ol>
+</li>
+</ol>
+<h1 id="JQurey-总结"><a href="#JQurey-总结" class="headerlink" title="JQurey 总结"></a>JQurey 总结</h1><p><code>jquery</code> 是一个轻量级的 <code>js</code> 框架，具有跨浏览器的特性，兼容性好，并且封装了很多工具，方便使用。 </p>
+<p>常用的有: 选择器 ，<code>dom</code> 操作 ，<code>ajax</code>(<code>ajax</code> 不能跨域) ，特效，工具类</p>
+<h1 id="XML-和-Json-的特点"><a href="#XML-和-Json-的特点" class="headerlink" title="XML 和 Json 的特点"></a>XML 和 Json 的特点</h1><p><strong>Xml 特点：</strong></p>
+<ol>
+<li>有且只有一个根节点；</li>
+<li>数据传输的载体 </li>
+<li>所有的标签都需要自定义 </li>
+<li>是纯文本文件 </li>
+</ol>
+<p><strong>Json（JavaScript Object Notation）特点：</strong></p>
+<ol>
+<li><code>json</code> 对象(就是在{}中存储键值对，键和值之间用冒号分隔， 键 值 对之间用逗号分隔)</li>
+<li><code>json</code> 数组(就是[]中存储多个 <code>json</code> 对象，<code>json</code> 对象之间用逗号分隔)（两者间可以进行相互嵌套）数据传输的载体之一</li>
+</ol>
+<p><strong>区别：</strong></p>
+<p>传输同样格式的数据，xml 需要使用更多的字符进行描述，流行的是基于 json 的数据传输,xml 的层次结构比 json 更清晰</p>
+<p><strong>共同点：</strong></p>
+<p>xml 和 json 都是数据传输的载体，并且具有跨平台跨语言的特性。</p>
+<h1 id="Page-和-PageContext-的区别"><a href="#Page-和-PageContext-的区别" class="headerlink" title="Page 和 PageContext 的区别"></a>Page 和 PageContext 的区别</h1><p><code>Page</code> 是 <code>servlet</code> 对象；使用 <code>this</code> 关键字，它的作用范围是在同一页面。<code>PageContext</code> 是作用域通信对象；通常使用<code>setAttribute()</code>和 <code>getAttribute()</code>来设置和获取存放对象的值。</p>
+<h1 id="JSP9-大隐视对象中四个作用域的大小与作用范围"><a href="#JSP9-大隐视对象中四个作用域的大小与作用范围" class="headerlink" title="JSP9 大隐视对象中四个作用域的大小与作用范围"></a>JSP9 大隐视对象中四个作用域的大小与作用范围</h1><p>四个作用域从大到小：<code>appliaction</code> &gt; <code>session</code> &gt; <code>request</code> &gt; <code>page</code></p>
+<table>
+<thead>
+<tr>
+<th align="center">作用域</th>
+<th align="center">范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">application</td>
+<td align="center">全局作用范围，整个应用程序共享.生命周期为：应用程序启动到停止</td>
+</tr>
+<tr>
+<td align="center">session</td>
+<td align="center">会话作用域，当用户首次访问时，产生一个新的会话，以后服务器就可以记 住这个会话状态</td>
+</tr>
+<tr>
+<td align="center">request</td>
+<td align="center">请求作用域，就是客户端的一次请求</td>
+</tr>
+<tr>
+<td align="center">page</td>
+<td align="center">一个 JSP 页面</td>
+</tr>
+</tbody></table>
+<p>以上作用范围使越来越小， <code>request</code> 和 <code>page</code> 的生命周期都是短暂的，他们之间的区别就是：一个 <code>request</code> 可以包含多个 <code>page</code> 页(<code>include</code>，<code>forward</code>)</p>
+<h1 id="List-Set-Collection-Collections"><a href="#List-Set-Collection-Collections" class="headerlink" title="List,Set,Collection,Collections"></a>List,Set,Collection,Collections</h1><ol>
+<li><code>List</code> 和 <code>Set</code> 都是接口，他们都继承于接口 <code>Collection</code>,<code>List</code> 是一个有序的可重复的集合，而 <code>Set</code> 的无序的不可重复的集合。<code>Collection</code> 是集合的顶层接口，<code>Collections</code> 是一个封装了众多关于集合操作的静态方法的工具类,因为构造方法是私有的，所以不能实例化。</li>
+<li><code>List</code> 接口实现类有 <code>ArrayList</code>,<code>LinkedList</code>,<code>Vector</code>。<code>ArrayList</code> 和 <code>Vector</code> 是基于数组实现的,所以查询的时候速度快，而在进行增加和删除的时候速度较慢 <code>LinkedList</code> 是基于链式存储结构，所以在进行查询的时候速度较慢但在进行增加和删除的时候速度较快。又因为<code>Vector</code> 是线程安全的，所以他和 <code>ArrayList</code> 相比而言，查询效率要低。</li>
+</ol>
+<h1 id="java-的基本数据类型"><a href="#java-的基本数据类型" class="headerlink" title="java 的基本数据类型"></a>java 的基本数据类型</h1><table>
+<thead>
+<tr>
+<th align="center">数据类型</th>
+<th align="center">大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">byte(字节)</td>
+<td align="center">1(8 位)</td>
+</tr>
+<tr>
+<td align="center">shot(短整型)</td>
+<td align="center">2(16 位)</td>
+</tr>
+<tr>
+<td align="center">int(整型)</td>
+<td align="center">4(32 位)</td>
+</tr>
+<tr>
+<td align="center">long(长整型)</td>
+<td align="center">8(32 位)</td>
+</tr>
+<tr>
+<td align="center">float(浮点型)</td>
+<td align="center">4(32 位)</td>
+</tr>
+<tr>
+<td align="center">double(双精度)</td>
+<td align="center">8(64 位)</td>
+</tr>
+<tr>
+<td align="center">char(字符型)</td>
+<td align="center">2(16 位)</td>
+</tr>
+<tr>
+<td align="center">boolean(布尔型)</td>
+<td align="center">1 位</td>
+</tr>
+</tbody></table>
+<p>附加：</p>
+<ol>
+<li>String 是基本数据类型吗?(String 不是基本数据类型)</li>
+<li>String 的长度是多少，有限制?(长度受内存大小的影响)</li>
+</ol>
+<h1 id="UE-和-UI-的区别"><a href="#UE-和-UI-的区别" class="headerlink" title="UE 和 UI 的区别"></a>UE 和 UI 的区别</h1><blockquote>
+<p>UE 是用户体验度 </p>
+<p>UI 界面原型（用户界面）（相当于买房时用的模型）</p>
+</blockquote>
+<p>设计 UI 的作用： </p>
+<ol>
+<li>帮助程序员工作（界面已由美工设计完成） </li>
+<li>提前让用户对项目有个宏观的了解，知道效果是什么样子。</li>
+</ol>
+<h1 id="osi-七层模型"><a href="#osi-七层模型" class="headerlink" title="osi 七层模型"></a>osi 七层模型</h1><blockquote>
+<p>第一层：物理层 </p>
+<p>第二层：数据链路层 </p>
+<p>第三层：网络层 </p>
+<p>第四层：传输层 </p>
+<p>第五层：会话层 </p>
+<p>第六层：表示层 </p>
+<p>第七层：应用层</p>
+</blockquote>
+<h1 id="线程和进程的区别"><a href="#线程和进程的区别" class="headerlink" title="线程和进程的区别"></a>线程和进程的区别</h1><ol>
+<li>线程(Thread)与进程（Process）进程定义的是应用程序与应用程序之间的边界，通常来说一个进程就代表一个与之对应的应用程序。不同的进程之间不能共享代码和数据空间，而同一进程的不同线程可以共享代码和数据空间。 </li>
+<li>.一个进程可以包括若干个线程，同时创建多个线程来完成某项任务，便是多线程</li>
+<li>实现线程的两种方式：继承 Thread 类，实现 Runable 接口</li>
+</ol>
+<h1 id="jvm-的内存结构"><a href="#jvm-的内存结构" class="headerlink" title="jvm 的内存结构"></a>jvm 的内存结构</h1><p><code>java</code> 虚拟机的内存结构分为堆(<code>heap</code>)和栈(<code>stack</code>),堆里面存放是对象实例也就是 <code>new</code>出来的对象。栈里面存放的是基本数据类型以及引用数据类型的地址。</p>
+<p>对于所谓的常量是存储在方法区的常量池里面</p>
+<h1 id="内存泄露和内存溢出"><a href="#内存泄露和内存溢出" class="headerlink" title="内存泄露和内存溢出"></a>内存泄露和内存溢出</h1><p>内存泄露 (<code>memory leak</code>)，是指应用程序在申请内存后，无法释放已经申请的内存空间.一次内存泄露危害可以忽略，但如果任其发展最终会导致内存溢出(<code>out of memory</code>).如读取文件后流要进行及时的关闭以及对数据库连接的释放。</p>
+<p>内存溢出（<code>out of memory</code>）是指应用程序在申请内存时，没有足够的内存空间供其使用。如我们在项目中对于大批量数据的导入，采用分段批量提交的方式。</p>
+<h1 id="项目的生命周期"><a href="#项目的生命周期" class="headerlink" title="项目的生命周期"></a>项目的生命周期</h1><blockquote>
+<p>1.需求分析 </p>
+<p>2.概要设计 </p>
+<p>3.详细设计(用例图，流程图，类图) </p>
+<p>4.数据库设计(powerdesigner) </p>
+<p>5.代码开发（编写） </p>
+<p>6.单元测试（junit 白盒测试）(开发人员) </p>
+<p>svn 版本管理工具(提交，更新代码，文档) </p>
+<p>7.集成测试 （黑盒测试，loadrunner（编写测试脚本）(高级测试)） </p>
+<p>8.上线试运行 （用户自己体验） </p>
+<p>9.压力测试（loadrunner） </p>
+<p>10.正式上线 </p>
+<p>11.维护 </p>
+</blockquote>
+<h1 id="session-和-cookie-的区别"><a href="#session-和-cookie-的区别" class="headerlink" title="session 和 cookie 的区别"></a>session 和 cookie 的区别</h1><p><code>session</code> 是存储在服务器端，<code>cookie</code> 是存储在客户端的，所以安全来讲 <code>session</code> 的安全性要比<code>cookie</code> 高，然后我们获取 <code>session</code> 里的信息是通过存放在会话 <code>cookie</code> 里的 <code>sessionid</code> 获取的。又由于 <code>session</code> 是存放在服务器的内存中，所以 <code>session</code> 里的东西不断增加会造成服务器的负担，所以会把很重要的信息存储在 <code>session</code> 中，而把一些次要东西存储在客户端的 <code>cookie</code> 里，然后 <code>cookie</code> 确切的说分为两大类分为会话 <code>cookie</code> 和持久化 <code>cookie</code>，会话 <code>cookie</code> 确切的说是，存放在客户端浏览器的内存中,所以说他的生命周期和浏览器是一致的，浏览器关了会话<code>cookie</code> 也就消失了，然而持久化 <code>cookie</code> 是存放在客户端硬盘中，而持久化 <code>cookie</code> 的生命周期就是我们在设置 <code>cookie</code> 时候设置的那个保存时间，然后我们考虑一问题当浏览器关闭时<code>session</code> 会不会丢失，从上面叙述分析 <code>session</code> 的信息是通过会话 <code>cookie</code> 的 <code>sessionid</code> 获取的，当浏览器关闭的时候会话 <code>cookie</code> 消失所以我们的 <code>sessionid</code> 也就消失了，但是 <code>session</code> 的信息还存在服务器端，<span style="background:red">这时我们只是查不到所谓的 <code>session</code> 但它并不是不存在</span>。那么，<code>session</code> 在什么情况下丢失，就是在服务器关闭的时候，或者是 <code>session</code> 过期(默认时间是 30 分钟)，再或 者 调 用 了 <code>invalidate()</code> 的 或 者 是 我 们 想 要 <code>session</code> 中 的 某 一 条 数 据 消 失 调 用<code>session.removeAttribute()</code>方法，然后 <code>session</code> 在什么时候被创建呢，确切的说是通过调用<code>getsession()</code>来创建，这就是 <code>session</code> 与 <code>cookie</code> 的区别.</p>
+<p><span style="color:blue">访问 <code>HTML</code> 页面是不会创建 <code>session</code>,但是访问 <code>index.JSP</code> 时会创建 <code>session</code>(<code>JSP</code> 实际上是一个 <code>Servlet</code>, <code>Servlet</code> 中有 <code>getSession</code> 方法) </span></p>
+<h1 id="字节流与字符流的区别"><a href="#字节流与字符流的区别" class="headerlink" title="字节流与字符流的区别"></a>字节流与字符流的区别</h1><p><code>stream</code> 结尾都是字节流，<code>reader</code> 和 <code>writer</code> 结尾都是字符流 </p>
+<p>两者的区别就是读写的时候一个是按字节读写，一个是按字符。 </p>
+<p>实际使用通常差不多。 </p>
+<p>在读写文件需要对内容按行处理，比如比较特定字符，处理某一行数据的时候一般会选择字符流。 </p>
+<p>只是读写文件，和文件内容无关的，一般选择字节流。</p>
+<h1 id="final-finally-finalize-三者区别"><a href="#final-finally-finalize-三者区别" class="headerlink" title="final,finally,finalize 三者区别"></a>final,finally,finalize 三者区别</h1><blockquote>
+<p><code>Final</code> 是一个修饰符： </p>
+<p>当 <code>final</code> 修饰一个变量的时候，变量变成一个常量，它不能被二次赋值当 <code>final</code> 修饰的变量为静态变量（即由 <code>static</code> 修饰）时，必须在声明这个变量的时候给它赋值</p>
+<p>当 <code>final</code> 修饰方法时，该方法不能被重写 </p>
+<p>当 <code>final</code> 修饰类时，该类不能被继承 </p>
+<p><code>Final</code> 不能修饰抽象类，因为抽象类中会有需要子类实现的抽象方法，（抽象类中可以有抽象方法，也可以有普通方法，当一个抽象类中没有抽象方法时，这个抽象类也就没有了它存在的必要） </p>
+<p><code>Final</code> 不能修饰接口，因为接口中有需要其实现类来实现的方法</p>
+</blockquote>
+<blockquote>
+<p><code>Finally</code>： </p>
+<p><code>Finally</code> 只能与 <code>try</code>/<code>catch</code> 语句结合使用，<code>finally</code> 语句块中的语句一定会执行， 并且会在<code>return</code>，<code>continue</code>，<code>break</code> 关键字之前执行</p>
+</blockquote>
+<blockquote>
+<p><code>finalize</code>： </p>
+<p><code>Finalize</code> 是一个方法，属于 <code>java.lang.Object</code> 类，<code>finalize()</code>方法是 <code>GC</code>（<code>garbage collector</code> 垃圾回收）运行机制的一部分，<code>finalize()</code>方法是在 <code>GC</code> 清理它所从属的对象时被调用的</p>
+</blockquote>
+<h1 id="JavaSE-JavaEE-JavaME区别"><a href="#JavaSE-JavaEE-JavaME区别" class="headerlink" title="JavaSE JavaEE JavaME区别"></a>JavaSE JavaEE JavaME区别</h1><h2 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h2><div class="note success modern">
+            <p>Java SE = Java Standard Edition = j2se = java 标准版 </p>
+          </div>
+
+<div class="note success modern">
+            <p>Java EE = Java Enterprise Edition = j2ee = java 企业版 </p>
+          </div>
+
+<div class="note success modern">
+            <p>Java ME = Java Mobile Edition = j2me = java 移动版 </p>
+          </div>
+
+<h2 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h2><p>SE 主要用于桌面程序（swing）,控制台开发(main 程序)。</p>
+<p>EE 企业级开发(JSP,EJB,Spring MVC,Struts,hibernate,ibatis 等)，用于企业级软件开发，网络开发，web 开发。</p>
+<p>ME 嵌入式开发(手机,小家电，PDA)。[苹果的 ios，黑莓] </p>
+<h2 id="三者之间的关系："><a href="#三者之间的关系：" class="headerlink" title="三者之间的关系："></a>三者之间的关系：</h2><p>Java SE（Java Platform, Standard Edition，Java 标准版）就是基于 JDK 和 JRE的。</p>
+<p>Java SE 为 Java EE 提供了基础。</p>
+<p>Java EE 除了基于我们这个所谓的 Java SE 外，还新加了企业应用所需的类库</p>
+<h1 id="JDK-JRE-JVM-的区别："><a href="#JDK-JRE-JVM-的区别：" class="headerlink" title="JDK JRE JVM 的区别："></a>JDK JRE JVM 的区别：</h1><h2 id="JDK："><a href="#JDK：" class="headerlink" title="JDK："></a>JDK：</h2><p><strong>【Java Development ToolKit】</strong>就是 <code>java</code> 开发工具箱， <strong>JDK</strong> 是整个 <strong>JAVA</strong> 的核心里边包含了 <strong>jre</strong>，它除了包含 <strong>jre</strong> 之外还包含了一些 <strong>javac</strong> 的工具类，把 <strong>java</strong> 源文件编译成 <strong>class</strong> 文件，<strong>java</strong> 文件是用来运行这个程序的，除此之外，里边还包含了 <strong>java</strong>源生的 <strong>API</strong>，<code>java.lang.integer</code> 在 <strong>return</strong>  的 <strong>jar</strong> 包里边【可以在项目中看到】，通过 <strong>return</strong> 这个 <strong>jar</strong> 包来调用我们的这些 <strong>io</strong> 流写入写出等</p>
+<h3 id="JDK-有以下三种版本："><a href="#JDK-有以下三种版本：" class="headerlink" title="JDK 有以下三种版本："></a>JDK 有以下三种版本：</h3><blockquote>
+<p>J2SE，standard edition，标准版，是我们通常用的一个版本 </p>
+<p>J2EE，enterpsise edtion，企业版，使用这种 JDK 开发 J2EE 应用程序 </p>
+<p>J2ME，micro edtion，主要用于移动设备、嵌入式设备上的 java 应用程序</p>
+</blockquote>
+<h2 id="JRE："><a href="#JRE：" class="headerlink" title="JRE："></a>JRE：</h2><p><strong>【Java Runtime Enviromental】</strong>是 <code>java</code> 运行时环境，那么所谓的 <code>java</code> 运行时环境，就是为了保证 <code>java</code> 程序能够运行时，所必备的一基础环境，也就是它只是保证 <code>java</code> 程序运行的，不能用来开发，而 <code>jdk</code> 才是用来开发的，所有的 <strong>Java</strong> 程序都要在<strong>JRE</strong> 下才能运行。</p>
+<p>包括 <strong>JVM</strong> 和 <strong>JAVA</strong> 核心类库和支持文件。与 <strong>JDK</strong> 相比，它不包含开发工具——编译器、调试器和其它工具。</p>
+<div class="note warning modern">
+            <p>JRE里面包含JVM</p>
+          </div>
+
+<h2 id="Jvm："><a href="#Jvm：" class="headerlink" title="Jvm："></a>Jvm：</h2><p><strong>【Java Virtual Mechinal</strong>】因为 <code>jre</code> 是 <code>java</code> 运行时环境，<code>java</code> 运行靠什么运行，而底层就是依赖于 <code>jvm</code>，即 <code>java</code> 虚拟机，<code>java</code> 虚拟机用来加载类文件，<code>java</code> 中之所以有跨平台的作用，就是因为我们的 <code>jvm</code> </p>
+<h2 id="关系："><a href="#关系：" class="headerlink" title="关系："></a>关系：</h2><div class="note success modern">
+            <p>J2se 是基于 jdk 和 jre，JDK 是整个 JAVA 的核心里边包含了 jre，Jre 里边包含 jvm</p>
+          </div>
+
+<h1 id="报错的状态码："><a href="#报错的状态码：" class="headerlink" title="报错的状态码："></a>报错的状态码：</h1><table>
+<thead>
+<tr>
+<th align="center">状态码</th>
+<th align="center">状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">301</td>
+<td align="center">永久重定向</td>
+</tr>
+<tr>
+<td align="center">302</td>
+<td align="center">临时重定向</td>
+</tr>
+<tr>
+<td align="center">304</td>
+<td align="center">服务端 未改变</td>
+</tr>
+<tr>
+<td align="center">403</td>
+<td align="center">访问无权限</td>
+</tr>
+<tr>
+<td align="center">200</td>
+<td align="center">正常</td>
+</tr>
+<tr>
+<td align="center">404</td>
+<td align="center">路径</td>
+</tr>
+<tr>
+<td align="center">500</td>
+<td align="center">内部错误</td>
+</tr>
+</tbody></table>
+<h1 id="协议以及默认的端口号"><a href="#协议以及默认的端口号" class="headerlink" title="协议以及默认的端口号"></a>协议以及默认的端口号</h1><table>
+<thead>
+<tr>
+<th align="center">协议</th>
+<th align="center">端口</th>
+<th align="center">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ftp</td>
+<td align="center">21</td>
+<td align="center">文件传输协议</td>
+</tr>
+<tr>
+<td align="center">Pop3</td>
+<td align="center">110</td>
+<td align="center">它是因特网电子邮箱的第一个离线协议标准</td>
+</tr>
+<tr>
+<td align="center">Smtp</td>
+<td align="center">25</td>
+<td align="center">简单邮件传输协议</td>
+</tr>
+<tr>
+<td align="center">http</td>
+<td align="center">80</td>
+<td align="center">超文本传输协议</td>
+</tr>
+<tr>
+<td align="center">oracle</td>
+<td align="center">1521</td>
+<td align="center">默认端口号</td>
+</tr>
+<tr>
+<td align="center">mysql</td>
+<td align="center">3306</td>
+<td align="center">默认端口号</td>
+</tr>
+</tbody></table>
+<h1 id="抽象类与接口的区别"><a href="#抽象类与接口的区别" class="headerlink" title="抽象类与接口的区别"></a>抽象类与接口的区别</h1><ol>
+<li>一个类只能进行单继承，但可以实现多个接口。</li>
+<li>有抽象方法的类一定是抽象类，但是抽象类里面不一定有抽象方法；接口里面所有的方法的默认修饰符为 <code>public abstract</code>，接口里的成员变量默认的修饰符为 <code>pulbic static final</code>。</li>
+</ol>
+<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><blockquote>
+<p>接口和接口       ==&gt;     继承 </p>
+<p>接口和抽象类   ==&gt;     抽象类实现接口 </p>
+<p>类和抽象类      ==&gt;     类继承抽象类 </p>
+<p>类和类             ==&gt;     继承</p>
+</blockquote>
+<h1 id="request-跟-session-的区别"><a href="#request-跟-session-的区别" class="headerlink" title="request 跟 session 的区别"></a>request 跟 session 的区别</h1><ol>
+<li>他们的生命周期不同，<code>request</code>对应的是一次请求，<code>session</code>对应的是一次会话 </li>
+<li><code>request</code>占用资源比较少,相对来说缺乏持续性,而<code>session</code>资源消耗比较大，所以通常使用<code>request</code>来保存信息</li>
+</ol>
+<h1 id="反射的描述"><a href="#反射的描述" class="headerlink" title="反射的描述"></a>反射的描述</h1><p>通过字符串可以动态创建<code>java</code>对象，并且可以动态访问方法，属性等。 </p>
+<p>我们在项目中的时候封装过数据库<code>jdbc</code>的持久层，其中就利用反射这项技术来达到通用和灵活的目的。 </p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>Q：如果阅读本文需要付费，你是否愿意为此支付1元？</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    我愿意资助创作者
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="黄耀栋 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="黄耀栋 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>黄耀栋
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://hyd0.cc/2021/09/18/3/" title="基础篇">http://hyd0.cc/2021/09/18/3/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章，均在可信时间戳认证机构完成确权，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处，侵权必究！商业性使用请联系主理人购买授权许可。
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag"># 面试题</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/18/1/" rel="prev" title="纯CSS做的200个Loading加载动画">
+      <i class="fa fa-chevron-left"></i> 纯CSS做的200个Loading加载动画
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/09/18/2/" rel="next" title="简历指导【非常重要】">
+      简历指导【非常重要】 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JDK-%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">JDK 常用的包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Get-%E5%92%8C-Post-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.</span> <span class="nav-text">Get 和 Post 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E7%BA%A7%E5%9B%9E%E7%AD%94%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">初级回答：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E7%BA%A7%E5%9B%9E%E7%AD%94%EF%BC%9A%E3%80%90%E6%8E%A8%E8%8D%90%E3%80%91"><span class="nav-number">2.2.</span> <span class="nav-text">中级回答：【推荐】</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-%E5%A4%9A%E6%80%81%E7%9A%84%E5%85%B7%E4%BD%93%E4%BD%93%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">Java 多态的具体体现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#StringBuffer-StringBuilder-String-%E5%8C%BA%E5%88%AB"><span class="nav-number">4.</span> <span class="nav-text">StringBuffer StringBuilder String 区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hashtable-%E4%B8%8E-HashMap-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">5.</span> <span class="nav-text">Hashtable 与 HashMap 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B9%9D%E5%A4%A7%E9%9A%90%E5%BC%8F%E5%AF%B9%E8%B1%A1"><span class="nav-number">6.</span> <span class="nav-text">九大隐式对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Forword-%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91-%E4%B8%8E-Redirect-%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-number">7.</span> <span class="nav-text">Forword(请求转发)与 Redirect(重定向)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JQurey-%E6%80%BB%E7%BB%93"><span class="nav-number">8.</span> <span class="nav-text">JQurey 总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#XML-%E5%92%8C-Json-%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">9.</span> <span class="nav-text">XML 和 Json 的特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Page-%E5%92%8C-PageContext-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">10.</span> <span class="nav-text">Page 和 PageContext 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP9-%E5%A4%A7%E9%9A%90%E8%A7%86%E5%AF%B9%E8%B1%A1%E4%B8%AD%E5%9B%9B%E4%B8%AA%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E5%A4%A7%E5%B0%8F%E4%B8%8E%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4"><span class="nav-number">11.</span> <span class="nav-text">JSP9 大隐视对象中四个作用域的大小与作用范围</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#List-Set-Collection-Collections"><span class="nav-number">12.</span> <span class="nav-text">List,Set,Collection,Collections</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#java-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">13.</span> <span class="nav-text">java 的基本数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UE-%E5%92%8C-UI-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">14.</span> <span class="nav-text">UE 和 UI 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#osi-%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="nav-number">15.</span> <span class="nav-text">osi 七层模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">16.</span> <span class="nav-text">线程和进程的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jvm-%E7%9A%84%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84"><span class="nav-number">17.</span> <span class="nav-text">jvm 的内存结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%92%8C%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA"><span class="nav-number">18.</span> <span class="nav-text">内存泄露和内存溢出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">19.</span> <span class="nav-text">项目的生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#session-%E5%92%8C-cookie-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">20.</span> <span class="nav-text">session 和 cookie 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E8%8A%82%E6%B5%81%E4%B8%8E%E5%AD%97%E7%AC%A6%E6%B5%81%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">21.</span> <span class="nav-text">字节流与字符流的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#final-finally-finalize-%E4%B8%89%E8%80%85%E5%8C%BA%E5%88%AB"><span class="nav-number">22.</span> <span class="nav-text">final,finally,finalize 三者区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaSE-JavaEE-JavaME%E5%8C%BA%E5%88%AB"><span class="nav-number">23.</span> <span class="nav-text">JavaSE JavaEE JavaME区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">23.1.</span> <span class="nav-text">是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="nav-number">23.2.</span> <span class="nav-text">特点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E8%80%85%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9A"><span class="nav-number">23.3.</span> <span class="nav-text">三者之间的关系：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JDK-JRE-JVM-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-number">24.</span> <span class="nav-text">JDK JRE JVM 的区别：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK%EF%BC%9A"><span class="nav-number">24.1.</span> <span class="nav-text">JDK：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK-%E6%9C%89%E4%BB%A5%E4%B8%8B%E4%B8%89%E7%A7%8D%E7%89%88%E6%9C%AC%EF%BC%9A"><span class="nav-number">24.1.1.</span> <span class="nav-text">JDK 有以下三种版本：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JRE%EF%BC%9A"><span class="nav-number">24.2.</span> <span class="nav-text">JRE：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jvm%EF%BC%9A"><span class="nav-number">24.3.</span> <span class="nav-text">Jvm：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%EF%BC%9A"><span class="nav-number">24.4.</span> <span class="nav-text">关系：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%A5%E9%94%99%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81%EF%BC%9A"><span class="nav-number">25.</span> <span class="nav-text">报错的状态码：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%8F%E8%AE%AE%E4%BB%A5%E5%8F%8A%E9%BB%98%E8%AE%A4%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="nav-number">26.</span> <span class="nav-text">协议以及默认的端口号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">27.</span> <span class="nav-text">抽象类与接口的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB"><span class="nav-number">27.1.</span> <span class="nav-text">关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#request-%E8%B7%9F-session-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">28.</span> <span class="nav-text">request 跟 session 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E7%9A%84%E6%8F%8F%E8%BF%B0"><span class="nav-number">29.</span> <span class="nav-text">反射的描述</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="黄耀栋"
+      src="https://wanglin.love/images/网站配置/avatar.png">
+  <p class="site-author-name" itemprop="name">黄耀栋</p>
+  <div class="site-description" itemprop="description">年少不知富婆香，错把青春插稻秧</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-fas fa-rss"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黄耀栋</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

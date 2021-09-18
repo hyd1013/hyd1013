@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hyd0.cc","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="两电脑都在同一个网络环境中，A 电脑访问不到 B 电脑的共享文件。此现象可能是哪些 方面所导致？怎样处理？首先你要确定是不是在一个工作组内，只有在一个工作组内才可以共享文件，然后看一个看一看有没有防火墙之类的，然后确定文件是不是已经共享 电脑开机时风扇转， 但是屏幕没有任何显示， 此现象可能是哪些方面所导致？怎样处理？ 查看是否有报警声？如果没有接着看第二条。如果有可能是内存或者是显卡问题，建议都">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实施工程师面试题">
+<meta property="og:url" content="http://hyd0.cc/2021/09/18/%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="黄耀栋的个人博客">
+<meta property="og:description" content="两电脑都在同一个网络环境中，A 电脑访问不到 B 电脑的共享文件。此现象可能是哪些 方面所导致？怎样处理？首先你要确定是不是在一个工作组内，只有在一个工作组内才可以共享文件，然后看一个看一看有没有防火墙之类的，然后确定文件是不是已经共享 电脑开机时风扇转， 但是屏幕没有任何显示， 此现象可能是哪些方面所导致？怎样处理？ 查看是否有报警声？如果没有接着看第二条。如果有可能是内存或者是显卡问题，建议都">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-18T01:19:32.383Z">
+<meta property="article:modified_time" content="2021-06-25T06:58:37.516Z">
+<meta property="article:author" content="黄耀栋">
+<meta property="article:tag" content="面试题">
+<meta property="article:tag" content="实施工程师">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hyd0.cc/2021/09/18/%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9D%A2%E8%AF%95%E9%A2%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>实施工程师面试题 | 黄耀栋的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="黄耀栋的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">黄耀栋的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hyd0.cc/2021/09/18/%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9D%A2%E8%AF%95%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://wanglin.love/images/网站配置/avatar.png">
+      <meta itemprop="name" content="黄耀栋">
+      <meta itemprop="description" content="年少不知富婆香，错把青春插稻秧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄耀栋的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          实施工程师面试题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-18 09:19:32" itemprop="dateCreated datePublished" datetime="2021-09-18T09:19:32+08:00">2021-09-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-25 14:58:37" itemprop="dateModified" datetime="2021-06-25T14:58:37+08:00">2021-06-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="两电脑都在同一个网络环境中，A-电脑访问不到-B-电脑的共享文件。此现象可能是哪些-方面所导致？怎样处理？"><a href="#两电脑都在同一个网络环境中，A-电脑访问不到-B-电脑的共享文件。此现象可能是哪些-方面所导致？怎样处理？" class="headerlink" title="两电脑都在同一个网络环境中，A 电脑访问不到 B 电脑的共享文件。此现象可能是哪些 方面所导致？怎样处理？"></a>两电脑都在同一个网络环境中，A 电脑访问不到 B 电脑的共享文件。此现象可能是哪些 方面所导致？怎样处理？</h1><p>首先你要确定是不是在一个工作组内，只有在一个工作组内才可以共享文件，然后看一个看一看有没有防火墙之类的，然后确定文件是不是已经共享</p>
+<h1 id="电脑开机时风扇转，-但是屏幕没有任何显示，-此现象可能是哪些方面所导致？怎样处理？"><a href="#电脑开机时风扇转，-但是屏幕没有任何显示，-此现象可能是哪些方面所导致？怎样处理？" class="headerlink" title="电脑开机时风扇转， 但是屏幕没有任何显示， 此现象可能是哪些方面所导致？怎样处理？"></a>电脑开机时风扇转， 但是屏幕没有任何显示， 此现象可能是哪些方面所导致？怎样处理？</h1><ol>
+<li>查看是否有报警声？如果没有接着看第二条。如果有可能是内存或者是显卡问题，建议都取下清理干净，看看是否ok！在经手指部分用橡皮擦擦拭</li>
+<li>主板问题，建议先去下 主板上的那块电池，放电主板！ 前提是要把全部的电源关掉！</li>
+<li>电源问题，建议换个电源试试！</li>
+</ol>
+<h1 id="在做-SQL-自动备份时应该先开起什么服务"><a href="#在做-SQL-自动备份时应该先开起什么服务" class="headerlink" title="在做 SQL 自动备份时应该先开起什么服务?"></a>在做 SQL 自动备份时应该先开起什么服务?</h1><p><strong>SQLServer Agent</strong> 这个服务</p>
+<h1 id="在同一个网络环境中-A-电脑-IP：-192-168-1-100-，B电脑-IP：-192-168-0-100，-路由器的-IP：192-168-1-1-。请问有那些方法可以让-B-电脑即可以上公网也可-以访问到-A-电脑？"><a href="#在同一个网络环境中-A-电脑-IP：-192-168-1-100-，B电脑-IP：-192-168-0-100，-路由器的-IP：192-168-1-1-。请问有那些方法可以让-B-电脑即可以上公网也可-以访问到-A-电脑？" class="headerlink" title="在同一个网络环境中 A 电脑 IP： 192.168.1.100 ，B电脑 IP：  192.168.0.100， 路由器的 IP：192.168.1.1 。请问有那些方法可以让 B 电脑即可以上公网也可 以访问到 A 电脑？"></a>在同一个网络环境中 A 电脑 IP： 192.168.1.100 ，B电脑 IP：  192.168.0.100， 路由器的 IP：192.168.1.1 。请问有那些方法可以让 B 电脑即可以上公网也可 以访问到 A 电脑？</h1><p>如果你的公网是需要拨号的，那么这需要两个路由器来进行转换，首先要使一个路由能上公网。再使用另一台路由器进行两个网段进行路由转换，在路由器中设置静态路由转换，一个为<code>192.168.1</code>，一个为<code>192.168.0</code>,这样这两台电脑就能进行互访。把这台路由器和一台电脑分别连接到原公网的路由上就能使两个不同网段的电脑都能上网。如果你的公网不需要拨号，你可以把原连接公网的那台路由器更换为交换机就OK，其他连接同上</p>
+<h1 id="你熟悉的远程有哪些方法？各种方法应该怎么配置？"><a href="#你熟悉的远程有哪些方法？各种方法应该怎么配置？" class="headerlink" title="你熟悉的远程有哪些方法？各种方法应该怎么配置？"></a>你熟悉的远程有哪些方法？各种方法应该怎么配置？</h1><ol>
+<li>最简单的QQ上有，打开对话框 上边有个 “应用”图标 点击“远程协助”</li>
+<li>在要远程的主机安装 “客户机”（一个小软件）端 自己 安装“主机”（软件） 就可以远程控制了 （网络上有下载）</li>
+<li>还有就是一些大单位的专业通信系统 即时通 OA 之类的 有些远程协助功能（这种要花钱买）</li>
+</ol>
+<h1 id="如果有一个不太懂电脑的客户，你应该采取什么样的方法去教他用公司的软件产品？"><a href="#如果有一个不太懂电脑的客户，你应该采取什么样的方法去教他用公司的软件产品？" class="headerlink" title="如果有一个不太懂电脑的客户，你应该采取什么样的方法去教他用公司的软件产品？"></a>如果有一个不太懂电脑的客户，你应该采取什么样的方法去教他用公司的软件产品？</h1><p>我觉得这是一个面试的题目，提问题的人想从其中看出你的为人处事能力。这个可以灵活回答的，如果软件产品比较难懂，你就可以先教一些简单的。再告诉他需要再了解哪些知识来掌握这个软件。如果软件产品比较简单，就可以直接一步一步的教他怎么操作，一直操作熟练就行了</p>
+<h1 id="当你觉得工作的付出和你的收入不成正比的时候你会怎么想？"><a href="#当你觉得工作的付出和你的收入不成正比的时候你会怎么想？" class="headerlink" title="当你觉得工作的付出和你的收入不成正比的时候你会怎么想？"></a>当你觉得工作的付出和你的收入不成正比的时候你会怎么想？</h1><p>如果付出和收入不成正比到一定程度，到你无法忍受的地步，那么就试着让领导加薪或是跳槽</p>
+<h1 id="在你进行实施的过程中，公司制作的一款软件系统缺少某一项功能，而且公司也明确表示不会再为系统做任何的修改或添加任何的功能，而客户也坚决要求"><a href="#在你进行实施的过程中，公司制作的一款软件系统缺少某一项功能，而且公司也明确表示不会再为系统做任何的修改或添加任何的功能，而客户也坚决要求" class="headerlink" title="在你进行实施的过程中，公司制作的一款软件系统缺少某一项功能，而且公司也明确表示不会再为系统做任何的修改或添加任何的功能，而客户也坚决要求"></a>在你进行实施的过程中，公司制作的一款软件系统缺少某一项功能，而且公司也明确表示不会再为系统做任何的修改或添加任何的功能，而客户也坚决要求</h1><div class="note warning modern">
+            <p>需要这一项功能！对于实施人员来说，应该怎么去合理妥善处理这个问题？</p>
+          </div>
+
+<p>说清楚你实施的是一个项目，不是定制软件。比如超市里卖的皮鞋和鞋匠做的皮鞋，这都是鞋子，但前者是商品，很多一样的商品，你可以买到差不多可以穿的舒服的鞋子；后者是定制，不仅是商品，更是一种劳动，是已完全针对客户需求而生产的，每个细节都是要求完美的。软件也是，没有客户需求的功能，公司既然表明无法实现，那么肯定是功能研发所耗费的时间,财力和利益冲突，你可以对客户说明增加功能要他支付更多的费用，甚至比买软件的价格还贵</p>
+<h1 id="在项目实施过程中，使用者对产品提出了适合自己习惯的修改意见，但多个使用者相互矛盾，应该如何去处理？"><a href="#在项目实施过程中，使用者对产品提出了适合自己习惯的修改意见，但多个使用者相互矛盾，应该如何去处理？" class="headerlink" title="在项目实施过程中，使用者对产品提出了适合自己习惯的修改意见，但多个使用者相互矛盾，应该如何去处理？"></a>在项目实施过程中，使用者对产品提出了适合自己习惯的修改意见，但多个使用者相互矛盾，应该如何去处理？</h1><p>对于客户提出的修改意见，我们实施人员应该有自己的方案。当使用者之间意见出现不一致时，我们应当引导他们内部之间的意见统一，和客户经过沟通或确认后，找到切实可行的方案，双方认可并达成共识。</p>
+<h1 id="系统启动后，不能连接数据库，可能是哪些方面的原因？"><a href="#系统启动后，不能连接数据库，可能是哪些方面的原因？" class="headerlink" title="系统启动后，不能连接数据库，可能是哪些方面的原因？"></a>系统启动后，不能连接数据库，可能是哪些方面的原因？</h1><ol>
+<li>和数据库有关的服务没启动</li>
+<li>防火墙可能阻挡了数据库的端口</li>
+<li>如数据库可以启动，而登陆不了，可能是密码错误或连接参数配置错误</li>
+<li>数据库文件已被破坏或不存在</li>
+</ol>
+<h1 id="你认为客户服务的重点是什么？"><a href="#你认为客户服务的重点是什么？" class="headerlink" title="你认为客户服务的重点是什么？"></a>你认为客户服务的重点是什么？</h1><p>随着市场的竞争进一步加剧，服务已经成为企业核心竞争力的要素之一，服务的重点是沟通，沟通可以消除客户的误会和不满，沟通可以提高客户的感知度。因此，我认为我们客户服务管理工作就应该从做好沟通的管理开始。</p>
+<p>自己一定要理解服务，理解服务能干什么，能做到什么，结合公司的业务能给客户提供什么服务。服务过程中是否能给客户提供优秀的服务，倾听客户的意见，持续改进服务方式。尽量在事件发生之前，避免或杜绝客户的投诉，投诉发生后，认真处理。</p>
+<h1 id="触发器的作用是什么？"><a href="#触发器的作用是什么？" class="headerlink" title="触发器的作用是什么？"></a>触发器的作用是什么？</h1><p>触发器是针对数据表（库）的特殊的存储过程，当这个表发生了 <code>Insert</code>、<code>Update</code>或<code>Delete</code>操作时，数据库就会自动执行触发器所定义的<strong>SQL</strong>语句，从而确保对数据的处理必须符合这些<strong>SQL</strong>语句所定义的规则。</p>
+<h1 id="SQL-数据库表名为-guest"><a href="#SQL-数据库表名为-guest" class="headerlink" title="SQL 数据库表名为 guest"></a>SQL 数据库表名为 guest</h1><table>
+<thead>
+<tr>
+<th align="center">账号（Accounts）</th>
+<th align="center">消费（Details）</th>
+<th align="center">时间（Date）</th>
+<th align="center">金额（Money）</th>
+<th align="center">班次（Class）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">S0001</td>
+<td align="center">房费</td>
+<td align="center">2010-01-01</td>
+<td align="center">280</td>
+<td align="center">001</td>
+</tr>
+<tr>
+<td align="center">S0001</td>
+<td align="center">酒水</td>
+<td align="center">2010-01-02</td>
+<td align="center">120</td>
+<td align="center">001</td>
+</tr>
+<tr>
+<td align="center">S0001</td>
+<td align="center">房费</td>
+<td align="center">2010-01-08</td>
+<td align="center">300</td>
+<td align="center">003</td>
+</tr>
+<tr>
+<td align="center">S0002</td>
+<td align="center">酒水</td>
+<td align="center">2010-01-29</td>
+<td align="center">50</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">S0003</td>
+<td align="center">房费</td>
+<td align="center">2010-01-31</td>
+<td align="center">180</td>
+<td align="center">002</td>
+</tr>
+<tr>
+<td align="center">S0004</td>
+<td align="center">房费</td>
+<td align="center">2010-02-01</td>
+<td align="center">230</td>
+<td align="center">001</td>
+</tr>
+<tr>
+<td align="center">S0005</td>
+<td align="center">酒水</td>
+<td align="center">2010-02-01</td>
+<td align="center">100</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">S0005</td>
+<td align="center">房费</td>
+<td align="center">2010-02-02</td>
+<td align="center">128</td>
+<td align="center">001</td>
+</tr>
+</tbody></table>
+<p>查询出房费都大于 200 的帐号</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span> Accounts <span class="keyword">from</span> guest <span class="keyword">where</span> details <span class="operator">=</span> <span class="string">&#x27;房费&#x27;</span> <span class="keyword">and</span> money<span class="operator">&gt;=</span><span class="number">200</span>;</span><br></pre></td></tr></table></figure>
+
+<p>查询出 1 月份每个帐号酒水和房费的总金额。 月份每个帐号酒水和房费的总金额。 每个帐号酒水和房费的总金额</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> account,<span class="built_in">sum</span>(details) <span class="keyword">from</span> guest <span class="keyword">where</span> <span class="type">date</span><span class="operator">&gt;=</span>to_date(<span class="string">&#x27;2010-01-01&#x27;</span>,<span class="string">&#x27;yyyy-mm-dd&#x27;</span>)  <span class="keyword">and</span> <span class="type">date</span><span class="operator">&lt;=</span>to_date(<span class="string">&#x27;2010-01-31&#x27;</span>,<span class="string">&#x27;yyyy-mm-dd&#x27;</span>) <span class="keyword">group</span> <span class="keyword">by</span> account</span><br></pre></td></tr></table></figure>
+
+<p>删除 1 月份班次为空的记录。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Delete</span> accounts cascade <span class="keyword">where</span> <span class="type">date</span> <span class="operator">=</span> <span class="string">&#x27;2010-01-%&#x27;</span> <span class="keyword">and</span> class <span class="operator">=</span><span class="keyword">null</span></span><br></pre></td></tr></table></figure>
+
+<p>将不是房费的记帐代码的班次都更改为‘001’</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Alter</span> class<span class="operator">=</span><span class="number">001</span>  <span class="keyword">where</span> details<span class="operator">&lt;&gt;</span><span class="string">&#x27;房费&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>查询出消费都大于 100 的帐号</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span> accounts <span class="keyword">from</span> guest <span class="keyword">where</span> <span class="built_in">sum</span>(datils)<span class="operator">&gt;=</span><span class="number">100</span> </span><br></pre></td></tr></table></figure>
+
+<h1 id="已知表："><a href="#已知表：" class="headerlink" title="已知表："></a>已知表：</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Create</span> <span class="keyword">Table</span> Department</span><br><span class="line">( dept_id <span class="type">varchar</span>(<span class="number">2</span>) <span class="keyword">not</span> <span class="keyword">null</span>, – 部门编号</span><br><span class="line"> dept_name <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="keyword">null</span>, – 部门名称</span><br><span class="line"> dept_leader <span class="type">varchar</span>(<span class="number">10</span>) –部门经理</span><br><span class="line">);</span><br><span class="line"><span class="keyword">Create</span> <span class="keyword">Table</span> Personnel</span><br><span class="line">( id <span class="type">varchar</span>(<span class="number">4</span>) <span class="keyword">not</span> <span class="keyword">null</span>, <span class="comment">--员工号</span></span><br><span class="line"> name <span class="type">varchar</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="keyword">null</span>, <span class="comment">--姓名</span></span><br><span class="line"> dept_id <span class="type">varchar</span>(<span class="number">2</span>) <span class="keyword">not</span> <span class="keyword">null</span>, <span class="comment">--部门编号</span></span><br><span class="line"> age <span class="type">integer</span>, <span class="comment">--年龄</span></span><br><span class="line"> gzsj <span class="type">date</span>, <span class="comment">--参加工作时间</span></span><br><span class="line"> technical_post <span class="type">varchar</span>(<span class="number">10</span>), <span class="comment">--职称</span></span><br><span class="line"> salary <span class="type">integer</span> –薪水</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>写出表Department增加一条记录 和 更新一条记录的 SQL语句，增加记录值 (‘12’, ‘研发部’, ‘张三’) ； </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Insert</span> <span class="keyword">into</span> Department(dept_id,dept_name,dept_leader) <span class="keyword">values</span> (<span class="string">&#x27;12&#x27;</span>,<span class="string">&#x27;研发部&#x27;</span>,<span class="string">&#x27;张三&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>更新 dept_id=’12’的记录 (‘12’, ‘研发部’, ‘张三新’) ;</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Update Department dept_leader<span class="operator">=</span><span class="string">&#x27;张三新&#x27;</span> <span class="keyword">where</span> dept_id<span class="operator">=</span><span class="string">&#x27;12&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>需要给表Department增加一列字段notes，长度为10的字符串，默认值为‘0’ , 请写出相关SQL语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Alter</span> <span class="keyword">table</span> Department <span class="keyword">add</span> notes <span class="type">varchar</span>(<span class="number">10</span>) <span class="keyword">default</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>查找工资大于2000元的员工记录，并按员工号id升序排列</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span> name <span class="keyword">from</span> Personnel <span class="keyword">where</span> salary <span class="type">integer</span><span class="operator">&gt;</span><span class="number">2000</span> <span class="keyword">order</span> <span class="keyword">by</span> id;</span><br></pre></td></tr></table></figure>
+
+<p>查找工资大于2000元的员工所在部门、部门编号、部门经理、员工名称</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span> dept_name,dept_id,dept_leader <span class="keyword">from</span> Department <span class="keyword">where</span> dept_id <span class="keyword">in</span>(<span class="keyword">select</span> dept_id <span class="keyword">from</span> Personnel <span class="keyword">where</span> salary <span class="type">integer</span><span class="operator">&gt;</span><span class="number">2000</span> );</span><br></pre></td></tr></table></figure>
+
+<p>查找张三和李四所在部门所有人员的姓名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span> name <span class="keyword">from</span> Personnel <span class="keyword">where</span> name<span class="operator">=</span><span class="string">&#x27;张三&#x27;</span> <span class="keyword">and</span> name<span class="operator">=</span><span class="string">&#x27;李四&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>查看每个部门的部门经理和部门人数，按部门人数排序？</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span> d.dept_leader,(<span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">from</span> Personnel p <span class="keyword">where</span> d.dept_id<span class="operator">=</span>p.dept_id) <span class="keyword">from</span> Department d,personnel p <span class="keyword">group</span> <span class="keyword">by</span> d.dept_id <span class="keyword">order</span> <span class="keyword">by</span> co;</span><br></pre></td></tr></table></figure>
+
+<p>删除表Department中的所有记录</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Delete</span> <span class="keyword">from</span> Department;</span><br></pre></td></tr></table></figure>
+
+<p>删除表Department</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Drop</span> <span class="keyword">table</span> Department;</span><br></pre></td></tr></table></figure>
+
+<h1 id="解释Oracle数据库、数据文件、表空间？"><a href="#解释Oracle数据库、数据文件、表空间？" class="headerlink" title="解释Oracle数据库、数据文件、表空间？"></a>解释Oracle数据库、数据文件、表空间？</h1><ol>
+<li>Oracle数据库：Oracle Database，又名Oracle RDBMS，或简称Oracle。是甲骨文公司的一款关系数据库管理系统。</li>
+<li>数据文件：每一个ORACLE数据库有一个或多个物理的数据文件(data file)。一个数据库的数据文件包含全部数据库数据。逻辑数据库结构(如表、索引)的数据物理地存储在数据库的数据文件中。</li>
+<li>表空间：表空间是数据库的逻辑划分，一个表空间只能属于一个数据库。所有的数据库对象都存放在指定的表空间中。但主要存放的是表，所以称作表空间。</li>
+</ol>
+<h1 id="表、视图的区别？存储过程、函数的区别？"><a href="#表、视图的区别？存储过程、函数的区别？" class="headerlink" title="表、视图的区别？存储过程、函数的区别？"></a>表、视图的区别？存储过程、函数的区别？</h1><ol>
+<li>表和视图的区别：<ol>
+<li>表：是数据库中的主要结构，它总是表示单个的、特定的集合。每个表至少包含一个字段，即一个主键，他唯一地标识表的每条记录。</li>
+<li>视图：是由来自数据库中的一个或多个表或多个表的字段所组成的一个虚拟的表。实际上它自身不存储任何数据，存储在数据库中的有关视图的唯一信息几句是它的结构。</li>
+</ol>
+</li>
+<li>存储过程、函数的区别：<ol>
+<li>存储过程：是用户定义的一系列sql语句的集合，涉及特定表或其它对象的任务，用</li>
+</ol>
+</li>
+</ol>
+<h1 id="两电脑都在同一个网络环境中，A电脑访问不到B电脑的共享文件。此现象可能是哪些方面所导致？"><a href="#两电脑都在同一个网络环境中，A电脑访问不到B电脑的共享文件。此现象可能是哪些方面所导致？" class="headerlink" title="两电脑都在同一个网络环境中，A电脑访问不到B电脑的共享文件。此现象可能是哪些方面所导致？"></a>两电脑都在同一个网络环境中，A电脑访问不到B电脑的共享文件。此现象可能是哪些方面所导致？</h1><p>可能是由于B电脑打开了防火墙，或者是B中的文件没有共享</p>
+<h1 id="电脑开机时风扇转，但是屏幕没有任何显示，此现象可能是哪些方面所导致？怎样处理"><a href="#电脑开机时风扇转，但是屏幕没有任何显示，此现象可能是哪些方面所导致？怎样处理" class="headerlink" title="电脑开机时风扇转，但是屏幕没有任何显示，此现象可能是哪些方面所导致？怎样处理"></a>电脑开机时风扇转，但是屏幕没有任何显示，此现象可能是哪些方面所导致？怎样处理</h1><p>可能是由于内存条松动了，将内存拔出用橡皮檫干净后在重新插入</p>
+<h1 id="在同一个网络环境中A电脑IP：192-168-1-2-，B电脑IP：192-168-0-3，路由器的IP：192-168-1-1-。请问有那些方法可以让B电脑即可以上公网也可以访问到A电脑"><a href="#在同一个网络环境中A电脑IP：192-168-1-2-，B电脑IP：192-168-0-3，路由器的IP：192-168-1-1-。请问有那些方法可以让B电脑即可以上公网也可以访问到A电脑" class="headerlink" title="在同一个网络环境中A电脑IP：192.168.1.2 ，B电脑IP：192.168.0.3，路由器的IP：192.168.1.1 。请问有那些方法可以让B电脑即可以上公网也可以访问到A电脑"></a>在同一个网络环境中A电脑IP：192.168.1.2 ，B电脑IP：192.168.0.3，路由器的IP：192.168.1.1 。请问有那些方法可以让B电脑即可以上公网也可以访问到A电脑</h1><p>在路由器中指定一条静态路由是B电脑的信息包能通过路由器</p>
+<h1 id="你熟悉的远程连接软件有哪些？"><a href="#你熟悉的远程连接软件有哪些？" class="headerlink" title="你熟悉的远程连接软件有哪些？"></a>你熟悉的远程连接软件有哪些？</h1><p>Vnc、qq、windows自带远程桌面连接、向日葵远程桌面连接</p>
+<h1 id="BS结构的软件和CS结构的软件的描述是？"><a href="#BS结构的软件和CS结构的软件的描述是？" class="headerlink" title="BS结构的软件和CS结构的软件的描述是？"></a>BS结构的软件和CS结构的软件的描述是？</h1><ol>
+<li>B/S结构指的是Brower/Server</li>
+<li>B/S结构是浏览器和服务器</li>
+<li>C/S结构是Client/Server</li>
+<li>C/S结构是Client/Server,客户端和服务器端</li>
+</ol>
+<h1 id="谈谈你所了解的数据库、中间件和服务器操作系统，以及它们的常规操作和优化配置？"><a href="#谈谈你所了解的数据库、中间件和服务器操作系统，以及它们的常规操作和优化配置？" class="headerlink" title="谈谈你所了解的数据库、中间件和服务器操作系统，以及它们的常规操作和优化配置？"></a>谈谈你所了解的数据库、中间件和服务器操作系统，以及它们的常规操作和优化配置？</h1><p>Oracle ：创建表空间<code>CREATE TABLESPACE &quot;SAMPLE&quot;</code> 文件名与表空间名必须一致。</p>
+<p>Tomcat：<code>sever port</code>指定端口，负责监听关闭tomcat的请求</p>
+<p><code>Windows sever 2003</code></p>
+<h1 id="实施工程师进行软件产品的程序包更新维护以及数据库维护过程中，你觉得应该注意哪些事项？"><a href="#实施工程师进行软件产品的程序包更新维护以及数据库维护过程中，你觉得应该注意哪些事项？" class="headerlink" title="实施工程师进行软件产品的程序包更新维护以及数据库维护过程中，你觉得应该注意哪些事项？"></a>实施工程师进行软件产品的程序包更新维护以及数据库维护过程中，你觉得应该注意哪些事项？</h1><p>做好数据备份</p>
+<h1 id="DBMS是什么的缩写"><a href="#DBMS是什么的缩写" class="headerlink" title="DBMS是什么的缩写"></a>DBMS是什么的缩写</h1><p>数据库管理系统  <code>database management system</code></p>
+<h1 id="对于目前比较流行的B-S架构的管理软件，实施工程师应该对它的实施安装熟练掌握，实施工程师一般要进行哪几个方面的软件安装和调试工作？"><a href="#对于目前比较流行的B-S架构的管理软件，实施工程师应该对它的实施安装熟练掌握，实施工程师一般要进行哪几个方面的软件安装和调试工作？" class="headerlink" title="对于目前比较流行的B/S架构的管理软件，实施工程师应该对它的实施安装熟练掌握，实施工程师一般要进行哪几个方面的软件安装和调试工作？"></a>对于目前比较流行的B/S架构的管理软件，实施工程师应该对它的实施安装熟练掌握，实施工程师一般要进行哪几个方面的软件安装和调试工作？</h1><p>数据库备份，端口冲突的问题，服务器操作系统是否支持等</p>
+<h1 id="作为一名客户现场实施工程师，与客户沟通贯穿实施工作的整个过程，你应该以怎样的沟通方式保证沟通的准确与高效？"><a href="#作为一名客户现场实施工程师，与客户沟通贯穿实施工作的整个过程，你应该以怎样的沟通方式保证沟通的准确与高效？" class="headerlink" title="作为一名客户现场实施工程师，与客户沟通贯穿实施工作的整个过程，你应该以怎样的沟通方式保证沟通的准确与高效？"></a>作为一名客户现场实施工程师，与客户沟通贯穿实施工作的整个过程，你应该以怎样的沟通方式保证沟通的准确与高效？</h1><p>与客户确定工作流程，防止在实施过程中出现配置冲突等问题</p>
+<h1 id="数据库【索引】，【视图】，【存储过程】，【触发器】在数据库使用过程中，有什么作用？"><a href="#数据库【索引】，【视图】，【存储过程】，【触发器】在数据库使用过程中，有什么作用？" class="headerlink" title="数据库【索引】，【视图】，【存储过程】，【触发器】在数据库使用过程中，有什么作用？"></a>数据库【索引】，【视图】，【存储过程】，【触发器】在数据库使用过程中，有什么作用？</h1><ol>
+<li>索引：可以快速访问数据库表中的特定信息，加快对表中记录的查找或排序。</li>
+<li>视图：是一个虚拟表。可以简化用户查询条件</li>
+<li>存储过程：加快运行速度，运行比较稳定，一般不会出错。</li>
+<li>触发器：是一种特殊的存储过程，保证了约束性。</li>
+</ol>
+<h1 id="当前数据库为oracle10g，实例名为：myorcl-表空间为：mytablespace，用户名-密码为：myuser-mypassword-请写出备和恢复仅myuser用户下数据的命令。"><a href="#当前数据库为oracle10g，实例名为：myorcl-表空间为：mytablespace，用户名-密码为：myuser-mypassword-请写出备和恢复仅myuser用户下数据的命令。" class="headerlink" title="当前数据库为oracle10g，实例名为：myorcl 表空间为：mytablespace，用户名/密码为：myuser/mypassword  请写出备和恢复仅myuser用户下数据的命令。"></a>当前数据库为oracle10g，实例名为：myorcl 表空间为：mytablespace，用户名/密码为：myuser/mypassword  请写出备和恢复仅myuser用户下数据的命令。</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">exp myuser<span class="operator">/</span>manager<span class="variable">@127</span><span class="number">.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span>myorcl file<span class="operator">=</span>导出路径 owner<span class="operator">=</span>myuser</span><br><span class="line">imp myuser<span class="operator">/</span>manager<span class="variable">@127</span><span class="number">.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span>myorcl file<span class="operator">=</span>导入路径    fromuser<span class="operator">=</span>myuser touser<span class="operator">=</span>myuser</span><br></pre></td></tr></table></figure>
+
+<h1 id="参照下图两表，完成相关问题"><a href="#参照下图两表，完成相关问题" class="headerlink" title="参照下图两表，完成相关问题"></a>参照下图两表，完成相关问题</h1><p>余额表：total 说明：帐套编号as为外键，每一个帐套导入数据后，都对应一套标准科目。</p>
+<table>
+<thead>
+<tr>
+<th>科目编号</th>
+<th>科目名称</th>
+<th>开始时间</th>
+<th>结束时间</th>
+<th>期初</th>
+<th>发生额</th>
+<th>期末</th>
+<th>帐套编号</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>借方余额</td>
+<td>贷方余额</td>
+<td>借方发生额</td>
+<td>贷方发生额</td>
+<td>借方余额</td>
+<td>贷方余额</td>
+<td></td>
+</tr>
+<tr>
+<td>ss</td>
+<td>sname</td>
+<td>bd</td>
+<td>ed</td>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>d</td>
+<td>e</td>
+<td>f</td>
+<td>as</td>
+</tr>
+<tr>
+<td>101</td>
+<td>现金</td>
+<td>2010-01-01</td>
+<td>2010-12-31</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>bf2010</td>
+</tr>
+<tr>
+<td>102</td>
+<td>银行存款</td>
+<td>2009-01-01</td>
+<td>2009-12-31</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Sf2009</td>
+</tr>
+<tr>
+<td>101</td>
+<td>现金</td>
+<td>2009-01-01</td>
+<td>2009-12-31</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>bf2009</td>
+</tr>
+<tr>
+<td>102</td>
+<td>银行存款</td>
+<td>2010-01-01</td>
+<td>2010-12-31</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Bf2010</td>
+</tr>
+</tbody></table>
+<p>帐套表：account 说明：帐套编号as是主键</p>
+<table>
+<thead>
+<tr>
+<th>帐套编号</th>
+<th>帐套名称</th>
+<th>帐套年度</th>
+<th>单位编号</th>
+<th>单位名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>as</td>
+<td>as_name</td>
+<td>year</td>
+<td>unit_id</td>
+<td>unit_name</td>
+</tr>
+<tr>
+<td>bf2009</td>
+<td>bf财务09</td>
+<td>2009</td>
+<td>1001</td>
+<td>北京分公司</td>
+</tr>
+<tr>
+<td>bf2010</td>
+<td>bf财务10</td>
+<td>2010</td>
+<td>1001</td>
+<td>北京分公司</td>
+</tr>
+<tr>
+<td>sf2009</td>
+<td>sf财务09</td>
+<td>2009</td>
+<td>1002</td>
+<td>上海分公司</td>
+</tr>
+<tr>
+<td>sf2010</td>
+<td>sf财务10</td>
+<td>2010</td>
+<td>1002</td>
+<td>上海分公司</td>
+</tr>
+<tr>
+<td>tf2009</td>
+<td>tf财务09</td>
+<td>2009</td>
+<td>1003</td>
+<td>天津分公司</td>
+</tr>
+<tr>
+<td>tf2010</td>
+<td>tf财务10</td>
+<td>2010</td>
+<td>1003</td>
+<td>天津分公司</td>
+</tr>
+</tbody></table>
+<p>查询北京分公司2009年度的余额表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span> <span class="operator">*</span> <span class="keyword">from</span> total <span class="keyword">where</span> <span class="keyword">as</span><span class="operator">=</span>bf2009</span><br></pre></td></tr></table></figure>
+
+<p>查询出2010年度上海分公司余额表现金发生额借贷金额状况</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span> <span class="operator">*</span> <span class="keyword">from</span> total <span class="keyword">where</span> <span class="keyword">as</span><span class="operator">=</span>sf2010 <span class="keyword">and</span> bd<span class="operator">&gt;=</span><span class="number">2010</span><span class="number">-01</span><span class="number">-01</span> <span class="keyword">and</span> ed<span class="operator">&lt;=</span><span class="number">2010</span><span class="number">-06</span><span class="number">-30</span></span><br></pre></td></tr></table></figure>
+
+<p>查询出2010年度银行存款期初借方余额大于1000000的公司名称</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> account.unit_name <span class="keyword">from</span> total，account <span class="keyword">where</span>  total.as<span class="operator">=</span>account.as <span class="keyword">and</span> total.a<span class="operator">&gt;</span><span class="number">1000000</span></span><br></pre></td></tr></table></figure>
+
+<p>查出数据还没有导入到数据库中的帐套的编码和名称（余额表中没有的帐套）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">as</span>,as_name  <span class="keyword">from</span> account <span class="keyword">where</span>  <span class="keyword">as</span>  <span class="keyword">not</span>  <span class="keyword">in</span> (<span class="keyword">select</span> <span class="keyword">as</span> <span class="keyword">from</span> total)</span><br></pre></td></tr></table></figure>
+
+<p>查询出上海分公司已经导入帐套编号</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> total.ss <span class="keyword">from</span> total，account <span class="keyword">where</span> total.as<span class="operator">=</span>account.as <span class="keyword">and</span> account.unit_name<span class="operator">=</span><span class="string">&#x27;上海分公司&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="在你进行实施的过程中，公司制作的一款软件系统缺少某一项功能，而且公司也明确表不会再为系统做任何的修改或添加任何的功能，而客户也坚决要求需要这一项功能！对于实施人员来说，应该怎么去合理妥善处理这个问题？"><a href="#在你进行实施的过程中，公司制作的一款软件系统缺少某一项功能，而且公司也明确表不会再为系统做任何的修改或添加任何的功能，而客户也坚决要求需要这一项功能！对于实施人员来说，应该怎么去合理妥善处理这个问题？" class="headerlink" title="在你进行实施的过程中，公司制作的一款软件系统缺少某一项功能，而且公司也明确表不会再为系统做任何的修改或添加任何的功能，而客户也坚决要求需要这一项功能！对于实施人员来说，应该怎么去合理妥善处理这个问题？"></a>在你进行实施的过程中，公司制作的一款软件系统缺少某一项功能，而且公司也明确表不会再为系统做任何的修改或添加任何的功能，而客户也坚决要求需要这一项功能！对于实施人员来说，应该怎么去合理妥善处理这个问题？</h1><ol>
+<li>先看客户要求合不合理，不合理就可以坚决退还需求。如果需求合理的话，可以申请做二次开发,并且收取一定的费用,这个两边都要沟通好。</li>
+<li>第二种方法,使用第三方软件做补助。</li>
+</ol>
+<h1 id="在项目实施过程中，使用者对产品提出了适合自己习惯的修改意见，但多个使用者相互矛盾，应该如何去处理？-1"><a href="#在项目实施过程中，使用者对产品提出了适合自己习惯的修改意见，但多个使用者相互矛盾，应该如何去处理？-1" class="headerlink" title="在项目实施过程中，使用者对产品提出了适合自己习惯的修改意见，但多个使用者相互矛盾，应该如何去处理？"></a>在项目实施过程中，使用者对产品提出了适合自己习惯的修改意见，但多个使用者相互矛盾，应该如何去处理？</h1><p>对于客户提出的修改意见，我们实施人员应该有自己的方案。当使用者之间意见出现不一致时，我们应当引导他们内部之间的意见统一，和客户经过沟通或确认后，找到切实可行的方案，双方认可并达成共识。</p>
+<h1 id="什么是DHCP？如何快速为多台（20台）电脑安装操作系统？多台电脑如何组网？"><a href="#什么是DHCP？如何快速为多台（20台）电脑安装操作系统？多台电脑如何组网？" class="headerlink" title="什么是DHCP？如何快速为多台（20台）电脑安装操作系统？多台电脑如何组网？"></a>什么是DHCP？如何快速为多台（20台）电脑安装操作系统？多台电脑如何组网？</h1><ol>
+<li>DHCP：动态主机设置协议，是一个局域网的网络协议，使用UDP协议工作，主要有两个用途：给内部网络或网络服务供应商自动分配IP地址、给用户给内部网络管理员作为对所有计算机作中央管理的手段。</li>
+<li>可以通过网络硬盘克隆，过程为：在装有软驱的工作站上，用一张引导盘来启动机器，连接到服务器，使用Ghost 多播服务（Multicast Server）将硬盘或分区的映像克隆到工作站，这样就实现了不拆机、安全、快速的网络硬盘克隆。</li>
+<li>多台电脑组网可以分为两个类型：<ol>
+<li>少于250台：可以采用用户接入层和核心接入层这二层网络结构，通过普通二层交换机与核心交换机的堆叠连接组成单位局域网，以满足单位各种上网访问需求。普通电脑通过双绞线连接到普通百兆二层交换机。</li>
+<li>超过250台：我们就需要通过交换机的VLAN功能，将它们划分到不同的子网中。为了让两网段中的所有电脑都能实现共享上网目的，我们还需要在核心路由交换机或者双WAN端口路由器设备中对两个网关参数进行合适配置，确保各个子网中的电脑能通过局域网路由功能访问Internet网络。</li>
+</ol>
+</li>
+</ol>
+<h1 id="局域网内，一台机器不能上网，而其他机器可以。所有的机器都安装的WinXP系统，且该电脑可以访问局域网内电脑，试分析原因？"><a href="#局域网内，一台机器不能上网，而其他机器可以。所有的机器都安装的WinXP系统，且该电脑可以访问局域网内电脑，试分析原因？" class="headerlink" title="局域网内，一台机器不能上网，而其他机器可以。所有的机器都安装的WinXP系统，且该电脑可以访问局域网内电脑，试分析原因？"></a>局域网内，一台机器不能上网，而其他机器可以。所有的机器都安装的WinXP系统，且该电脑可以访问局域网内电脑，试分析原因？</h1><p>可能由如下原因导致：</p>
+<ol>
+<li>检查有无 Microsoft网络客户端、 Microsoft网络的文件和打印机共享、 Internet 协议(TCP/IP) 。</li>
+<li>检查 IP地址、网关、DNS 、网络是否连上等。</li>
+<li>查杀木马、病毒。</li>
+</ol>
+<h1 id="如果有一个不太懂电脑的客户，你应该采取什么样的方法去教他用公司的软件产品？-1"><a href="#如果有一个不太懂电脑的客户，你应该采取什么样的方法去教他用公司的软件产品？-1" class="headerlink" title="如果有一个不太懂电脑的客户，你应该采取什么样的方法去教他用公司的软件产品？"></a>如果有一个不太懂电脑的客户，你应该采取什么样的方法去教他用公司的软件产品？</h1><ol>
+<li>如果软件产品比较难懂，你就可以先教一些简单的。再告诉他需要再了解哪些知识来掌握这个软件。</li>
+<li>如果软件产品比较简单，就可以直接一步一步的教他怎么操作，一直操作熟练就行了。</li>
+</ol>
+<h1 id="当你觉得工作的付出和你的收入不成正比的时候你会怎么想？-1"><a href="#当你觉得工作的付出和你的收入不成正比的时候你会怎么想？-1" class="headerlink" title="当你觉得工作的付出和你的收入不成正比的时候你会怎么想？"></a>当你觉得工作的付出和你的收入不成正比的时候你会怎么想？</h1><p>无论干什么工作，必须干一行爱一行，脚踏实地、用心去钻研，只要真正有能力，只要有思想和技术，终会出头。砖石总会发光的。接受你不能接受的，改变你能改变的。会争取到更高的薪水的。</p>
+<p>如果当初进来的时候公司有晋升调薪的承诺，那就看你的表现是否达到了要求，可以主动和相关领导沟通。</p>
+<h1 id="一般数据库若出现日志满了，会出现什么情况，是否还能使用？"><a href="#一般数据库若出现日志满了，会出现什么情况，是否还能使用？" class="headerlink" title="一般数据库若出现日志满了，会出现什么情况，是否还能使用？"></a>一般数据库若出现日志满了，会出现什么情况，是否还能使用？</h1><p>数据库满了就不能使用数据库.数据库满是指数据文件达到设置的最大文件大小,没设置的时候就是最大可用磁盘空间只能执行查询，等读的操作，不能执行更改、备份等写操作，原因是任何写操作都要记录日志。也就是说基础处于不可用的状态。</p>
+<h1 id="系统启动后，不能连接数据库，可能是哪些方面的原因？-1"><a href="#系统启动后，不能连接数据库，可能是哪些方面的原因？-1" class="headerlink" title="系统启动后，不能连接数据库，可能是哪些方面的原因？"></a>系统启动后，不能连接数据库，可能是哪些方面的原因？</h1><ol>
+<li>和数据库有关的服务没启动</li>
+<li>防火墙可能阻挡了数据库的端口</li>
+<li>如数据库可以启动，而登陆不了，可能是密码错误或连接参数配置错误</li>
+<li>数据库文件已被破坏或不存在</li>
+</ol>
+<h1 id="你认为客户服务的重点是什么？-1"><a href="#你认为客户服务的重点是什么？-1" class="headerlink" title="你认为客户服务的重点是什么？"></a>你认为客户服务的重点是什么？</h1><p>随着市场的竞争进一步加剧，服务已经成为企业核心竞争力的要素之一，服务的重点是沟通，沟通可以消除客户的误会和不满，沟通可以提高客户的感知度。因此，我认为我们客户服务管理工作就应该从做好沟通的管理开始。</p>
+<p>自己一定要理解服务，理解服务能干什么，能做到什么，结合公司的业务能给客户提供什么服务。</p>
+<p>服务过程中是否能给客户提供优秀的服务，倾听客户的意见，持续改进服务方式。尽量在事件发生之前，避免或杜绝客户的投诉，投诉发生后，认真处理。</p>
+<h1 id="说明静态路由和动态路由的区别？"><a href="#说明静态路由和动态路由的区别？" class="headerlink" title="说明静态路由和动态路由的区别？"></a>说明静态路由和动态路由的区别？</h1><p>静态路由：就是由管理员在路由器中手工设置的固定的路由信息，静态路由不能对网络的改变做出反映，一般用于规模不大、拓扑结构固定的网络中，其优点是设置简单、高效，在所有路由中，静态路由优先级最高，当动态路由与静态路由发生冲突时，以静态路由为准。</p>
+<p>动态路由：就是由网络中的路由器之间互相通信，传递路由信息，利用收到的路由信息更新路由表的过程，它能实时地适应网络结构的变化。主要用于规模大、拓扑结构复杂的网络。</p>
+<h1 id="软件实施和软件运维的关系？"><a href="#软件实施和软件运维的关系？" class="headerlink" title="软件实施和软件运维的关系？"></a>软件实施和软件运维的关系？</h1><p>共同点：实施和运维都是项目管理中不可或缺的部分。</p>
+<h2 id="立项审批—项目计划—-需求确认—设计架构—构建—系统集成测试—部署阶段—移交运维—维保支持。"><a href="#立项审批—项目计划—-需求确认—设计架构—构建—系统集成测试—部署阶段—移交运维—维保支持。" class="headerlink" title="立项审批—项目计划—-需求确认—设计架构—构建—系统集成测试—部署阶段—移交运维—维保支持。"></a>立项审批—项目计划—-需求确认—设计架构—构建—系统集成测试—部署阶段—移交运维—维保支持。</h2><p>从运维在项目的生命周期来说，从设计架构开始一直到最后，都是要运维参与设计，构架，测试，部署的。只有这样才能运维才能真正胜任运维角色。不是简简单单部署移交就万事大吉的。实施上线要是算点燃的火炬，那高效的运维就是持续稳定的燃料！没有燃料再好的火炬也只是摆设。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>Q：如果阅读本文需要付费，你是否愿意为此支付1元？</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    我愿意资助创作者
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="黄耀栋 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="黄耀栋 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>黄耀栋
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://hyd0.cc/2021/09/18/%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9D%A2%E8%AF%95%E9%A2%98/" title="实施工程师面试题">http://hyd0.cc/2021/09/18/实施工程师面试题/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章，均在可信时间戳认证机构完成确权，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处，侵权必究！商业性使用请联系主理人购买授权许可。
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag"># 面试题</a>
+              <a href="/tags/%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88/" rel="tag"># 实施工程师</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/18/12/" rel="prev" title="RabbitMQ 实战教程">
+      <i class="fa fa-chevron-left"></i> RabbitMQ 实战教程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/09/18/14/" rel="next" title="Dubbon">
+      Dubbon <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%A4%E7%94%B5%E8%84%91%E9%83%BD%E5%9C%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83%E4%B8%AD%EF%BC%8CA-%E7%94%B5%E8%84%91%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%88%B0-B-%E7%94%B5%E8%84%91%E7%9A%84%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E3%80%82%E6%AD%A4%E7%8E%B0%E8%B1%A1%E5%8F%AF%E8%83%BD%E6%98%AF%E5%93%AA%E4%BA%9B-%E6%96%B9%E9%9D%A2%E6%89%80%E5%AF%BC%E8%87%B4%EF%BC%9F%E6%80%8E%E6%A0%B7%E5%A4%84%E7%90%86%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">两电脑都在同一个网络环境中，A 电脑访问不到 B 电脑的共享文件。此现象可能是哪些 方面所导致？怎样处理？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%B5%E8%84%91%E5%BC%80%E6%9C%BA%E6%97%B6%E9%A3%8E%E6%89%87%E8%BD%AC%EF%BC%8C-%E4%BD%86%E6%98%AF%E5%B1%8F%E5%B9%95%E6%B2%A1%E6%9C%89%E4%BB%BB%E4%BD%95%E6%98%BE%E7%A4%BA%EF%BC%8C-%E6%AD%A4%E7%8E%B0%E8%B1%A1%E5%8F%AF%E8%83%BD%E6%98%AF%E5%93%AA%E4%BA%9B%E6%96%B9%E9%9D%A2%E6%89%80%E5%AF%BC%E8%87%B4%EF%BC%9F%E6%80%8E%E6%A0%B7%E5%A4%84%E7%90%86%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">电脑开机时风扇转， 但是屏幕没有任何显示， 此现象可能是哪些方面所导致？怎样处理？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8%E5%81%9A-SQL-%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD%E6%97%B6%E5%BA%94%E8%AF%A5%E5%85%88%E5%BC%80%E8%B5%B7%E4%BB%80%E4%B9%88%E6%9C%8D%E5%8A%A1"><span class="nav-number">3.</span> <span class="nav-text">在做 SQL 自动备份时应该先开起什么服务?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83%E4%B8%AD-A-%E7%94%B5%E8%84%91-IP%EF%BC%9A-192-168-1-100-%EF%BC%8CB%E7%94%B5%E8%84%91-IP%EF%BC%9A-192-168-0-100%EF%BC%8C-%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84-IP%EF%BC%9A192-168-1-1-%E3%80%82%E8%AF%B7%E9%97%AE%E6%9C%89%E9%82%A3%E4%BA%9B%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E8%AE%A9-B-%E7%94%B5%E8%84%91%E5%8D%B3%E5%8F%AF%E4%BB%A5%E4%B8%8A%E5%85%AC%E7%BD%91%E4%B9%9F%E5%8F%AF-%E4%BB%A5%E8%AE%BF%E9%97%AE%E5%88%B0-A-%E7%94%B5%E8%84%91%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">在同一个网络环境中 A 电脑 IP： 192.168.1.100 ，B电脑 IP：  192.168.0.100， 路由器的 IP：192.168.1.1 。请问有那些方法可以让 B 电脑即可以上公网也可 以访问到 A 电脑？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%A0%E7%86%9F%E6%82%89%E7%9A%84%E8%BF%9C%E7%A8%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95%EF%BC%9F%E5%90%84%E7%A7%8D%E6%96%B9%E6%B3%95%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E9%85%8D%E7%BD%AE%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">你熟悉的远程有哪些方法？各种方法应该怎么配置？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E6%9C%89%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%A4%AA%E6%87%82%E7%94%B5%E8%84%91%E7%9A%84%E5%AE%A2%E6%88%B7%EF%BC%8C%E4%BD%A0%E5%BA%94%E8%AF%A5%E9%87%87%E5%8F%96%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E6%96%B9%E6%B3%95%E5%8E%BB%E6%95%99%E4%BB%96%E7%94%A8%E5%85%AC%E5%8F%B8%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BA%A7%E5%93%81%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">如果有一个不太懂电脑的客户，你应该采取什么样的方法去教他用公司的软件产品？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BD%93%E4%BD%A0%E8%A7%89%E5%BE%97%E5%B7%A5%E4%BD%9C%E7%9A%84%E4%BB%98%E5%87%BA%E5%92%8C%E4%BD%A0%E7%9A%84%E6%94%B6%E5%85%A5%E4%B8%8D%E6%88%90%E6%AD%A3%E6%AF%94%E7%9A%84%E6%97%B6%E5%80%99%E4%BD%A0%E4%BC%9A%E6%80%8E%E4%B9%88%E6%83%B3%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">当你觉得工作的付出和你的收入不成正比的时候你会怎么想？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8%E4%BD%A0%E8%BF%9B%E8%A1%8C%E5%AE%9E%E6%96%BD%E7%9A%84%E8%BF%87%E7%A8%8B%E4%B8%AD%EF%BC%8C%E5%85%AC%E5%8F%B8%E5%88%B6%E4%BD%9C%E7%9A%84%E4%B8%80%E6%AC%BE%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%BC%BA%E5%B0%91%E6%9F%90%E4%B8%80%E9%A1%B9%E5%8A%9F%E8%83%BD%EF%BC%8C%E8%80%8C%E4%B8%94%E5%85%AC%E5%8F%B8%E4%B9%9F%E6%98%8E%E7%A1%AE%E8%A1%A8%E7%A4%BA%E4%B8%8D%E4%BC%9A%E5%86%8D%E4%B8%BA%E7%B3%BB%E7%BB%9F%E5%81%9A%E4%BB%BB%E4%BD%95%E7%9A%84%E4%BF%AE%E6%94%B9%E6%88%96%E6%B7%BB%E5%8A%A0%E4%BB%BB%E4%BD%95%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%8C%E8%80%8C%E5%AE%A2%E6%88%B7%E4%B9%9F%E5%9D%9A%E5%86%B3%E8%A6%81%E6%B1%82"><span class="nav-number">8.</span> <span class="nav-text">在你进行实施的过程中，公司制作的一款软件系统缺少某一项功能，而且公司也明确表示不会再为系统做任何的修改或添加任何的功能，而客户也坚决要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%96%BD%E8%BF%87%E7%A8%8B%E4%B8%AD%EF%BC%8C%E4%BD%BF%E7%94%A8%E8%80%85%E5%AF%B9%E4%BA%A7%E5%93%81%E6%8F%90%E5%87%BA%E4%BA%86%E9%80%82%E5%90%88%E8%87%AA%E5%B7%B1%E4%B9%A0%E6%83%AF%E7%9A%84%E4%BF%AE%E6%94%B9%E6%84%8F%E8%A7%81%EF%BC%8C%E4%BD%86%E5%A4%9A%E4%B8%AA%E4%BD%BF%E7%94%A8%E8%80%85%E7%9B%B8%E4%BA%92%E7%9F%9B%E7%9B%BE%EF%BC%8C%E5%BA%94%E8%AF%A5%E5%A6%82%E4%BD%95%E5%8E%BB%E5%A4%84%E7%90%86%EF%BC%9F"><span class="nav-number">9.</span> <span class="nav-text">在项目实施过程中，使用者对产品提出了适合自己习惯的修改意见，但多个使用者相互矛盾，应该如何去处理？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%90%8E%EF%BC%8C%E4%B8%8D%E8%83%BD%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%8C%E5%8F%AF%E8%83%BD%E6%98%AF%E5%93%AA%E4%BA%9B%E6%96%B9%E9%9D%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%9F"><span class="nav-number">10.</span> <span class="nav-text">系统启动后，不能连接数据库，可能是哪些方面的原因？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%A0%E8%AE%A4%E4%B8%BA%E5%AE%A2%E6%88%B7%E6%9C%8D%E5%8A%A1%E7%9A%84%E9%87%8D%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">11.</span> <span class="nav-text">你认为客户服务的重点是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">12.</span> <span class="nav-text">触发器的作用是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E5%90%8D%E4%B8%BA-guest"><span class="nav-number">13.</span> <span class="nav-text">SQL 数据库表名为 guest</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%B2%E7%9F%A5%E8%A1%A8%EF%BC%9A"><span class="nav-number">14.</span> <span class="nav-text">已知表：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E9%87%8AOracle%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%81%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6%E3%80%81%E8%A1%A8%E7%A9%BA%E9%97%B4%EF%BC%9F"><span class="nav-number">15.</span> <span class="nav-text">解释Oracle数据库、数据文件、表空间？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A8%E3%80%81%E8%A7%86%E5%9B%BE%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E3%80%81%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">16.</span> <span class="nav-text">表、视图的区别？存储过程、函数的区别？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%A4%E7%94%B5%E8%84%91%E9%83%BD%E5%9C%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83%E4%B8%AD%EF%BC%8CA%E7%94%B5%E8%84%91%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%88%B0B%E7%94%B5%E8%84%91%E7%9A%84%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E3%80%82%E6%AD%A4%E7%8E%B0%E8%B1%A1%E5%8F%AF%E8%83%BD%E6%98%AF%E5%93%AA%E4%BA%9B%E6%96%B9%E9%9D%A2%E6%89%80%E5%AF%BC%E8%87%B4%EF%BC%9F"><span class="nav-number">17.</span> <span class="nav-text">两电脑都在同一个网络环境中，A电脑访问不到B电脑的共享文件。此现象可能是哪些方面所导致？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%B5%E8%84%91%E5%BC%80%E6%9C%BA%E6%97%B6%E9%A3%8E%E6%89%87%E8%BD%AC%EF%BC%8C%E4%BD%86%E6%98%AF%E5%B1%8F%E5%B9%95%E6%B2%A1%E6%9C%89%E4%BB%BB%E4%BD%95%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%AD%A4%E7%8E%B0%E8%B1%A1%E5%8F%AF%E8%83%BD%E6%98%AF%E5%93%AA%E4%BA%9B%E6%96%B9%E9%9D%A2%E6%89%80%E5%AF%BC%E8%87%B4%EF%BC%9F%E6%80%8E%E6%A0%B7%E5%A4%84%E7%90%86"><span class="nav-number">18.</span> <span class="nav-text">电脑开机时风扇转，但是屏幕没有任何显示，此现象可能是哪些方面所导致？怎样处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83%E4%B8%ADA%E7%94%B5%E8%84%91IP%EF%BC%9A192-168-1-2-%EF%BC%8CB%E7%94%B5%E8%84%91IP%EF%BC%9A192-168-0-3%EF%BC%8C%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84IP%EF%BC%9A192-168-1-1-%E3%80%82%E8%AF%B7%E9%97%AE%E6%9C%89%E9%82%A3%E4%BA%9B%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E8%AE%A9B%E7%94%B5%E8%84%91%E5%8D%B3%E5%8F%AF%E4%BB%A5%E4%B8%8A%E5%85%AC%E7%BD%91%E4%B9%9F%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE%E5%88%B0A%E7%94%B5%E8%84%91"><span class="nav-number">19.</span> <span class="nav-text">在同一个网络环境中A电脑IP：192.168.1.2 ，B电脑IP：192.168.0.3，路由器的IP：192.168.1.1 。请问有那些方法可以让B电脑即可以上公网也可以访问到A电脑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%A0%E7%86%9F%E6%82%89%E7%9A%84%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E8%BD%AF%E4%BB%B6%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">20.</span> <span class="nav-text">你熟悉的远程连接软件有哪些？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BS%E7%BB%93%E6%9E%84%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%92%8CCS%E7%BB%93%E6%9E%84%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%98%AF%EF%BC%9F"><span class="nav-number">21.</span> <span class="nav-text">BS结构的软件和CS结构的软件的描述是？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E4%BD%A0%E6%89%80%E4%BA%86%E8%A7%A3%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%81%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%AE%83%E4%BB%AC%E7%9A%84%E5%B8%B8%E8%A7%84%E6%93%8D%E4%BD%9C%E5%92%8C%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE%EF%BC%9F"><span class="nav-number">22.</span> <span class="nav-text">谈谈你所了解的数据库、中间件和服务器操作系统，以及它们的常规操作和优化配置？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%BF%9B%E8%A1%8C%E8%BD%AF%E4%BB%B6%E4%BA%A7%E5%93%81%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%8C%85%E6%9B%B4%E6%96%B0%E7%BB%B4%E6%8A%A4%E4%BB%A5%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%B4%E6%8A%A4%E8%BF%87%E7%A8%8B%E4%B8%AD%EF%BC%8C%E4%BD%A0%E8%A7%89%E5%BE%97%E5%BA%94%E8%AF%A5%E6%B3%A8%E6%84%8F%E5%93%AA%E4%BA%9B%E4%BA%8B%E9%A1%B9%EF%BC%9F"><span class="nav-number">23.</span> <span class="nav-text">实施工程师进行软件产品的程序包更新维护以及数据库维护过程中，你觉得应该注意哪些事项？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DBMS%E6%98%AF%E4%BB%80%E4%B9%88%E7%9A%84%E7%BC%A9%E5%86%99"><span class="nav-number">24.</span> <span class="nav-text">DBMS是什么的缩写</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E7%9B%AE%E5%89%8D%E6%AF%94%E8%BE%83%E6%B5%81%E8%A1%8C%E7%9A%84B-S%E6%9E%B6%E6%9E%84%E7%9A%84%E7%AE%A1%E7%90%86%E8%BD%AF%E4%BB%B6%EF%BC%8C%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%BA%94%E8%AF%A5%E5%AF%B9%E5%AE%83%E7%9A%84%E5%AE%9E%E6%96%BD%E5%AE%89%E8%A3%85%E7%86%9F%E7%BB%83%E6%8E%8C%E6%8F%A1%EF%BC%8C%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88%E4%B8%80%E8%88%AC%E8%A6%81%E8%BF%9B%E8%A1%8C%E5%93%AA%E5%87%A0%E4%B8%AA%E6%96%B9%E9%9D%A2%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%92%8C%E8%B0%83%E8%AF%95%E5%B7%A5%E4%BD%9C%EF%BC%9F"><span class="nav-number">25.</span> <span class="nav-text">对于目前比较流行的B&#x2F;S架构的管理软件，实施工程师应该对它的实施安装熟练掌握，实施工程师一般要进行哪几个方面的软件安装和调试工作？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E4%B8%80%E5%90%8D%E5%AE%A2%E6%88%B7%E7%8E%B0%E5%9C%BA%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88%EF%BC%8C%E4%B8%8E%E5%AE%A2%E6%88%B7%E6%B2%9F%E9%80%9A%E8%B4%AF%E7%A9%BF%E5%AE%9E%E6%96%BD%E5%B7%A5%E4%BD%9C%E7%9A%84%E6%95%B4%E4%B8%AA%E8%BF%87%E7%A8%8B%EF%BC%8C%E4%BD%A0%E5%BA%94%E8%AF%A5%E4%BB%A5%E6%80%8E%E6%A0%B7%E7%9A%84%E6%B2%9F%E9%80%9A%E6%96%B9%E5%BC%8F%E4%BF%9D%E8%AF%81%E6%B2%9F%E9%80%9A%E7%9A%84%E5%87%86%E7%A1%AE%E4%B8%8E%E9%AB%98%E6%95%88%EF%BC%9F"><span class="nav-number">26.</span> <span class="nav-text">作为一名客户现场实施工程师，与客户沟通贯穿实施工作的整个过程，你应该以怎样的沟通方式保证沟通的准确与高效？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%90%E7%B4%A2%E5%BC%95%E3%80%91%EF%BC%8C%E3%80%90%E8%A7%86%E5%9B%BE%E3%80%91%EF%BC%8C%E3%80%90%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E3%80%91%EF%BC%8C%E3%80%90%E8%A7%A6%E5%8F%91%E5%99%A8%E3%80%91%E5%9C%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%EF%BC%8C%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="nav-number">27.</span> <span class="nav-text">数据库【索引】，【视图】，【存储过程】，【触发器】在数据库使用过程中，有什么作用？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BD%93%E5%89%8D%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%BAoracle10g%EF%BC%8C%E5%AE%9E%E4%BE%8B%E5%90%8D%E4%B8%BA%EF%BC%9Amyorcl-%E8%A1%A8%E7%A9%BA%E9%97%B4%E4%B8%BA%EF%BC%9Amytablespace%EF%BC%8C%E7%94%A8%E6%88%B7%E5%90%8D-%E5%AF%86%E7%A0%81%E4%B8%BA%EF%BC%9Amyuser-mypassword-%E8%AF%B7%E5%86%99%E5%87%BA%E5%A4%87%E5%92%8C%E6%81%A2%E5%A4%8D%E4%BB%85myuser%E7%94%A8%E6%88%B7%E4%B8%8B%E6%95%B0%E6%8D%AE%E7%9A%84%E5%91%BD%E4%BB%A4%E3%80%82"><span class="nav-number">28.</span> <span class="nav-text">当前数据库为oracle10g，实例名为：myorcl 表空间为：mytablespace，用户名&#x2F;密码为：myuser&#x2F;mypassword  请写出备和恢复仅myuser用户下数据的命令。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E7%85%A7%E4%B8%8B%E5%9B%BE%E4%B8%A4%E8%A1%A8%EF%BC%8C%E5%AE%8C%E6%88%90%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98"><span class="nav-number">29.</span> <span class="nav-text">参照下图两表，完成相关问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8%E4%BD%A0%E8%BF%9B%E8%A1%8C%E5%AE%9E%E6%96%BD%E7%9A%84%E8%BF%87%E7%A8%8B%E4%B8%AD%EF%BC%8C%E5%85%AC%E5%8F%B8%E5%88%B6%E4%BD%9C%E7%9A%84%E4%B8%80%E6%AC%BE%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%BC%BA%E5%B0%91%E6%9F%90%E4%B8%80%E9%A1%B9%E5%8A%9F%E8%83%BD%EF%BC%8C%E8%80%8C%E4%B8%94%E5%85%AC%E5%8F%B8%E4%B9%9F%E6%98%8E%E7%A1%AE%E8%A1%A8%E4%B8%8D%E4%BC%9A%E5%86%8D%E4%B8%BA%E7%B3%BB%E7%BB%9F%E5%81%9A%E4%BB%BB%E4%BD%95%E7%9A%84%E4%BF%AE%E6%94%B9%E6%88%96%E6%B7%BB%E5%8A%A0%E4%BB%BB%E4%BD%95%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%8C%E8%80%8C%E5%AE%A2%E6%88%B7%E4%B9%9F%E5%9D%9A%E5%86%B3%E8%A6%81%E6%B1%82%E9%9C%80%E8%A6%81%E8%BF%99%E4%B8%80%E9%A1%B9%E5%8A%9F%E8%83%BD%EF%BC%81%E5%AF%B9%E4%BA%8E%E5%AE%9E%E6%96%BD%E4%BA%BA%E5%91%98%E6%9D%A5%E8%AF%B4%EF%BC%8C%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E5%8E%BB%E5%90%88%E7%90%86%E5%A6%A5%E5%96%84%E5%A4%84%E7%90%86%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="nav-number">30.</span> <span class="nav-text">在你进行实施的过程中，公司制作的一款软件系统缺少某一项功能，而且公司也明确表不会再为系统做任何的修改或添加任何的功能，而客户也坚决要求需要这一项功能！对于实施人员来说，应该怎么去合理妥善处理这个问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%96%BD%E8%BF%87%E7%A8%8B%E4%B8%AD%EF%BC%8C%E4%BD%BF%E7%94%A8%E8%80%85%E5%AF%B9%E4%BA%A7%E5%93%81%E6%8F%90%E5%87%BA%E4%BA%86%E9%80%82%E5%90%88%E8%87%AA%E5%B7%B1%E4%B9%A0%E6%83%AF%E7%9A%84%E4%BF%AE%E6%94%B9%E6%84%8F%E8%A7%81%EF%BC%8C%E4%BD%86%E5%A4%9A%E4%B8%AA%E4%BD%BF%E7%94%A8%E8%80%85%E7%9B%B8%E4%BA%92%E7%9F%9B%E7%9B%BE%EF%BC%8C%E5%BA%94%E8%AF%A5%E5%A6%82%E4%BD%95%E5%8E%BB%E5%A4%84%E7%90%86%EF%BC%9F-1"><span class="nav-number">31.</span> <span class="nav-text">在项目实施过程中，使用者对产品提出了适合自己习惯的修改意见，但多个使用者相互矛盾，应该如何去处理？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFDHCP%EF%BC%9F%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E4%B8%BA%E5%A4%9A%E5%8F%B0%EF%BC%8820%E5%8F%B0%EF%BC%89%E7%94%B5%E8%84%91%E5%AE%89%E8%A3%85%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%9F%E5%A4%9A%E5%8F%B0%E7%94%B5%E8%84%91%E5%A6%82%E4%BD%95%E7%BB%84%E7%BD%91%EF%BC%9F"><span class="nav-number">32.</span> <span class="nav-text">什么是DHCP？如何快速为多台（20台）电脑安装操作系统？多台电脑如何组网？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%EF%BC%8C%E4%B8%80%E5%8F%B0%E6%9C%BA%E5%99%A8%E4%B8%8D%E8%83%BD%E4%B8%8A%E7%BD%91%EF%BC%8C%E8%80%8C%E5%85%B6%E4%BB%96%E6%9C%BA%E5%99%A8%E5%8F%AF%E4%BB%A5%E3%80%82%E6%89%80%E6%9C%89%E7%9A%84%E6%9C%BA%E5%99%A8%E9%83%BD%E5%AE%89%E8%A3%85%E7%9A%84WinXP%E7%B3%BB%E7%BB%9F%EF%BC%8C%E4%B8%94%E8%AF%A5%E7%94%B5%E8%84%91%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E7%94%B5%E8%84%91%EF%BC%8C%E8%AF%95%E5%88%86%E6%9E%90%E5%8E%9F%E5%9B%A0%EF%BC%9F"><span class="nav-number">33.</span> <span class="nav-text">局域网内，一台机器不能上网，而其他机器可以。所有的机器都安装的WinXP系统，且该电脑可以访问局域网内电脑，试分析原因？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E6%9C%89%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%A4%AA%E6%87%82%E7%94%B5%E8%84%91%E7%9A%84%E5%AE%A2%E6%88%B7%EF%BC%8C%E4%BD%A0%E5%BA%94%E8%AF%A5%E9%87%87%E5%8F%96%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E6%96%B9%E6%B3%95%E5%8E%BB%E6%95%99%E4%BB%96%E7%94%A8%E5%85%AC%E5%8F%B8%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BA%A7%E5%93%81%EF%BC%9F-1"><span class="nav-number">34.</span> <span class="nav-text">如果有一个不太懂电脑的客户，你应该采取什么样的方法去教他用公司的软件产品？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BD%93%E4%BD%A0%E8%A7%89%E5%BE%97%E5%B7%A5%E4%BD%9C%E7%9A%84%E4%BB%98%E5%87%BA%E5%92%8C%E4%BD%A0%E7%9A%84%E6%94%B6%E5%85%A5%E4%B8%8D%E6%88%90%E6%AD%A3%E6%AF%94%E7%9A%84%E6%97%B6%E5%80%99%E4%BD%A0%E4%BC%9A%E6%80%8E%E4%B9%88%E6%83%B3%EF%BC%9F-1"><span class="nav-number">35.</span> <span class="nav-text">当你觉得工作的付出和你的收入不成正比的时候你会怎么想？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E6%95%B0%E6%8D%AE%E5%BA%93%E8%8B%A5%E5%87%BA%E7%8E%B0%E6%97%A5%E5%BF%97%E6%BB%A1%E4%BA%86%EF%BC%8C%E4%BC%9A%E5%87%BA%E7%8E%B0%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%EF%BC%8C%E6%98%AF%E5%90%A6%E8%BF%98%E8%83%BD%E4%BD%BF%E7%94%A8%EF%BC%9F"><span class="nav-number">36.</span> <span class="nav-text">一般数据库若出现日志满了，会出现什么情况，是否还能使用？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%90%8E%EF%BC%8C%E4%B8%8D%E8%83%BD%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%8C%E5%8F%AF%E8%83%BD%E6%98%AF%E5%93%AA%E4%BA%9B%E6%96%B9%E9%9D%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%9F-1"><span class="nav-number">37.</span> <span class="nav-text">系统启动后，不能连接数据库，可能是哪些方面的原因？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%A0%E8%AE%A4%E4%B8%BA%E5%AE%A2%E6%88%B7%E6%9C%8D%E5%8A%A1%E7%9A%84%E9%87%8D%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F-1"><span class="nav-number">38.</span> <span class="nav-text">你认为客户服务的重点是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E5%92%8C%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">39.</span> <span class="nav-text">说明静态路由和动态路由的区别？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%AE%9E%E6%96%BD%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%BF%90%E7%BB%B4%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="nav-number">40.</span> <span class="nav-text">软件实施和软件运维的关系？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%8B%E9%A1%B9%E5%AE%A1%E6%89%B9%E2%80%94%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92%E2%80%94-%E9%9C%80%E6%B1%82%E7%A1%AE%E8%AE%A4%E2%80%94%E8%AE%BE%E8%AE%A1%E6%9E%B6%E6%9E%84%E2%80%94%E6%9E%84%E5%BB%BA%E2%80%94%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95%E2%80%94%E9%83%A8%E7%BD%B2%E9%98%B6%E6%AE%B5%E2%80%94%E7%A7%BB%E4%BA%A4%E8%BF%90%E7%BB%B4%E2%80%94%E7%BB%B4%E4%BF%9D%E6%94%AF%E6%8C%81%E3%80%82"><span class="nav-number">40.1.</span> <span class="nav-text">立项审批—项目计划—-需求确认—设计架构—构建—系统集成测试—部署阶段—移交运维—维保支持。</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="黄耀栋"
+      src="https://wanglin.love/images/网站配置/avatar.png">
+  <p class="site-author-name" itemprop="name">黄耀栋</p>
+  <div class="site-description" itemprop="description">年少不知富婆香，错把青春插稻秧</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-fas fa-rss"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黄耀栋</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
