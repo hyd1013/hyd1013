@@ -248,13 +248,34 @@
             </span>
 
           
+            <span id="/2021/09/18/4/" class="post-meta-item leancloud_visitors" data-flag-title="20个解放双手的 IDEA 插件" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
-            </span><br>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/09/18/4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/18/4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-file-word-o"></i>
@@ -427,8 +448,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/09/18/3/" rel="prev" title="基础篇">
-      <i class="fa fa-chevron-left"></i> 基础篇
+    <a href="/2021/09/18/2/" rel="prev" title="简历指导【非常重要】">
+      <i class="fa fa-chevron-left"></i> 简历指导【非常重要】
     </a></div>
       <div class="post-nav-item">
     <a href="/2021/09/18/5/" rel="next" title="10个解放双手的超实用在线工具">
@@ -446,6 +467,7 @@
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -684,6 +706,35 @@
   
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'OdjvQpnmI8oJpFljM93rNcEz-gzGzoHsz',
+      appKey     : '63nzvflvkRuwL6eohNzWCvWj',
+      placeholder: "好不容易来一趟，请留下点儿痕迹叭(▼ヘ▼#)",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>

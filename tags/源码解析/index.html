@@ -210,8 +210,8 @@
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2021/09/18/7/" itemprop="url">
-            <span itemprop="name">虚拟DOM与Diff算法的实现原理</span>
+          <a class="post-title-link" href="/2021/09/18/8/" itemprop="url">
+            <span itemprop="name">源码级别理解 Redis 持久化</span>
           </a>
       </div>
 
@@ -230,8 +230,8 @@
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2021/09/18/8/" itemprop="url">
-            <span itemprop="name">源码级别理解 Redis 持久化</span>
+          <a class="post-title-link" href="/2021/09/18/7/" itemprop="url">
+            <span itemprop="name">虚拟DOM与Diff算法的实现原理</span>
           </a>
       </div>
 
@@ -487,6 +487,35 @@
   
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'OdjvQpnmI8oJpFljM93rNcEz-gzGzoHsz',
+      appKey     : '63nzvflvkRuwL6eohNzWCvWj',
+      placeholder: "好不容易来一趟，请留下点儿痕迹叭(▼ヘ▼#)",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>
