@@ -638,6 +638,571 @@
       </tags>
   </entry>
   <entry>
+    <title>简历指导【非常重要】</title>
+    <url>/2021/09/18/2/</url>
+    <content><![CDATA[<h1 id="就业阶段工作流程"><a href="#就业阶段工作流程" class="headerlink" title="就业阶段工作流程"></a>就业阶段工作流程</h1><p>简历→面试→入职→试用期→转正</p>
+<p>简历的重要性： </p>
+<ul>
+<li>没有简历就没有面试 </li>
+<li>简历的质量决定面试的数量</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="写简历的心法"><a href="#写简历的心法" class="headerlink" title="写简历的心法"></a>写简历的心法</h1><p>一个字：猛！</p>
+<p>整个简历<span style="color:red"><strong>充满</strong></span><span style="color:blue"><strong>有技术含量</strong></span>的技术点！给人一种厚重感！让 HR“不明觉厉”！</p>
+<p>例:</p>
+<ul>
+<li>熟悉 Java 的 8 大基本数据类型 </li>
+<li>熟悉 Java 的类加载机制、垃圾回收机制、内存管理模型</li>
+</ul>
+<p>友情提示：简历和复习的关系</p>
+<ul>
+<li>正确的顺序是：先把简历写好，然后按照简历复习 </li>
+<li>错误的顺序是：写简历的时候按现在“会”的写</li>
+</ul>
+<h1 id="写简历的注意事项"><a href="#写简历的注意事项" class="headerlink" title="写简历的注意事项"></a>写简历的注意事项</h1><p>不要复制粘贴，要自己写 </p>
+<p>不要有技术性错误：硬伤 </p>
+<p>注意技术英文名称大小写</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Java、JavaSE、JavaScript、jQuery、zTree、MyBatis、Spring、SpringMVC、SpringBoot、SpringCloud……</span><br></pre></td></tr></table></figure>
+
+<h1 id="简历的结构"><a href="#简历的结构" class="headerlink" title="简历的结构"></a>简历的结构</h1><ul>
+<li>个人信息：就业老师</li>
+<li>自我评价：就业老师</li>
+<li>技能清单：尽可能全面的覆盖学过的内容<ul>
+<li>取：捡有技术含量的写</li>
+<li>舍：看上去很水的就不写了</li>
+</ul>
+</li>
+<li>项目经验：把我们学习过程中项目里用到的技术点都体现出来</li>
+</ul>
+<h1 id="技能清单"><a href="#技能清单" class="headerlink" title="技能清单"></a>技能清单</h1><h2 id="形式"><a href="#形式" class="headerlink" title="形式"></a>形式</h2><p>为了尽量避免简历雷同，建议大家使用不同形式。当然也可以自定义</p>
+<h3 id="序号清单式"><a href="#序号清单式" class="headerlink" title="序号清单式"></a>序号清单式</h3><p>有序列表、无序列表都可以</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、xxx </span><br><span class="line">2、xxx </span><br><span class="line">3、xxx</span><br></pre></td></tr></table></figure>
+
+<h3 id="按技术类比划分"><a href="#按技术类比划分" class="headerlink" title="按技术类比划分"></a>按技术类比划分</h3><h4 id="原生-Java-技术"><a href="#原生-Java-技术" class="headerlink" title="原生 Java 技术"></a>原生 Java 技术</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">字符串处理、泛型、枚举、注解、IO、多线程、反射、JVM 垃圾回收机制、JVM 类加载机……</span><br></pre></td></tr></table></figure>
+
+<h4 id="Java-框架"><a href="#Java-框架" class="headerlink" title="Java 框架"></a>Java 框架</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MyBatis、Spring、SpringMVC、SpringBoot、SpringCloud、Dubbo、SpringSession、Spring Data Jpa……</span><br></pre></td></tr></table></figure>
+
+<h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MySQL、关联查询、子查询、分组查询、聚合函数、索引优化、explain 分析、分区、分表、分库……</span><br></pre></td></tr></table></figure>
+
+<h4 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Redis、ElasticSearch、FastDFS、ActiveMQ、Zookeeper、Nginx……</span><br></pre></td></tr></table></figure>
+
+<h4 id="视图模板技术"><a href="#视图模板技术" class="headerlink" title="视图模板技术"></a>视图模板技术</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">JSP、Thymeleaf、Beetl、Mustache</span><br></pre></td></tr></table></figure>
+
+<h4 id="第三方接口"><a href="#第三方接口" class="headerlink" title="第三方接口"></a>第三方接口</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">短信验证、蚂蚁金服、阿里云 OSS 对象存储服务、高德地图定位……</span><br></pre></td></tr></table></figure>
+
+<h4 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HTML、CSS、JavaScript、jQuery、Vue、TypeScript、CoffeeScript、React、Angular、Preact、Ember、Alita、Redux、Recoil……</span><br></pre></td></tr></table></figure>
+
+<h4 id="开发与部署"><a href="#开发与部署" class="headerlink" title="开发与部署"></a>开发与部署</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Maven、SVN、Git/GitHub/Gitee、Docker……</span><br></pre></td></tr></table></figure>
+
+<h4 id="编程思想"><a href="#编程思想" class="headerlink" title="编程思想"></a>编程思想</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">面向对象、面向接口、面向切面、高内聚/低耦合……</span><br></pre></td></tr></table></figure>
+
+<h4 id="架构思想"><a href="#架构思想" class="headerlink" title="架构思想"></a>架构思想</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">单一架构、垂直拆分、水平拆分、分布式架构、SOA、微服务……</span><br></pre></td></tr></table></figure>
+
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><h3 id="JavaSE"><a href="#JavaSE" class="headerlink" title="JavaSE"></a>JavaSE</h3><ul>
+<li><p>集合</p>
+<ul>
+<li>操作：熟练使用各种常见集合类</li>
+<li>理论：熟悉 JDK 提供集合框架 </li>
+<li>理论：常用集合类的底层原理<ul>
+<li>ArrayList 底层是数组 </li>
+<li>HashSet 底层是 HashMap，HashSet 把元素存入了一个 HashMap 的 Key</li>
+<li>HashMap 底层是数组加链表（链表长度增加到一定程度会变成红黑树）（链表长度通常在 8 的时候变树，但是极限是 10）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>枚举、注解</p>
+</li>
+<li><p>泛型</p>
+<ul>
+<li>熟练在类、接口、方法上<strong>声明</strong>泛型 </li>
+<li>在创建对象、调用方法等场景下<strong>使用</strong>泛型 </li>
+<li>在泛型中熟练使用通配符（根据自己情况决定是否写） </li>
+<li>泛型结合反射获取子类继承父类时传入的泛型（根据自己情况决定是否写）</li>
+</ul>
+</li>
+<li><p>IO</p>
+</li>
+<li><p>多线程</p>
+<ul>
+<li>线程的生命周期 </li>
+<li>线程的同步</li>
+<li>线程间通信 </li>
+<li>ThreadLocal </li>
+<li>线程池 </li>
+<li>线程的创建方式 <ul>
+<li>继承 Thead 类</li>
+<li>实现 Runnable 接口</li>
+<li>使用 Callable 接口借助 FutureTask</li>
+<li>线程池</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>反射</p>
+<ul>
+<li>获取 Class 对象 </li>
+<li>获取 Method 对象 </li>
+<li>获取 Filed 对象 </li>
+<li>获取 Constructor 对象 </li>
+<li>通过反射创建对象 </li>
+</ul>
+</li>
+<li><p>Java8 新特性</p>
+<ul>
+<li>Lambda 表达式</li>
+</ul>
+</li>
+</ul>
+<h3 id="接口里的默认方法和静态方法"><a href="#接口里的默认方法和静态方法" class="headerlink" title="接口里的默认方法和静态方法"></a>接口里的默认方法和静态方法</h3><ul>
+<li>关联查询 </li>
+<li>分组查询 </li>
+<li>聚合函数 </li>
+<li>子查询 </li>
+<li>数据库事务 <ul>
+<li>ACID<ul>
+<li>原子性：一个事务中的操作缺一不可</li>
+<li>一致性：事务执行前数据是对的，事务执行后数据还必须是对的</li>
+<li>隔离性：能够并发执行多个事务</li>
+<li>持久性：一个事务提交后永久保存到数据库</li>
+</ul>
+</li>
+<li>并发问题<ul>
+<li>脏读</li>
+<li>不可重复读</li>
+<li>幻读</li>
+</ul>
+</li>
+<li>隔离级别<ul>
+<li>读未提交</li>
+<li>读已提交</li>
+<li>可重复读</li>
+<li>串行化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="JDBC（写简历时从理论高度来看）"><a href="#JDBC（写简历时从理论高度来看）" class="headerlink" title="JDBC（写简历时从理论高度来看）"></a>JDBC（写简历时从理论高度来看）</h3><ul>
+<li>Java 程序访问具体数据库实现的统一标准 </li>
+<li>面向接口编程的一种体现</li>
+</ul>
+<h3 id="JavaWeb（写简历时从理论高度来看）"><a href="#JavaWeb（写简历时从理论高度来看）" class="headerlink" title="JavaWeb（写简历时从理论高度来看）"></a>JavaWeb（写简历时从理论高度来看）</h3><ul>
+<li>有了 Servlet 标准，使用各种不同 Servlet 容器不需要修改上层代码</li>
+<li>有了 Servlet 标准，使用各种不同 Servlet 容器不需要修改上层代码<ul>
+<li>浏览器→HTTP→后端 Java 程序</li>
+<li>consumer→HTTP→provider</li>
+<li>移动端程序→HTTP→后端 Java 程序</li>
+</ul>
+</li>
+<li>JSON 格式：不同平台之间传输数据的统一格式</li>
+<li>Servlet、Filter、Listener 构成项目架构体系底层的基石，能够基于这三大组件搭建框架整合开发的环境</li>
+<li>使用请求域、会话域、应用域解决 Web 项目中数据临时存储问题</li>
+<li>使用会话控制机制，借助 Cookie、Session 保持用户会话状态</li>
+</ul>
+<h3 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h3><ul>
+<li>熟悉 mybatis-config.xml 全局配置文件中的配置</li>
+<li>熟悉 MyBatis 的映射配置文件的配置（XxxMapper.xml）</li>
+<li>熟悉 MyBatis 映射文件中动态 SQL 标签的配置</li>
+<li>能够使用 resultMap 标签中的子标签实现关联关系<ul>
+<li>association 标签+javaType 属性：对一关系</li>
+<li>collection 标签+ofType 属性：对多关系</li>
+</ul>
+</li>
+<li>熟练使用 MyBatis 逆向工程</li>
+<li>熟悉 MyBatis 一级缓存、二级缓存（不重要）</li>
+</ul>
+<h3 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h3><ul>
+<li>IOC<ul>
+<li>理解 IOC 含义</li>
+<li>使用 IOC 容器创建对象（基于 XML、基于注解）</li>
+<li>使用 IOC 容器实现自动装配（基于 XML、基于注解）</li>
+<li>属性注入<ul>
+<li>根据 set 方法注入属性</li>
+<li>根据构造器注入属性</li>
+</ul>
+</li>
+<li>bean 的生命周期</li>
+<li>bean 的作用域范围（singleton、prototype、Web 环境作用域）</li>
+</ul>
+</li>
+<li>AOP<ul>
+<li>面向切面编程</li>
+<li>底层原理<ul>
+<li>cglib</li>
+<li>动态代理</li>
+</ul>
+</li>
+<li>熟悉 AOP 常用术语</li>
+<li>熟练使用 AOP 中的各种通知<ul>
+<li>前置通知</li>
+<li>返回通知</li>
+<li>后置通知</li>
+<li>异常通知</li>
+<li>环绕通知</li>
+</ul>
+</li>
+<li>理解切面的优先级</li>
+</ul>
+</li>
+<li>声明式事务<ul>
+<li>基于 XML 配置</li>
+<li>基于注解配置</li>
+<li>事务属性<ul>
+<li>事务的传播行为<ul>
+<li>默认：REQUIRED</li>
+<li>建议：REQUIRES_NEW</li>
+</ul>
+</li>
+<li>事务的隔离级别</li>
+<li>只读属性</li>
+<li>超时属性</li>
+<li>回滚、不回滚的异常</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">能够基于 XML 配置或注解实现声明式事务并能够根据项目需要进一步设置“传播行为”、 “隔离级别”、“只读”、“超时”、“回滚、不回滚的异常”等事务属性</span><br></pre></td></tr></table></figure>
+
+<h3 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h3><ul>
+<li>在 SpringMVC 环境下基于 RESTFUL 风格进行开发 </li>
+<li>在 SpringMVC 环境下使用@RequestBody 注解接收请求体中的 JSON 数据 </li>
+<li>在 SpringMVC 环境下使用@ResponseBody 注解返回 JSON 数据作为响应体 </li>
+<li>熟 练 使 用 SpringMVC 的 常 用 注 解 ， 例 如 ： @RequestMapping 、 @RequestParam、@RequestBody、@ResponseBody、@PathVariable 等等 </li>
+<li>熟练使用 SpringMVC 的拦截器、异常映射、类型转换、数据校验等功能 </li>
+<li>熟悉 SpringMVC 运行流程 </li>
+</ul>
+<h3 id="中间件：Redis"><a href="#中间件：Redis" class="headerlink" title="中间件：Redis"></a>中间件：Redis</h3><ul>
+<li>熟悉 Redis 的五大数据类型<ul>
+<li>string、set、list、hash、zset</li>
+</ul>
+</li>
+<li>熟悉 Redis 的持久化机制<ul>
+<li>RDB：保存数据的快照</li>
+<li>AOF：生成数据的命令</li>
+</ul>
+</li>
+<li>理解 Redis 的事务控制方式</li>
+<li>能够搭建主从复制、读写分离集群，使用哨兵模式提高集群自动化程度。理解主观下线、客观下线含义</li>
+<li>熟练使用 Jedis 作为 Java 客户端程序远程操作 Redis</li>
+</ul>
+<h3 id="中间件：Nginx"><a href="#中间件：Nginx" class="headerlink" title="中间件：Nginx"></a>中间件：Nginx</h3><ul>
+<li>反向代理→负载均衡</li>
+<li>负载均衡策略（根据自己情况）<ul>
+<li>轮询</li>
+<li>权重（给权重高的服务器分配较多负载）</li>
+<li>IP 地址哈希一致性（根据 IP 地址分配）</li>
+<li>最小连接方式</li>
+<li>响应事件方式（第三方）</li>
+<li>依据 URL 分配方式（第三方）</li>
+</ul>
+</li>
+</ul>
+<h3 id="中间件：FastDFS"><a href="#中间件：FastDFS" class="headerlink" title="中间件：FastDFS"></a>中间件：FastDFS</h3><ul>
+<li>熟悉分布式文件存储系统 FastDFS </li>
+<li>理解 FastDFS 中 tracker、storage 工作机制 </li>
+<li>熟练使用 fastdfs-client-java 客户端把 Java 程序接收到的文件上传到 FastDFS 服务器 </li>
+<li>能够搭建 Nginx+FastDFS 服务器端环境 </li>
+</ul>
+<h3 id="中间件：ElasticSearch"><a href="#中间件：ElasticSearch" class="headerlink" title="中间件：ElasticSearch"></a>中间件：ElasticSearch</h3><ul>
+<li>理解倒排索引概念 </li>
+<li>理解 index/type/document/field </li>
+<li>理解 ElasticSearch 对集群和数据分片（主分片、复制分片）的自动化管理 </li>
+<li>会使用 Kibana 远程连接 ElasticSearch 调试 DSL 语句 </li>
+<li>会使用 IKAnalyzer 中文分词器，会使用它的停止词典、扩展词典 </li>
+<li>会安装 ElasticSearch 服务器端程序</li>
+</ul>
+<h3 id="中间件：Zookeeper"><a href="#中间件：Zookeeper" class="headerlink" title="中间件：Zookeeper"></a>中间件：Zookeeper</h3><ul>
+<li>树形目录结构 </li>
+<li>异步通知机制 </li>
+<li>leader/follower 集群</li>
+</ul>
+<h3 id="分布式框架：Dubbo"><a href="#分布式框架：Dubbo" class="headerlink" title="分布式框架：Dubbo"></a>分布式框架：Dubbo</h3><ul>
+<li>基于 Java 的开源高性能 RPC 框架 </li>
+<li>基于 XML 配置方式 </li>
+<li>基于注解配置方式 </li>
+</ul>
+<h3 id="分布式框架：SpringBoot"><a href="#分布式框架：SpringBoot" class="headerlink" title="分布式框架：SpringBoot"></a>分布式框架：SpringBoot</h3><ul>
+<li>理解 SpringBoot 提供的场景启动器 starter </li>
+<li>能够基于 SpringBoot 的 starter 整合第三方框架，例如：MyBatis、Redis、ElasticSearch、Thymeleaf…… </li>
+<li>熟悉 YAML 配置文件的语法格式和常用数据类型 </li>
+<li>理解 SpringBoot 的自动化配置原理</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">参考: http://39.108.113.88/content/part-02-distribution-architecture/spring-boot-working-principle.ht ml</span><br></pre></td></tr></table></figure>
+
+<h3 id="分布式框架：SpringCloud"><a href="#分布式框架：SpringCloud" class="headerlink" title="分布式框架：SpringCloud"></a>分布式框架：SpringCloud</h3><ul>
+<li>Eureka：注册中心 </li>
+<li>Ribbon：客户端负载均衡。根据微服务名称访问 Eureka 获取对应微服务的详细信息 </li>
+<li>Feign：远程接口的声明式调用 </li>
+<li>Hystrix <ul>
+<li>服务降级</li>
+<li>服务熔断</li>
+<li>服务运行状态监控</li>
+</ul>
+</li>
+<li>Zuul：网关，作为项目的统一入口</li>
+</ul>
+<h3 id="性能优化：MySQL-高级"><a href="#性能优化：MySQL-高级" class="headerlink" title="性能优化：MySQL 高级"></a>性能优化：MySQL 高级</h3><ul>
+<li>索引优化<ul>
+<li>批量数据脚本</li>
+<li>单表使用索引及常见索引失效</li>
+<li>关联查询优化</li>
+<li>子查询优化</li>
+<li>排序分组优化</li>
+<li>覆盖索引</li>
+</ul>
+</li>
+<li>查询截取分析</li>
+<li>MySQL 主从复制</li>
+<li>分库分表/MyCat\</li>
+</ul>
+<h3 id="性能优化：JVM"><a href="#性能优化：JVM" class="headerlink" title="性能优化：JVM"></a>性能优化：JVM</h3><ul>
+<li>垃圾回收机制</li>
+<li>内存模型<ul>
+<li>伊甸园区</li>
+<li>幸存者 0 区</li>
+<li>幸存者 1 区</li>
+<li>新生代</li>
+<li>老年代</li>
+</ul>
+</li>
+</ul>
+<h3 id="性能优化：JUC"><a href="#性能优化：JUC" class="headerlink" title="性能优化：JUC"></a>性能优化：JUC</h3><ul>
+<li>java.util.concurrent 包 API </li>
+<li>Lock 同步锁 </li>
+<li>线程池 </li>
+<li>线程调度 </li>
+<li>ConcurrentHashMap 锁分段机制</li>
+</ul>
+<h3 id="开发与部署相关"><a href="#开发与部署相关" class="headerlink" title="开发与部署相关"></a>开发与部署相关</h3><ul>
+<li>Maven </li>
+<li>SVN </li>
+<li>Git/GitHub </li>
+<li>Docker</li>
+</ul>
+<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>在简历中“技能清单”部分写至少 15 条。建议：上面 20 个部分每个部分自己组织语言提炼成 1 条</p>
+<h1 id="项目经验"><a href="#项目经验" class="headerlink" title="项目经验"></a>项目经验</h1><h2 id="项目描述"><a href="#项目描述" class="headerlink" title="项目描述"></a>项目描述</h2><p>用平实的语言简单介绍一下这个项目即可。让读者能够知道这个项目是解决现实生活中的什么问题。在项目描述这个部分中，项目的架构可写可不写。要<span style="color:blue"><strong>简洁明了</strong></span>，不要长篇大论。</p>
+<p>众筹：在互联网上打造一个金融平台，让有志于创业的人在这个平台上可以募集到资金。而支持创业项目的用户可以得到相应的回报。</p>
+<p>电商：互联网购物平台。进一步介绍商业模式，是 B2C、B2C、C2C 等等中的哪一种。再介绍一下销售的是什么产品，例如：综合性电商什么都卖、专注某一个细分市场（电子产品、服装、食品、体育用品……）。有些电商会有自己的特色，例如：社交电商。</p>
+<p>在线：互联网学习平台。进一步介绍内容来源：平台自己生产内容还是商家入驻等等。</p>
+<h2 id="责任描述"><a href="#责任描述" class="headerlink" title="责任描述"></a>责任描述</h2><p>说明本人在开发这个项目时负责的模块</p>
+<table>
+<thead>
+<tr>
+<th align="center">功能</th>
+<th align="center">开发者</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">单点登录</td>
+<td align="center">张三</td>
+</tr>
+<tr>
+<td align="center">后台管理</td>
+<td align="center">张三</td>
+</tr>
+<tr>
+<td align="center">商品检索</td>
+<td align="center">李四</td>
+</tr>
+<tr>
+<td align="center">购物车</td>
+<td align="center">李四</td>
+</tr>
+<tr>
+<td align="center">订单</td>
+<td align="center">张三</td>
+</tr>
+<tr>
+<td align="center">支付</td>
+<td align="center">王五</td>
+</tr>
+<tr>
+<td align="center">库存</td>
+<td align="center">王五</td>
+</tr>
+<tr>
+<td align="center">物流</td>
+<td align="center">王五</td>
+</tr>
+<tr>
+<td align="center">商品展示</td>
+<td align="center">李四</td>
+</tr>
+<tr>
+<td align="center">……</td>
+<td align="center">……</td>
+</tr>
+</tbody></table>
+<p>所以在简历上，可以有所区分：</p>
+<ul>
+<li>负责的模块：开发了该模块大部分功能 </li>
+<li>参与的模块：开发了该模块较少部分功能</li>
+</ul>
+<p>各个模块不必再展开介绍，因为一般来说看模块的名字就知道这个模块的功能。也不必写这个模块用到的技术，因为后面在技术描述中会专门罗列项目中用到的技术。、</p>
+<p>结论：责任描述的部分就是简简单单的写模块名字列表即可。</p>
+<h2 id="技术描述"><a href="#技术描述" class="headerlink" title="技术描述"></a>技术描述</h2><p><span style="color:blue"><strong>注意点</strong> <strong>1</strong></span>：不要把项目 A 的技术描述直接复制到项目 B 里面。不同项目的技术描述中可以包含相同技术点，但是要结合各个项目的具体功能，进行不同描述。</p>
+<ul>
+<li>正确例子：<ul>
+<li>项目 A：使用 Redis 缓存“众筹项目”数据。</li>
+<li>项目 B：使用 Redis 缓存用户登录的 token。</li>
+</ul>
+</li>
+<li>错误例子：<ul>
+<li>项目 A：使用 POI 将统计数据导出到 Excel 文件中。</li>
+<li>项目 B：使用 POI 将统计数据导出到 Excel 文件中。</li>
+</ul>
+</li>
+</ul>
+<p><span style="color:blue"><strong>注意点</strong> <strong>2</strong></span>；让技术点和项目中的功能结合到一起。让技术的描述更饱满，能够体现出来是真的在项目中用到过。</p>
+<ul>
+<li>正确例子：<ul>
+<li>项目 A：使用 <span style="color:blue"><strong>Redis</strong></span> <span style="color:red"><strong>缓存“众筹项目”数据</strong></span>。</li>
+<li>项目 B：使用 <span style="color:blue"><strong>Redis</strong></span> <span style="color:red"><strong>缓存用户登录的</strong> <strong>token</strong></span>。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">“Redis”是技术点，“缓存‘众筹项目’数据”和“缓存用户登录的 token”,是项目中的功能。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>错误例子：<ul>
+<li>使用了 Redis。 </li>
+<li>使用了 ElasticSearch。 </li>
+<li>使用了 POI。 </li>
+<li>使用了 Echarts。</li>
+</ul>
+</li>
+</ul>
+<h1 id="项目技术点回顾"><a href="#项目技术点回顾" class="headerlink" title="项目技术点回顾"></a>项目技术点回顾</h1><h2 id="OA"><a href="#OA" class="headerlink" title="OA"></a>OA</h2><ul>
+<li>单一架构：后台管理系统<ul>
+<li>使用 Maven 作为构建和依赖管理工具</li>
+<li>使用 SSM 整合环境作为基础架构</li>
+<li>使用 MyBatis 的 PageHelper 插件实现分页</li>
+<li>在数据库表中使用 pid 字段建立记录之间的父子关系</li>
+<li>在页面上使用 zTree 展示树形结构 </li>
+<li>使用 SpringSecurity 完成后台管理系统的权限控制</li>
+<li>使用 BCryptPasswordEncoder 实现带盐值的密码加密</li>
+</ul>
+</li>
+<li>分布式架构：前台会员系统<ul>
+<li>使用 SpringBoot+SpringCloud 搭建底层分布式开发环境 </li>
+<li>调用第三方短信接口在注册用户时发送验证码短信</li>
+<li>调用阿里云的 OSS 对象存储服务存储用户发布项目时上传的图片</li>
+<li>调用蚂蚁金服的支付接口</li>
+<li>使用 SpringSession 解决分布式环境下 Session 共享问题，使用 Redis 作为 Session 库</li>
+<li>使用 swagger 生成接口文档</li>
+<li>Redis 缓存对应用户登录状态的 token</li>
+<li>使用 Redis 临时保存项目发布过程中的数据，全部数据收集完毕保存到数据库</li>
+</ul>
+</li>
+</ul>
+<h2 id="电商"><a href="#电商" class="headerlink" title="电商"></a>电商</h2><ul>
+<li>数据结构设计<ul>
+<li>spu+sku</li>
+<li>产品图片存储：FastDFS，使用 Nginx 做 Web 代理服务器接受访问</li>
+</ul>
+</li>
+<li>缓存<ul>
+<li>缓存商品数据提高查询效率</li>
+<li>分布式锁<ul>
+<li>为了避免在 Redis 缓存服务器宕机后把 MySQL 服务器压垮，另外在其他 Redis 服务器中存储分布式锁，访问商品数据需要拿到锁，排队访问。</li>
+<li>lua 脚本或者同步锁值判断防止并发时错误删除同步锁</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>销售属性<ul>
+<li>动态切换同类商品的解决方案</li>
+<li>销售属性静态化，生成销售属性 hash 文件存入浏览器，避免二次访问服务器</li>
+</ul>
+</li>
+<li>搜索<ul>
+<li>使用 ES 作为商品数据的搜索引擎</li>
+<li>ES 集群搭建</li>
+<li>ES 集群管理</li>
+<li>ES 集群通讯</li>
+<li>ES 数据结构</li>
+<li>ES 数据导入查询等客户端 API</li>
+<li>中文分词器：IKAnalyzer</li>
+</ul>
+</li>
+<li>搜索功能的解决方案<ul>
+<li>关键词搜索</li>
+<li>平台属性过滤</li>
+<li>面包屑</li>
+<li>高亮显示、分页、排序、聚合等</li>
+</ul>
+</li>
+<li>购物车解决方案<ul>
+<li>分别在 Cookie、Redis、MySQL 中存储购物车数据</li>
+<li>用户未登录时在 Cookie 中存储购物车数据</li>
+<li>用户登录后要进行合并</li>
+<li>Redis 中使用 hash 类型存储的</li>
+</ul>
+</li>
+<li>异步服务和消息队列<ul>
+<li>订单、支付、库存等系统在用户提交订单时通过消息队列启动异步服务</li>
+<li>用户登录时，启动异步服务，同步购物车、短信平台、站内信、日志等系统（相对我们自己来说属于其他开发人员负责的系统）</li>
+<li>使用延迟队列检查商品订单的支付情况</li>
+<li>在缓存中存入“交易码”，来保证结算不能重复提交，一次结算页面只能 提交一次订单 </li>
+<li>死信队列，消息阻塞等情况处理（理解）</li>
+</ul>
+</li>
+<li>支付<ul>
+<li>调用支付宝的支付接口</li>
+<li>使用 rsa 非对称密钥的签名验证</li>
+<li>交易结果查询、支付状态查询、对账等（这些功能在电商系统中肯定要具备，但是不是由单个一个程序员完成）</li>
+</ul>
+</li>
+<li>库存和物流业务对接<ul>
+<li>库存和物流的调用关系（理解） </li>
+<li>拆掉业务流程（把购物车中的数据分配到不同仓库分别进行出库）</li>
+</ul>
+</li>
+<li>多线程应用<ul>
+<li>技术上使用 juc 中 FutureTask 创建多线程</li>
+<li>提交订单时用于验证和查询价格、库存、修改优惠券、满减资格状态等等</li>
+<li>对于过期、超时退单等无效订单集中处理</li>
+<li>新增或者修改商品信息以后，对相关商品的优惠、活动、券、折扣等服务调用</li>
+</ul>
+</li>
+</ul>
+<h2 id="在线"><a href="#在线" class="headerlink" title="在线"></a>在线</h2><ul>
+<li>后端基础架构<ul>
+<li>SpringBoot、SpringCloud、MyBatis-Plus</li>
+</ul>
+</li>
+<li>前端基础架构<ul>
+<li>Vue、Node.js</li>
+</ul>
+</li>
+<li>中间件<ul>
+<li>Redis、ActiveMQ、阿里云 OSS、视频点播</li>
+</ul>
+</li>
+<li>插件<ul>
+<li>使用 ECharts 绘制统计图表</li>
+<li>使用 POI 完成用户信息批量上传、注册</li>
+</ul>
+</li>
+<li>分布式单点登录使用 JWT 生成 token</li>
+<li>支付功能使用支付宝</li>
+<li>第三方登录</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>简历上要至少写 3 个项目</li>
+<li>平均每个项目中的技术描述要达到 15+条</li>
+<li>大家根据本文档列出的内容自己组织语言编写</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+        <tag>简历</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>框架篇</title>
     <url>/2021/09/18/12/</url>
     <content><![CDATA[<h1 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h1><h2 id="什么是Mybatis？"><a href="#什么是Mybatis？" class="headerlink" title="什么是Mybatis？"></a>什么是Mybatis？</h2><ol>
@@ -1530,571 +2095,6 @@
       </tags>
   </entry>
   <entry>
-    <title>简历指导【非常重要】</title>
-    <url>/2021/09/18/2/</url>
-    <content><![CDATA[<h1 id="就业阶段工作流程"><a href="#就业阶段工作流程" class="headerlink" title="就业阶段工作流程"></a>就业阶段工作流程</h1><p>简历→面试→入职→试用期→转正</p>
-<p>简历的重要性： </p>
-<ul>
-<li>没有简历就没有面试 </li>
-<li>简历的质量决定面试的数量</li>
-</ul>
-<span id="more"></span>
-
-<h1 id="写简历的心法"><a href="#写简历的心法" class="headerlink" title="写简历的心法"></a>写简历的心法</h1><p>一个字：猛！</p>
-<p>整个简历<span style="color:red"><strong>充满</strong></span><span style="color:blue"><strong>有技术含量</strong></span>的技术点！给人一种厚重感！让 HR“不明觉厉”！</p>
-<p>例:</p>
-<ul>
-<li>熟悉 Java 的 8 大基本数据类型 </li>
-<li>熟悉 Java 的类加载机制、垃圾回收机制、内存管理模型</li>
-</ul>
-<p>友情提示：简历和复习的关系</p>
-<ul>
-<li>正确的顺序是：先把简历写好，然后按照简历复习 </li>
-<li>错误的顺序是：写简历的时候按现在“会”的写</li>
-</ul>
-<h1 id="写简历的注意事项"><a href="#写简历的注意事项" class="headerlink" title="写简历的注意事项"></a>写简历的注意事项</h1><p>不要复制粘贴，要自己写 </p>
-<p>不要有技术性错误：硬伤 </p>
-<p>注意技术英文名称大小写</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Java、JavaSE、JavaScript、jQuery、zTree、MyBatis、Spring、SpringMVC、SpringBoot、SpringCloud……</span><br></pre></td></tr></table></figure>
-
-<h1 id="简历的结构"><a href="#简历的结构" class="headerlink" title="简历的结构"></a>简历的结构</h1><ul>
-<li>个人信息：就业老师</li>
-<li>自我评价：就业老师</li>
-<li>技能清单：尽可能全面的覆盖学过的内容<ul>
-<li>取：捡有技术含量的写</li>
-<li>舍：看上去很水的就不写了</li>
-</ul>
-</li>
-<li>项目经验：把我们学习过程中项目里用到的技术点都体现出来</li>
-</ul>
-<h1 id="技能清单"><a href="#技能清单" class="headerlink" title="技能清单"></a>技能清单</h1><h2 id="形式"><a href="#形式" class="headerlink" title="形式"></a>形式</h2><p>为了尽量避免简历雷同，建议大家使用不同形式。当然也可以自定义</p>
-<h3 id="序号清单式"><a href="#序号清单式" class="headerlink" title="序号清单式"></a>序号清单式</h3><p>有序列表、无序列表都可以</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、xxx </span><br><span class="line">2、xxx </span><br><span class="line">3、xxx</span><br></pre></td></tr></table></figure>
-
-<h3 id="按技术类比划分"><a href="#按技术类比划分" class="headerlink" title="按技术类比划分"></a>按技术类比划分</h3><h4 id="原生-Java-技术"><a href="#原生-Java-技术" class="headerlink" title="原生 Java 技术"></a>原生 Java 技术</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">字符串处理、泛型、枚举、注解、IO、多线程、反射、JVM 垃圾回收机制、JVM 类加载机……</span><br></pre></td></tr></table></figure>
-
-<h4 id="Java-框架"><a href="#Java-框架" class="headerlink" title="Java 框架"></a>Java 框架</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MyBatis、Spring、SpringMVC、SpringBoot、SpringCloud、Dubbo、SpringSession、Spring Data Jpa……</span><br></pre></td></tr></table></figure>
-
-<h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MySQL、关联查询、子查询、分组查询、聚合函数、索引优化、explain 分析、分区、分表、分库……</span><br></pre></td></tr></table></figure>
-
-<h4 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Redis、ElasticSearch、FastDFS、ActiveMQ、Zookeeper、Nginx……</span><br></pre></td></tr></table></figure>
-
-<h4 id="视图模板技术"><a href="#视图模板技术" class="headerlink" title="视图模板技术"></a>视图模板技术</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">JSP、Thymeleaf、Beetl、Mustache</span><br></pre></td></tr></table></figure>
-
-<h4 id="第三方接口"><a href="#第三方接口" class="headerlink" title="第三方接口"></a>第三方接口</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">短信验证、蚂蚁金服、阿里云 OSS 对象存储服务、高德地图定位……</span><br></pre></td></tr></table></figure>
-
-<h4 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HTML、CSS、JavaScript、jQuery、Vue、TypeScript、CoffeeScript、React、Angular、Preact、Ember、Alita、Redux、Recoil……</span><br></pre></td></tr></table></figure>
-
-<h4 id="开发与部署"><a href="#开发与部署" class="headerlink" title="开发与部署"></a>开发与部署</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Maven、SVN、Git/GitHub/Gitee、Docker……</span><br></pre></td></tr></table></figure>
-
-<h4 id="编程思想"><a href="#编程思想" class="headerlink" title="编程思想"></a>编程思想</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">面向对象、面向接口、面向切面、高内聚/低耦合……</span><br></pre></td></tr></table></figure>
-
-<h4 id="架构思想"><a href="#架构思想" class="headerlink" title="架构思想"></a>架构思想</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">单一架构、垂直拆分、水平拆分、分布式架构、SOA、微服务……</span><br></pre></td></tr></table></figure>
-
-<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><h3 id="JavaSE"><a href="#JavaSE" class="headerlink" title="JavaSE"></a>JavaSE</h3><ul>
-<li><p>集合</p>
-<ul>
-<li>操作：熟练使用各种常见集合类</li>
-<li>理论：熟悉 JDK 提供集合框架 </li>
-<li>理论：常用集合类的底层原理<ul>
-<li>ArrayList 底层是数组 </li>
-<li>HashSet 底层是 HashMap，HashSet 把元素存入了一个 HashMap 的 Key</li>
-<li>HashMap 底层是数组加链表（链表长度增加到一定程度会变成红黑树）（链表长度通常在 8 的时候变树，但是极限是 10）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>枚举、注解</p>
-</li>
-<li><p>泛型</p>
-<ul>
-<li>熟练在类、接口、方法上<strong>声明</strong>泛型 </li>
-<li>在创建对象、调用方法等场景下<strong>使用</strong>泛型 </li>
-<li>在泛型中熟练使用通配符（根据自己情况决定是否写） </li>
-<li>泛型结合反射获取子类继承父类时传入的泛型（根据自己情况决定是否写）</li>
-</ul>
-</li>
-<li><p>IO</p>
-</li>
-<li><p>多线程</p>
-<ul>
-<li>线程的生命周期 </li>
-<li>线程的同步</li>
-<li>线程间通信 </li>
-<li>ThreadLocal </li>
-<li>线程池 </li>
-<li>线程的创建方式 <ul>
-<li>继承 Thead 类</li>
-<li>实现 Runnable 接口</li>
-<li>使用 Callable 接口借助 FutureTask</li>
-<li>线程池</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>反射</p>
-<ul>
-<li>获取 Class 对象 </li>
-<li>获取 Method 对象 </li>
-<li>获取 Filed 对象 </li>
-<li>获取 Constructor 对象 </li>
-<li>通过反射创建对象 </li>
-</ul>
-</li>
-<li><p>Java8 新特性</p>
-<ul>
-<li>Lambda 表达式</li>
-</ul>
-</li>
-</ul>
-<h3 id="接口里的默认方法和静态方法"><a href="#接口里的默认方法和静态方法" class="headerlink" title="接口里的默认方法和静态方法"></a>接口里的默认方法和静态方法</h3><ul>
-<li>关联查询 </li>
-<li>分组查询 </li>
-<li>聚合函数 </li>
-<li>子查询 </li>
-<li>数据库事务 <ul>
-<li>ACID<ul>
-<li>原子性：一个事务中的操作缺一不可</li>
-<li>一致性：事务执行前数据是对的，事务执行后数据还必须是对的</li>
-<li>隔离性：能够并发执行多个事务</li>
-<li>持久性：一个事务提交后永久保存到数据库</li>
-</ul>
-</li>
-<li>并发问题<ul>
-<li>脏读</li>
-<li>不可重复读</li>
-<li>幻读</li>
-</ul>
-</li>
-<li>隔离级别<ul>
-<li>读未提交</li>
-<li>读已提交</li>
-<li>可重复读</li>
-<li>串行化</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="JDBC（写简历时从理论高度来看）"><a href="#JDBC（写简历时从理论高度来看）" class="headerlink" title="JDBC（写简历时从理论高度来看）"></a>JDBC（写简历时从理论高度来看）</h3><ul>
-<li>Java 程序访问具体数据库实现的统一标准 </li>
-<li>面向接口编程的一种体现</li>
-</ul>
-<h3 id="JavaWeb（写简历时从理论高度来看）"><a href="#JavaWeb（写简历时从理论高度来看）" class="headerlink" title="JavaWeb（写简历时从理论高度来看）"></a>JavaWeb（写简历时从理论高度来看）</h3><ul>
-<li>有了 Servlet 标准，使用各种不同 Servlet 容器不需要修改上层代码</li>
-<li>有了 Servlet 标准，使用各种不同 Servlet 容器不需要修改上层代码<ul>
-<li>浏览器→HTTP→后端 Java 程序</li>
-<li>consumer→HTTP→provider</li>
-<li>移动端程序→HTTP→后端 Java 程序</li>
-</ul>
-</li>
-<li>JSON 格式：不同平台之间传输数据的统一格式</li>
-<li>Servlet、Filter、Listener 构成项目架构体系底层的基石，能够基于这三大组件搭建框架整合开发的环境</li>
-<li>使用请求域、会话域、应用域解决 Web 项目中数据临时存储问题</li>
-<li>使用会话控制机制，借助 Cookie、Session 保持用户会话状态</li>
-</ul>
-<h3 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h3><ul>
-<li>熟悉 mybatis-config.xml 全局配置文件中的配置</li>
-<li>熟悉 MyBatis 的映射配置文件的配置（XxxMapper.xml）</li>
-<li>熟悉 MyBatis 映射文件中动态 SQL 标签的配置</li>
-<li>能够使用 resultMap 标签中的子标签实现关联关系<ul>
-<li>association 标签+javaType 属性：对一关系</li>
-<li>collection 标签+ofType 属性：对多关系</li>
-</ul>
-</li>
-<li>熟练使用 MyBatis 逆向工程</li>
-<li>熟悉 MyBatis 一级缓存、二级缓存（不重要）</li>
-</ul>
-<h3 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h3><ul>
-<li>IOC<ul>
-<li>理解 IOC 含义</li>
-<li>使用 IOC 容器创建对象（基于 XML、基于注解）</li>
-<li>使用 IOC 容器实现自动装配（基于 XML、基于注解）</li>
-<li>属性注入<ul>
-<li>根据 set 方法注入属性</li>
-<li>根据构造器注入属性</li>
-</ul>
-</li>
-<li>bean 的生命周期</li>
-<li>bean 的作用域范围（singleton、prototype、Web 环境作用域）</li>
-</ul>
-</li>
-<li>AOP<ul>
-<li>面向切面编程</li>
-<li>底层原理<ul>
-<li>cglib</li>
-<li>动态代理</li>
-</ul>
-</li>
-<li>熟悉 AOP 常用术语</li>
-<li>熟练使用 AOP 中的各种通知<ul>
-<li>前置通知</li>
-<li>返回通知</li>
-<li>后置通知</li>
-<li>异常通知</li>
-<li>环绕通知</li>
-</ul>
-</li>
-<li>理解切面的优先级</li>
-</ul>
-</li>
-<li>声明式事务<ul>
-<li>基于 XML 配置</li>
-<li>基于注解配置</li>
-<li>事务属性<ul>
-<li>事务的传播行为<ul>
-<li>默认：REQUIRED</li>
-<li>建议：REQUIRES_NEW</li>
-</ul>
-</li>
-<li>事务的隔离级别</li>
-<li>只读属性</li>
-<li>超时属性</li>
-<li>回滚、不回滚的异常</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">能够基于 XML 配置或注解实现声明式事务并能够根据项目需要进一步设置“传播行为”、 “隔离级别”、“只读”、“超时”、“回滚、不回滚的异常”等事务属性</span><br></pre></td></tr></table></figure>
-
-<h3 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h3><ul>
-<li>在 SpringMVC 环境下基于 RESTFUL 风格进行开发 </li>
-<li>在 SpringMVC 环境下使用@RequestBody 注解接收请求体中的 JSON 数据 </li>
-<li>在 SpringMVC 环境下使用@ResponseBody 注解返回 JSON 数据作为响应体 </li>
-<li>熟 练 使 用 SpringMVC 的 常 用 注 解 ， 例 如 ： @RequestMapping 、 @RequestParam、@RequestBody、@ResponseBody、@PathVariable 等等 </li>
-<li>熟练使用 SpringMVC 的拦截器、异常映射、类型转换、数据校验等功能 </li>
-<li>熟悉 SpringMVC 运行流程 </li>
-</ul>
-<h3 id="中间件：Redis"><a href="#中间件：Redis" class="headerlink" title="中间件：Redis"></a>中间件：Redis</h3><ul>
-<li>熟悉 Redis 的五大数据类型<ul>
-<li>string、set、list、hash、zset</li>
-</ul>
-</li>
-<li>熟悉 Redis 的持久化机制<ul>
-<li>RDB：保存数据的快照</li>
-<li>AOF：生成数据的命令</li>
-</ul>
-</li>
-<li>理解 Redis 的事务控制方式</li>
-<li>能够搭建主从复制、读写分离集群，使用哨兵模式提高集群自动化程度。理解主观下线、客观下线含义</li>
-<li>熟练使用 Jedis 作为 Java 客户端程序远程操作 Redis</li>
-</ul>
-<h3 id="中间件：Nginx"><a href="#中间件：Nginx" class="headerlink" title="中间件：Nginx"></a>中间件：Nginx</h3><ul>
-<li>反向代理→负载均衡</li>
-<li>负载均衡策略（根据自己情况）<ul>
-<li>轮询</li>
-<li>权重（给权重高的服务器分配较多负载）</li>
-<li>IP 地址哈希一致性（根据 IP 地址分配）</li>
-<li>最小连接方式</li>
-<li>响应事件方式（第三方）</li>
-<li>依据 URL 分配方式（第三方）</li>
-</ul>
-</li>
-</ul>
-<h3 id="中间件：FastDFS"><a href="#中间件：FastDFS" class="headerlink" title="中间件：FastDFS"></a>中间件：FastDFS</h3><ul>
-<li>熟悉分布式文件存储系统 FastDFS </li>
-<li>理解 FastDFS 中 tracker、storage 工作机制 </li>
-<li>熟练使用 fastdfs-client-java 客户端把 Java 程序接收到的文件上传到 FastDFS 服务器 </li>
-<li>能够搭建 Nginx+FastDFS 服务器端环境 </li>
-</ul>
-<h3 id="中间件：ElasticSearch"><a href="#中间件：ElasticSearch" class="headerlink" title="中间件：ElasticSearch"></a>中间件：ElasticSearch</h3><ul>
-<li>理解倒排索引概念 </li>
-<li>理解 index/type/document/field </li>
-<li>理解 ElasticSearch 对集群和数据分片（主分片、复制分片）的自动化管理 </li>
-<li>会使用 Kibana 远程连接 ElasticSearch 调试 DSL 语句 </li>
-<li>会使用 IKAnalyzer 中文分词器，会使用它的停止词典、扩展词典 </li>
-<li>会安装 ElasticSearch 服务器端程序</li>
-</ul>
-<h3 id="中间件：Zookeeper"><a href="#中间件：Zookeeper" class="headerlink" title="中间件：Zookeeper"></a>中间件：Zookeeper</h3><ul>
-<li>树形目录结构 </li>
-<li>异步通知机制 </li>
-<li>leader/follower 集群</li>
-</ul>
-<h3 id="分布式框架：Dubbo"><a href="#分布式框架：Dubbo" class="headerlink" title="分布式框架：Dubbo"></a>分布式框架：Dubbo</h3><ul>
-<li>基于 Java 的开源高性能 RPC 框架 </li>
-<li>基于 XML 配置方式 </li>
-<li>基于注解配置方式 </li>
-</ul>
-<h3 id="分布式框架：SpringBoot"><a href="#分布式框架：SpringBoot" class="headerlink" title="分布式框架：SpringBoot"></a>分布式框架：SpringBoot</h3><ul>
-<li>理解 SpringBoot 提供的场景启动器 starter </li>
-<li>能够基于 SpringBoot 的 starter 整合第三方框架，例如：MyBatis、Redis、ElasticSearch、Thymeleaf…… </li>
-<li>熟悉 YAML 配置文件的语法格式和常用数据类型 </li>
-<li>理解 SpringBoot 的自动化配置原理</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">参考: http://39.108.113.88/content/part-02-distribution-architecture/spring-boot-working-principle.ht ml</span><br></pre></td></tr></table></figure>
-
-<h3 id="分布式框架：SpringCloud"><a href="#分布式框架：SpringCloud" class="headerlink" title="分布式框架：SpringCloud"></a>分布式框架：SpringCloud</h3><ul>
-<li>Eureka：注册中心 </li>
-<li>Ribbon：客户端负载均衡。根据微服务名称访问 Eureka 获取对应微服务的详细信息 </li>
-<li>Feign：远程接口的声明式调用 </li>
-<li>Hystrix <ul>
-<li>服务降级</li>
-<li>服务熔断</li>
-<li>服务运行状态监控</li>
-</ul>
-</li>
-<li>Zuul：网关，作为项目的统一入口</li>
-</ul>
-<h3 id="性能优化：MySQL-高级"><a href="#性能优化：MySQL-高级" class="headerlink" title="性能优化：MySQL 高级"></a>性能优化：MySQL 高级</h3><ul>
-<li>索引优化<ul>
-<li>批量数据脚本</li>
-<li>单表使用索引及常见索引失效</li>
-<li>关联查询优化</li>
-<li>子查询优化</li>
-<li>排序分组优化</li>
-<li>覆盖索引</li>
-</ul>
-</li>
-<li>查询截取分析</li>
-<li>MySQL 主从复制</li>
-<li>分库分表/MyCat\</li>
-</ul>
-<h3 id="性能优化：JVM"><a href="#性能优化：JVM" class="headerlink" title="性能优化：JVM"></a>性能优化：JVM</h3><ul>
-<li>垃圾回收机制</li>
-<li>内存模型<ul>
-<li>伊甸园区</li>
-<li>幸存者 0 区</li>
-<li>幸存者 1 区</li>
-<li>新生代</li>
-<li>老年代</li>
-</ul>
-</li>
-</ul>
-<h3 id="性能优化：JUC"><a href="#性能优化：JUC" class="headerlink" title="性能优化：JUC"></a>性能优化：JUC</h3><ul>
-<li>java.util.concurrent 包 API </li>
-<li>Lock 同步锁 </li>
-<li>线程池 </li>
-<li>线程调度 </li>
-<li>ConcurrentHashMap 锁分段机制</li>
-</ul>
-<h3 id="开发与部署相关"><a href="#开发与部署相关" class="headerlink" title="开发与部署相关"></a>开发与部署相关</h3><ul>
-<li>Maven </li>
-<li>SVN </li>
-<li>Git/GitHub </li>
-<li>Docker</li>
-</ul>
-<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>在简历中“技能清单”部分写至少 15 条。建议：上面 20 个部分每个部分自己组织语言提炼成 1 条</p>
-<h1 id="项目经验"><a href="#项目经验" class="headerlink" title="项目经验"></a>项目经验</h1><h2 id="项目描述"><a href="#项目描述" class="headerlink" title="项目描述"></a>项目描述</h2><p>用平实的语言简单介绍一下这个项目即可。让读者能够知道这个项目是解决现实生活中的什么问题。在项目描述这个部分中，项目的架构可写可不写。要<span style="color:blue"><strong>简洁明了</strong></span>，不要长篇大论。</p>
-<p>众筹：在互联网上打造一个金融平台，让有志于创业的人在这个平台上可以募集到资金。而支持创业项目的用户可以得到相应的回报。</p>
-<p>电商：互联网购物平台。进一步介绍商业模式，是 B2C、B2C、C2C 等等中的哪一种。再介绍一下销售的是什么产品，例如：综合性电商什么都卖、专注某一个细分市场（电子产品、服装、食品、体育用品……）。有些电商会有自己的特色，例如：社交电商。</p>
-<p>在线：互联网学习平台。进一步介绍内容来源：平台自己生产内容还是商家入驻等等。</p>
-<h2 id="责任描述"><a href="#责任描述" class="headerlink" title="责任描述"></a>责任描述</h2><p>说明本人在开发这个项目时负责的模块</p>
-<table>
-<thead>
-<tr>
-<th align="center">功能</th>
-<th align="center">开发者</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">单点登录</td>
-<td align="center">张三</td>
-</tr>
-<tr>
-<td align="center">后台管理</td>
-<td align="center">张三</td>
-</tr>
-<tr>
-<td align="center">商品检索</td>
-<td align="center">李四</td>
-</tr>
-<tr>
-<td align="center">购物车</td>
-<td align="center">李四</td>
-</tr>
-<tr>
-<td align="center">订单</td>
-<td align="center">张三</td>
-</tr>
-<tr>
-<td align="center">支付</td>
-<td align="center">王五</td>
-</tr>
-<tr>
-<td align="center">库存</td>
-<td align="center">王五</td>
-</tr>
-<tr>
-<td align="center">物流</td>
-<td align="center">王五</td>
-</tr>
-<tr>
-<td align="center">商品展示</td>
-<td align="center">李四</td>
-</tr>
-<tr>
-<td align="center">……</td>
-<td align="center">……</td>
-</tr>
-</tbody></table>
-<p>所以在简历上，可以有所区分：</p>
-<ul>
-<li>负责的模块：开发了该模块大部分功能 </li>
-<li>参与的模块：开发了该模块较少部分功能</li>
-</ul>
-<p>各个模块不必再展开介绍，因为一般来说看模块的名字就知道这个模块的功能。也不必写这个模块用到的技术，因为后面在技术描述中会专门罗列项目中用到的技术。、</p>
-<p>结论：责任描述的部分就是简简单单的写模块名字列表即可。</p>
-<h2 id="技术描述"><a href="#技术描述" class="headerlink" title="技术描述"></a>技术描述</h2><p><span style="color:blue"><strong>注意点</strong> <strong>1</strong></span>：不要把项目 A 的技术描述直接复制到项目 B 里面。不同项目的技术描述中可以包含相同技术点，但是要结合各个项目的具体功能，进行不同描述。</p>
-<ul>
-<li>正确例子：<ul>
-<li>项目 A：使用 Redis 缓存“众筹项目”数据。</li>
-<li>项目 B：使用 Redis 缓存用户登录的 token。</li>
-</ul>
-</li>
-<li>错误例子：<ul>
-<li>项目 A：使用 POI 将统计数据导出到 Excel 文件中。</li>
-<li>项目 B：使用 POI 将统计数据导出到 Excel 文件中。</li>
-</ul>
-</li>
-</ul>
-<p><span style="color:blue"><strong>注意点</strong> <strong>2</strong></span>；让技术点和项目中的功能结合到一起。让技术的描述更饱满，能够体现出来是真的在项目中用到过。</p>
-<ul>
-<li>正确例子：<ul>
-<li>项目 A：使用 <span style="color:blue"><strong>Redis</strong></span> <span style="color:red"><strong>缓存“众筹项目”数据</strong></span>。</li>
-<li>项目 B：使用 <span style="color:blue"><strong>Redis</strong></span> <span style="color:red"><strong>缓存用户登录的</strong> <strong>token</strong></span>。</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">“Redis”是技术点，“缓存‘众筹项目’数据”和“缓存用户登录的 token”,是项目中的功能。</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>错误例子：<ul>
-<li>使用了 Redis。 </li>
-<li>使用了 ElasticSearch。 </li>
-<li>使用了 POI。 </li>
-<li>使用了 Echarts。</li>
-</ul>
-</li>
-</ul>
-<h1 id="项目技术点回顾"><a href="#项目技术点回顾" class="headerlink" title="项目技术点回顾"></a>项目技术点回顾</h1><h2 id="OA"><a href="#OA" class="headerlink" title="OA"></a>OA</h2><ul>
-<li>单一架构：后台管理系统<ul>
-<li>使用 Maven 作为构建和依赖管理工具</li>
-<li>使用 SSM 整合环境作为基础架构</li>
-<li>使用 MyBatis 的 PageHelper 插件实现分页</li>
-<li>在数据库表中使用 pid 字段建立记录之间的父子关系</li>
-<li>在页面上使用 zTree 展示树形结构 </li>
-<li>使用 SpringSecurity 完成后台管理系统的权限控制</li>
-<li>使用 BCryptPasswordEncoder 实现带盐值的密码加密</li>
-</ul>
-</li>
-<li>分布式架构：前台会员系统<ul>
-<li>使用 SpringBoot+SpringCloud 搭建底层分布式开发环境 </li>
-<li>调用第三方短信接口在注册用户时发送验证码短信</li>
-<li>调用阿里云的 OSS 对象存储服务存储用户发布项目时上传的图片</li>
-<li>调用蚂蚁金服的支付接口</li>
-<li>使用 SpringSession 解决分布式环境下 Session 共享问题，使用 Redis 作为 Session 库</li>
-<li>使用 swagger 生成接口文档</li>
-<li>Redis 缓存对应用户登录状态的 token</li>
-<li>使用 Redis 临时保存项目发布过程中的数据，全部数据收集完毕保存到数据库</li>
-</ul>
-</li>
-</ul>
-<h2 id="电商"><a href="#电商" class="headerlink" title="电商"></a>电商</h2><ul>
-<li>数据结构设计<ul>
-<li>spu+sku</li>
-<li>产品图片存储：FastDFS，使用 Nginx 做 Web 代理服务器接受访问</li>
-</ul>
-</li>
-<li>缓存<ul>
-<li>缓存商品数据提高查询效率</li>
-<li>分布式锁<ul>
-<li>为了避免在 Redis 缓存服务器宕机后把 MySQL 服务器压垮，另外在其他 Redis 服务器中存储分布式锁，访问商品数据需要拿到锁，排队访问。</li>
-<li>lua 脚本或者同步锁值判断防止并发时错误删除同步锁</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>销售属性<ul>
-<li>动态切换同类商品的解决方案</li>
-<li>销售属性静态化，生成销售属性 hash 文件存入浏览器，避免二次访问服务器</li>
-</ul>
-</li>
-<li>搜索<ul>
-<li>使用 ES 作为商品数据的搜索引擎</li>
-<li>ES 集群搭建</li>
-<li>ES 集群管理</li>
-<li>ES 集群通讯</li>
-<li>ES 数据结构</li>
-<li>ES 数据导入查询等客户端 API</li>
-<li>中文分词器：IKAnalyzer</li>
-</ul>
-</li>
-<li>搜索功能的解决方案<ul>
-<li>关键词搜索</li>
-<li>平台属性过滤</li>
-<li>面包屑</li>
-<li>高亮显示、分页、排序、聚合等</li>
-</ul>
-</li>
-<li>购物车解决方案<ul>
-<li>分别在 Cookie、Redis、MySQL 中存储购物车数据</li>
-<li>用户未登录时在 Cookie 中存储购物车数据</li>
-<li>用户登录后要进行合并</li>
-<li>Redis 中使用 hash 类型存储的</li>
-</ul>
-</li>
-<li>异步服务和消息队列<ul>
-<li>订单、支付、库存等系统在用户提交订单时通过消息队列启动异步服务</li>
-<li>用户登录时，启动异步服务，同步购物车、短信平台、站内信、日志等系统（相对我们自己来说属于其他开发人员负责的系统）</li>
-<li>使用延迟队列检查商品订单的支付情况</li>
-<li>在缓存中存入“交易码”，来保证结算不能重复提交，一次结算页面只能 提交一次订单 </li>
-<li>死信队列，消息阻塞等情况处理（理解）</li>
-</ul>
-</li>
-<li>支付<ul>
-<li>调用支付宝的支付接口</li>
-<li>使用 rsa 非对称密钥的签名验证</li>
-<li>交易结果查询、支付状态查询、对账等（这些功能在电商系统中肯定要具备，但是不是由单个一个程序员完成）</li>
-</ul>
-</li>
-<li>库存和物流业务对接<ul>
-<li>库存和物流的调用关系（理解） </li>
-<li>拆掉业务流程（把购物车中的数据分配到不同仓库分别进行出库）</li>
-</ul>
-</li>
-<li>多线程应用<ul>
-<li>技术上使用 juc 中 FutureTask 创建多线程</li>
-<li>提交订单时用于验证和查询价格、库存、修改优惠券、满减资格状态等等</li>
-<li>对于过期、超时退单等无效订单集中处理</li>
-<li>新增或者修改商品信息以后，对相关商品的优惠、活动、券、折扣等服务调用</li>
-</ul>
-</li>
-</ul>
-<h2 id="在线"><a href="#在线" class="headerlink" title="在线"></a>在线</h2><ul>
-<li>后端基础架构<ul>
-<li>SpringBoot、SpringCloud、MyBatis-Plus</li>
-</ul>
-</li>
-<li>前端基础架构<ul>
-<li>Vue、Node.js</li>
-</ul>
-</li>
-<li>中间件<ul>
-<li>Redis、ActiveMQ、阿里云 OSS、视频点播</li>
-</ul>
-</li>
-<li>插件<ul>
-<li>使用 ECharts 绘制统计图表</li>
-<li>使用 POI 完成用户信息批量上传、注册</li>
-</ul>
-</li>
-<li>分布式单点登录使用 JWT 生成 token</li>
-<li>支付功能使用支付宝</li>
-<li>第三方登录</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li>简历上要至少写 3 个项目</li>
-<li>平均每个项目中的技术描述要达到 15+条</li>
-<li>大家根据本文档列出的内容自己组织语言编写</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-        <tag>简历</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>基础篇</title>
     <url>/2021/09/18/3/</url>
     <content><![CDATA[<h1 id="JDK-常用的包"><a href="#JDK-常用的包" class="headerlink" title="JDK 常用的包"></a>JDK 常用的包</h1><p><strong>java.lang：</strong> 这个是系统的基础类，比如 <code>String</code>、<code>Math</code>、<code>Integer</code>、<code>System</code> 和 <code>Thread</code>，提供常用功能。</p>
@@ -2658,6 +2658,51 @@
       </tags>
   </entry>
   <entry>
+    <title>虚拟DOM与Diff算法的实现原理</title>
+    <url>/2021/09/18/7/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Vue 源码中虚拟 DOM 与 Diff 算法的实现借鉴了 <code>snabbdom</code> 这个库，<code>snabbdom</code> 是一个虚拟 DOM 库，它专注于简单，模块化，强大的功能和性能。要彻底明白虚拟 DOM 与 Diff 算法就得分析 <code>snabbdom</code> 这个库到底做了什么？</p>
+<span id="more"></span>
+
+<h1 id="获取源代码"><a href="#获取源代码" class="headerlink" title="获取源代码"></a>获取源代码</h1><p>可以通过<code>npm i snabbdom -D</code> 来下载 <code>snabbdom</code> 库，这样我们既能看到 <code>src</code> 下用 Typescript 编写的源码，也能看到编译好的 JavaScript 代码。下面贴的源码是 <code>2.1.0</code> 版本，现在已经更新到 <code>3.0.3</code> 版本了。建议将下方出现的源码复制到下载的 <code>snabbdom</code> 库中相应位置，这样看源码比较清晰。那我们就开始分析源码吧。</p>
+<h1 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h1><h2 id="JavaScript-对象模拟真实-DOM-树"><a href="#JavaScript-对象模拟真实-DOM-树" class="headerlink" title="JavaScript 对象模拟真实 DOM 树"></a>JavaScript 对象模拟真实 DOM 树</h2><p>通过调用 <code>snabbdom</code> 库中的 <code>h</code>函数就可以对真实 DOM 节点进行抽象。我们先来看看一个完整的虚拟 DOM 节点（vnode）是什么样的：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005003084.png" alt="image-20210609005003084"></p>
+<p>实际上，<code>h</code>函数的作用就是用 JavaScript 对象模拟真实的 DOM 树，对真实 DOM 树进行抽象。调用 <code>h</code>函数就能得到由 vnode 组成的虚拟 DOM 树。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005038727.png" alt="image-20210609005038727"></p>
+<p>调用 <code>h</code>函数有多种形式：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005127609.png" alt="image-20210609005127609"></p>
+<p>使得 <code>h</code>函数的第二和第三个参数比较灵活，要判断的情况也比较多，下面把这部分的核心源码分析贴一下：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005208697.png" alt="image-20210609005208697"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005236275.png" alt="image-20210609005236275"></p>
+<h2 id="diff-算法–入口函数"><a href="#diff-算法–入口函数" class="headerlink" title="diff 算法–入口函数"></a>diff 算法–入口函数</h2><p>通过 <code>h</code>函数得到新旧虚拟节点 DOM 对象后就可以进行差异比较了。在实际使用过程中，我们是直接调用 <code>snabbdom</code> 的 <code>patch</code> 函数，然后传入两个参数，通过 <code>patch</code> 函数内部处理就可以得到新旧虚拟节点 DOM 对象的差异，并将差异部分更新到真正的 DOM 树上。</p>
+<p>首先，<code>patch</code> 函数会去判断 <code>oldVnode</code> 是否是真实DOM节点，如果是则需要先转换为虚拟DOM节点 <code>oldVnode = emptyNodeAt(oldVnode)</code> ；然后去比较新旧 vnode 是否是同一个节点 <code>sameVnode(oldVnode, vnode)</code>，如果是同一节点则精确比较新旧 vnode <code>patchVnode(oldVnode, vnode, insertedVnodeQueue)</code> ，如果不是则直接创建新 vnode 对应的真实 DOM 节点 <code>createElm(vnode, insertedVnodeQueue)</code>，在 createElm 函数中创建新 vnode 的真实 DOM 节点以及它对应的子节点，并把子节点插入到相应位置。如果 oldVnode.elm 有父节点则把新 vnode 对应的真实 DOM 节点作为子节点插入到相应位置，并且删除旧节点。下面贴一下 <code>patch</code> 函数的源码解析：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005305899.png" alt="image-20210609005305899"></p>
+<p><code>patch</code> 函数中用到了 <code>emptyNodeAt</code> 函数，这个函数主要是处理 <code>patch</code> 函数第一个参数为真实DOM节点的情况。下面贴一下这个函数的源码解析：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005328771.png" alt="image-20210609005328771"></p>
+<p><code>patch</code> 函数中用到了 <code>sameVnode</code> 函数，这个函数主要用来比较两个虚拟DOM节点是否是同一个虚拟节点。下面贴一下这个函数的源码分析：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005349669.png" alt="image-20210609005349669"></p>
+<h2 id="diff-算法–新旧-vnode-不是同一个节点的情况"><a href="#diff-算法–新旧-vnode-不是同一个节点的情况" class="headerlink" title="diff 算法–新旧 vnode 不是同一个节点的情况"></a>diff 算法–新旧 vnode 不是同一个节点的情况</h2><p>根据 <code>sameVnode</code> 函数返回的结果，新旧 vnode 不是同一个虚拟节点。首先获取到 oldVnode 对应真实 DOM 节点的父节点 <code>parent</code> ，然后调用 <code>createElm</code> 函数去创建 vnode 对应的真实 DOM 节点以及它的子节点和标签属性等等。判断是否有 <code>parent</code>， 如果有则将 vnode.elm 对应的DOM节点作为子节点插入到 <code>parent</code> 节点下的相应位置。部分源码分析在<code>patch</code>函数中，下面贴一下 <code>createElm</code> 函数的源码分析：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005419230.png" alt="image-20210609005419230"></p>
+<h2 id="diff-算法–新旧-vnode-是同一个节点的情况"><a href="#diff-算法–新旧-vnode-是同一个节点的情况" class="headerlink" title="diff 算法–新旧 vnode 是同一个节点的情况"></a>diff 算法–新旧 vnode 是同一个节点的情况</h2><p>上面分析了新旧 vnode 不是同一个虚拟节点，那么是同一个虚拟节点又该怎么去处理？首先，调用 <code>patchVnode</code> 函数 <code>patchVnode(oldVnode, vnode, insertedVnodeQueue)</code>，这个函数会对新旧 vnode 进行精确比较：</p>
+<p>① 如果新旧虚拟 DOM 对象全等 <code>oldVnode === vnode</code> ，那么不做任何操作，直接返回；</p>
+<p>② 然后判断 vnode 是否有文本节点 <code>isUndef(vnode.text)</code> ，如果没有文本节点则判断 oldVnode 与 vnode 有没有子节点 <code>isDef(oldCh) &amp;&amp; isDef(ch)</code>，如果都有子节点且不相等则调用 <code>updateChildren</code> 函数去更新子节点；</p>
+<p>③ 如果只有 vnode 有子节点而 oldVnode 有文本节点或没有内容，将 oldVnode 的文本节点置空或不做处理，调用 <code>addVnodes</code> 函数将 vnode 的子节点创建出对应的真实DOM并循环插入到父节点下；</p>
+<p>④ 如果只有 oldVnode 有子节点而 vnode 没有内容，则直接删除 oldVnode 下的子节点；</p>
+<p>⑤ 如果只有 oldVnode 有文本节点而 vnode 没有内容，则将 oldVnode 对应的真实 DOM 节点的文本置空;</p>
+<p>⑥ 如果 vnode 有文本节点，oldVnode 有子节点就将对应真实 DOM 节点的子节点删除，没有就不处理，然后将 vnode 的文本节点作为子节点插入到对应真实 DOM 节点下。</p>
+<p>部分源码分析在<code>patch</code>函数中，下面贴一下 <code>patchVnode</code> 函数的源码分析：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005456999.png" alt="image-20210609005456999"></p>
+<h2 id="diff-算法–新旧-vnode-子节点的更新策略"><a href="#diff-算法–新旧-vnode-子节点的更新策略" class="headerlink" title="diff 算法–新旧 vnode 子节点的更新策略"></a>diff 算法–新旧 vnode 子节点的更新策略</h2><p>当新旧 vnode 都有子节点时，<code>diff</code> 算法定义了四个指针来处理子节点，四个指针分别是：<code>oldStartVnode(旧前vnode)</code>/<code>newStartVnode(新前vnode)</code>/<code>oldEndVnode(旧后vnode)</code>/<code>newEndVnode(新后vnode)</code> 。进入循环体内后，新旧 vnode 的子节点两两比较，这里提供了一套比较规则，如下图：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005624407.png" alt="image-20210609005624407"></p>
+<p>如果上面四个规则都不满足，将 oldVnode 的子节点从旧的前索引 <code>oldStartIdx</code> 到旧的后索引 <code>oldEndIdx</code> 做一个 key 与对应位置序号的映射 <code>oldKeyToIdx</code> ，通过新 vnode 的 key 去找 <code>oldKeyToIdx</code> 中是否有对应的索引值，若没有，表明 <code>oldVnode</code> 没有对应的旧节点，是一个新增的节点，进行插入操作；若有，表明 <code>oldVnode</code> 有对应的旧节点，不是一个新增节点，进行移动操作。下面贴一下源码解析：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005645424.png" alt="image-20210609005645424"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005703911.png" alt="image-20210609005703911"></p>
+]]></content>
+      <tags>
+        <tag>vue.js</tag>
+        <tag>源码解析</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JVM内存区域分布与作用</title>
     <url>/2021/09/18/6/</url>
     <content><![CDATA[<p>在开始介绍Java内存区域之前，先放一张内存区域的图，方便后面介绍的时候可以对照着看。</p>
@@ -2705,51 +2750,6 @@
       <tags>
         <tag>Java</tag>
         <tag>JVM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>虚拟DOM与Diff算法的实现原理</title>
-    <url>/2021/09/18/7/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Vue 源码中虚拟 DOM 与 Diff 算法的实现借鉴了 <code>snabbdom</code> 这个库，<code>snabbdom</code> 是一个虚拟 DOM 库，它专注于简单，模块化，强大的功能和性能。要彻底明白虚拟 DOM 与 Diff 算法就得分析 <code>snabbdom</code> 这个库到底做了什么？</p>
-<span id="more"></span>
-
-<h1 id="获取源代码"><a href="#获取源代码" class="headerlink" title="获取源代码"></a>获取源代码</h1><p>可以通过<code>npm i snabbdom -D</code> 来下载 <code>snabbdom</code> 库，这样我们既能看到 <code>src</code> 下用 Typescript 编写的源码，也能看到编译好的 JavaScript 代码。下面贴的源码是 <code>2.1.0</code> 版本，现在已经更新到 <code>3.0.3</code> 版本了。建议将下方出现的源码复制到下载的 <code>snabbdom</code> 库中相应位置，这样看源码比较清晰。那我们就开始分析源码吧。</p>
-<h1 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h1><h2 id="JavaScript-对象模拟真实-DOM-树"><a href="#JavaScript-对象模拟真实-DOM-树" class="headerlink" title="JavaScript 对象模拟真实 DOM 树"></a>JavaScript 对象模拟真实 DOM 树</h2><p>通过调用 <code>snabbdom</code> 库中的 <code>h</code>函数就可以对真实 DOM 节点进行抽象。我们先来看看一个完整的虚拟 DOM 节点（vnode）是什么样的：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005003084.png" alt="image-20210609005003084"></p>
-<p>实际上，<code>h</code>函数的作用就是用 JavaScript 对象模拟真实的 DOM 树，对真实 DOM 树进行抽象。调用 <code>h</code>函数就能得到由 vnode 组成的虚拟 DOM 树。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005038727.png" alt="image-20210609005038727"></p>
-<p>调用 <code>h</code>函数有多种形式：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005127609.png" alt="image-20210609005127609"></p>
-<p>使得 <code>h</code>函数的第二和第三个参数比较灵活，要判断的情况也比较多，下面把这部分的核心源码分析贴一下：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005208697.png" alt="image-20210609005208697"></p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005236275.png" alt="image-20210609005236275"></p>
-<h2 id="diff-算法–入口函数"><a href="#diff-算法–入口函数" class="headerlink" title="diff 算法–入口函数"></a>diff 算法–入口函数</h2><p>通过 <code>h</code>函数得到新旧虚拟节点 DOM 对象后就可以进行差异比较了。在实际使用过程中，我们是直接调用 <code>snabbdom</code> 的 <code>patch</code> 函数，然后传入两个参数，通过 <code>patch</code> 函数内部处理就可以得到新旧虚拟节点 DOM 对象的差异，并将差异部分更新到真正的 DOM 树上。</p>
-<p>首先，<code>patch</code> 函数会去判断 <code>oldVnode</code> 是否是真实DOM节点，如果是则需要先转换为虚拟DOM节点 <code>oldVnode = emptyNodeAt(oldVnode)</code> ；然后去比较新旧 vnode 是否是同一个节点 <code>sameVnode(oldVnode, vnode)</code>，如果是同一节点则精确比较新旧 vnode <code>patchVnode(oldVnode, vnode, insertedVnodeQueue)</code> ，如果不是则直接创建新 vnode 对应的真实 DOM 节点 <code>createElm(vnode, insertedVnodeQueue)</code>，在 createElm 函数中创建新 vnode 的真实 DOM 节点以及它对应的子节点，并把子节点插入到相应位置。如果 oldVnode.elm 有父节点则把新 vnode 对应的真实 DOM 节点作为子节点插入到相应位置，并且删除旧节点。下面贴一下 <code>patch</code> 函数的源码解析：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005305899.png" alt="image-20210609005305899"></p>
-<p><code>patch</code> 函数中用到了 <code>emptyNodeAt</code> 函数，这个函数主要是处理 <code>patch</code> 函数第一个参数为真实DOM节点的情况。下面贴一下这个函数的源码解析：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005328771.png" alt="image-20210609005328771"></p>
-<p><code>patch</code> 函数中用到了 <code>sameVnode</code> 函数，这个函数主要用来比较两个虚拟DOM节点是否是同一个虚拟节点。下面贴一下这个函数的源码分析：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005349669.png" alt="image-20210609005349669"></p>
-<h2 id="diff-算法–新旧-vnode-不是同一个节点的情况"><a href="#diff-算法–新旧-vnode-不是同一个节点的情况" class="headerlink" title="diff 算法–新旧 vnode 不是同一个节点的情况"></a>diff 算法–新旧 vnode 不是同一个节点的情况</h2><p>根据 <code>sameVnode</code> 函数返回的结果，新旧 vnode 不是同一个虚拟节点。首先获取到 oldVnode 对应真实 DOM 节点的父节点 <code>parent</code> ，然后调用 <code>createElm</code> 函数去创建 vnode 对应的真实 DOM 节点以及它的子节点和标签属性等等。判断是否有 <code>parent</code>， 如果有则将 vnode.elm 对应的DOM节点作为子节点插入到 <code>parent</code> 节点下的相应位置。部分源码分析在<code>patch</code>函数中，下面贴一下 <code>createElm</code> 函数的源码分析：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005419230.png" alt="image-20210609005419230"></p>
-<h2 id="diff-算法–新旧-vnode-是同一个节点的情况"><a href="#diff-算法–新旧-vnode-是同一个节点的情况" class="headerlink" title="diff 算法–新旧 vnode 是同一个节点的情况"></a>diff 算法–新旧 vnode 是同一个节点的情况</h2><p>上面分析了新旧 vnode 不是同一个虚拟节点，那么是同一个虚拟节点又该怎么去处理？首先，调用 <code>patchVnode</code> 函数 <code>patchVnode(oldVnode, vnode, insertedVnodeQueue)</code>，这个函数会对新旧 vnode 进行精确比较：</p>
-<p>① 如果新旧虚拟 DOM 对象全等 <code>oldVnode === vnode</code> ，那么不做任何操作，直接返回；</p>
-<p>② 然后判断 vnode 是否有文本节点 <code>isUndef(vnode.text)</code> ，如果没有文本节点则判断 oldVnode 与 vnode 有没有子节点 <code>isDef(oldCh) &amp;&amp; isDef(ch)</code>，如果都有子节点且不相等则调用 <code>updateChildren</code> 函数去更新子节点；</p>
-<p>③ 如果只有 vnode 有子节点而 oldVnode 有文本节点或没有内容，将 oldVnode 的文本节点置空或不做处理，调用 <code>addVnodes</code> 函数将 vnode 的子节点创建出对应的真实DOM并循环插入到父节点下；</p>
-<p>④ 如果只有 oldVnode 有子节点而 vnode 没有内容，则直接删除 oldVnode 下的子节点；</p>
-<p>⑤ 如果只有 oldVnode 有文本节点而 vnode 没有内容，则将 oldVnode 对应的真实 DOM 节点的文本置空;</p>
-<p>⑥ 如果 vnode 有文本节点，oldVnode 有子节点就将对应真实 DOM 节点的子节点删除，没有就不处理，然后将 vnode 的文本节点作为子节点插入到对应真实 DOM 节点下。</p>
-<p>部分源码分析在<code>patch</code>函数中，下面贴一下 <code>patchVnode</code> 函数的源码分析：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005456999.png" alt="image-20210609005456999"></p>
-<h2 id="diff-算法–新旧-vnode-子节点的更新策略"><a href="#diff-算法–新旧-vnode-子节点的更新策略" class="headerlink" title="diff 算法–新旧 vnode 子节点的更新策略"></a>diff 算法–新旧 vnode 子节点的更新策略</h2><p>当新旧 vnode 都有子节点时，<code>diff</code> 算法定义了四个指针来处理子节点，四个指针分别是：<code>oldStartVnode(旧前vnode)</code>/<code>newStartVnode(新前vnode)</code>/<code>oldEndVnode(旧后vnode)</code>/<code>newEndVnode(新后vnode)</code> 。进入循环体内后，新旧 vnode 的子节点两两比较，这里提供了一套比较规则，如下图：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005624407.png" alt="image-20210609005624407"></p>
-<p>如果上面四个规则都不满足，将 oldVnode 的子节点从旧的前索引 <code>oldStartIdx</code> 到旧的后索引 <code>oldEndIdx</code> 做一个 key 与对应位置序号的映射 <code>oldKeyToIdx</code> ，通过新 vnode 的 key 去找 <code>oldKeyToIdx</code> 中是否有对应的索引值，若没有，表明 <code>oldVnode</code> 没有对应的旧节点，是一个新增的节点，进行插入操作；若有，表明 <code>oldVnode</code> 有对应的旧节点，不是一个新增节点，进行移动操作。下面贴一下源码解析：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005645424.png" alt="image-20210609005645424"></p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005703911.png" alt="image-20210609005703911"></p>
-]]></content>
-      <tags>
-        <tag>vue.js</tag>
-        <tag>源码解析</tag>
       </tags>
   </entry>
   <entry>
