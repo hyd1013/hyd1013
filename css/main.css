@@ -1225,7 +1225,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #d1c8ff;
+  background: #0d2ec2;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2591,12 +2591,21 @@ hr {
   box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.35);
   background-image: linear-gradient(90deg, #a166ab 0%, #ef4e7b 25%, #f37055 50%, #ef4e7b 75%, #a166ab 100%);
 }
-.post {
+.post-block {
   margin-top: 50px;
   margin-bottom: 50px;
   padding: 25px;
+  border-radius: 12px 12px 8px 8px;
   -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+}
+.posts-expand>.post-block:hover {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 25px;
+  border-radius: 12px 12px 8px 8px;
+  -webkit-box-shadow: 0 3px 8px 6px rgba(7,17,27,0.15);
+  -moz-box-shadow: 0 3px 8px 6px rgba(7,17,27,0.15);
 }
 .tag-cloud a {
   box-shadow: 0 1px 3px #6f42c1, 0 1px 2px #d9534f;
@@ -2609,4 +2618,8 @@ hr {
 code {
   background: #555;
   color: #fff;
+}
+文章页展示大小,
+.main-inner {
+  width: 80%;
 }
