@@ -58,29 +58,6 @@
   </entry>
   
   <entry>
-    <title>框架篇</title>
-    <link href="http://hyd0.cc/2021/09/18/12/"/>
-    <id>http://hyd0.cc/2021/09/18/12/</id>
-    <published>2021-09-18T01:19:32.352Z</published>
-    <updated>2021-09-18T08:47:27.109Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;MyBatis&quot;&gt;&lt;a href=&quot;#MyBatis&quot; class=&quot;headerlink&quot; title=&quot;MyBatis&quot;&gt;&lt;/a&gt;MyBatis&lt;/h1&gt;&lt;h2 id=&quot;什么是Mybatis？&quot;&gt;&lt;a href=&quot;#什么是Mybatis？&quot; class=&quot;headerlink&quot; title=&quot;什么是Mybatis？&quot;&gt;&lt;/a&gt;什么是Mybatis？&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;Mybatis是一个半ORM（对象关系映射）框架，它内部封装了JDBC，开发时只需要关注SQL语句本身，不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。程序员直接编写原生态sql，可以严格控制sql执行性能，灵活度高。&lt;/li&gt;
-&lt;li&gt;Mybatis是一个半ORM（对象关系映射）框架，它内部封装了JDBC，开发时只需要关注SQL语句本身，不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。程序员直接编写原生态sql，可以严格控制sql执行性能，灵活度高。&lt;/li&gt;
-&lt;li&gt;通过xml 文件或注解的方式将要执行的各种 statement 配置起来，并通过java对象和 statement中sql的动态参数进行映射生成最终执行的sql语句，最后由mybatis框架执行sql并将结果映射为java对象并返回。（从执行sql到返回result的过程）。&lt;/li&gt;
-&lt;/ol&gt;</summary>
-    
-    
-    
-    
-    <category term="Java" scheme="http://hyd0.cc/tags/Java/"/>
-    
-    <category term="面试题" scheme="http://hyd0.cc/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
     <title>RabbitMQ 实战教程</title>
     <link href="http://hyd0.cc/2021/09/18/11/"/>
     <id>http://hyd0.cc/2021/09/18/11/</id>
@@ -100,6 +77,29 @@
     <category term="RabbitMQ" scheme="http://hyd0.cc/tags/RabbitMQ/"/>
     
     <category term="消息中间件" scheme="http://hyd0.cc/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>框架篇</title>
+    <link href="http://hyd0.cc/2021/09/18/12/"/>
+    <id>http://hyd0.cc/2021/09/18/12/</id>
+    <published>2021-09-18T01:19:32.352Z</published>
+    <updated>2021-09-18T08:47:27.109Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;MyBatis&quot;&gt;&lt;a href=&quot;#MyBatis&quot; class=&quot;headerlink&quot; title=&quot;MyBatis&quot;&gt;&lt;/a&gt;MyBatis&lt;/h1&gt;&lt;h2 id=&quot;什么是Mybatis？&quot;&gt;&lt;a href=&quot;#什么是Mybatis？&quot; class=&quot;headerlink&quot; title=&quot;什么是Mybatis？&quot;&gt;&lt;/a&gt;什么是Mybatis？&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;Mybatis是一个半ORM（对象关系映射）框架，它内部封装了JDBC，开发时只需要关注SQL语句本身，不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。程序员直接编写原生态sql，可以严格控制sql执行性能，灵活度高。&lt;/li&gt;
+&lt;li&gt;Mybatis是一个半ORM（对象关系映射）框架，它内部封装了JDBC，开发时只需要关注SQL语句本身，不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。程序员直接编写原生态sql，可以严格控制sql执行性能，灵活度高。&lt;/li&gt;
+&lt;li&gt;通过xml 文件或注解的方式将要执行的各种 statement 配置起来，并通过java对象和 statement中sql的动态参数进行映射生成最终执行的sql语句，最后由mybatis框架执行sql并将结果映射为java对象并返回。（从执行sql到返回result的过程）。&lt;/li&gt;
+&lt;/ol&gt;</summary>
+    
+    
+    
+    
+    <category term="Java" scheme="http://hyd0.cc/tags/Java/"/>
+    
+    <category term="面试题" scheme="http://hyd0.cc/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
   </entry>
   
