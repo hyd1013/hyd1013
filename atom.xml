@@ -58,29 +58,6 @@
   </entry>
   
   <entry>
-    <title>RabbitMQ 实战教程</title>
-    <link href="http://hyd0.cc/2021/09/18/11/"/>
-    <id>http://hyd0.cc/2021/09/18/11/</id>
-    <published>2021-09-18T01:19:32.352Z</published>
-    <updated>2021-09-18T08:47:23.043Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;MQ引言&quot;&gt;&lt;a href=&quot;#MQ引言&quot; class=&quot;headerlink&quot; title=&quot;MQ引言&quot;&gt;&lt;/a&gt;MQ引言&lt;/h1&gt;&lt;h2 id=&quot;什么是MQ&quot;&gt;&lt;a href=&quot;#什么是MQ&quot; class=&quot;headerlink&quot; title=&quot;什么是MQ&quot;&gt;&lt;/a&gt;什么是MQ&lt;/h2&gt;&lt;p&gt;&lt;code&gt;MQ&lt;/code&gt;(Message Quene) :  翻译为 &lt;code&gt;消息队列&lt;/code&gt;,通过典型的 &lt;code&gt;生产者&lt;/code&gt;和&lt;code&gt;消费者&lt;/code&gt;模型,生产者不断向消息队列中生产消息，消费者不断的从队列中获取消息。因为消息的生产和消费都是异步的，而且只关心消息的发送和接收，没有业务逻辑的侵入,轻松的实现系统间解耦。别名为 &lt;code&gt;消息中间件&lt;/code&gt;    通过利用高效可靠的消息传递机制进行平台无关的数据交流，并基于数据通信来进行分布式系统的集成。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="后端" scheme="http://hyd0.cc/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    
-    <category term="Java" scheme="http://hyd0.cc/tags/Java/"/>
-    
-    <category term="RabbitMQ" scheme="http://hyd0.cc/tags/RabbitMQ/"/>
-    
-    <category term="消息中间件" scheme="http://hyd0.cc/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
     <title>框架篇</title>
     <link href="http://hyd0.cc/2021/09/18/12/"/>
     <id>http://hyd0.cc/2021/09/18/12/</id>
@@ -100,6 +77,29 @@
     <category term="Java" scheme="http://hyd0.cc/tags/Java/"/>
     
     <category term="面试题" scheme="http://hyd0.cc/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RabbitMQ 实战教程</title>
+    <link href="http://hyd0.cc/2021/09/18/11/"/>
+    <id>http://hyd0.cc/2021/09/18/11/</id>
+    <published>2021-09-18T01:19:32.352Z</published>
+    <updated>2021-09-18T08:47:23.043Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;MQ引言&quot;&gt;&lt;a href=&quot;#MQ引言&quot; class=&quot;headerlink&quot; title=&quot;MQ引言&quot;&gt;&lt;/a&gt;MQ引言&lt;/h1&gt;&lt;h2 id=&quot;什么是MQ&quot;&gt;&lt;a href=&quot;#什么是MQ&quot; class=&quot;headerlink&quot; title=&quot;什么是MQ&quot;&gt;&lt;/a&gt;什么是MQ&lt;/h2&gt;&lt;p&gt;&lt;code&gt;MQ&lt;/code&gt;(Message Quene) :  翻译为 &lt;code&gt;消息队列&lt;/code&gt;,通过典型的 &lt;code&gt;生产者&lt;/code&gt;和&lt;code&gt;消费者&lt;/code&gt;模型,生产者不断向消息队列中生产消息，消费者不断的从队列中获取消息。因为消息的生产和消费都是异步的，而且只关心消息的发送和接收，没有业务逻辑的侵入,轻松的实现系统间解耦。别名为 &lt;code&gt;消息中间件&lt;/code&gt;    通过利用高效可靠的消息传递机制进行平台无关的数据交流，并基于数据通信来进行分布式系统的集成。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="后端" scheme="http://hyd0.cc/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="Java" scheme="http://hyd0.cc/tags/Java/"/>
+    
+    <category term="RabbitMQ" scheme="http://hyd0.cc/tags/RabbitMQ/"/>
+    
+    <category term="消息中间件" scheme="http://hyd0.cc/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
     
   </entry>
   
@@ -158,25 +158,6 @@
   </entry>
   
   <entry>
-    <title>源码级别理解 Redis 持久化</title>
-    <link href="http://hyd0.cc/2021/09/18/8/"/>
-    <id>http://hyd0.cc/2021/09/18/8/</id>
-    <published>2021-09-18T01:19:32.289Z</published>
-    <updated>2021-09-18T08:47:08.434Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;大家都知道 Redis 是一个内存数据库，数据都存储在内存中，这也是 Redis 非常快的原因之一。虽然速度提上来了，但是如果数据一直放在内存中，是非常容易丢失的。比如 服务器关闭或宕机了，内存中的数据就木有了。为了解决这一问题，Redis 提供了 持久化 机制。分别是 &lt;strong&gt;RDB&lt;/strong&gt; 以及 &lt;strong&gt;AOF&lt;/strong&gt; 持久化。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="Redis" scheme="http://hyd0.cc/tags/Redis/"/>
-    
-    <category term="源码解析" scheme="http://hyd0.cc/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
-    
-  </entry>
-  
-  <entry>
     <title>虚拟DOM与Diff算法的实现原理</title>
     <link href="http://hyd0.cc/2021/09/18/7/"/>
     <id>http://hyd0.cc/2021/09/18/7/</id>
@@ -189,9 +170,28 @@
     
     
     
+    <category term="vue.js" scheme="http://hyd0.cc/tags/vue-js/"/>
+    
     <category term="源码解析" scheme="http://hyd0.cc/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
     
-    <category term="vue.js" scheme="http://hyd0.cc/tags/vue-js/"/>
+  </entry>
+  
+  <entry>
+    <title>源码级别理解 Redis 持久化</title>
+    <link href="http://hyd0.cc/2021/09/18/8/"/>
+    <id>http://hyd0.cc/2021/09/18/8/</id>
+    <published>2021-09-18T01:19:32.289Z</published>
+    <updated>2021-09-18T08:47:08.434Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;大家都知道 Redis 是一个内存数据库，数据都存储在内存中，这也是 Redis 非常快的原因之一。虽然速度提上来了，但是如果数据一直放在内存中，是非常容易丢失的。比如 服务器关闭或宕机了，内存中的数据就木有了。为了解决这一问题，Redis 提供了 持久化 机制。分别是 &lt;strong&gt;RDB&lt;/strong&gt; 以及 &lt;strong&gt;AOF&lt;/strong&gt; 持久化。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="源码解析" scheme="http://hyd0.cc/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
+    
+    <category term="Redis" scheme="http://hyd0.cc/tags/Redis/"/>
     
   </entry>
   
