@@ -17,6 +17,33 @@
   --btn-default-hover-color: var(--link-hover-color);
   --btn-default-hover-border-color: var(--link-hover-color);
 }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --body-bg-color: #282828;
+    --content-bg-color: #333;
+    --card-bg-color: #555;
+    --text-color: #ccc;
+    --link-color: #ccc;
+    --link-hover-color: #eee;
+    --brand-color: #ddd;
+    --brand-hover-color: #ddd;
+    --table-row-odd-bg-color: #282828;
+    --table-row-hover-bg-color: #363636;
+    --menu-item-bg-color: #555;
+    --btn-default-bg: #222;
+    --btn-default-color: #ccc;
+    --btn-default-border-color: #555;
+    --btn-default-hover-bg: #666;
+    --btn-default-hover-color: #ccc;
+    --btn-default-hover-border-color: #666;
+  }
+  img {
+    opacity: 0.75;
+  }
+  img:hover {
+    opacity: 0.9;
+  }
+}
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
@@ -1225,7 +1252,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #41557a;
+  background: #cfff38;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2607,23 +2634,12 @@ hr {
   -webkit-box-shadow: 0 3px 8px 6px rgba(7,17,27,0.15);
   -moz-box-shadow: 0 3px 8px 6px rgba(7,17,27,0.15);
 }
-.tag-cloud a {
-  box-shadow: 0 1px 3px #6f42c1, 0 1px 2px #d9534f;
-  padding: 2px 10px;
-  margin: 8px;
-  background: rgba(193,66,92,0);
-  border-bottom: none;
-  border-radius: 20px;
-}
 code {
   background: #555;
   color: #fff;
 }
-.main-inner {
-  width: 95%;
-}
 #veditor {
-  background-image: url("https://wanglin.love/hyd/bdqn/blog/images/网站配置/评论背景.png");
+  background-image: url("");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;
