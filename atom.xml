@@ -309,14 +309,14 @@
     <link href="http://hyd0.cc/2021/09/18/1/"/>
     <id>http://hyd0.cc/2021/09/18/1/</id>
     <published>2021-09-18T01:19:32.211Z</published>
-    <updated>2021-09-18T08:46:33.661Z</updated>
+    <updated>2021-09-24T08:13:14.834Z</updated>
     
     
     <summary type="html">&lt;p&gt;在编写网站或应用程序时，要么它的速度就得像闪电一般，要么就使用加载提示动画。我想我们大多数人都会选择的第二个方案。&lt;/p&gt;
 &lt;p&gt;那么问题来了：我们该使用什么样的加载提示动画呢？是“loading”文本，省略号，进度条，还是其它怪诞的符号？&lt;/p&gt;
 &lt;p&gt;不用在苦思冥想了。下面我提供了100个不同的CSS加载提示动画。从简单到复杂，总有你想要的那一款。&lt;/p&gt;
 &lt;p&gt;每个加载提示动画都使用单个元素完成。是的，你没听错，就只有一个&lt;code&gt;div&lt;/code&gt;而已。因此，没有必要复制大量代码，添加一个类到&lt;code&gt;div&lt;/code&gt;中，就可以开始loading！&lt;/p&gt;
-&lt;h1 id=&quot;经典款&quot;&gt;&lt;a href=&quot;#经典款&quot; class=&quot;headerlink&quot; title=&quot;经典款&quot;&gt;&lt;/a&gt;经典款&lt;/h1&gt;&lt;p&gt;&lt;img data-src=&quot;https://wanglin.love/hyd/bdqn/blog/images/%E7%BA%AFCSS%E5%81%9A%E7%9A%84200%E4%B8%AALoading%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210606174831.gif&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;</summary>
+&lt;h1 id=&quot;经典款&quot;&gt;&lt;a href=&quot;#经典款&quot; class=&quot;headerlink&quot; title=&quot;经典款&quot;&gt;&lt;/a&gt;经典款&lt;/h1&gt;&lt;p&gt;&lt;img data-src=&quot;https://wanglin.love/hyd/bdqn/blog/images/%E7%BA%AFCSS%E5%81%9A%E7%9A%84200%E4%B8%AALoading%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210606174831.gif&quot;&gt;&lt;/p&gt;</summary>
     
     
     
