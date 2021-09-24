@@ -66,253 +66,6 @@
       </tags>
   </entry>
   <entry>
-    <title>线程篇</title>
-    <url>/2021/09/18/10/</url>
-    <content><![CDATA[<h1 id="在-java-中守护线程和本地线程区别？"><a href="#在-java-中守护线程和本地线程区别？" class="headerlink" title="在 java 中守护线程和本地线程区别？"></a>在 java 中守护线程和本地线程区别？</h1><p>java 中的线程分为两种：守护线程（Daemon）和用户线程（User）。</p>
-<p>任何线程都可以设置为守护线程和用户线程，通过方法 Thread.setDaemon(布尔类型)；true 则把该线程设置为守护线程，反之则为用户线程。Thread.setDaemon()必须在 Thread.start()之前调用，否则运行时会抛出异常。</p>
-<span id="more"></span>
-
-<h2 id="两者的区别："><a href="#两者的区别：" class="headerlink" title="两者的区别："></a>两者的区别：</h2><p>唯一的区别是判断虚拟机(JVM)何时离开，Daemon 是为其他线程提供服务，如果全部的 User Thread 已经撤离，Daemon 没有可服务的线程，JVM 撤离。也可以理解为守护线程是 JVM自动创建的线程（但不一定），用户线程是程序创建的线程；比如 JVM 的垃圾回收线程是一个守护线程，当所有线程已经撤离，不再产生垃圾，守护线程自然就没事可干了，当垃圾回收线程是 Java 虚拟机上仅剩的线程时，Java 虚拟机会自动离开。</p>
-<p><strong>扩展</strong>：Thread Dump 打印出来的线程信息，含有 daemon 字样的线程即为守护进程，可能会有：服务守护进程、编译守护进程、windows 下的监听 Ctrl+break 的守护进程、Finalizer 守护进程、引用处理守护进程、GC 守护进程。</p>
-<h1 id="线程与进程的区别？"><a href="#线程与进程的区别？" class="headerlink" title="线程与进程的区别？"></a>线程与进程的区别？</h1><p>进程是操作系统分配资源的最小单元，线程是操作系统调度的最小单元。</p>
-<p>一个程序至少有一个进程,一个进程至少有一个线程。 </p>
-<h1 id="什么是多线程中的上下文切换？"><a href="#什么是多线程中的上下文切换？" class="headerlink" title="什么是多线程中的上下文切换？"></a>什么是多线程中的上下文切换？</h1><p>多线程会共同使用一组计算机上的 CPU，而线程数大于给程序分配的 CPU 数量时，为了让各个线程都有执行的机会，就需要轮转使用 CPU。不同的线程切换使用 CPU 发生的切换数据等就是上下文切换。</p>
-<h1 id="死锁与活锁的区别，死锁与饥饿的区别？"><a href="#死锁与活锁的区别，死锁与饥饿的区别？" class="headerlink" title="死锁与活锁的区别，死锁与饥饿的区别？"></a>死锁与活锁的区别，死锁与饥饿的区别？</h1><p><strong>死锁</strong>：是指两个或两个以上的进程（或线程）在执行过程中，因争夺资源而造成的一种互相等待的现象，若无外力作用，它们都将无法推进下去。</p>
-<blockquote>
-<h2 id="产生死锁的必要条件："><a href="#产生死锁的必要条件：" class="headerlink" title="产生死锁的必要条件："></a>产生死锁的必要条件：</h2><ol>
-<li><strong>互斥条件</strong>：所谓互斥就是进程在某一时间内独占资源。</li>
-<li><strong>请求与保持条件</strong>：一个进程因请求资源而阻塞时，对已获得的资源保持不放。 </li>
-<li><strong>不剥夺条件</strong>:进程已获得资源，在末使用完之前，不能强行剥夺。 </li>
-<li><strong>循环等待条件</strong>:若干进程之间形成一种头尾相接的循环等待资源关系。</li>
-</ol>
-</blockquote>
-<p><strong>活锁</strong>：任务或者执行者没有被阻塞，由于某些条件没有满足，导致一直重复尝试，失败，尝试，失败。</p>
-<p>活锁和死锁的区别在于，处于活锁的实体是在不断的改变状态，所谓的“活”， 而处于死锁的实体表现为等待；活锁有可能自行解开，死锁则不能。</p>
-<p><strong>饥饿</strong>：一个或者多个线程因为种种原因无法获得所需要的资源，导致一直无法执行的状态。</p>
-<blockquote>
-<h2 id="Java-中导致饥饿的原因："><a href="#Java-中导致饥饿的原因：" class="headerlink" title="Java 中导致饥饿的原因："></a>Java 中导致饥饿的原因：</h2><ol>
-<li>高优先级线程吞噬所有的低优先级线程的 CPU 时间。 </li>
-<li>线程被永久堵塞在一个等待进入同步块的状态，因为其他线程总是能在它之前持续地对该同步块进行访问。 </li>
-<li>线程在等待一个本身也处于永久等待完成的对象(比如调用这个对象的 wait 方法)，因为其他线程总是被持续地获得唤醒。</li>
-</ol>
-</blockquote>
-<h1 id="Java-中用到的线程调度算法是什么？"><a href="#Java-中用到的线程调度算法是什么？" class="headerlink" title="Java 中用到的线程调度算法是什么？"></a>Java 中用到的线程调度算法是什么？</h1><p>采用时间片轮转的方式。可以设置线程的优先级，会映射到下层的系统上面的优先级上，如非特别需要，尽量不要用，防止线程饥饿。</p>
-<h1 id="什么是线程组，为什么在-Java-中不推荐使用？"><a href="#什么是线程组，为什么在-Java-中不推荐使用？" class="headerlink" title="什么是线程组，为什么在 Java 中不推荐使用？"></a>什么是线程组，为什么在 Java 中不推荐使用？</h1><p>ThreadGroup 类，可以把线程归属到某一个线程组中，线程组中可以有线程对象，也可以有线程组，组中还可以有线程，这样的组织结构有点类似于树的形式。</p>
-<p>为什么不推荐使用？因为使用有很多的安全隐患吧，没有具体追究，如果需要使用，推荐使用线程池。</p>
-<h1 id="为什么使用-Executor-框架？"><a href="#为什么使用-Executor-框架？" class="headerlink" title="为什么使用 Executor 框架？"></a><strong>为什么使用 Executor 框架？</strong></h1><p>每次执行任务创建线程 new Thread()比较消耗性能，创建一个线程是比较耗时、耗资源的。调用 new Thread()创建的线程缺乏管理，被称为野线程，而且可以无限制的创建，线程之间的相互竞争会导致过多占用系统资源而导致系统瘫痪，还有线程之间的频繁交替也会消耗很多系统资源。</p>
-<p>接使用 new Thread() 启动的线程不利于扩展，比如定时执行、定期执行、定时定期执行、线程中断等都不便实现。</p>
-<h1 id="在-Java-中-Executor-和-Executors-的区别？"><a href="#在-Java-中-Executor-和-Executors-的区别？" class="headerlink" title="在 Java 中 Executor 和 Executors 的区别？"></a><strong>在 Java 中 Executor 和 Executors 的区别？</strong></h1><ol>
-<li>Executors 工具类的不同方法按照我们的需求创建了不同的线程池，来满足业务的需求。 </li>
-<li>Executor 接口对象能执行我们的线程任务。</li>
-<li>ExecutorService 接口继承了 Executor 接口并进行了扩展，提供了更多的方法我们能获得任务执行的状态并且可以获取任务的返回值。</li>
-<li>使用 ThreadPoolExecutor 可以创建自定义线程池</li>
-<li>Future 表示异步计算的结果，他提供了检查计算是否完成的方法，以等待计算的完成，并可以使用get()`方法获取计算的结果。</li>
-</ol>
-<h1 id="什么是原子操作？在-Java-Concurrency-API-中有哪些原子类-atomic-classes-？"><a href="#什么是原子操作？在-Java-Concurrency-API-中有哪些原子类-atomic-classes-？" class="headerlink" title="什么是原子操作？在 Java Concurrency API 中有哪些原子类 (atomic classes)？"></a>什么是原子操作？在 Java Concurrency API 中有哪些原子类 (atomic classes)？</h1><p>原子操作（atomic operation）意为”不可被中断的一个或一系列操作” 。 </p>
-<p>处理器使用基于对缓存加锁或总线加锁的方式来实现多处理器之间的原子操作。</p>
-<p>在 Java 中可以通过锁和循环 CAS 的方式来实现原子操作。 CAS 操作——Compare &amp; Set，或是 Compare &amp; Swap，现在几乎所有的 CPU 指令都支持 CAS 的原子操作。</p>
-<p>原子操作是指一个不受其他操作影响的操作任务单元。原子操作是在多线程环境下避免数据不一致必须的手段。</p>
-<p>int++并不是一个原子操作，所以当一个线程读取它的值并加 1 时，另外一个线程有可能会读到之前的值，这就会引发错误。</p>
-<p>为了解决这个问题，必须保证增加操作是原子的，在 JDK1.5 之前我们可以使用同步技术来做到这一点。到 JDK1.5，java.util.concurrent.atomic 包提供了 int 和 long 类型的原子包装类，它们可以自动的保证对于他们的操作是原子的并且不需要使用同步。</p>
-<p>java.util.concurrent 这个包里面提供了一组原子类。其基本的特性就是在多线程环境下，当有多个线程同时执行这些类的实例包含的方法时，具有排他性，即当某个线程进入方法，执行其中的指令时，不会被其他线程打断，而别的线程就像自旋锁一样，一直等到该方法执行完成，才由 JVM 从等待队列中选择一个另一个线程进入，这只是一种逻辑上的理解。</p>
-<p>原子类：AtomicBoolean，AtomicInteger，AtomicLong，AtomicReference </p>
-<p>原子数组：AtomicIntegerArray，AtomicLongArray，AtomicReferenceArray </p>
-<p>原 子 属 性 更 新 器 ： AtomicLongFieldUpdater ， AtomicIntegerFieldUpdater ，AtomicReferenceFieldUpdater </p>
-<p>解决 ABA 问题的原子类：AtomicMarkableReference（通过引入一个 boolean 来反映中间有没有变过），AtomicStampedReference（通过引入一个 int 来累加来反映中间有没有变过）</p>
-<h1 id="Java-Concurrency-API-中的-Lock-接口-Lock-interface-是什么？-对比同步它有什么优势？"><a href="#Java-Concurrency-API-中的-Lock-接口-Lock-interface-是什么？-对比同步它有什么优势？" class="headerlink" title="Java Concurrency API 中的 Lock 接口(Lock interface)是什么？ 对比同步它有什么优势？"></a><strong>Java Concurrency API 中的 Lock 接口(Lock interface)是什么？</strong> 对比同步它有什么优势？</h1><p>Lock 接口比同步方法和同步块提供了更具扩展性的锁操作。他们允许更灵活的结构，可以具有完全不同的性质，并且可以支持多个相关类的条件对象。 </p>
-<blockquote>
-<p><strong>它的优势有：</strong> </p>
-<ol>
-<li>可以使锁更公平 </li>
-<li>可以使线程在等待锁的时候响应中断 </li>
-<li>可以让线程尝试获取锁，并在无法获取锁的时候立即返回或者等待一段时间 </li>
-<li>可以在不同的范围，以不同的顺序获取和释放锁 </li>
-</ol>
-</blockquote>
-<p>整体上来说 Lock 是 synchronized 的扩展版，Lock 提供了无条件的、可轮询的(tryLock 方法)、定时的(tryLock 带参方法)、可中断的(lockInterruptibly)、可多条件队列的(newCondition 方法)锁操作。另外 Lock 的实现类基本都支持非公平锁(默认)和公平锁，synchronized 只支持非公平锁，当然，在大部分情况下，非公平锁是高效的选择</p>
-<h1 id="什么是-Executors-框架？"><a href="#什么是-Executors-框架？" class="headerlink" title="什么是 Executors 框架？"></a><strong>什么是 Executors 框架？</strong></h1><p>Executor 框架是一个根据一组执行策略调用，调度，执行和控制的异步任务的框架。 无限制的创建线程会引起应用程序内存溢出。所以创建一个线程池是个更好的的解决方案，因为可以限制线程的数量并且可以回收再利用这些线程。利用 Executors 框架可以非常方便的创建一个线程池。</p>
-<h1 id="什么是阻塞队列？阻塞队列的实现原理是什么？如何使用阻塞队-列来实现生产者-消费者模型？"><a href="#什么是阻塞队列？阻塞队列的实现原理是什么？如何使用阻塞队-列来实现生产者-消费者模型？" class="headerlink" title="什么是阻塞队列？阻塞队列的实现原理是什么？如何使用阻塞队 列来实现生产者-消费者模型？"></a><strong>什么是阻塞队列？阻塞队列的实现原理是什么？如何使用阻塞队</strong> <strong>列来实现生产者-消费者模型？</strong></h1><p>阻塞队列（BlockingQueue）是一个支持两个附加操作的队列。</p>
-<p>这两个附加的操作是：在队列为空时，获取元素的线程会等待队列变为非空。当队列满时，存储元素的线程会等待队列可用。</p>
-<p>阻塞队列常用于生产者和消费者的场景，生产者是往队列里添加元素的线程，消费者是从队列里拿元素的线程。阻塞队列就是生产者存放元素的容器，而消费者也只从容器里拿元素。 </p>
-<blockquote>
-<p>JDK7 提供了 7 个阻塞队列。分别是:</p>
-<ol>
-<li>ArrayBlockingQueue ：一个由数组结构组成的有界阻塞队列。 </li>
-<li>LinkedBlockingQueue ：一个由链表结构组成的有界阻塞队列。 </li>
-<li>PriorityBlockingQueue ：一个支持优先级排序的无界阻塞队列。 </li>
-<li>DelayQueue：一个使用优先级队列实现的无界阻塞队列。 </li>
-<li>SynchronousQueue：一个不存储元素的阻塞队列。 </li>
-<li>LinkedTransferQueue：一个由链表结构组成的无界阻塞队列。 </li>
-<li>LinkedBlockingDeque：一个由链表结构组成的双向阻塞队列。</li>
-</ol>
-</blockquote>
-<p>Java5 之前实现同步存取时，可以使用普通的一个集合，然后在使用线程的协作和线程同步可以实现生产者，消费者模式，主要的技术就是用好，wait ,notify,notifyAll,sychronized 这些关键字。而在 java5 之后，可以使用阻塞队列来实现，此方式大大简少了代码量，使得多线程编程更加容易，安全方面也有保障。</p>
-<p>BlockingQueue 接口是 Queue 的子接口，它的主要用途并不是作为容器，而是作为线程同步的的工具，因此他具有一个很明显的特性，当生产者线程试图向 BlockingQueue 放入元素时，如果队列已满，则线程被阻塞，当消费者线程试图从中取出一个元素时，如果队列为空，则该线程会被阻塞，正是因为它所具有这个特性，所以在程序中多个线程交替向 BlockingQueue中放入元素，取出元素，它可以很好的控制线程之间的通信。</p>
-<p>阻塞队列使用最经典的场景就是 socket 客户端数据的读取和解析，读取数据的线程不断将数据放入队列，然后解析线程不断从队列取数据解析。</p>
-<h1 id="什么是-Callable-和-Future"><a href="#什么是-Callable-和-Future" class="headerlink" title="什么是 Callable 和 Future?"></a><strong>什么是 Callable 和 Future?</strong></h1><p>Callable 接口类似于 Runnable，从名字就可以看出来了，但是 Runnable 不会返回结果，并且无法抛出返回结果的异常，而 Callable 功能更强大一些，被线程执行后，可以返回值，这个返回值可以被 Future 拿到，也就是说，Future 可以拿到异步执行任务的返回值。 </p>
-<p>可以认为是带有回调的 Runnable。</p>
-<p>Future 接口表示异步任务，是还没有完成的任务给出的未来结果。所以说 Callable 用于产生结果，Future 用于获取结果。</p>
-<h1 id="什么是-FutureTask-使用-ExecutorService-启动任务。"><a href="#什么是-FutureTask-使用-ExecutorService-启动任务。" class="headerlink" title="什么是 FutureTask?使用 ExecutorService 启动任务。"></a><strong>什么是 FutureTask?使用 ExecutorService 启动任务。</strong></h1><p>在 Java 并发程序中 FutureTask 表示一个可以取消的异步运算。它有启动和取消运算、查询运算是否完成和取回运算结果等方法。只有当运算完成的时候结果才能取回，如果运算尚未完成 get 方法将会阻塞。一个 FutureTask 对象可以对调用了 Callable 和 Runnable 的对象进行包装，由于 FutureTask 也是调用了 Runnable 接口所以它可以提交给 Executor 来执行。</p>
-<h1 id="什么是并发容器的实现？"><a href="#什么是并发容器的实现？" class="headerlink" title="什么是并发容器的实现？"></a><strong>什么是并发容器的实现？</strong></h1><p>何为同步容器：可以简单地理解为通过 synchronized 来实现同步的容器，如果有多个线程调用同步容器的方法，它们将会串行执行 。比如Vector ， Hashtable， 以及Collections.synchronizedSet，synchronizedList 等方法返回的容器。</p>
-<p>可以通过查看 Vector，Hashtable 等这些同步容器的实现代码，可以看到这些容器实现线程安全的方式就是将它们的状态封装起来，并在需要同步的方法上加上关键字 synchronized。并发容器使用了与同步容器完全不同的加锁策略来提供更高的并发性和伸缩性，例如在ConcurrentHashMap 中采用了一种粒度更细的加锁机制，可以称为分段锁，在这种锁机制下，允许任意数量的读线程并发地访问 map，并且执行读操作的线程和写操作的线程也可以并发的访问 map，同时允许一定数量的写操作线程并发地修改 map，所以它可以在并发环境下实现更高的吞吐量。</p>
-<h1 id="多线程同步和互斥有几种实现方法，都是什么？"><a href="#多线程同步和互斥有几种实现方法，都是什么？" class="headerlink" title="多线程同步和互斥有几种实现方法，都是什么？"></a><strong>多线程同步和互斥有几种实现方法，都是什么？</strong></h1><p>线程同步是指线程之间所具有的一种制约关系，一个线程的执行依赖另一个线程的消息，当它没有得到另一个线程的消息时应等待，直到消息到达时才被唤醒。</p>
-<p>线程互斥是指对于共享的进程系统资源，在各单个线程访问时的排它性。当有若干个线程都要使用某一共享资源时，任何时刻最多只允许一个线程去使用，其它要使用该资源的线程必须等待，直到占用资源者释放该资源。线程互斥可以看成是一种特殊的线程同步。</p>
-<p>线程间的同步方法大体可分为两类：用户模式和内核模式。顾名思义，内核模式就是指利用系统内核对象的单一性来进行同步，使用时需要切换内核态与用户态，而用户模式就是不需要切换到内核态，只在用户态完成操作。</p>
-<p><strong>用户模式下的方法有</strong>：原子操作（例如一个单一的全局变量），临界区。</p>
-<p><strong>内核模式下的方法有</strong>：事件，信号量，互斥量。</p>
-<h1 id="什么是竞争条件？你怎样发现和解决竞争？"><a href="#什么是竞争条件？你怎样发现和解决竞争？" class="headerlink" title="什么是竞争条件？你怎样发现和解决竞争？"></a><strong>什么是竞争条件？你怎样发现和解决竞争？</strong></h1><p>当多个进程都企图对共享数据进行某种处理，而最后的结果又取决于进程运行的顺序时，则我们认为这发生了竞争条件（<code>race condition</code>）。</p>
-<h1 id="为什么我们调用-start-方法时会执行-run-方法，为什么我们不能直接调用-run-方法？"><a href="#为什么我们调用-start-方法时会执行-run-方法，为什么我们不能直接调用-run-方法？" class="headerlink" title="为什么我们调用 start()方法时会执行 run()方法，为什么我们不能直接调用 run()方法？"></a>为什么我们调用 start()方法时会执行 run()方法，为什么我们不能直接调用 run()方法？</h1><p>当你调用 start()方法时你将创建新的线程，并且执行在 run()方法里的代码。但是如果你直接调用 run()方法，它不会创建新的线程也不会执行调用线程的代码，只会把run 方法当作普通方法去执行。</p>
-<h1 id="Java-中你怎样唤醒一个阻塞的线程？"><a href="#Java-中你怎样唤醒一个阻塞的线程？" class="headerlink" title="Java 中你怎样唤醒一个阻塞的线程？"></a><strong>Java 中你怎样唤醒一个阻塞的线程？</strong></h1><p>在 Java 发展史上曾经使用 suspend()、resume()方法对于线程进行阻塞唤醒，但随之出现很多问题，比较典型的还是死锁问题。</p>
-<p>解决方案可以使用以对象为目标的阻塞，即利用 Object 类的 wait()和 notify()方法实现线程阻塞。</p>
-<p>首先，wait、notify 方法是针对对象的，调用任意对象的 wait()方法都将导致线程阻塞，阻塞的同时也将释放该对象的锁，相应地，调用任意对象的 notify()方法则将随机解除该对象阻塞的线程，但它需要重新获取改对象的锁，直到获取成功才能往下执行；其次，wait、notify方法必须在 synchronized块或方法中被调用，并且要保证同步块或方法的锁对象与调用 wait、notify方法的对象是同一个，如此一来在调用wait之前当前线程就已经成功获取某对象的锁，执行 wait 阻塞后当前线程就将之前获取的对象锁释放。</p>
-<h1 id="在-Java-中-CycliBarriar-和-CountdownLatch-有什么区别？"><a href="#在-Java-中-CycliBarriar-和-CountdownLatch-有什么区别？" class="headerlink" title="在 Java 中 CycliBarriar 和 CountdownLatch 有什么区别？"></a><strong>在 Java 中 CycliBarriar 和 CountdownLatch 有什么区别？</strong></h1><p>`CyclicBarrier 可以重复使用，而 CountdownLatch 不能重复使用。 </p>
-<p>Java 的 concurrent 包里面的 CountDownLatch 其实可以把它看作一个计数器，只不过这个计数器的操作是原子操作，同时只能有一个线程去操作这个计数器，也就是同时只能有一个线程去减这个计数器里面的值。</p>
-<p>可以向 CountDownLatch 对象设置一个初始的数字作为计数值，任何调用这个对象上的await()方法都会阻塞，直到这个计数器的计数值被其他的线程减为 0 为止。</p>
-<p>所以在当前计数到达零之前，await 方法会一直受阻塞。之后，会释放所有等待的线程，await的所有后续调用都将立即返回。这种现象只出现一次——计数无法被重置。如果需要重置计数，请考虑使用 CyclicBarrier。</p>
-<p>CountDownLatch 的一个非常典型的应用场景是：有一个任务想要往下执行，但必须要等到 其他的任务执行完毕后才可以继续往下执行。假如我们这个想要继续往下执行的任务调用一 个 CountDownLatch 对象的 await()方法，其他的任务执行完自己的任务后调用同一个 CountDownLatch 对象上的 countDown()方法，这个调用 await()方法的任务将一直阻塞等待，直到这个 CountDownLatch 对象的计数值减到 0 为止</p>
-<p>CyclicBarrier 一个同步辅助类，它允许一组线程互相等待，直到到达某个公共屏障点(common barrier point)。在涉及一组固定大小的线程的程序中，这些线程必须不时地互相等待，此时 CyclicBarrier 很有用。因为该 barrier 在释放等待线程后可以重用，所以称它为循环 的 barrier。</p>
-<h1 id="什么是不可变对象，它对写并发应用有什么帮助？"><a href="#什么是不可变对象，它对写并发应用有什么帮助？" class="headerlink" title="什么是不可变对象，它对写并发应用有什么帮助？"></a><strong>什么是不可变对象，它对写并发应用有什么帮助？</strong></h1><ol>
-<li>不可变对象(Immutable Objects)即对象一旦被创建它的状态（对象的数据，也即对象属性值） 就不能改变，反之即为可变对象(Mutable Objects)。</li>
-<li>不可变对象的类即为不可变类(Immutable Class)。Java 平台类库中包含许多不可变类，如String、基本类型的包装类、BigInteger 和 BigDecimal 等。</li>
-<li>不可变对象天生是线程安全的。它们的常量（域）是在构造函数中创建的。既然它们的状态无法修改，这些常量永远不会变</li>
-<li>不可变对象永远是线程安全的。</li>
-<li>只有满足如下状态，一个对象才是不可变的；</li>
-<li>它的状态不能在创建后再被修改；</li>
-<li>所有域都是 final 类型；并且，它被正确创建（创建期间没有发生 this 引用的逸出）。</li>
-</ol>
-<h1 id="什么是多线程中的上下文切换？-1"><a href="#什么是多线程中的上下文切换？-1" class="headerlink" title="什么是多线程中的上下文切换？"></a><strong>什么是多线程中的上下文切换？</strong></h1><p>在上下文切换过程中，CPU 会停止处理当前运行的程序，并保存当前程序运行的具体位置以便之后继续运行。从这个角度来看，上下文切换有点像我们同时阅读几本书，在来回切换书本的同时我们需要记住每本书当前读到的页码。在程序中，上下文切换过程中的“页码”信息是保存在进程控制块（PCB）中的。PCB 还经常被称作“切换桢”（switchframe）。“页码”信息会一直保存到 CPU 的内存中，直到他们被再次使用。</p>
-<p>上下文切换是存储和恢复 CPU 状态的过程，它使得线程执行能够从中断点恢复执行。上下文切换是多任务操作系统和多线程环境的基本特征。</p>
-<h1 id="Java-中用到的线程调度算法是什么？-1"><a href="#Java-中用到的线程调度算法是什么？-1" class="headerlink" title="Java 中用到的线程调度算法是什么？"></a><strong>Java 中用到的线程调度算法是什么？</strong></h1><p>计算机通常只有一个 CPU,在任意时刻只能执行一条机器指令,每个线程只有获得 CPU 的使用权才能执行指令.所谓多线程的并发运行,其实是指从宏观上看,各个线程轮流获得 CPU 的使用权,分别执行各自的任务.在运行池中,会有多个处于就绪状态的线程在等待 CPU,JAVA 虚拟机的一项任务就是负责线程的调度,线程调度是指按照特定机制为多个线程分配 CPU 的使用权.</p>
-<p>有两种调度模型：分时调度模型和抢占式调度模型。</p>
-<p>分时调度模型是指让所有的线程轮流获得 cpu 的使用权,并且平均分配每个线程占用的 CPU的时间片这个也比较好理解。</p>
-<p>java 虚拟机采用抢占式调度模型，是指优先让可运行池中优先级高的线程占用 CPU，如果可运行池中的线程优先级相同，那么就随机选择一个线程，使其占用 CPU。处于运行状态的线程会一直运行，直至它不得不放弃 CPU。</p>
-<h1 id="什么是线程组，为什么在-Java-中不推荐使用？-1"><a href="#什么是线程组，为什么在-Java-中不推荐使用？-1" class="headerlink" title="什么是线程组，为什么在 Java 中不推荐使用？"></a><strong>什么是线程组，为什么在 Java 中不推荐使用？</strong></h1><p>线程组和线程池是两个不同的概念，他们的作用完全不同，前者是为了方便线程的管理，后者是为了管理线程的生命周期，复用线程，减少创建销毁线程的开销。 </p>
-<h1 id="为什么使用-Executor-框架比使用应用创建和管理线程好？"><a href="#为什么使用-Executor-框架比使用应用创建和管理线程好？" class="headerlink" title="为什么使用 Executor 框架比使用应用创建和管理线程好？"></a><strong>为什么使用 Executor 框架比使用应用创建和管理线程好？</strong></h1><p>为什么要使用 Executor 线程池框架每次执行任务创建线程 new Thread()比较消耗性能，创建一个线程是比较耗时、耗资源的。调用 new Thread()创建的线程缺乏管理，被称为野线程，而且可以无限制的创建，线程之间的相互竞争会导致过多占用系统资源而导致系统瘫痪，还有线程之间的频繁交替也会消耗很多系统资源，直接使用 new Thread() 启动的线程不利于扩展，比如定时执行、定期执行、定时定期执行、线程中断等都不便实现。</p>
-<p><strong>使用 Executor 线程池框架的优点</strong>：</p>
-<ol>
-<li>能复用已存在并空闲的线程从而减少线程对象的创建从而减少了消亡线程的开销。 </li>
-<li>可有效控制最大并发线程数，提高系统资源使用率，同时避免过多资源竞争。 </li>
-<li>框架中已经有定时、定期、单线程、并发数控制等功能。 </li>
-<li>综上所述使用线程池框架 Executor 能更好的管理线程、提供系统资源使用率。</li>
-</ol>
-<h1 id="java-中有几种方法可以实现一个线程？"><a href="#java-中有几种方法可以实现一个线程？" class="headerlink" title="java 中有几种方法可以实现一个线程？"></a><strong>java 中有几种方法可以实现一个线程？</strong></h1><ol>
-<li>继承 Thread 类 </li>
-<li>实现 Runnable 接口 </li>
-<li>实现 Callable 接口，需要实现的是 call() 方法</li>
-</ol>
-<h1 id="如何停止一个正在运行的线程？"><a href="#如何停止一个正在运行的线程？" class="headerlink" title="如何停止一个正在运行的线程？"></a><strong>如何停止一个正在运行的线程？</strong></h1><h2 id="使用共享变量的方式"><a href="#使用共享变量的方式" class="headerlink" title="使用共享变量的方式"></a>使用共享变量的方式</h2><p>在这种方式中，之所以引入共享变量，是因为该变量可以被多个执行相同任务的线程用来作为是否中断的信号，通知中断线程的执行。</p>
-<h2 id="使用-interrupt-方法终止线程"><a href="#使用-interrupt-方法终止线程" class="headerlink" title="使用 interrupt 方法终止线程"></a>使用 interrupt 方法终止线程</h2><p>如果一个线程由于等待某些事件的发生而被阻塞，又该怎样停止该线程呢？这种情况经常会发生，比如当一个线程由于需要等候键盘输入而被阻塞，或者调用 Thread.join()方法，或者Thread.sleep() 方 法 ， 在网络中调用 ServerSocket.accept()方法 ， 或者调用了DatagramSocket.receive()方法时，都有可能导致线程阻塞，使线程处于处于不可运行状态时，即使主程序中将该线程的共享变量设置为 true，但该线程此时根本无法检查循环标志，当然也就无法立即中断。这里我们给出的建议是，不要使用 stop()方法，而是使用 Thread 提供的interrupt()方法，因为该方法虽然不会中断一个正在运行的线程，但是它可以使一个被阻塞的线程抛出一个中断异常，从而使线程提前结束阻塞状态，退出堵塞代码。 </p>
-<h1 id="notify-和-notifyAll-有什么区别？"><a href="#notify-和-notifyAll-有什么区别？" class="headerlink" title="notify()和 notifyAll()有什么区别？"></a><strong>notify()和 notifyAll()有什么区别？</strong></h1><p>当一个线程进入 wait 之后，就必须等其他线程 notify/notifyall,使用 notifyall,可以唤醒所有处于 wait 状态的线程，使其重新进入锁的争夺队列中，而 notify 只能唤醒一个。如果没把握，建议 notifyAll，防止 notigy 因为信号丢失而造成程序异常。</p>
-<h1 id="什么是-Daemon-线程？它有什么意义？"><a href="#什么是-Daemon-线程？它有什么意义？" class="headerlink" title="什么是 Daemon 线程？它有什么意义？"></a><strong>什么是 Daemon 线程？它有什么意义？</strong></h1><p>所谓后台(daemon)线程，是指在程序运行的时候在后台提供一种通用服务的线程，并且这个线程并不属于程序中不可或缺的部分。因此，当所有的非后台线程结束时，程序也就终止了，同时会杀死进程中的所有后台线程。</p>
-<p>反过来说， 只要有任何非后台线程还在运行，程序就不会终止。必须在线程启动之前调用setDaemon()方法，才能把它设置为后台线程。注意：后台进程在不执行 finally 子句的情况下就会终止其 run()方法。</p>
-<p>比如：JVM 的垃圾回收线程就是 Daemon 线程，Finalizer 也是守护线程。</p>
-<h1 id="当一个线程进入某个对象的一个-synchronized-的实例方法后，其它线程是否可进入此对象的其它方法？"><a href="#当一个线程进入某个对象的一个-synchronized-的实例方法后，其它线程是否可进入此对象的其它方法？" class="headerlink" title="当一个线程进入某个对象的一个 synchronized 的实例方法后，其它线程是否可进入此对象的其它方法？"></a>当一个线程进入某个对象的一个 synchronized 的实例方法后，其它线程是否可进入此对象的其它方法？</h1><p>如果其他方法没有 synchronized 的话，其他线程是可以进入的。所以要开放一个线程安全的对象时，得保证每个方法都是线程安全的。</p>
-<h1 id="乐观锁和悲观锁的理解及如何实现，有哪些实现方式？"><a href="#乐观锁和悲观锁的理解及如何实现，有哪些实现方式？" class="headerlink" title="乐观锁和悲观锁的理解及如何实现，有哪些实现方式？"></a><strong>乐观锁和悲观锁的理解及如何实现，有哪些实现方式？</strong></h1><p><strong>悲观锁</strong>：总是假设最坏的情况，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会阻塞直到它拿到锁。传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。再比如 Java 里面的同步原语 synchronized 关键字的实现也是悲观锁。</p>
-<p><strong>乐观锁</strong>：顾名思义，就是很乐观，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号等机制。乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库提供的类似于write_condition 机制，其实都是提供的乐观锁。在 Java 中 java.util.concurrent.atomic 包下面的原子变量类就是使用了乐观锁的一种实现方式 CAS 实现的。 </p>
-<blockquote>
-<p><strong>乐观锁的实现方式</strong>：使用版本标识来确定读到的数据与提交时的数据是否一致。提交后修改版本标识，不一致时可以采取丢弃和再次尝试的策略。</p>
-</blockquote>
-<blockquote>
-<p><strong>CAS 缺点</strong>： java 中的 Compare and Swap 即 CAS ，当多个线程尝试使用 CAS 同时更新同一个变量时，只有其中一个线程能更新变量的值，而其它线程都失败，失败的线程并不会被挂起，而是被告知这次竞争中失败，并可以再次尝试。 CAS 操作中包含三个操作数 —— 需要读写的内存位置（V）、进行比较的预期原值（A）和拟写入的新值(B)。如果内存位置 V 的值与预期原值 A 相匹配，那么处理器会自动将该位置值更新为新值 B。否则处理器不做任何操作。</p>
-</blockquote>
-<blockquote>
-<p><strong>ABA 问题</strong>：比如说一个线程 one 从内存位置 V 中取出 A，这时候另一个线程 two 也从内存中取出 A，并且 two 进行了一些操作变成了 B，然后 two 又将 V 位置的数据变成 A，这时候线程 one 进行CAS 操作发现内存中仍然是 A，然后 one 操作成功。尽管线程 one 的 CAS 操作成功，但可能存在潜藏的问题。从 Java1.5 开始 JDK 的 atomic 包里提供了一个类 AtomicStampedReference来解决 ABA 问题。</p>
-</blockquote>
-<blockquote>
-<p><strong>循环时间长开销大</strong>：对于资源竞争严重（线程冲突严重）的情况，CAS 自旋的概率会比较大，从而浪费更多的CPU 资源，效率低于 synchronized。</p>
-</blockquote>
-<blockquote>
-<p><strong>只能保证一个共享变量的原子操作</strong>：当对一个共享变量执行操作时，我们可以使用循环 CAS 的方式来保证原子操作，但是对多个共享变量操作时，循环 CAS 就无法保证操作的原子性，这个时候就可以用锁。</p>
-</blockquote>
-<h1 id="SynchronizedMap-和-ConcurrentHashMap-有什么区别？"><a href="#SynchronizedMap-和-ConcurrentHashMap-有什么区别？" class="headerlink" title="SynchronizedMap 和 ConcurrentHashMap 有什么区别？"></a><strong>SynchronizedMap 和 ConcurrentHashMap 有什么区别？</strong></h1><p>`SynchronizedMap 一次锁住整张表来保证线程安全，所以每次只能有一个线程来访为 map。</p>
-<p>ConcurrentHashMap 使用分段锁来保证在多线程下的性能。ConcurrentHashMap 中则是一次锁住一个桶。ConcurrentHashMap 默认将 hash 表分为 16 个桶，诸如 get,put,remove 等常用操作只锁当前需要用到的桶。这样，原来只能一个线程进入，现在却能同时有 16 个写线程执行，并发性能的提升是显而易见的。</p>
-<p>另外 ConcurrentHashMap 使用了一种不同的迭代方式。在这种迭代方式中，当 iterator 被创建后集合再发生改变就不再是抛出 ConcurrentModificationException，取而代之的是在改变时new 新的数据从而不影响原有的数据 ，iterator 完成后再将头指针替换为新的数据 ，这样 iterator 线程可以使用原来老的数据，而写线程也可以并发的完成改变。</p>
-<h1 id="CopyOnWriteArrayList-可以用于什么应用场景？"><a href="#CopyOnWriteArrayList-可以用于什么应用场景？" class="headerlink" title="CopyOnWriteArrayList 可以用于什么应用场景？"></a><strong>CopyOnWriteArrayList 可以用于什么应用场景？</strong></h1><p>`CopyOnWriteArrayList(免锁容器)的好处之一是当多个迭代器同时遍历和修改这个列表时，不会抛出 ConcurrentModificationException。在 CopyOnWriteArrayList 中，写入将导致创建整个底层数组的副本，而源数组将保留在原地，使得复制的数组在被修改时，读取操作可以安全地执行。</p>
-<p>由于写操作的时候，需要拷贝数组，会消耗内存，如果原数组的内容比较多的情况下，可能导致 young gc 或者 full gc；</p>
-<p>不能用于实时读的场景，像拷贝数组、新增元素都需要时间，所以调用一个 set 操作后，读取到数据可能还是旧的,虽然 CopyOnWriteArrayList 能做到最终一致性,但是还是没法满足实时性要求； </p>
-<blockquote>
-<p><strong>CopyOnWriteArrayList 透露的思想</strong> ：</p>
-<ol>
-<li>读写分离，读和写分开 </li>
-<li>最终一致性 </li>
-<li>使用另外开辟空间的思路，来解决并发冲突</li>
-</ol>
-</blockquote>
-<h1 id="什么叫线程安全？servlet-是线程安全吗"><a href="#什么叫线程安全？servlet-是线程安全吗" class="headerlink" title="什么叫线程安全？servlet 是线程安全吗?"></a><strong>什么叫线程安全？servlet 是线程安全吗?</strong></h1><p>线程安全是编程中的术语，指某个函数、函数库在多线程环境中被调用时，能够正确地处理多个线程之间的共享变量，使程序功能正确完成。</p>
-<p>Servlet 不是线程安全的，servlet 是单实例多线程的，当多个线程同时访问同一个方法，是不能保证共享变量的线程安全性的。</p>
-<p>Struts2 的 action 是多实例多线程的，是线程安全的，每个请求过来都会 new 一个新的 action分配给这个请求，请求完成后销毁。</p>
-<p>SpringMVC 的 Controller 是线程安全的吗？不是的，和 Servlet 类似的处理流程Struts2 好处是不用考虑线程安全问题；Servlet 和 SpringMVC 需要考虑线程安全问题，但是性能可以提升不用处理太多的 gc，可以使用 ThreadLocal 来处理多线程的问题。</p>
-<h1 id="volatile-有什么用？能否用一句话说明下-volatile-的应用场景？"><a href="#volatile-有什么用？能否用一句话说明下-volatile-的应用场景？" class="headerlink" title="volatile 有什么用？能否用一句话说明下 volatile 的应用场景？"></a><strong>volatile 有什么用？能否用一句话说明下 volatile 的应用场</strong>景？</h1><p>volatile 保证内存可见性和禁止指令重排。volatile 用于多线程环境下的单次操作(单次读或者单次写)。</p>
-<h1 id="为什么代码会重排序？"><a href="#为什么代码会重排序？" class="headerlink" title="为什么代码会重排序？"></a><strong>为什么代码会重排序？</strong></h1><p>在执行程序时，为了提供性能，处理器和编译器常常会对指令进行重排序，但是不能随意重排序，不是你想怎么排序就怎么排序，它需要满足以下两个条件：</p>
-<ol>
-<li>在单线程环境下不能改变程序运行的结果； </li>
-<li>存在数据依赖关系的不允许重排序需要注意的是：重排序不会影响单线程环境的执行结果，但是会破坏多线程的执行语义。</li>
-</ol>
-<h1 id="一个线程运行时发生异常会怎样？"><a href="#一个线程运行时发生异常会怎样？" class="headerlink" title="一个线程运行时发生异常会怎样？"></a><strong>一个线程运行时发生异常会怎样？</strong></h1><p>如果异常没有被捕获该线程将会停止执行。Thread.UncaughtExceptionHandler 是用于处理未捕获异常造成线程突然中断情况的一个内嵌接口。当一个未捕获异常将造成线程中断的时候JVM 会使用 Thread.getUncaughtExceptionHandler()来查询线程的 UncaughtExceptionHandler并将线程和异常作为参数传递给 handler 的 uncaughtException()方法进行处理。</p>
-<h1 id="如何在两个线程间共享数据？"><a href="#如何在两个线程间共享数据？" class="headerlink" title="如何在两个线程间共享数据？"></a><strong>如何在两个线程间共享数据？</strong></h1><p>在两个线程间共享变量即可实现共享。一般来说，共享变量要求变量本身是线程安全的，然后在线程内使用的时候，如果有对共享变量的复合操作，那么也得保证复合操作的线程安全性。</p>
-<h1 id="为什么-wait-notify-和-notifyAll-这些方法不在-thread-类里面？"><a href="#为什么-wait-notify-和-notifyAll-这些方法不在-thread-类里面？" class="headerlink" title="为什么 wait, notify 和 notifyAll 这些方法不在 thread 类里面？"></a>为什么 wait, notify 和 notifyAll 这些方法不在 thread 类里面？</h1><p>一个很明显的原因是 JAVA 提供的锁是对象级的而不是线程级的，每个对象都有锁，通过线程获得。由于 wait，notify 和 notifyAll 都是锁级别的操作，所以把他们定义在 Object 类中因为锁属于对象。</p>
-<h1 id="什么是-ThreadLocal-变量？"><a href="#什么是-ThreadLocal-变量？" class="headerlink" title="什么是 ThreadLocal 变量？"></a><strong>什么是 ThreadLocal 变量？</strong></h1><p>`ThreadLocal 是 Java 里一种特殊的变量。每个线程都有一个 ThreadLocal 就是每个线程都拥有了自己独立的一个变量，竞争条件被彻底消除了。它是为创建代价高昂的对象获取线程安全的好方法，比如你可以用 ThreadLocal 让 SimpleDateFormat 变成线程安全的，因为那个类创建代价高昂且每次调用都需要创建不同的实例所以不值得在局部范围使用它，如果为每个线程提供一个自己独有的变量拷贝，将大大提高效率。首先，通过复用减少了代价高昂的对象的创建个数。其次，你在没有使用高代价的同步或者不变性的情况下获得了线程安全。</p>
-<h1 id="Java-中-interrupted-和-isInterrupted-方法的区别？"><a href="#Java-中-interrupted-和-isInterrupted-方法的区别？" class="headerlink" title="Java 中 interrupted 和 isInterrupted 方法的区别？"></a><strong>Java 中 interrupted 和 isInterrupted 方法的区别？</strong></h1><h2 id="interrupt"><a href="#interrupt" class="headerlink" title="interrupt"></a>interrupt</h2><p>interrupt 方法用于中断线程。调用该方法的线程的状态为将被置为”中断”状态。注意：线程中断仅仅是置线程的中断状态位，不会停止线程。需要用户自己去监视线程的状态为并做处理。支持线程中断的方法（也就是线程中断后会抛出 interruptedException 的方法）就是在监视线程的中断状态，一旦线程的中断状态被置为“中断状态”，就会抛出中断异常。</p>
-<h2 id="interrupted"><a href="#interrupted" class="headerlink" title="interrupted"></a>interrupted</h2><p>查询当前线程的中断状态，并且清除原状态。如果一个线程被中断了，第一次调用 <code>interrupted</code>则返回 <code>true</code>，第二次和后面的就返回 <code>false</code> 了。</p>
-<h2 id="isInterrupted"><a href="#isInterrupted" class="headerlink" title="isInterrupted"></a>isInterrupted</h2><p>仅仅是查询当前线程的中断状态</p>
-<h1 id="为什么-wait-和-notify-方法要在同步块中调用？"><a href="#为什么-wait-和-notify-方法要在同步块中调用？" class="headerlink" title="为什么 wait 和 notify 方法要在同步块中调用？"></a><strong>为什么 wait 和 notify 方法要在同步块中调用？</strong></h1><p>`Java API 强制要求这样做，如果你不这么做，你的代码会抛出 IllegalMonitorStateException 异常。还有一个原因是为了避免 wait 和 notify 之间产生竞态条件。</p>
-<h1 id="为什么你应该在循环中检查等待条件"><a href="#为什么你应该在循环中检查等待条件" class="headerlink" title="为什么你应该在循环中检查等待条件?"></a><strong>为什么你应该在循环中检查等待条件?</strong></h1><p>处于等待状态的线程可能会收到错误警报和伪唤醒，如果不在循环中检查等待条件，程序就会在没有满足结束条件的情况下退出。</p>
-<h1 id="Java-中的同步集合与并发集合有什么区别？"><a href="#Java-中的同步集合与并发集合有什么区别？" class="headerlink" title="Java 中的同步集合与并发集合有什么区别？"></a><strong>Java 中的同步集合与并发集合有什么区别？</strong></h1><p>同步集合与并发集合都为多线程和并发提供了合适的线程安全的集合，不过并发集合的可扩展性更高。在 Java1.5 之前程序员们只有同步集合来用且在多线程并发的时候会导致争用，阻碍了系统的扩展性。Java5 介绍了并发集合像 ConcurrentHashMap，不仅提供线程安全还用锁分离和内部分区等现代技术提高了可扩展性。</p>
-<h1 id="什么是线程池？"><a href="#什么是线程池？" class="headerlink" title="什么是线程池？"></a><strong>什么是线程池？</strong></h1><p>线程池是一种多线程处理形式，处理过程中将任务提交到线程池，任务的执行交由线程池来管理。如果每个请求都创建一个线程去处理，那么服务器的资源很快就会被耗尽，使用线程池可以减少创建和销毁线程的次数，每个工作线程都可以被重复利用，可执行多个任务。</p>
-<h1 id="为什么要使用线程池？"><a href="#为什么要使用线程池？" class="headerlink" title="为什么要使用线程池？"></a><strong>为什么要使用线程池？</strong></h1><p>创建线程和销毁线程的花销是比较大的，这些时间有可能比处理业务的时间还要长。这样频繁的创建线程和销毁线程，再加上业务工作线程，消耗系统资源的时间，可能导致系统资源不足。（我们可以把创建和销毁的线程的过程去掉）</p>
-<h1 id="线程池有什么作用？"><a href="#线程池有什么作用？" class="headerlink" title="线程池有什么作用？"></a>线程池有什么作用？</h1><p>线程池作用就是限制系统中执行线程的数量。 </p>
-<ol>
-<li>提高效率 创建好一定数量的线程放在池中，等需要使用的时候就从池中拿一个，这要比需要的时候创建一个线程对象要快的多。 </li>
-<li>方便管理 可以编写线程池管理代码对池中的线程同一进行管理，比如说启动时有该程序创建 100 个线程，每当有请求的时候，就分配一个线程去工作，如果刚好并发有 101 个请求，那多出的这一个请求可以排队等候，避免因无休止的创建线程导致系统崩溃。</li>
-</ol>
-<h1 id="说说几种常见的线程池及使用场景"><a href="#说说几种常见的线程池及使用场景" class="headerlink" title="说说几种常见的线程池及使用场景"></a><strong>说说几种常见的线程池及使用场景</strong></h1><ol>
-<li>newSingleThreadExecutor：创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。</li>
-<li>newFixedThreadPool：创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。</li>
-<li>newCachedThreadPool：创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。</li>
-<li>newScheduledThreadPool：创建一个定长线程池，支持定时及周期性任务执行。</li>
-</ol>
-<h1 id="线程池中的几种重要的参数"><a href="#线程池中的几种重要的参数" class="headerlink" title="线程池中的几种重要的参数"></a><strong>线程池中的几种重要的参数</strong></h1><ol>
-<li>corePoolSize 就是线程池中的核心线程数量，这几个核心线程，只是在没有用的时候，也不会被回收</li>
-<li>maximumPoolSize 就是线程池中可以容纳的最大线程的数量</li>
-<li>keepAliveTime，就是线程池中除了核心线程之外的其他的最长可以保留的时间，因为在线程池中 ， 除了核心线程即使在无任务的情况下也不能被清除，其余的都是有存活时间的，意思就是非核心线程可以保留的最长的空闲时间</li>
-<li>util，就是计算这个时间的一个单位。</li>
-<li>workQueue，就是等待队列，任务可以储存在任务队列中等待被执行，执行的是 FIFIO 原则（先进先出）。</li>
-<li>threadFactory，就是创建线程的线程工厂。</li>
-<li>handler,是一种拒绝策略，我们可以在任务满了之后，拒绝执行某些任务。</li>
-</ol>
-<h1 id="说说线程池的拒绝策略"><a href="#说说线程池的拒绝策略" class="headerlink" title="说说线程池的拒绝策略"></a><strong>说说线程池的拒绝策略</strong></h1><p>当请求任务不断的过来，而系统此时又处理不过来的时候，我们需要采取的策略是拒绝服务。RejectedExecutionHandler 接口提供了拒绝任务处理的自定义方法的机会。在ThreadPoolExecutor 中已经包含四种处理策略。</p>
-<ol>
-<li>AbortPolicy 策略：该策略会直接抛出异常，阻止系统正常工作。</li>
-<li>CallerRunsPolicy 策略：只要线程池未关闭，该策略直接在调用者线程中，运行当前的被丢弃的任务。</li>
-<li>DiscardOleddestPolicy 策略： 该策略将丢弃最老的一个请求，也就是即将被执行的任务，并尝试再次提交当前任务。</li>
-<li>DiscardPolicy 策略：该策略默默的丢弃无法处理的任务，不予任何处理。 </li>
-</ol>
-<p>除了 JDK 默认提供的四种拒绝策略，我们可以根据自己的业务需求去自定义拒绝策略，自定义的方式很简单，直接实现 RejectedExecutionHandler 接口即可。</p>
-<h1 id="线程池都有哪几种工作队列"><a href="#线程池都有哪几种工作队列" class="headerlink" title="线程池都有哪几种工作队列"></a><strong>线程池都有哪几种工作队列</strong></h1><ol>
-<li>ArrayBlockingQueue：是一个基于数组结构的有界阻塞队列，此队列按 FIFO（先进先出）原则对元素进行排序。</li>
-<li>LinkedBlockingQueue：一个基于链表结构的阻塞队列，此队列按 FIFO （先进先出） 排序元素，吞吐量通常要高于 ArrayBlockingQueue。静态工厂方法 Executors.newFixedThreadPool()使用了这个队列</li>
-<li>SynchronousQueue：一个不存储元素的阻塞队列。每个插入操作必须等到另一个线程调用移除操作，否则插入操作一直处于阻塞状态 ，吞吐量 通常要高于 LinkedBlockingQueue ， 静态工厂方法Executors.newCachedThreadPool 使用了这个队列。 </li>
-<li>PriorityBlockingQueue：一个具有优先级的无限阻塞队列。</li>
-</ol>
-<h1 id="怎么检测一个线程是否拥有锁？"><a href="#怎么检测一个线程是否拥有锁？" class="headerlink" title="怎么检测一个线程是否拥有锁？"></a><strong>怎么检测一个线程是否拥有锁？</strong></h1><p>在 java.lang.Thread 中有一个方法叫 holdsLock()，它返回 true 如果当且仅当当前线程拥有某个具体对象的锁。</p>
-<h1 id="Thread-类中的-yield-方法有什么作用？"><a href="#Thread-类中的-yield-方法有什么作用？" class="headerlink" title="Thread 类中的 yield 方法有什么作用？"></a><strong>Thread 类中的 yield 方法有什么作用？</strong></h1><p>使当前线程从执行状态（运行状态）变为可执行态（就绪状态）。当前线程到了就绪状态，那么接下来哪个线程会从就绪状态变成执行状态呢？可能是当前线程，也可能是其他线程，看系统的分配了。 </p>
-<h1 id="Java-中-ConcurrentHashMap-的并发度是什么？"><a href="#Java-中-ConcurrentHashMap-的并发度是什么？" class="headerlink" title="Java 中 ConcurrentHashMap 的并发度是什么？"></a><strong>Java 中 ConcurrentHashMap 的并发度是什么？</strong></h1><p>`ConcurrentHashMap 把实际 map 划分成若干部分来实现它的可扩展性和线程安全。这种划分是使用并发度获得的，它是 ConcurrentHashMap 类构造函数的一个可选参数，默认值为 16，这样在多线程情况下就能避免争用。</p>
-<p>在 JDK8 后，它摒弃了 Segment（锁段）的概念，而是启用了一种全新的方式实现,利用 CAS算法。同时加入了更多的辅助变量来提高并发度，具体内容还是查看源码吧。</p>
-<h1 id="Java-中-Semaphore-是什么？"><a href="#Java-中-Semaphore-是什么？" class="headerlink" title="Java 中 Semaphore 是什么？"></a><strong>Java 中 Semaphore 是什么？</strong></h1><p>Java 中的 Semaphore 是一种新的同步类，它是一个计数信号。从概念上讲，从概念上讲，信号量维护了一个许可集合。如有必要，在许可可用前会阻塞每一个 acquire()，然后再获取该许可。每个 release()添加一个许可，从而可能释放一个正在阻塞的获取者。但是，不使用实际的许可对象，Semaphore 只对可用许可的号码进行计数，并采取相应的行动。信号量常常用于多线程的代码中，比如数据库连接池。</p>
-<h1 id="Java-线程池中-submit-和-execute-方法有什么区别？"><a href="#Java-线程池中-submit-和-execute-方法有什么区别？" class="headerlink" title="Java 线程池中 submit() 和 execute()方法有什么区别？"></a><strong>Java 线程池中 submit() 和 execute()方法有什么区别？</strong></h1><p>两个方法都可以向线程池提交任务，execute()方法的返回类型是 void，它定义在 Executor 接口中。</p>
-<p>而 submit()方法可以返回持有计算结果的 Future 对象，它定义在 ExecutorService 接口中，它扩展了 Executor 接口，其它线程池类像 ThreadPoolExecutor 和 ScheduledThreadPoolExecutor都有这些方法。</p>
-<h1 id="什么是阻塞式方法？"><a href="#什么是阻塞式方法？" class="headerlink" title="什么是阻塞式方法？"></a><strong>什么是阻塞式方法？</strong></h1><p>阻塞式方法是指程序会一直等待该方法完成期间不做其他事情，ServerSocket 的 accept()方法就是一直等待客户端连接。这里的阻塞是指调用结果返回之前，当前线程会被挂起，直到得到结果之后才会返回。此外，还有异步和非阻塞式方法在任务完成前就返回。</p>
-<h1 id="volatile-变量和-atomic-变量有什么不同？"><a href="#volatile-变量和-atomic-变量有什么不同？" class="headerlink" title="volatile 变量和 atomic 变量有什么不同？"></a><strong>volatile 变量和 atomic 变量有什么不同？</strong></h1><p>`Volatile 变量可以确保先行关系，即写操作会发生在后续的读操作之前, 但它并不能保证原子性。例如用 volatile 修饰 count 变量那么 count++ 操作就不是原子性的。</p>
-<p>而 AtomicInteger 类提供的 atomic 方法可以让这种操作具有原子性如 getAndIncrement()方法会原子性的进行增量操作把当前值加一，其它数据类型和引用变量也可以进行相似操作。</p>
-<h1 id="你对线程优先级的理解是什么？"><a href="#你对线程优先级的理解是什么？" class="headerlink" title="你对线程优先级的理解是什么？"></a><strong>你对线程优先级的理解是什么？</strong></h1><p>每一个线程都是有优先级的，一般来说，高优先级的线程在运行时会具有优先权，但这依赖于线程调度的实现，这个实现是和操作系统相关的(OS dependent)。我们可以定义线程的优先级，但是这并不能保证高优先级的线程会在低优先级的线程前执行。线程优先级是一个 int变量(从 1-10)，1 代表最低优先级，10 代表最高优先级。</p>
-<p>java 的线程优先级调度会委托给操作系统去处理，所以与具体的操作系统优先级有关，如非特别需要，一般无需设置线程优先级。</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-        <tag>面试题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>RabbitMQ 实战教程</title>
     <url>/2021/09/18/11/</url>
     <content><![CDATA[<h1 id="MQ引言"><a href="#MQ引言" class="headerlink" title="MQ引言"></a>MQ引言</h1><h2 id="什么是MQ"><a href="#什么是MQ" class="headerlink" title="什么是MQ"></a>什么是MQ</h2><p><code>MQ</code>(Message Quene) :  翻译为 <code>消息队列</code>,通过典型的 <code>生产者</code>和<code>消费者</code>模型,生产者不断向消息队列中生产消息，消费者不断的从队列中获取消息。因为消息的生产和消费都是异步的，而且只关心消息的发送和接收，没有业务逻辑的侵入,轻松的实现系统间解耦。别名为 <code>消息中间件</code>    通过利用高效可靠的消息传递机制进行平台无关的数据交流，并基于数据通信来进行分布式系统的集成。</p>
@@ -635,568 +388,250 @@
       </tags>
   </entry>
   <entry>
-    <title>简历指导【非常重要】</title>
-    <url>/2021/09/18/2/</url>
-    <content><![CDATA[<h1 id="就业阶段工作流程"><a href="#就业阶段工作流程" class="headerlink" title="就业阶段工作流程"></a>就业阶段工作流程</h1><p>简历→面试→入职→试用期→转正</p>
-<p>简历的重要性： </p>
-<ul>
-<li>没有简历就没有面试 </li>
-<li>简历的质量决定面试的数量</li>
-</ul>
+    <title>线程篇</title>
+    <url>/2021/09/18/10/</url>
+    <content><![CDATA[<h1 id="在-java-中守护线程和本地线程区别？"><a href="#在-java-中守护线程和本地线程区别？" class="headerlink" title="在 java 中守护线程和本地线程区别？"></a>在 java 中守护线程和本地线程区别？</h1><p>java 中的线程分为两种：守护线程（Daemon）和用户线程（User）。</p>
+<p>任何线程都可以设置为守护线程和用户线程，通过方法 Thread.setDaemon(布尔类型)；true 则把该线程设置为守护线程，反之则为用户线程。Thread.setDaemon()必须在 Thread.start()之前调用，否则运行时会抛出异常。</p>
 <span id="more"></span>
 
-<h1 id="写简历的心法"><a href="#写简历的心法" class="headerlink" title="写简历的心法"></a>写简历的心法</h1><p>一个字：猛！</p>
-<p>整个简历<span style="color:red"><strong>充满</strong></span><span style="color:blue"><strong>有技术含量</strong></span>的技术点！给人一种厚重感！让 HR“不明觉厉”！</p>
-<p>例:</p>
-<ul>
-<li>熟悉 Java 的 8 大基本数据类型 </li>
-<li>熟悉 Java 的类加载机制、垃圾回收机制、内存管理模型</li>
-</ul>
-<p>友情提示：简历和复习的关系</p>
-<ul>
-<li>正确的顺序是：先把简历写好，然后按照简历复习 </li>
-<li>错误的顺序是：写简历的时候按现在“会”的写</li>
-</ul>
-<h1 id="写简历的注意事项"><a href="#写简历的注意事项" class="headerlink" title="写简历的注意事项"></a>写简历的注意事项</h1><p>不要复制粘贴，要自己写 </p>
-<p>不要有技术性错误：硬伤 </p>
-<p>注意技术英文名称大小写</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Java、JavaSE、JavaScript、jQuery、zTree、MyBatis、Spring、SpringMVC、SpringBoot、SpringCloud……</span><br></pre></td></tr></table></figure>
-
-<h1 id="简历的结构"><a href="#简历的结构" class="headerlink" title="简历的结构"></a>简历的结构</h1><ul>
-<li>个人信息：就业老师</li>
-<li>自我评价：就业老师</li>
-<li>技能清单：尽可能全面的覆盖学过的内容<ul>
-<li>取：捡有技术含量的写</li>
-<li>舍：看上去很水的就不写了</li>
-</ul>
-</li>
-<li>项目经验：把我们学习过程中项目里用到的技术点都体现出来</li>
-</ul>
-<h1 id="技能清单"><a href="#技能清单" class="headerlink" title="技能清单"></a>技能清单</h1><h2 id="形式"><a href="#形式" class="headerlink" title="形式"></a>形式</h2><p>为了尽量避免简历雷同，建议大家使用不同形式。当然也可以自定义</p>
-<h3 id="序号清单式"><a href="#序号清单式" class="headerlink" title="序号清单式"></a>序号清单式</h3><p>有序列表、无序列表都可以</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、xxx </span><br><span class="line">2、xxx </span><br><span class="line">3、xxx</span><br></pre></td></tr></table></figure>
-
-<h3 id="按技术类比划分"><a href="#按技术类比划分" class="headerlink" title="按技术类比划分"></a>按技术类比划分</h3><h4 id="原生-Java-技术"><a href="#原生-Java-技术" class="headerlink" title="原生 Java 技术"></a>原生 Java 技术</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">字符串处理、泛型、枚举、注解、IO、多线程、反射、JVM 垃圾回收机制、JVM 类加载机……</span><br></pre></td></tr></table></figure>
-
-<h4 id="Java-框架"><a href="#Java-框架" class="headerlink" title="Java 框架"></a>Java 框架</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MyBatis、Spring、SpringMVC、SpringBoot、SpringCloud、Dubbo、SpringSession、Spring Data Jpa……</span><br></pre></td></tr></table></figure>
-
-<h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MySQL、关联查询、子查询、分组查询、聚合函数、索引优化、explain 分析、分区、分表、分库……</span><br></pre></td></tr></table></figure>
-
-<h4 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Redis、ElasticSearch、FastDFS、ActiveMQ、Zookeeper、Nginx……</span><br></pre></td></tr></table></figure>
-
-<h4 id="视图模板技术"><a href="#视图模板技术" class="headerlink" title="视图模板技术"></a>视图模板技术</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">JSP、Thymeleaf、Beetl、Mustache</span><br></pre></td></tr></table></figure>
-
-<h4 id="第三方接口"><a href="#第三方接口" class="headerlink" title="第三方接口"></a>第三方接口</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">短信验证、蚂蚁金服、阿里云 OSS 对象存储服务、高德地图定位……</span><br></pre></td></tr></table></figure>
-
-<h4 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HTML、CSS、JavaScript、jQuery、Vue、TypeScript、CoffeeScript、React、Angular、Preact、Ember、Alita、Redux、Recoil……</span><br></pre></td></tr></table></figure>
-
-<h4 id="开发与部署"><a href="#开发与部署" class="headerlink" title="开发与部署"></a>开发与部署</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Maven、SVN、Git/GitHub/Gitee、Docker……</span><br></pre></td></tr></table></figure>
-
-<h4 id="编程思想"><a href="#编程思想" class="headerlink" title="编程思想"></a>编程思想</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">面向对象、面向接口、面向切面、高内聚/低耦合……</span><br></pre></td></tr></table></figure>
-
-<h4 id="架构思想"><a href="#架构思想" class="headerlink" title="架构思想"></a>架构思想</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">单一架构、垂直拆分、水平拆分、分布式架构、SOA、微服务……</span><br></pre></td></tr></table></figure>
-
-<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><h3 id="JavaSE"><a href="#JavaSE" class="headerlink" title="JavaSE"></a>JavaSE</h3><ul>
-<li><p>集合</p>
-<ul>
-<li>操作：熟练使用各种常见集合类</li>
-<li>理论：熟悉 JDK 提供集合框架 </li>
-<li>理论：常用集合类的底层原理<ul>
-<li>ArrayList 底层是数组 </li>
-<li>HashSet 底层是 HashMap，HashSet 把元素存入了一个 HashMap 的 Key</li>
-<li>HashMap 底层是数组加链表（链表长度增加到一定程度会变成红黑树）（链表长度通常在 8 的时候变树，但是极限是 10）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>枚举、注解</p>
-</li>
-<li><p>泛型</p>
-<ul>
-<li>熟练在类、接口、方法上<strong>声明</strong>泛型 </li>
-<li>在创建对象、调用方法等场景下<strong>使用</strong>泛型 </li>
-<li>在泛型中熟练使用通配符（根据自己情况决定是否写） </li>
-<li>泛型结合反射获取子类继承父类时传入的泛型（根据自己情况决定是否写）</li>
-</ul>
-</li>
-<li><p>IO</p>
-</li>
-<li><p>多线程</p>
-<ul>
-<li>线程的生命周期 </li>
-<li>线程的同步</li>
-<li>线程间通信 </li>
-<li>ThreadLocal </li>
-<li>线程池 </li>
-<li>线程的创建方式 <ul>
-<li>继承 Thead 类</li>
-<li>实现 Runnable 接口</li>
-<li>使用 Callable 接口借助 FutureTask</li>
-<li>线程池</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>反射</p>
-<ul>
-<li>获取 Class 对象 </li>
-<li>获取 Method 对象 </li>
-<li>获取 Filed 对象 </li>
-<li>获取 Constructor 对象 </li>
-<li>通过反射创建对象 </li>
-</ul>
-</li>
-<li><p>Java8 新特性</p>
-<ul>
-<li>Lambda 表达式</li>
-</ul>
-</li>
-</ul>
-<h3 id="接口里的默认方法和静态方法"><a href="#接口里的默认方法和静态方法" class="headerlink" title="接口里的默认方法和静态方法"></a>接口里的默认方法和静态方法</h3><ul>
-<li>关联查询 </li>
-<li>分组查询 </li>
-<li>聚合函数 </li>
-<li>子查询 </li>
-<li>数据库事务 <ul>
-<li>ACID<ul>
-<li>原子性：一个事务中的操作缺一不可</li>
-<li>一致性：事务执行前数据是对的，事务执行后数据还必须是对的</li>
-<li>隔离性：能够并发执行多个事务</li>
-<li>持久性：一个事务提交后永久保存到数据库</li>
-</ul>
-</li>
-<li>并发问题<ul>
-<li>脏读</li>
-<li>不可重复读</li>
-<li>幻读</li>
-</ul>
-</li>
-<li>隔离级别<ul>
-<li>读未提交</li>
-<li>读已提交</li>
-<li>可重复读</li>
-<li>串行化</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="JDBC（写简历时从理论高度来看）"><a href="#JDBC（写简历时从理论高度来看）" class="headerlink" title="JDBC（写简历时从理论高度来看）"></a>JDBC（写简历时从理论高度来看）</h3><ul>
-<li>Java 程序访问具体数据库实现的统一标准 </li>
-<li>面向接口编程的一种体现</li>
-</ul>
-<h3 id="JavaWeb（写简历时从理论高度来看）"><a href="#JavaWeb（写简历时从理论高度来看）" class="headerlink" title="JavaWeb（写简历时从理论高度来看）"></a>JavaWeb（写简历时从理论高度来看）</h3><ul>
-<li>有了 Servlet 标准，使用各种不同 Servlet 容器不需要修改上层代码</li>
-<li>有了 Servlet 标准，使用各种不同 Servlet 容器不需要修改上层代码<ul>
-<li>浏览器→HTTP→后端 Java 程序</li>
-<li>consumer→HTTP→provider</li>
-<li>移动端程序→HTTP→后端 Java 程序</li>
-</ul>
-</li>
-<li>JSON 格式：不同平台之间传输数据的统一格式</li>
-<li>Servlet、Filter、Listener 构成项目架构体系底层的基石，能够基于这三大组件搭建框架整合开发的环境</li>
-<li>使用请求域、会话域、应用域解决 Web 项目中数据临时存储问题</li>
-<li>使用会话控制机制，借助 Cookie、Session 保持用户会话状态</li>
-</ul>
-<h3 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h3><ul>
-<li>熟悉 mybatis-config.xml 全局配置文件中的配置</li>
-<li>熟悉 MyBatis 的映射配置文件的配置（XxxMapper.xml）</li>
-<li>熟悉 MyBatis 映射文件中动态 SQL 标签的配置</li>
-<li>能够使用 resultMap 标签中的子标签实现关联关系<ul>
-<li>association 标签+javaType 属性：对一关系</li>
-<li>collection 标签+ofType 属性：对多关系</li>
-</ul>
-</li>
-<li>熟练使用 MyBatis 逆向工程</li>
-<li>熟悉 MyBatis 一级缓存、二级缓存（不重要）</li>
-</ul>
-<h3 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h3><ul>
-<li>IOC<ul>
-<li>理解 IOC 含义</li>
-<li>使用 IOC 容器创建对象（基于 XML、基于注解）</li>
-<li>使用 IOC 容器实现自动装配（基于 XML、基于注解）</li>
-<li>属性注入<ul>
-<li>根据 set 方法注入属性</li>
-<li>根据构造器注入属性</li>
-</ul>
-</li>
-<li>bean 的生命周期</li>
-<li>bean 的作用域范围（singleton、prototype、Web 环境作用域）</li>
-</ul>
-</li>
-<li>AOP<ul>
-<li>面向切面编程</li>
-<li>底层原理<ul>
-<li>cglib</li>
-<li>动态代理</li>
-</ul>
-</li>
-<li>熟悉 AOP 常用术语</li>
-<li>熟练使用 AOP 中的各种通知<ul>
-<li>前置通知</li>
-<li>返回通知</li>
-<li>后置通知</li>
-<li>异常通知</li>
-<li>环绕通知</li>
-</ul>
-</li>
-<li>理解切面的优先级</li>
-</ul>
-</li>
-<li>声明式事务<ul>
-<li>基于 XML 配置</li>
-<li>基于注解配置</li>
-<li>事务属性<ul>
-<li>事务的传播行为<ul>
-<li>默认：REQUIRED</li>
-<li>建议：REQUIRES_NEW</li>
-</ul>
-</li>
-<li>事务的隔离级别</li>
-<li>只读属性</li>
-<li>超时属性</li>
-<li>回滚、不回滚的异常</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">能够基于 XML 配置或注解实现声明式事务并能够根据项目需要进一步设置“传播行为”、 “隔离级别”、“只读”、“超时”、“回滚、不回滚的异常”等事务属性</span><br></pre></td></tr></table></figure>
-
-<h3 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h3><ul>
-<li>在 SpringMVC 环境下基于 RESTFUL 风格进行开发 </li>
-<li>在 SpringMVC 环境下使用@RequestBody 注解接收请求体中的 JSON 数据 </li>
-<li>在 SpringMVC 环境下使用@ResponseBody 注解返回 JSON 数据作为响应体 </li>
-<li>熟 练 使 用 SpringMVC 的 常 用 注 解 ， 例 如 ： @RequestMapping 、 @RequestParam、@RequestBody、@ResponseBody、@PathVariable 等等 </li>
-<li>熟练使用 SpringMVC 的拦截器、异常映射、类型转换、数据校验等功能 </li>
-<li>熟悉 SpringMVC 运行流程 </li>
-</ul>
-<h3 id="中间件：Redis"><a href="#中间件：Redis" class="headerlink" title="中间件：Redis"></a>中间件：Redis</h3><ul>
-<li>熟悉 Redis 的五大数据类型<ul>
-<li>string、set、list、hash、zset</li>
-</ul>
-</li>
-<li>熟悉 Redis 的持久化机制<ul>
-<li>RDB：保存数据的快照</li>
-<li>AOF：生成数据的命令</li>
-</ul>
-</li>
-<li>理解 Redis 的事务控制方式</li>
-<li>能够搭建主从复制、读写分离集群，使用哨兵模式提高集群自动化程度。理解主观下线、客观下线含义</li>
-<li>熟练使用 Jedis 作为 Java 客户端程序远程操作 Redis</li>
-</ul>
-<h3 id="中间件：Nginx"><a href="#中间件：Nginx" class="headerlink" title="中间件：Nginx"></a>中间件：Nginx</h3><ul>
-<li>反向代理→负载均衡</li>
-<li>负载均衡策略（根据自己情况）<ul>
-<li>轮询</li>
-<li>权重（给权重高的服务器分配较多负载）</li>
-<li>IP 地址哈希一致性（根据 IP 地址分配）</li>
-<li>最小连接方式</li>
-<li>响应事件方式（第三方）</li>
-<li>依据 URL 分配方式（第三方）</li>
-</ul>
-</li>
-</ul>
-<h3 id="中间件：FastDFS"><a href="#中间件：FastDFS" class="headerlink" title="中间件：FastDFS"></a>中间件：FastDFS</h3><ul>
-<li>熟悉分布式文件存储系统 FastDFS </li>
-<li>理解 FastDFS 中 tracker、storage 工作机制 </li>
-<li>熟练使用 fastdfs-client-java 客户端把 Java 程序接收到的文件上传到 FastDFS 服务器 </li>
-<li>能够搭建 Nginx+FastDFS 服务器端环境 </li>
-</ul>
-<h3 id="中间件：ElasticSearch"><a href="#中间件：ElasticSearch" class="headerlink" title="中间件：ElasticSearch"></a>中间件：ElasticSearch</h3><ul>
-<li>理解倒排索引概念 </li>
-<li>理解 index/type/document/field </li>
-<li>理解 ElasticSearch 对集群和数据分片（主分片、复制分片）的自动化管理 </li>
-<li>会使用 Kibana 远程连接 ElasticSearch 调试 DSL 语句 </li>
-<li>会使用 IKAnalyzer 中文分词器，会使用它的停止词典、扩展词典 </li>
-<li>会安装 ElasticSearch 服务器端程序</li>
-</ul>
-<h3 id="中间件：Zookeeper"><a href="#中间件：Zookeeper" class="headerlink" title="中间件：Zookeeper"></a>中间件：Zookeeper</h3><ul>
-<li>树形目录结构 </li>
-<li>异步通知机制 </li>
-<li>leader/follower 集群</li>
-</ul>
-<h3 id="分布式框架：Dubbo"><a href="#分布式框架：Dubbo" class="headerlink" title="分布式框架：Dubbo"></a>分布式框架：Dubbo</h3><ul>
-<li>基于 Java 的开源高性能 RPC 框架 </li>
-<li>基于 XML 配置方式 </li>
-<li>基于注解配置方式 </li>
-</ul>
-<h3 id="分布式框架：SpringBoot"><a href="#分布式框架：SpringBoot" class="headerlink" title="分布式框架：SpringBoot"></a>分布式框架：SpringBoot</h3><ul>
-<li>理解 SpringBoot 提供的场景启动器 starter </li>
-<li>能够基于 SpringBoot 的 starter 整合第三方框架，例如：MyBatis、Redis、ElasticSearch、Thymeleaf…… </li>
-<li>熟悉 YAML 配置文件的语法格式和常用数据类型 </li>
-<li>理解 SpringBoot 的自动化配置原理</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">参考: http://39.108.113.88/content/part-02-distribution-architecture/spring-boot-working-principle.ht ml</span><br></pre></td></tr></table></figure>
-
-<h3 id="分布式框架：SpringCloud"><a href="#分布式框架：SpringCloud" class="headerlink" title="分布式框架：SpringCloud"></a>分布式框架：SpringCloud</h3><ul>
-<li>Eureka：注册中心 </li>
-<li>Ribbon：客户端负载均衡。根据微服务名称访问 Eureka 获取对应微服务的详细信息 </li>
-<li>Feign：远程接口的声明式调用 </li>
-<li>Hystrix <ul>
-<li>服务降级</li>
-<li>服务熔断</li>
-<li>服务运行状态监控</li>
-</ul>
-</li>
-<li>Zuul：网关，作为项目的统一入口</li>
-</ul>
-<h3 id="性能优化：MySQL-高级"><a href="#性能优化：MySQL-高级" class="headerlink" title="性能优化：MySQL 高级"></a>性能优化：MySQL 高级</h3><ul>
-<li>索引优化<ul>
-<li>批量数据脚本</li>
-<li>单表使用索引及常见索引失效</li>
-<li>关联查询优化</li>
-<li>子查询优化</li>
-<li>排序分组优化</li>
-<li>覆盖索引</li>
-</ul>
-</li>
-<li>查询截取分析</li>
-<li>MySQL 主从复制</li>
-<li>分库分表/MyCat\</li>
-</ul>
-<h3 id="性能优化：JVM"><a href="#性能优化：JVM" class="headerlink" title="性能优化：JVM"></a>性能优化：JVM</h3><ul>
-<li>垃圾回收机制</li>
-<li>内存模型<ul>
-<li>伊甸园区</li>
-<li>幸存者 0 区</li>
-<li>幸存者 1 区</li>
-<li>新生代</li>
-<li>老年代</li>
-</ul>
-</li>
-</ul>
-<h3 id="性能优化：JUC"><a href="#性能优化：JUC" class="headerlink" title="性能优化：JUC"></a>性能优化：JUC</h3><ul>
-<li>java.util.concurrent 包 API </li>
-<li>Lock 同步锁 </li>
-<li>线程池 </li>
-<li>线程调度 </li>
-<li>ConcurrentHashMap 锁分段机制</li>
-</ul>
-<h3 id="开发与部署相关"><a href="#开发与部署相关" class="headerlink" title="开发与部署相关"></a>开发与部署相关</h3><ul>
-<li>Maven </li>
-<li>SVN </li>
-<li>Git/GitHub </li>
-<li>Docker</li>
-</ul>
-<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>在简历中“技能清单”部分写至少 15 条。建议：上面 20 个部分每个部分自己组织语言提炼成 1 条</p>
-<h1 id="项目经验"><a href="#项目经验" class="headerlink" title="项目经验"></a>项目经验</h1><h2 id="项目描述"><a href="#项目描述" class="headerlink" title="项目描述"></a>项目描述</h2><p>用平实的语言简单介绍一下这个项目即可。让读者能够知道这个项目是解决现实生活中的什么问题。在项目描述这个部分中，项目的架构可写可不写。要<span style="color:blue"><strong>简洁明了</strong></span>，不要长篇大论。</p>
-<p>众筹：在互联网上打造一个金融平台，让有志于创业的人在这个平台上可以募集到资金。而支持创业项目的用户可以得到相应的回报。</p>
-<p>电商：互联网购物平台。进一步介绍商业模式，是 B2C、B2C、C2C 等等中的哪一种。再介绍一下销售的是什么产品，例如：综合性电商什么都卖、专注某一个细分市场（电子产品、服装、食品、体育用品……）。有些电商会有自己的特色，例如：社交电商。</p>
-<p>在线：互联网学习平台。进一步介绍内容来源：平台自己生产内容还是商家入驻等等。</p>
-<h2 id="责任描述"><a href="#责任描述" class="headerlink" title="责任描述"></a>责任描述</h2><p>说明本人在开发这个项目时负责的模块</p>
-<table>
-<thead>
-<tr>
-<th align="center">功能</th>
-<th align="center">开发者</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">单点登录</td>
-<td align="center">张三</td>
-</tr>
-<tr>
-<td align="center">后台管理</td>
-<td align="center">张三</td>
-</tr>
-<tr>
-<td align="center">商品检索</td>
-<td align="center">李四</td>
-</tr>
-<tr>
-<td align="center">购物车</td>
-<td align="center">李四</td>
-</tr>
-<tr>
-<td align="center">订单</td>
-<td align="center">张三</td>
-</tr>
-<tr>
-<td align="center">支付</td>
-<td align="center">王五</td>
-</tr>
-<tr>
-<td align="center">库存</td>
-<td align="center">王五</td>
-</tr>
-<tr>
-<td align="center">物流</td>
-<td align="center">王五</td>
-</tr>
-<tr>
-<td align="center">商品展示</td>
-<td align="center">李四</td>
-</tr>
-<tr>
-<td align="center">……</td>
-<td align="center">……</td>
-</tr>
-</tbody></table>
-<p>所以在简历上，可以有所区分：</p>
-<ul>
-<li>负责的模块：开发了该模块大部分功能 </li>
-<li>参与的模块：开发了该模块较少部分功能</li>
-</ul>
-<p>各个模块不必再展开介绍，因为一般来说看模块的名字就知道这个模块的功能。也不必写这个模块用到的技术，因为后面在技术描述中会专门罗列项目中用到的技术。、</p>
-<p>结论：责任描述的部分就是简简单单的写模块名字列表即可。</p>
-<h2 id="技术描述"><a href="#技术描述" class="headerlink" title="技术描述"></a>技术描述</h2><p><span style="color:blue"><strong>注意点</strong> <strong>1</strong></span>：不要把项目 A 的技术描述直接复制到项目 B 里面。不同项目的技术描述中可以包含相同技术点，但是要结合各个项目的具体功能，进行不同描述。</p>
-<ul>
-<li>正确例子：<ul>
-<li>项目 A：使用 Redis 缓存“众筹项目”数据。</li>
-<li>项目 B：使用 Redis 缓存用户登录的 token。</li>
-</ul>
-</li>
-<li>错误例子：<ul>
-<li>项目 A：使用 POI 将统计数据导出到 Excel 文件中。</li>
-<li>项目 B：使用 POI 将统计数据导出到 Excel 文件中。</li>
-</ul>
-</li>
-</ul>
-<p><span style="color:blue"><strong>注意点</strong> <strong>2</strong></span>；让技术点和项目中的功能结合到一起。让技术的描述更饱满，能够体现出来是真的在项目中用到过。</p>
-<ul>
-<li>正确例子：<ul>
-<li>项目 A：使用 <span style="color:blue"><strong>Redis</strong></span> <span style="color:red"><strong>缓存“众筹项目”数据</strong></span>。</li>
-<li>项目 B：使用 <span style="color:blue"><strong>Redis</strong></span> <span style="color:red"><strong>缓存用户登录的</strong> <strong>token</strong></span>。</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">“Redis”是技术点，“缓存‘众筹项目’数据”和“缓存用户登录的 token”,是项目中的功能。</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>错误例子：<ul>
-<li>使用了 Redis。 </li>
-<li>使用了 ElasticSearch。 </li>
-<li>使用了 POI。 </li>
-<li>使用了 Echarts。</li>
-</ul>
-</li>
-</ul>
-<h1 id="项目技术点回顾"><a href="#项目技术点回顾" class="headerlink" title="项目技术点回顾"></a>项目技术点回顾</h1><h2 id="OA"><a href="#OA" class="headerlink" title="OA"></a>OA</h2><ul>
-<li>单一架构：后台管理系统<ul>
-<li>使用 Maven 作为构建和依赖管理工具</li>
-<li>使用 SSM 整合环境作为基础架构</li>
-<li>使用 MyBatis 的 PageHelper 插件实现分页</li>
-<li>在数据库表中使用 pid 字段建立记录之间的父子关系</li>
-<li>在页面上使用 zTree 展示树形结构 </li>
-<li>使用 SpringSecurity 完成后台管理系统的权限控制</li>
-<li>使用 BCryptPasswordEncoder 实现带盐值的密码加密</li>
-</ul>
-</li>
-<li>分布式架构：前台会员系统<ul>
-<li>使用 SpringBoot+SpringCloud 搭建底层分布式开发环境 </li>
-<li>调用第三方短信接口在注册用户时发送验证码短信</li>
-<li>调用阿里云的 OSS 对象存储服务存储用户发布项目时上传的图片</li>
-<li>调用蚂蚁金服的支付接口</li>
-<li>使用 SpringSession 解决分布式环境下 Session 共享问题，使用 Redis 作为 Session 库</li>
-<li>使用 swagger 生成接口文档</li>
-<li>Redis 缓存对应用户登录状态的 token</li>
-<li>使用 Redis 临时保存项目发布过程中的数据，全部数据收集完毕保存到数据库</li>
-</ul>
-</li>
-</ul>
-<h2 id="电商"><a href="#电商" class="headerlink" title="电商"></a>电商</h2><ul>
-<li>数据结构设计<ul>
-<li>spu+sku</li>
-<li>产品图片存储：FastDFS，使用 Nginx 做 Web 代理服务器接受访问</li>
-</ul>
-</li>
-<li>缓存<ul>
-<li>缓存商品数据提高查询效率</li>
-<li>分布式锁<ul>
-<li>为了避免在 Redis 缓存服务器宕机后把 MySQL 服务器压垮，另外在其他 Redis 服务器中存储分布式锁，访问商品数据需要拿到锁，排队访问。</li>
-<li>lua 脚本或者同步锁值判断防止并发时错误删除同步锁</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>销售属性<ul>
-<li>动态切换同类商品的解决方案</li>
-<li>销售属性静态化，生成销售属性 hash 文件存入浏览器，避免二次访问服务器</li>
-</ul>
-</li>
-<li>搜索<ul>
-<li>使用 ES 作为商品数据的搜索引擎</li>
-<li>ES 集群搭建</li>
-<li>ES 集群管理</li>
-<li>ES 集群通讯</li>
-<li>ES 数据结构</li>
-<li>ES 数据导入查询等客户端 API</li>
-<li>中文分词器：IKAnalyzer</li>
-</ul>
-</li>
-<li>搜索功能的解决方案<ul>
-<li>关键词搜索</li>
-<li>平台属性过滤</li>
-<li>面包屑</li>
-<li>高亮显示、分页、排序、聚合等</li>
-</ul>
-</li>
-<li>购物车解决方案<ul>
-<li>分别在 Cookie、Redis、MySQL 中存储购物车数据</li>
-<li>用户未登录时在 Cookie 中存储购物车数据</li>
-<li>用户登录后要进行合并</li>
-<li>Redis 中使用 hash 类型存储的</li>
-</ul>
-</li>
-<li>异步服务和消息队列<ul>
-<li>订单、支付、库存等系统在用户提交订单时通过消息队列启动异步服务</li>
-<li>用户登录时，启动异步服务，同步购物车、短信平台、站内信、日志等系统（相对我们自己来说属于其他开发人员负责的系统）</li>
-<li>使用延迟队列检查商品订单的支付情况</li>
-<li>在缓存中存入“交易码”，来保证结算不能重复提交，一次结算页面只能 提交一次订单 </li>
-<li>死信队列，消息阻塞等情况处理（理解）</li>
-</ul>
-</li>
-<li>支付<ul>
-<li>调用支付宝的支付接口</li>
-<li>使用 rsa 非对称密钥的签名验证</li>
-<li>交易结果查询、支付状态查询、对账等（这些功能在电商系统中肯定要具备，但是不是由单个一个程序员完成）</li>
-</ul>
-</li>
-<li>库存和物流业务对接<ul>
-<li>库存和物流的调用关系（理解） </li>
-<li>拆掉业务流程（把购物车中的数据分配到不同仓库分别进行出库）</li>
-</ul>
-</li>
-<li>多线程应用<ul>
-<li>技术上使用 juc 中 FutureTask 创建多线程</li>
-<li>提交订单时用于验证和查询价格、库存、修改优惠券、满减资格状态等等</li>
-<li>对于过期、超时退单等无效订单集中处理</li>
-<li>新增或者修改商品信息以后，对相关商品的优惠、活动、券、折扣等服务调用</li>
-</ul>
-</li>
-</ul>
-<h2 id="在线"><a href="#在线" class="headerlink" title="在线"></a>在线</h2><ul>
-<li>后端基础架构<ul>
-<li>SpringBoot、SpringCloud、MyBatis-Plus</li>
-</ul>
-</li>
-<li>前端基础架构<ul>
-<li>Vue、Node.js</li>
-</ul>
-</li>
-<li>中间件<ul>
-<li>Redis、ActiveMQ、阿里云 OSS、视频点播</li>
-</ul>
-</li>
-<li>插件<ul>
-<li>使用 ECharts 绘制统计图表</li>
-<li>使用 POI 完成用户信息批量上传、注册</li>
-</ul>
-</li>
-<li>分布式单点登录使用 JWT 生成 token</li>
-<li>支付功能使用支付宝</li>
-<li>第三方登录</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li>简历上要至少写 3 个项目</li>
-<li>平均每个项目中的技术描述要达到 15+条</li>
-<li>大家根据本文档列出的内容自己组织语言编写</li>
-</ul>
+<h2 id="两者的区别："><a href="#两者的区别：" class="headerlink" title="两者的区别："></a>两者的区别：</h2><p>唯一的区别是判断虚拟机(JVM)何时离开，Daemon 是为其他线程提供服务，如果全部的 User Thread 已经撤离，Daemon 没有可服务的线程，JVM 撤离。也可以理解为守护线程是 JVM自动创建的线程（但不一定），用户线程是程序创建的线程；比如 JVM 的垃圾回收线程是一个守护线程，当所有线程已经撤离，不再产生垃圾，守护线程自然就没事可干了，当垃圾回收线程是 Java 虚拟机上仅剩的线程时，Java 虚拟机会自动离开。</p>
+<p><strong>扩展</strong>：Thread Dump 打印出来的线程信息，含有 daemon 字样的线程即为守护进程，可能会有：服务守护进程、编译守护进程、windows 下的监听 Ctrl+break 的守护进程、Finalizer 守护进程、引用处理守护进程、GC 守护进程。</p>
+<h1 id="线程与进程的区别？"><a href="#线程与进程的区别？" class="headerlink" title="线程与进程的区别？"></a>线程与进程的区别？</h1><p>进程是操作系统分配资源的最小单元，线程是操作系统调度的最小单元。</p>
+<p>一个程序至少有一个进程,一个进程至少有一个线程。 </p>
+<h1 id="什么是多线程中的上下文切换？"><a href="#什么是多线程中的上下文切换？" class="headerlink" title="什么是多线程中的上下文切换？"></a>什么是多线程中的上下文切换？</h1><p>多线程会共同使用一组计算机上的 CPU，而线程数大于给程序分配的 CPU 数量时，为了让各个线程都有执行的机会，就需要轮转使用 CPU。不同的线程切换使用 CPU 发生的切换数据等就是上下文切换。</p>
+<h1 id="死锁与活锁的区别，死锁与饥饿的区别？"><a href="#死锁与活锁的区别，死锁与饥饿的区别？" class="headerlink" title="死锁与活锁的区别，死锁与饥饿的区别？"></a>死锁与活锁的区别，死锁与饥饿的区别？</h1><p><strong>死锁</strong>：是指两个或两个以上的进程（或线程）在执行过程中，因争夺资源而造成的一种互相等待的现象，若无外力作用，它们都将无法推进下去。</p>
+<blockquote>
+<h2 id="产生死锁的必要条件："><a href="#产生死锁的必要条件：" class="headerlink" title="产生死锁的必要条件："></a>产生死锁的必要条件：</h2><ol>
+<li><strong>互斥条件</strong>：所谓互斥就是进程在某一时间内独占资源。</li>
+<li><strong>请求与保持条件</strong>：一个进程因请求资源而阻塞时，对已获得的资源保持不放。 </li>
+<li><strong>不剥夺条件</strong>:进程已获得资源，在末使用完之前，不能强行剥夺。 </li>
+<li><strong>循环等待条件</strong>:若干进程之间形成一种头尾相接的循环等待资源关系。</li>
+</ol>
+</blockquote>
+<p><strong>活锁</strong>：任务或者执行者没有被阻塞，由于某些条件没有满足，导致一直重复尝试，失败，尝试，失败。</p>
+<p>活锁和死锁的区别在于，处于活锁的实体是在不断的改变状态，所谓的“活”， 而处于死锁的实体表现为等待；活锁有可能自行解开，死锁则不能。</p>
+<p><strong>饥饿</strong>：一个或者多个线程因为种种原因无法获得所需要的资源，导致一直无法执行的状态。</p>
+<blockquote>
+<h2 id="Java-中导致饥饿的原因："><a href="#Java-中导致饥饿的原因：" class="headerlink" title="Java 中导致饥饿的原因："></a>Java 中导致饥饿的原因：</h2><ol>
+<li>高优先级线程吞噬所有的低优先级线程的 CPU 时间。 </li>
+<li>线程被永久堵塞在一个等待进入同步块的状态，因为其他线程总是能在它之前持续地对该同步块进行访问。 </li>
+<li>线程在等待一个本身也处于永久等待完成的对象(比如调用这个对象的 wait 方法)，因为其他线程总是被持续地获得唤醒。</li>
+</ol>
+</blockquote>
+<h1 id="Java-中用到的线程调度算法是什么？"><a href="#Java-中用到的线程调度算法是什么？" class="headerlink" title="Java 中用到的线程调度算法是什么？"></a>Java 中用到的线程调度算法是什么？</h1><p>采用时间片轮转的方式。可以设置线程的优先级，会映射到下层的系统上面的优先级上，如非特别需要，尽量不要用，防止线程饥饿。</p>
+<h1 id="什么是线程组，为什么在-Java-中不推荐使用？"><a href="#什么是线程组，为什么在-Java-中不推荐使用？" class="headerlink" title="什么是线程组，为什么在 Java 中不推荐使用？"></a>什么是线程组，为什么在 Java 中不推荐使用？</h1><p>ThreadGroup 类，可以把线程归属到某一个线程组中，线程组中可以有线程对象，也可以有线程组，组中还可以有线程，这样的组织结构有点类似于树的形式。</p>
+<p>为什么不推荐使用？因为使用有很多的安全隐患吧，没有具体追究，如果需要使用，推荐使用线程池。</p>
+<h1 id="为什么使用-Executor-框架？"><a href="#为什么使用-Executor-框架？" class="headerlink" title="为什么使用 Executor 框架？"></a><strong>为什么使用 Executor 框架？</strong></h1><p>每次执行任务创建线程 new Thread()比较消耗性能，创建一个线程是比较耗时、耗资源的。调用 new Thread()创建的线程缺乏管理，被称为野线程，而且可以无限制的创建，线程之间的相互竞争会导致过多占用系统资源而导致系统瘫痪，还有线程之间的频繁交替也会消耗很多系统资源。</p>
+<p>接使用 new Thread() 启动的线程不利于扩展，比如定时执行、定期执行、定时定期执行、线程中断等都不便实现。</p>
+<h1 id="在-Java-中-Executor-和-Executors-的区别？"><a href="#在-Java-中-Executor-和-Executors-的区别？" class="headerlink" title="在 Java 中 Executor 和 Executors 的区别？"></a><strong>在 Java 中 Executor 和 Executors 的区别？</strong></h1><ol>
+<li>Executors 工具类的不同方法按照我们的需求创建了不同的线程池，来满足业务的需求。 </li>
+<li>Executor 接口对象能执行我们的线程任务。</li>
+<li>ExecutorService 接口继承了 Executor 接口并进行了扩展，提供了更多的方法我们能获得任务执行的状态并且可以获取任务的返回值。</li>
+<li>使用 ThreadPoolExecutor 可以创建自定义线程池</li>
+<li>Future 表示异步计算的结果，他提供了检查计算是否完成的方法，以等待计算的完成，并可以使用get()`方法获取计算的结果。</li>
+</ol>
+<h1 id="什么是原子操作？在-Java-Concurrency-API-中有哪些原子类-atomic-classes-？"><a href="#什么是原子操作？在-Java-Concurrency-API-中有哪些原子类-atomic-classes-？" class="headerlink" title="什么是原子操作？在 Java Concurrency API 中有哪些原子类 (atomic classes)？"></a>什么是原子操作？在 Java Concurrency API 中有哪些原子类 (atomic classes)？</h1><p>原子操作（atomic operation）意为”不可被中断的一个或一系列操作” 。 </p>
+<p>处理器使用基于对缓存加锁或总线加锁的方式来实现多处理器之间的原子操作。</p>
+<p>在 Java 中可以通过锁和循环 CAS 的方式来实现原子操作。 CAS 操作——Compare &amp; Set，或是 Compare &amp; Swap，现在几乎所有的 CPU 指令都支持 CAS 的原子操作。</p>
+<p>原子操作是指一个不受其他操作影响的操作任务单元。原子操作是在多线程环境下避免数据不一致必须的手段。</p>
+<p>int++并不是一个原子操作，所以当一个线程读取它的值并加 1 时，另外一个线程有可能会读到之前的值，这就会引发错误。</p>
+<p>为了解决这个问题，必须保证增加操作是原子的，在 JDK1.5 之前我们可以使用同步技术来做到这一点。到 JDK1.5，java.util.concurrent.atomic 包提供了 int 和 long 类型的原子包装类，它们可以自动的保证对于他们的操作是原子的并且不需要使用同步。</p>
+<p>java.util.concurrent 这个包里面提供了一组原子类。其基本的特性就是在多线程环境下，当有多个线程同时执行这些类的实例包含的方法时，具有排他性，即当某个线程进入方法，执行其中的指令时，不会被其他线程打断，而别的线程就像自旋锁一样，一直等到该方法执行完成，才由 JVM 从等待队列中选择一个另一个线程进入，这只是一种逻辑上的理解。</p>
+<p>原子类：AtomicBoolean，AtomicInteger，AtomicLong，AtomicReference </p>
+<p>原子数组：AtomicIntegerArray，AtomicLongArray，AtomicReferenceArray </p>
+<p>原 子 属 性 更 新 器 ： AtomicLongFieldUpdater ， AtomicIntegerFieldUpdater ，AtomicReferenceFieldUpdater </p>
+<p>解决 ABA 问题的原子类：AtomicMarkableReference（通过引入一个 boolean 来反映中间有没有变过），AtomicStampedReference（通过引入一个 int 来累加来反映中间有没有变过）</p>
+<h1 id="Java-Concurrency-API-中的-Lock-接口-Lock-interface-是什么？-对比同步它有什么优势？"><a href="#Java-Concurrency-API-中的-Lock-接口-Lock-interface-是什么？-对比同步它有什么优势？" class="headerlink" title="Java Concurrency API 中的 Lock 接口(Lock interface)是什么？ 对比同步它有什么优势？"></a><strong>Java Concurrency API 中的 Lock 接口(Lock interface)是什么？</strong> 对比同步它有什么优势？</h1><p>Lock 接口比同步方法和同步块提供了更具扩展性的锁操作。他们允许更灵活的结构，可以具有完全不同的性质，并且可以支持多个相关类的条件对象。 </p>
+<blockquote>
+<p><strong>它的优势有：</strong> </p>
+<ol>
+<li>可以使锁更公平 </li>
+<li>可以使线程在等待锁的时候响应中断 </li>
+<li>可以让线程尝试获取锁，并在无法获取锁的时候立即返回或者等待一段时间 </li>
+<li>可以在不同的范围，以不同的顺序获取和释放锁 </li>
+</ol>
+</blockquote>
+<p>整体上来说 Lock 是 synchronized 的扩展版，Lock 提供了无条件的、可轮询的(tryLock 方法)、定时的(tryLock 带参方法)、可中断的(lockInterruptibly)、可多条件队列的(newCondition 方法)锁操作。另外 Lock 的实现类基本都支持非公平锁(默认)和公平锁，synchronized 只支持非公平锁，当然，在大部分情况下，非公平锁是高效的选择</p>
+<h1 id="什么是-Executors-框架？"><a href="#什么是-Executors-框架？" class="headerlink" title="什么是 Executors 框架？"></a><strong>什么是 Executors 框架？</strong></h1><p>Executor 框架是一个根据一组执行策略调用，调度，执行和控制的异步任务的框架。 无限制的创建线程会引起应用程序内存溢出。所以创建一个线程池是个更好的的解决方案，因为可以限制线程的数量并且可以回收再利用这些线程。利用 Executors 框架可以非常方便的创建一个线程池。</p>
+<h1 id="什么是阻塞队列？阻塞队列的实现原理是什么？如何使用阻塞队-列来实现生产者-消费者模型？"><a href="#什么是阻塞队列？阻塞队列的实现原理是什么？如何使用阻塞队-列来实现生产者-消费者模型？" class="headerlink" title="什么是阻塞队列？阻塞队列的实现原理是什么？如何使用阻塞队 列来实现生产者-消费者模型？"></a><strong>什么是阻塞队列？阻塞队列的实现原理是什么？如何使用阻塞队</strong> <strong>列来实现生产者-消费者模型？</strong></h1><p>阻塞队列（BlockingQueue）是一个支持两个附加操作的队列。</p>
+<p>这两个附加的操作是：在队列为空时，获取元素的线程会等待队列变为非空。当队列满时，存储元素的线程会等待队列可用。</p>
+<p>阻塞队列常用于生产者和消费者的场景，生产者是往队列里添加元素的线程，消费者是从队列里拿元素的线程。阻塞队列就是生产者存放元素的容器，而消费者也只从容器里拿元素。 </p>
+<blockquote>
+<p>JDK7 提供了 7 个阻塞队列。分别是:</p>
+<ol>
+<li>ArrayBlockingQueue ：一个由数组结构组成的有界阻塞队列。 </li>
+<li>LinkedBlockingQueue ：一个由链表结构组成的有界阻塞队列。 </li>
+<li>PriorityBlockingQueue ：一个支持优先级排序的无界阻塞队列。 </li>
+<li>DelayQueue：一个使用优先级队列实现的无界阻塞队列。 </li>
+<li>SynchronousQueue：一个不存储元素的阻塞队列。 </li>
+<li>LinkedTransferQueue：一个由链表结构组成的无界阻塞队列。 </li>
+<li>LinkedBlockingDeque：一个由链表结构组成的双向阻塞队列。</li>
+</ol>
+</blockquote>
+<p>Java5 之前实现同步存取时，可以使用普通的一个集合，然后在使用线程的协作和线程同步可以实现生产者，消费者模式，主要的技术就是用好，wait ,notify,notifyAll,sychronized 这些关键字。而在 java5 之后，可以使用阻塞队列来实现，此方式大大简少了代码量，使得多线程编程更加容易，安全方面也有保障。</p>
+<p>BlockingQueue 接口是 Queue 的子接口，它的主要用途并不是作为容器，而是作为线程同步的的工具，因此他具有一个很明显的特性，当生产者线程试图向 BlockingQueue 放入元素时，如果队列已满，则线程被阻塞，当消费者线程试图从中取出一个元素时，如果队列为空，则该线程会被阻塞，正是因为它所具有这个特性，所以在程序中多个线程交替向 BlockingQueue中放入元素，取出元素，它可以很好的控制线程之间的通信。</p>
+<p>阻塞队列使用最经典的场景就是 socket 客户端数据的读取和解析，读取数据的线程不断将数据放入队列，然后解析线程不断从队列取数据解析。</p>
+<h1 id="什么是-Callable-和-Future"><a href="#什么是-Callable-和-Future" class="headerlink" title="什么是 Callable 和 Future?"></a><strong>什么是 Callable 和 Future?</strong></h1><p>Callable 接口类似于 Runnable，从名字就可以看出来了，但是 Runnable 不会返回结果，并且无法抛出返回结果的异常，而 Callable 功能更强大一些，被线程执行后，可以返回值，这个返回值可以被 Future 拿到，也就是说，Future 可以拿到异步执行任务的返回值。 </p>
+<p>可以认为是带有回调的 Runnable。</p>
+<p>Future 接口表示异步任务，是还没有完成的任务给出的未来结果。所以说 Callable 用于产生结果，Future 用于获取结果。</p>
+<h1 id="什么是-FutureTask-使用-ExecutorService-启动任务。"><a href="#什么是-FutureTask-使用-ExecutorService-启动任务。" class="headerlink" title="什么是 FutureTask?使用 ExecutorService 启动任务。"></a><strong>什么是 FutureTask?使用 ExecutorService 启动任务。</strong></h1><p>在 Java 并发程序中 FutureTask 表示一个可以取消的异步运算。它有启动和取消运算、查询运算是否完成和取回运算结果等方法。只有当运算完成的时候结果才能取回，如果运算尚未完成 get 方法将会阻塞。一个 FutureTask 对象可以对调用了 Callable 和 Runnable 的对象进行包装，由于 FutureTask 也是调用了 Runnable 接口所以它可以提交给 Executor 来执行。</p>
+<h1 id="什么是并发容器的实现？"><a href="#什么是并发容器的实现？" class="headerlink" title="什么是并发容器的实现？"></a><strong>什么是并发容器的实现？</strong></h1><p>何为同步容器：可以简单地理解为通过 synchronized 来实现同步的容器，如果有多个线程调用同步容器的方法，它们将会串行执行 。比如Vector ， Hashtable， 以及Collections.synchronizedSet，synchronizedList 等方法返回的容器。</p>
+<p>可以通过查看 Vector，Hashtable 等这些同步容器的实现代码，可以看到这些容器实现线程安全的方式就是将它们的状态封装起来，并在需要同步的方法上加上关键字 synchronized。并发容器使用了与同步容器完全不同的加锁策略来提供更高的并发性和伸缩性，例如在ConcurrentHashMap 中采用了一种粒度更细的加锁机制，可以称为分段锁，在这种锁机制下，允许任意数量的读线程并发地访问 map，并且执行读操作的线程和写操作的线程也可以并发的访问 map，同时允许一定数量的写操作线程并发地修改 map，所以它可以在并发环境下实现更高的吞吐量。</p>
+<h1 id="多线程同步和互斥有几种实现方法，都是什么？"><a href="#多线程同步和互斥有几种实现方法，都是什么？" class="headerlink" title="多线程同步和互斥有几种实现方法，都是什么？"></a><strong>多线程同步和互斥有几种实现方法，都是什么？</strong></h1><p>线程同步是指线程之间所具有的一种制约关系，一个线程的执行依赖另一个线程的消息，当它没有得到另一个线程的消息时应等待，直到消息到达时才被唤醒。</p>
+<p>线程互斥是指对于共享的进程系统资源，在各单个线程访问时的排它性。当有若干个线程都要使用某一共享资源时，任何时刻最多只允许一个线程去使用，其它要使用该资源的线程必须等待，直到占用资源者释放该资源。线程互斥可以看成是一种特殊的线程同步。</p>
+<p>线程间的同步方法大体可分为两类：用户模式和内核模式。顾名思义，内核模式就是指利用系统内核对象的单一性来进行同步，使用时需要切换内核态与用户态，而用户模式就是不需要切换到内核态，只在用户态完成操作。</p>
+<p><strong>用户模式下的方法有</strong>：原子操作（例如一个单一的全局变量），临界区。</p>
+<p><strong>内核模式下的方法有</strong>：事件，信号量，互斥量。</p>
+<h1 id="什么是竞争条件？你怎样发现和解决竞争？"><a href="#什么是竞争条件？你怎样发现和解决竞争？" class="headerlink" title="什么是竞争条件？你怎样发现和解决竞争？"></a><strong>什么是竞争条件？你怎样发现和解决竞争？</strong></h1><p>当多个进程都企图对共享数据进行某种处理，而最后的结果又取决于进程运行的顺序时，则我们认为这发生了竞争条件（<code>race condition</code>）。</p>
+<h1 id="为什么我们调用-start-方法时会执行-run-方法，为什么我们不能直接调用-run-方法？"><a href="#为什么我们调用-start-方法时会执行-run-方法，为什么我们不能直接调用-run-方法？" class="headerlink" title="为什么我们调用 start()方法时会执行 run()方法，为什么我们不能直接调用 run()方法？"></a>为什么我们调用 start()方法时会执行 run()方法，为什么我们不能直接调用 run()方法？</h1><p>当你调用 start()方法时你将创建新的线程，并且执行在 run()方法里的代码。但是如果你直接调用 run()方法，它不会创建新的线程也不会执行调用线程的代码，只会把run 方法当作普通方法去执行。</p>
+<h1 id="Java-中你怎样唤醒一个阻塞的线程？"><a href="#Java-中你怎样唤醒一个阻塞的线程？" class="headerlink" title="Java 中你怎样唤醒一个阻塞的线程？"></a><strong>Java 中你怎样唤醒一个阻塞的线程？</strong></h1><p>在 Java 发展史上曾经使用 suspend()、resume()方法对于线程进行阻塞唤醒，但随之出现很多问题，比较典型的还是死锁问题。</p>
+<p>解决方案可以使用以对象为目标的阻塞，即利用 Object 类的 wait()和 notify()方法实现线程阻塞。</p>
+<p>首先，wait、notify 方法是针对对象的，调用任意对象的 wait()方法都将导致线程阻塞，阻塞的同时也将释放该对象的锁，相应地，调用任意对象的 notify()方法则将随机解除该对象阻塞的线程，但它需要重新获取改对象的锁，直到获取成功才能往下执行；其次，wait、notify方法必须在 synchronized块或方法中被调用，并且要保证同步块或方法的锁对象与调用 wait、notify方法的对象是同一个，如此一来在调用wait之前当前线程就已经成功获取某对象的锁，执行 wait 阻塞后当前线程就将之前获取的对象锁释放。</p>
+<h1 id="在-Java-中-CycliBarriar-和-CountdownLatch-有什么区别？"><a href="#在-Java-中-CycliBarriar-和-CountdownLatch-有什么区别？" class="headerlink" title="在 Java 中 CycliBarriar 和 CountdownLatch 有什么区别？"></a><strong>在 Java 中 CycliBarriar 和 CountdownLatch 有什么区别？</strong></h1><p>`CyclicBarrier 可以重复使用，而 CountdownLatch 不能重复使用。 </p>
+<p>Java 的 concurrent 包里面的 CountDownLatch 其实可以把它看作一个计数器，只不过这个计数器的操作是原子操作，同时只能有一个线程去操作这个计数器，也就是同时只能有一个线程去减这个计数器里面的值。</p>
+<p>可以向 CountDownLatch 对象设置一个初始的数字作为计数值，任何调用这个对象上的await()方法都会阻塞，直到这个计数器的计数值被其他的线程减为 0 为止。</p>
+<p>所以在当前计数到达零之前，await 方法会一直受阻塞。之后，会释放所有等待的线程，await的所有后续调用都将立即返回。这种现象只出现一次——计数无法被重置。如果需要重置计数，请考虑使用 CyclicBarrier。</p>
+<p>CountDownLatch 的一个非常典型的应用场景是：有一个任务想要往下执行，但必须要等到 其他的任务执行完毕后才可以继续往下执行。假如我们这个想要继续往下执行的任务调用一 个 CountDownLatch 对象的 await()方法，其他的任务执行完自己的任务后调用同一个 CountDownLatch 对象上的 countDown()方法，这个调用 await()方法的任务将一直阻塞等待，直到这个 CountDownLatch 对象的计数值减到 0 为止</p>
+<p>CyclicBarrier 一个同步辅助类，它允许一组线程互相等待，直到到达某个公共屏障点(common barrier point)。在涉及一组固定大小的线程的程序中，这些线程必须不时地互相等待，此时 CyclicBarrier 很有用。因为该 barrier 在释放等待线程后可以重用，所以称它为循环 的 barrier。</p>
+<h1 id="什么是不可变对象，它对写并发应用有什么帮助？"><a href="#什么是不可变对象，它对写并发应用有什么帮助？" class="headerlink" title="什么是不可变对象，它对写并发应用有什么帮助？"></a><strong>什么是不可变对象，它对写并发应用有什么帮助？</strong></h1><ol>
+<li>不可变对象(Immutable Objects)即对象一旦被创建它的状态（对象的数据，也即对象属性值） 就不能改变，反之即为可变对象(Mutable Objects)。</li>
+<li>不可变对象的类即为不可变类(Immutable Class)。Java 平台类库中包含许多不可变类，如String、基本类型的包装类、BigInteger 和 BigDecimal 等。</li>
+<li>不可变对象天生是线程安全的。它们的常量（域）是在构造函数中创建的。既然它们的状态无法修改，这些常量永远不会变</li>
+<li>不可变对象永远是线程安全的。</li>
+<li>只有满足如下状态，一个对象才是不可变的；</li>
+<li>它的状态不能在创建后再被修改；</li>
+<li>所有域都是 final 类型；并且，它被正确创建（创建期间没有发生 this 引用的逸出）。</li>
+</ol>
+<h1 id="什么是多线程中的上下文切换？-1"><a href="#什么是多线程中的上下文切换？-1" class="headerlink" title="什么是多线程中的上下文切换？"></a><strong>什么是多线程中的上下文切换？</strong></h1><p>在上下文切换过程中，CPU 会停止处理当前运行的程序，并保存当前程序运行的具体位置以便之后继续运行。从这个角度来看，上下文切换有点像我们同时阅读几本书，在来回切换书本的同时我们需要记住每本书当前读到的页码。在程序中，上下文切换过程中的“页码”信息是保存在进程控制块（PCB）中的。PCB 还经常被称作“切换桢”（switchframe）。“页码”信息会一直保存到 CPU 的内存中，直到他们被再次使用。</p>
+<p>上下文切换是存储和恢复 CPU 状态的过程，它使得线程执行能够从中断点恢复执行。上下文切换是多任务操作系统和多线程环境的基本特征。</p>
+<h1 id="Java-中用到的线程调度算法是什么？-1"><a href="#Java-中用到的线程调度算法是什么？-1" class="headerlink" title="Java 中用到的线程调度算法是什么？"></a><strong>Java 中用到的线程调度算法是什么？</strong></h1><p>计算机通常只有一个 CPU,在任意时刻只能执行一条机器指令,每个线程只有获得 CPU 的使用权才能执行指令.所谓多线程的并发运行,其实是指从宏观上看,各个线程轮流获得 CPU 的使用权,分别执行各自的任务.在运行池中,会有多个处于就绪状态的线程在等待 CPU,JAVA 虚拟机的一项任务就是负责线程的调度,线程调度是指按照特定机制为多个线程分配 CPU 的使用权.</p>
+<p>有两种调度模型：分时调度模型和抢占式调度模型。</p>
+<p>分时调度模型是指让所有的线程轮流获得 cpu 的使用权,并且平均分配每个线程占用的 CPU的时间片这个也比较好理解。</p>
+<p>java 虚拟机采用抢占式调度模型，是指优先让可运行池中优先级高的线程占用 CPU，如果可运行池中的线程优先级相同，那么就随机选择一个线程，使其占用 CPU。处于运行状态的线程会一直运行，直至它不得不放弃 CPU。</p>
+<h1 id="什么是线程组，为什么在-Java-中不推荐使用？-1"><a href="#什么是线程组，为什么在-Java-中不推荐使用？-1" class="headerlink" title="什么是线程组，为什么在 Java 中不推荐使用？"></a><strong>什么是线程组，为什么在 Java 中不推荐使用？</strong></h1><p>线程组和线程池是两个不同的概念，他们的作用完全不同，前者是为了方便线程的管理，后者是为了管理线程的生命周期，复用线程，减少创建销毁线程的开销。 </p>
+<h1 id="为什么使用-Executor-框架比使用应用创建和管理线程好？"><a href="#为什么使用-Executor-框架比使用应用创建和管理线程好？" class="headerlink" title="为什么使用 Executor 框架比使用应用创建和管理线程好？"></a><strong>为什么使用 Executor 框架比使用应用创建和管理线程好？</strong></h1><p>为什么要使用 Executor 线程池框架每次执行任务创建线程 new Thread()比较消耗性能，创建一个线程是比较耗时、耗资源的。调用 new Thread()创建的线程缺乏管理，被称为野线程，而且可以无限制的创建，线程之间的相互竞争会导致过多占用系统资源而导致系统瘫痪，还有线程之间的频繁交替也会消耗很多系统资源，直接使用 new Thread() 启动的线程不利于扩展，比如定时执行、定期执行、定时定期执行、线程中断等都不便实现。</p>
+<p><strong>使用 Executor 线程池框架的优点</strong>：</p>
+<ol>
+<li>能复用已存在并空闲的线程从而减少线程对象的创建从而减少了消亡线程的开销。 </li>
+<li>可有效控制最大并发线程数，提高系统资源使用率，同时避免过多资源竞争。 </li>
+<li>框架中已经有定时、定期、单线程、并发数控制等功能。 </li>
+<li>综上所述使用线程池框架 Executor 能更好的管理线程、提供系统资源使用率。</li>
+</ol>
+<h1 id="java-中有几种方法可以实现一个线程？"><a href="#java-中有几种方法可以实现一个线程？" class="headerlink" title="java 中有几种方法可以实现一个线程？"></a><strong>java 中有几种方法可以实现一个线程？</strong></h1><ol>
+<li>继承 Thread 类 </li>
+<li>实现 Runnable 接口 </li>
+<li>实现 Callable 接口，需要实现的是 call() 方法</li>
+</ol>
+<h1 id="如何停止一个正在运行的线程？"><a href="#如何停止一个正在运行的线程？" class="headerlink" title="如何停止一个正在运行的线程？"></a><strong>如何停止一个正在运行的线程？</strong></h1><h2 id="使用共享变量的方式"><a href="#使用共享变量的方式" class="headerlink" title="使用共享变量的方式"></a>使用共享变量的方式</h2><p>在这种方式中，之所以引入共享变量，是因为该变量可以被多个执行相同任务的线程用来作为是否中断的信号，通知中断线程的执行。</p>
+<h2 id="使用-interrupt-方法终止线程"><a href="#使用-interrupt-方法终止线程" class="headerlink" title="使用 interrupt 方法终止线程"></a>使用 interrupt 方法终止线程</h2><p>如果一个线程由于等待某些事件的发生而被阻塞，又该怎样停止该线程呢？这种情况经常会发生，比如当一个线程由于需要等候键盘输入而被阻塞，或者调用 Thread.join()方法，或者Thread.sleep() 方 法 ， 在网络中调用 ServerSocket.accept()方法 ， 或者调用了DatagramSocket.receive()方法时，都有可能导致线程阻塞，使线程处于处于不可运行状态时，即使主程序中将该线程的共享变量设置为 true，但该线程此时根本无法检查循环标志，当然也就无法立即中断。这里我们给出的建议是，不要使用 stop()方法，而是使用 Thread 提供的interrupt()方法，因为该方法虽然不会中断一个正在运行的线程，但是它可以使一个被阻塞的线程抛出一个中断异常，从而使线程提前结束阻塞状态，退出堵塞代码。 </p>
+<h1 id="notify-和-notifyAll-有什么区别？"><a href="#notify-和-notifyAll-有什么区别？" class="headerlink" title="notify()和 notifyAll()有什么区别？"></a><strong>notify()和 notifyAll()有什么区别？</strong></h1><p>当一个线程进入 wait 之后，就必须等其他线程 notify/notifyall,使用 notifyall,可以唤醒所有处于 wait 状态的线程，使其重新进入锁的争夺队列中，而 notify 只能唤醒一个。如果没把握，建议 notifyAll，防止 notigy 因为信号丢失而造成程序异常。</p>
+<h1 id="什么是-Daemon-线程？它有什么意义？"><a href="#什么是-Daemon-线程？它有什么意义？" class="headerlink" title="什么是 Daemon 线程？它有什么意义？"></a><strong>什么是 Daemon 线程？它有什么意义？</strong></h1><p>所谓后台(daemon)线程，是指在程序运行的时候在后台提供一种通用服务的线程，并且这个线程并不属于程序中不可或缺的部分。因此，当所有的非后台线程结束时，程序也就终止了，同时会杀死进程中的所有后台线程。</p>
+<p>反过来说， 只要有任何非后台线程还在运行，程序就不会终止。必须在线程启动之前调用setDaemon()方法，才能把它设置为后台线程。注意：后台进程在不执行 finally 子句的情况下就会终止其 run()方法。</p>
+<p>比如：JVM 的垃圾回收线程就是 Daemon 线程，Finalizer 也是守护线程。</p>
+<h1 id="当一个线程进入某个对象的一个-synchronized-的实例方法后，其它线程是否可进入此对象的其它方法？"><a href="#当一个线程进入某个对象的一个-synchronized-的实例方法后，其它线程是否可进入此对象的其它方法？" class="headerlink" title="当一个线程进入某个对象的一个 synchronized 的实例方法后，其它线程是否可进入此对象的其它方法？"></a>当一个线程进入某个对象的一个 synchronized 的实例方法后，其它线程是否可进入此对象的其它方法？</h1><p>如果其他方法没有 synchronized 的话，其他线程是可以进入的。所以要开放一个线程安全的对象时，得保证每个方法都是线程安全的。</p>
+<h1 id="乐观锁和悲观锁的理解及如何实现，有哪些实现方式？"><a href="#乐观锁和悲观锁的理解及如何实现，有哪些实现方式？" class="headerlink" title="乐观锁和悲观锁的理解及如何实现，有哪些实现方式？"></a><strong>乐观锁和悲观锁的理解及如何实现，有哪些实现方式？</strong></h1><p><strong>悲观锁</strong>：总是假设最坏的情况，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会阻塞直到它拿到锁。传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。再比如 Java 里面的同步原语 synchronized 关键字的实现也是悲观锁。</p>
+<p><strong>乐观锁</strong>：顾名思义，就是很乐观，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号等机制。乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库提供的类似于write_condition 机制，其实都是提供的乐观锁。在 Java 中 java.util.concurrent.atomic 包下面的原子变量类就是使用了乐观锁的一种实现方式 CAS 实现的。 </p>
+<blockquote>
+<p><strong>乐观锁的实现方式</strong>：使用版本标识来确定读到的数据与提交时的数据是否一致。提交后修改版本标识，不一致时可以采取丢弃和再次尝试的策略。</p>
+</blockquote>
+<blockquote>
+<p><strong>CAS 缺点</strong>： java 中的 Compare and Swap 即 CAS ，当多个线程尝试使用 CAS 同时更新同一个变量时，只有其中一个线程能更新变量的值，而其它线程都失败，失败的线程并不会被挂起，而是被告知这次竞争中失败，并可以再次尝试。 CAS 操作中包含三个操作数 —— 需要读写的内存位置（V）、进行比较的预期原值（A）和拟写入的新值(B)。如果内存位置 V 的值与预期原值 A 相匹配，那么处理器会自动将该位置值更新为新值 B。否则处理器不做任何操作。</p>
+</blockquote>
+<blockquote>
+<p><strong>ABA 问题</strong>：比如说一个线程 one 从内存位置 V 中取出 A，这时候另一个线程 two 也从内存中取出 A，并且 two 进行了一些操作变成了 B，然后 two 又将 V 位置的数据变成 A，这时候线程 one 进行CAS 操作发现内存中仍然是 A，然后 one 操作成功。尽管线程 one 的 CAS 操作成功，但可能存在潜藏的问题。从 Java1.5 开始 JDK 的 atomic 包里提供了一个类 AtomicStampedReference来解决 ABA 问题。</p>
+</blockquote>
+<blockquote>
+<p><strong>循环时间长开销大</strong>：对于资源竞争严重（线程冲突严重）的情况，CAS 自旋的概率会比较大，从而浪费更多的CPU 资源，效率低于 synchronized。</p>
+</blockquote>
+<blockquote>
+<p><strong>只能保证一个共享变量的原子操作</strong>：当对一个共享变量执行操作时，我们可以使用循环 CAS 的方式来保证原子操作，但是对多个共享变量操作时，循环 CAS 就无法保证操作的原子性，这个时候就可以用锁。</p>
+</blockquote>
+<h1 id="SynchronizedMap-和-ConcurrentHashMap-有什么区别？"><a href="#SynchronizedMap-和-ConcurrentHashMap-有什么区别？" class="headerlink" title="SynchronizedMap 和 ConcurrentHashMap 有什么区别？"></a><strong>SynchronizedMap 和 ConcurrentHashMap 有什么区别？</strong></h1><p>`SynchronizedMap 一次锁住整张表来保证线程安全，所以每次只能有一个线程来访为 map。</p>
+<p>ConcurrentHashMap 使用分段锁来保证在多线程下的性能。ConcurrentHashMap 中则是一次锁住一个桶。ConcurrentHashMap 默认将 hash 表分为 16 个桶，诸如 get,put,remove 等常用操作只锁当前需要用到的桶。这样，原来只能一个线程进入，现在却能同时有 16 个写线程执行，并发性能的提升是显而易见的。</p>
+<p>另外 ConcurrentHashMap 使用了一种不同的迭代方式。在这种迭代方式中，当 iterator 被创建后集合再发生改变就不再是抛出 ConcurrentModificationException，取而代之的是在改变时new 新的数据从而不影响原有的数据 ，iterator 完成后再将头指针替换为新的数据 ，这样 iterator 线程可以使用原来老的数据，而写线程也可以并发的完成改变。</p>
+<h1 id="CopyOnWriteArrayList-可以用于什么应用场景？"><a href="#CopyOnWriteArrayList-可以用于什么应用场景？" class="headerlink" title="CopyOnWriteArrayList 可以用于什么应用场景？"></a><strong>CopyOnWriteArrayList 可以用于什么应用场景？</strong></h1><p>`CopyOnWriteArrayList(免锁容器)的好处之一是当多个迭代器同时遍历和修改这个列表时，不会抛出 ConcurrentModificationException。在 CopyOnWriteArrayList 中，写入将导致创建整个底层数组的副本，而源数组将保留在原地，使得复制的数组在被修改时，读取操作可以安全地执行。</p>
+<p>由于写操作的时候，需要拷贝数组，会消耗内存，如果原数组的内容比较多的情况下，可能导致 young gc 或者 full gc；</p>
+<p>不能用于实时读的场景，像拷贝数组、新增元素都需要时间，所以调用一个 set 操作后，读取到数据可能还是旧的,虽然 CopyOnWriteArrayList 能做到最终一致性,但是还是没法满足实时性要求； </p>
+<blockquote>
+<p><strong>CopyOnWriteArrayList 透露的思想</strong> ：</p>
+<ol>
+<li>读写分离，读和写分开 </li>
+<li>最终一致性 </li>
+<li>使用另外开辟空间的思路，来解决并发冲突</li>
+</ol>
+</blockquote>
+<h1 id="什么叫线程安全？servlet-是线程安全吗"><a href="#什么叫线程安全？servlet-是线程安全吗" class="headerlink" title="什么叫线程安全？servlet 是线程安全吗?"></a><strong>什么叫线程安全？servlet 是线程安全吗?</strong></h1><p>线程安全是编程中的术语，指某个函数、函数库在多线程环境中被调用时，能够正确地处理多个线程之间的共享变量，使程序功能正确完成。</p>
+<p>Servlet 不是线程安全的，servlet 是单实例多线程的，当多个线程同时访问同一个方法，是不能保证共享变量的线程安全性的。</p>
+<p>Struts2 的 action 是多实例多线程的，是线程安全的，每个请求过来都会 new 一个新的 action分配给这个请求，请求完成后销毁。</p>
+<p>SpringMVC 的 Controller 是线程安全的吗？不是的，和 Servlet 类似的处理流程Struts2 好处是不用考虑线程安全问题；Servlet 和 SpringMVC 需要考虑线程安全问题，但是性能可以提升不用处理太多的 gc，可以使用 ThreadLocal 来处理多线程的问题。</p>
+<h1 id="volatile-有什么用？能否用一句话说明下-volatile-的应用场景？"><a href="#volatile-有什么用？能否用一句话说明下-volatile-的应用场景？" class="headerlink" title="volatile 有什么用？能否用一句话说明下 volatile 的应用场景？"></a><strong>volatile 有什么用？能否用一句话说明下 volatile 的应用场</strong>景？</h1><p>volatile 保证内存可见性和禁止指令重排。volatile 用于多线程环境下的单次操作(单次读或者单次写)。</p>
+<h1 id="为什么代码会重排序？"><a href="#为什么代码会重排序？" class="headerlink" title="为什么代码会重排序？"></a><strong>为什么代码会重排序？</strong></h1><p>在执行程序时，为了提供性能，处理器和编译器常常会对指令进行重排序，但是不能随意重排序，不是你想怎么排序就怎么排序，它需要满足以下两个条件：</p>
+<ol>
+<li>在单线程环境下不能改变程序运行的结果； </li>
+<li>存在数据依赖关系的不允许重排序需要注意的是：重排序不会影响单线程环境的执行结果，但是会破坏多线程的执行语义。</li>
+</ol>
+<h1 id="一个线程运行时发生异常会怎样？"><a href="#一个线程运行时发生异常会怎样？" class="headerlink" title="一个线程运行时发生异常会怎样？"></a><strong>一个线程运行时发生异常会怎样？</strong></h1><p>如果异常没有被捕获该线程将会停止执行。Thread.UncaughtExceptionHandler 是用于处理未捕获异常造成线程突然中断情况的一个内嵌接口。当一个未捕获异常将造成线程中断的时候JVM 会使用 Thread.getUncaughtExceptionHandler()来查询线程的 UncaughtExceptionHandler并将线程和异常作为参数传递给 handler 的 uncaughtException()方法进行处理。</p>
+<h1 id="如何在两个线程间共享数据？"><a href="#如何在两个线程间共享数据？" class="headerlink" title="如何在两个线程间共享数据？"></a><strong>如何在两个线程间共享数据？</strong></h1><p>在两个线程间共享变量即可实现共享。一般来说，共享变量要求变量本身是线程安全的，然后在线程内使用的时候，如果有对共享变量的复合操作，那么也得保证复合操作的线程安全性。</p>
+<h1 id="为什么-wait-notify-和-notifyAll-这些方法不在-thread-类里面？"><a href="#为什么-wait-notify-和-notifyAll-这些方法不在-thread-类里面？" class="headerlink" title="为什么 wait, notify 和 notifyAll 这些方法不在 thread 类里面？"></a>为什么 wait, notify 和 notifyAll 这些方法不在 thread 类里面？</h1><p>一个很明显的原因是 JAVA 提供的锁是对象级的而不是线程级的，每个对象都有锁，通过线程获得。由于 wait，notify 和 notifyAll 都是锁级别的操作，所以把他们定义在 Object 类中因为锁属于对象。</p>
+<h1 id="什么是-ThreadLocal-变量？"><a href="#什么是-ThreadLocal-变量？" class="headerlink" title="什么是 ThreadLocal 变量？"></a><strong>什么是 ThreadLocal 变量？</strong></h1><p>`ThreadLocal 是 Java 里一种特殊的变量。每个线程都有一个 ThreadLocal 就是每个线程都拥有了自己独立的一个变量，竞争条件被彻底消除了。它是为创建代价高昂的对象获取线程安全的好方法，比如你可以用 ThreadLocal 让 SimpleDateFormat 变成线程安全的，因为那个类创建代价高昂且每次调用都需要创建不同的实例所以不值得在局部范围使用它，如果为每个线程提供一个自己独有的变量拷贝，将大大提高效率。首先，通过复用减少了代价高昂的对象的创建个数。其次，你在没有使用高代价的同步或者不变性的情况下获得了线程安全。</p>
+<h1 id="Java-中-interrupted-和-isInterrupted-方法的区别？"><a href="#Java-中-interrupted-和-isInterrupted-方法的区别？" class="headerlink" title="Java 中 interrupted 和 isInterrupted 方法的区别？"></a><strong>Java 中 interrupted 和 isInterrupted 方法的区别？</strong></h1><h2 id="interrupt"><a href="#interrupt" class="headerlink" title="interrupt"></a>interrupt</h2><p>interrupt 方法用于中断线程。调用该方法的线程的状态为将被置为”中断”状态。注意：线程中断仅仅是置线程的中断状态位，不会停止线程。需要用户自己去监视线程的状态为并做处理。支持线程中断的方法（也就是线程中断后会抛出 interruptedException 的方法）就是在监视线程的中断状态，一旦线程的中断状态被置为“中断状态”，就会抛出中断异常。</p>
+<h2 id="interrupted"><a href="#interrupted" class="headerlink" title="interrupted"></a>interrupted</h2><p>查询当前线程的中断状态，并且清除原状态。如果一个线程被中断了，第一次调用 <code>interrupted</code>则返回 <code>true</code>，第二次和后面的就返回 <code>false</code> 了。</p>
+<h2 id="isInterrupted"><a href="#isInterrupted" class="headerlink" title="isInterrupted"></a>isInterrupted</h2><p>仅仅是查询当前线程的中断状态</p>
+<h1 id="为什么-wait-和-notify-方法要在同步块中调用？"><a href="#为什么-wait-和-notify-方法要在同步块中调用？" class="headerlink" title="为什么 wait 和 notify 方法要在同步块中调用？"></a><strong>为什么 wait 和 notify 方法要在同步块中调用？</strong></h1><p>`Java API 强制要求这样做，如果你不这么做，你的代码会抛出 IllegalMonitorStateException 异常。还有一个原因是为了避免 wait 和 notify 之间产生竞态条件。</p>
+<h1 id="为什么你应该在循环中检查等待条件"><a href="#为什么你应该在循环中检查等待条件" class="headerlink" title="为什么你应该在循环中检查等待条件?"></a><strong>为什么你应该在循环中检查等待条件?</strong></h1><p>处于等待状态的线程可能会收到错误警报和伪唤醒，如果不在循环中检查等待条件，程序就会在没有满足结束条件的情况下退出。</p>
+<h1 id="Java-中的同步集合与并发集合有什么区别？"><a href="#Java-中的同步集合与并发集合有什么区别？" class="headerlink" title="Java 中的同步集合与并发集合有什么区别？"></a><strong>Java 中的同步集合与并发集合有什么区别？</strong></h1><p>同步集合与并发集合都为多线程和并发提供了合适的线程安全的集合，不过并发集合的可扩展性更高。在 Java1.5 之前程序员们只有同步集合来用且在多线程并发的时候会导致争用，阻碍了系统的扩展性。Java5 介绍了并发集合像 ConcurrentHashMap，不仅提供线程安全还用锁分离和内部分区等现代技术提高了可扩展性。</p>
+<h1 id="什么是线程池？"><a href="#什么是线程池？" class="headerlink" title="什么是线程池？"></a><strong>什么是线程池？</strong></h1><p>线程池是一种多线程处理形式，处理过程中将任务提交到线程池，任务的执行交由线程池来管理。如果每个请求都创建一个线程去处理，那么服务器的资源很快就会被耗尽，使用线程池可以减少创建和销毁线程的次数，每个工作线程都可以被重复利用，可执行多个任务。</p>
+<h1 id="为什么要使用线程池？"><a href="#为什么要使用线程池？" class="headerlink" title="为什么要使用线程池？"></a><strong>为什么要使用线程池？</strong></h1><p>创建线程和销毁线程的花销是比较大的，这些时间有可能比处理业务的时间还要长。这样频繁的创建线程和销毁线程，再加上业务工作线程，消耗系统资源的时间，可能导致系统资源不足。（我们可以把创建和销毁的线程的过程去掉）</p>
+<h1 id="线程池有什么作用？"><a href="#线程池有什么作用？" class="headerlink" title="线程池有什么作用？"></a>线程池有什么作用？</h1><p>线程池作用就是限制系统中执行线程的数量。 </p>
+<ol>
+<li>提高效率 创建好一定数量的线程放在池中，等需要使用的时候就从池中拿一个，这要比需要的时候创建一个线程对象要快的多。 </li>
+<li>方便管理 可以编写线程池管理代码对池中的线程同一进行管理，比如说启动时有该程序创建 100 个线程，每当有请求的时候，就分配一个线程去工作，如果刚好并发有 101 个请求，那多出的这一个请求可以排队等候，避免因无休止的创建线程导致系统崩溃。</li>
+</ol>
+<h1 id="说说几种常见的线程池及使用场景"><a href="#说说几种常见的线程池及使用场景" class="headerlink" title="说说几种常见的线程池及使用场景"></a><strong>说说几种常见的线程池及使用场景</strong></h1><ol>
+<li>newSingleThreadExecutor：创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。</li>
+<li>newFixedThreadPool：创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。</li>
+<li>newCachedThreadPool：创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。</li>
+<li>newScheduledThreadPool：创建一个定长线程池，支持定时及周期性任务执行。</li>
+</ol>
+<h1 id="线程池中的几种重要的参数"><a href="#线程池中的几种重要的参数" class="headerlink" title="线程池中的几种重要的参数"></a><strong>线程池中的几种重要的参数</strong></h1><ol>
+<li>corePoolSize 就是线程池中的核心线程数量，这几个核心线程，只是在没有用的时候，也不会被回收</li>
+<li>maximumPoolSize 就是线程池中可以容纳的最大线程的数量</li>
+<li>keepAliveTime，就是线程池中除了核心线程之外的其他的最长可以保留的时间，因为在线程池中 ， 除了核心线程即使在无任务的情况下也不能被清除，其余的都是有存活时间的，意思就是非核心线程可以保留的最长的空闲时间</li>
+<li>util，就是计算这个时间的一个单位。</li>
+<li>workQueue，就是等待队列，任务可以储存在任务队列中等待被执行，执行的是 FIFIO 原则（先进先出）。</li>
+<li>threadFactory，就是创建线程的线程工厂。</li>
+<li>handler,是一种拒绝策略，我们可以在任务满了之后，拒绝执行某些任务。</li>
+</ol>
+<h1 id="说说线程池的拒绝策略"><a href="#说说线程池的拒绝策略" class="headerlink" title="说说线程池的拒绝策略"></a><strong>说说线程池的拒绝策略</strong></h1><p>当请求任务不断的过来，而系统此时又处理不过来的时候，我们需要采取的策略是拒绝服务。RejectedExecutionHandler 接口提供了拒绝任务处理的自定义方法的机会。在ThreadPoolExecutor 中已经包含四种处理策略。</p>
+<ol>
+<li>AbortPolicy 策略：该策略会直接抛出异常，阻止系统正常工作。</li>
+<li>CallerRunsPolicy 策略：只要线程池未关闭，该策略直接在调用者线程中，运行当前的被丢弃的任务。</li>
+<li>DiscardOleddestPolicy 策略： 该策略将丢弃最老的一个请求，也就是即将被执行的任务，并尝试再次提交当前任务。</li>
+<li>DiscardPolicy 策略：该策略默默的丢弃无法处理的任务，不予任何处理。 </li>
+</ol>
+<p>除了 JDK 默认提供的四种拒绝策略，我们可以根据自己的业务需求去自定义拒绝策略，自定义的方式很简单，直接实现 RejectedExecutionHandler 接口即可。</p>
+<h1 id="线程池都有哪几种工作队列"><a href="#线程池都有哪几种工作队列" class="headerlink" title="线程池都有哪几种工作队列"></a><strong>线程池都有哪几种工作队列</strong></h1><ol>
+<li>ArrayBlockingQueue：是一个基于数组结构的有界阻塞队列，此队列按 FIFO（先进先出）原则对元素进行排序。</li>
+<li>LinkedBlockingQueue：一个基于链表结构的阻塞队列，此队列按 FIFO （先进先出） 排序元素，吞吐量通常要高于 ArrayBlockingQueue。静态工厂方法 Executors.newFixedThreadPool()使用了这个队列</li>
+<li>SynchronousQueue：一个不存储元素的阻塞队列。每个插入操作必须等到另一个线程调用移除操作，否则插入操作一直处于阻塞状态 ，吞吐量 通常要高于 LinkedBlockingQueue ， 静态工厂方法Executors.newCachedThreadPool 使用了这个队列。 </li>
+<li>PriorityBlockingQueue：一个具有优先级的无限阻塞队列。</li>
+</ol>
+<h1 id="怎么检测一个线程是否拥有锁？"><a href="#怎么检测一个线程是否拥有锁？" class="headerlink" title="怎么检测一个线程是否拥有锁？"></a><strong>怎么检测一个线程是否拥有锁？</strong></h1><p>在 java.lang.Thread 中有一个方法叫 holdsLock()，它返回 true 如果当且仅当当前线程拥有某个具体对象的锁。</p>
+<h1 id="Thread-类中的-yield-方法有什么作用？"><a href="#Thread-类中的-yield-方法有什么作用？" class="headerlink" title="Thread 类中的 yield 方法有什么作用？"></a><strong>Thread 类中的 yield 方法有什么作用？</strong></h1><p>使当前线程从执行状态（运行状态）变为可执行态（就绪状态）。当前线程到了就绪状态，那么接下来哪个线程会从就绪状态变成执行状态呢？可能是当前线程，也可能是其他线程，看系统的分配了。 </p>
+<h1 id="Java-中-ConcurrentHashMap-的并发度是什么？"><a href="#Java-中-ConcurrentHashMap-的并发度是什么？" class="headerlink" title="Java 中 ConcurrentHashMap 的并发度是什么？"></a><strong>Java 中 ConcurrentHashMap 的并发度是什么？</strong></h1><p>`ConcurrentHashMap 把实际 map 划分成若干部分来实现它的可扩展性和线程安全。这种划分是使用并发度获得的，它是 ConcurrentHashMap 类构造函数的一个可选参数，默认值为 16，这样在多线程情况下就能避免争用。</p>
+<p>在 JDK8 后，它摒弃了 Segment（锁段）的概念，而是启用了一种全新的方式实现,利用 CAS算法。同时加入了更多的辅助变量来提高并发度，具体内容还是查看源码吧。</p>
+<h1 id="Java-中-Semaphore-是什么？"><a href="#Java-中-Semaphore-是什么？" class="headerlink" title="Java 中 Semaphore 是什么？"></a><strong>Java 中 Semaphore 是什么？</strong></h1><p>Java 中的 Semaphore 是一种新的同步类，它是一个计数信号。从概念上讲，从概念上讲，信号量维护了一个许可集合。如有必要，在许可可用前会阻塞每一个 acquire()，然后再获取该许可。每个 release()添加一个许可，从而可能释放一个正在阻塞的获取者。但是，不使用实际的许可对象，Semaphore 只对可用许可的号码进行计数，并采取相应的行动。信号量常常用于多线程的代码中，比如数据库连接池。</p>
+<h1 id="Java-线程池中-submit-和-execute-方法有什么区别？"><a href="#Java-线程池中-submit-和-execute-方法有什么区别？" class="headerlink" title="Java 线程池中 submit() 和 execute()方法有什么区别？"></a><strong>Java 线程池中 submit() 和 execute()方法有什么区别？</strong></h1><p>两个方法都可以向线程池提交任务，execute()方法的返回类型是 void，它定义在 Executor 接口中。</p>
+<p>而 submit()方法可以返回持有计算结果的 Future 对象，它定义在 ExecutorService 接口中，它扩展了 Executor 接口，其它线程池类像 ThreadPoolExecutor 和 ScheduledThreadPoolExecutor都有这些方法。</p>
+<h1 id="什么是阻塞式方法？"><a href="#什么是阻塞式方法？" class="headerlink" title="什么是阻塞式方法？"></a><strong>什么是阻塞式方法？</strong></h1><p>阻塞式方法是指程序会一直等待该方法完成期间不做其他事情，ServerSocket 的 accept()方法就是一直等待客户端连接。这里的阻塞是指调用结果返回之前，当前线程会被挂起，直到得到结果之后才会返回。此外，还有异步和非阻塞式方法在任务完成前就返回。</p>
+<h1 id="volatile-变量和-atomic-变量有什么不同？"><a href="#volatile-变量和-atomic-变量有什么不同？" class="headerlink" title="volatile 变量和 atomic 变量有什么不同？"></a><strong>volatile 变量和 atomic 变量有什么不同？</strong></h1><p>`Volatile 变量可以确保先行关系，即写操作会发生在后续的读操作之前, 但它并不能保证原子性。例如用 volatile 修饰 count 变量那么 count++ 操作就不是原子性的。</p>
+<p>而 AtomicInteger 类提供的 atomic 方法可以让这种操作具有原子性如 getAndIncrement()方法会原子性的进行增量操作把当前值加一，其它数据类型和引用变量也可以进行相似操作。</p>
+<h1 id="你对线程优先级的理解是什么？"><a href="#你对线程优先级的理解是什么？" class="headerlink" title="你对线程优先级的理解是什么？"></a><strong>你对线程优先级的理解是什么？</strong></h1><p>每一个线程都是有优先级的，一般来说，高优先级的线程在运行时会具有优先权，但这依赖于线程调度的实现，这个实现是和操作系统相关的(OS dependent)。我们可以定义线程的优先级，但是这并不能保证高优先级的线程会在低优先级的线程前执行。线程优先级是一个 int变量(从 1-10)，1 代表最低优先级，10 代表最高优先级。</p>
+<p>java 的线程优先级调度会委托给操作系统去处理，所以与具体的操作系统优先级有关，如非特别需要，一般无需设置线程优先级。</p>
 ]]></content>
       <tags>
         <tag>Java</tag>
-        <tag>简历</tag>
+        <tag>面试题</tag>
       </tags>
   </entry>
   <entry>
@@ -2092,6 +1527,671 @@
       </tags>
   </entry>
   <entry>
+    <title>简历指导【非常重要】</title>
+    <url>/2021/09/18/2/</url>
+    <content><![CDATA[<h1 id="就业阶段工作流程"><a href="#就业阶段工作流程" class="headerlink" title="就业阶段工作流程"></a>就业阶段工作流程</h1><p>简历→面试→入职→试用期→转正</p>
+<p>简历的重要性： </p>
+<ul>
+<li>没有简历就没有面试 </li>
+<li>简历的质量决定面试的数量</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="写简历的心法"><a href="#写简历的心法" class="headerlink" title="写简历的心法"></a>写简历的心法</h1><p>一个字：猛！</p>
+<p>整个简历<span style="color:red"><strong>充满</strong></span><span style="color:blue"><strong>有技术含量</strong></span>的技术点！给人一种厚重感！让 HR“不明觉厉”！</p>
+<p>例:</p>
+<ul>
+<li>熟悉 Java 的 8 大基本数据类型 </li>
+<li>熟悉 Java 的类加载机制、垃圾回收机制、内存管理模型</li>
+</ul>
+<p>友情提示：简历和复习的关系</p>
+<ul>
+<li>正确的顺序是：先把简历写好，然后按照简历复习 </li>
+<li>错误的顺序是：写简历的时候按现在“会”的写</li>
+</ul>
+<h1 id="写简历的注意事项"><a href="#写简历的注意事项" class="headerlink" title="写简历的注意事项"></a>写简历的注意事项</h1><p>不要复制粘贴，要自己写 </p>
+<p>不要有技术性错误：硬伤 </p>
+<p>注意技术英文名称大小写</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Java、JavaSE、JavaScript、jQuery、zTree、MyBatis、Spring、SpringMVC、SpringBoot、SpringCloud……</span><br></pre></td></tr></table></figure>
+
+<h1 id="简历的结构"><a href="#简历的结构" class="headerlink" title="简历的结构"></a>简历的结构</h1><ul>
+<li>个人信息：就业老师</li>
+<li>自我评价：就业老师</li>
+<li>技能清单：尽可能全面的覆盖学过的内容<ul>
+<li>取：捡有技术含量的写</li>
+<li>舍：看上去很水的就不写了</li>
+</ul>
+</li>
+<li>项目经验：把我们学习过程中项目里用到的技术点都体现出来</li>
+</ul>
+<h1 id="技能清单"><a href="#技能清单" class="headerlink" title="技能清单"></a>技能清单</h1><h2 id="形式"><a href="#形式" class="headerlink" title="形式"></a>形式</h2><p>为了尽量避免简历雷同，建议大家使用不同形式。当然也可以自定义</p>
+<h3 id="序号清单式"><a href="#序号清单式" class="headerlink" title="序号清单式"></a>序号清单式</h3><p>有序列表、无序列表都可以</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、xxx </span><br><span class="line">2、xxx </span><br><span class="line">3、xxx</span><br></pre></td></tr></table></figure>
+
+<h3 id="按技术类比划分"><a href="#按技术类比划分" class="headerlink" title="按技术类比划分"></a>按技术类比划分</h3><h4 id="原生-Java-技术"><a href="#原生-Java-技术" class="headerlink" title="原生 Java 技术"></a>原生 Java 技术</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">字符串处理、泛型、枚举、注解、IO、多线程、反射、JVM 垃圾回收机制、JVM 类加载机……</span><br></pre></td></tr></table></figure>
+
+<h4 id="Java-框架"><a href="#Java-框架" class="headerlink" title="Java 框架"></a>Java 框架</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MyBatis、Spring、SpringMVC、SpringBoot、SpringCloud、Dubbo、SpringSession、Spring Data Jpa……</span><br></pre></td></tr></table></figure>
+
+<h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MySQL、关联查询、子查询、分组查询、聚合函数、索引优化、explain 分析、分区、分表、分库……</span><br></pre></td></tr></table></figure>
+
+<h4 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Redis、ElasticSearch、FastDFS、ActiveMQ、Zookeeper、Nginx……</span><br></pre></td></tr></table></figure>
+
+<h4 id="视图模板技术"><a href="#视图模板技术" class="headerlink" title="视图模板技术"></a>视图模板技术</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">JSP、Thymeleaf、Beetl、Mustache</span><br></pre></td></tr></table></figure>
+
+<h4 id="第三方接口"><a href="#第三方接口" class="headerlink" title="第三方接口"></a>第三方接口</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">短信验证、蚂蚁金服、阿里云 OSS 对象存储服务、高德地图定位……</span><br></pre></td></tr></table></figure>
+
+<h4 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HTML、CSS、JavaScript、jQuery、Vue、TypeScript、CoffeeScript、React、Angular、Preact、Ember、Alita、Redux、Recoil……</span><br></pre></td></tr></table></figure>
+
+<h4 id="开发与部署"><a href="#开发与部署" class="headerlink" title="开发与部署"></a>开发与部署</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Maven、SVN、Git/GitHub/Gitee、Docker……</span><br></pre></td></tr></table></figure>
+
+<h4 id="编程思想"><a href="#编程思想" class="headerlink" title="编程思想"></a>编程思想</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">面向对象、面向接口、面向切面、高内聚/低耦合……</span><br></pre></td></tr></table></figure>
+
+<h4 id="架构思想"><a href="#架构思想" class="headerlink" title="架构思想"></a>架构思想</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">单一架构、垂直拆分、水平拆分、分布式架构、SOA、微服务……</span><br></pre></td></tr></table></figure>
+
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><h3 id="JavaSE"><a href="#JavaSE" class="headerlink" title="JavaSE"></a>JavaSE</h3><ul>
+<li><p>集合</p>
+<ul>
+<li>操作：熟练使用各种常见集合类</li>
+<li>理论：熟悉 JDK 提供集合框架 </li>
+<li>理论：常用集合类的底层原理<ul>
+<li>ArrayList 底层是数组 </li>
+<li>HashSet 底层是 HashMap，HashSet 把元素存入了一个 HashMap 的 Key</li>
+<li>HashMap 底层是数组加链表（链表长度增加到一定程度会变成红黑树）（链表长度通常在 8 的时候变树，但是极限是 10）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>枚举、注解</p>
+</li>
+<li><p>泛型</p>
+<ul>
+<li>熟练在类、接口、方法上<strong>声明</strong>泛型 </li>
+<li>在创建对象、调用方法等场景下<strong>使用</strong>泛型 </li>
+<li>在泛型中熟练使用通配符（根据自己情况决定是否写） </li>
+<li>泛型结合反射获取子类继承父类时传入的泛型（根据自己情况决定是否写）</li>
+</ul>
+</li>
+<li><p>IO</p>
+</li>
+<li><p>多线程</p>
+<ul>
+<li>线程的生命周期 </li>
+<li>线程的同步</li>
+<li>线程间通信 </li>
+<li>ThreadLocal </li>
+<li>线程池 </li>
+<li>线程的创建方式 <ul>
+<li>继承 Thead 类</li>
+<li>实现 Runnable 接口</li>
+<li>使用 Callable 接口借助 FutureTask</li>
+<li>线程池</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>反射</p>
+<ul>
+<li>获取 Class 对象 </li>
+<li>获取 Method 对象 </li>
+<li>获取 Filed 对象 </li>
+<li>获取 Constructor 对象 </li>
+<li>通过反射创建对象 </li>
+</ul>
+</li>
+<li><p>Java8 新特性</p>
+<ul>
+<li>Lambda 表达式</li>
+</ul>
+</li>
+</ul>
+<h3 id="接口里的默认方法和静态方法"><a href="#接口里的默认方法和静态方法" class="headerlink" title="接口里的默认方法和静态方法"></a>接口里的默认方法和静态方法</h3><ul>
+<li>关联查询 </li>
+<li>分组查询 </li>
+<li>聚合函数 </li>
+<li>子查询 </li>
+<li>数据库事务 <ul>
+<li>ACID<ul>
+<li>原子性：一个事务中的操作缺一不可</li>
+<li>一致性：事务执行前数据是对的，事务执行后数据还必须是对的</li>
+<li>隔离性：能够并发执行多个事务</li>
+<li>持久性：一个事务提交后永久保存到数据库</li>
+</ul>
+</li>
+<li>并发问题<ul>
+<li>脏读</li>
+<li>不可重复读</li>
+<li>幻读</li>
+</ul>
+</li>
+<li>隔离级别<ul>
+<li>读未提交</li>
+<li>读已提交</li>
+<li>可重复读</li>
+<li>串行化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="JDBC（写简历时从理论高度来看）"><a href="#JDBC（写简历时从理论高度来看）" class="headerlink" title="JDBC（写简历时从理论高度来看）"></a>JDBC（写简历时从理论高度来看）</h3><ul>
+<li>Java 程序访问具体数据库实现的统一标准 </li>
+<li>面向接口编程的一种体现</li>
+</ul>
+<h3 id="JavaWeb（写简历时从理论高度来看）"><a href="#JavaWeb（写简历时从理论高度来看）" class="headerlink" title="JavaWeb（写简历时从理论高度来看）"></a>JavaWeb（写简历时从理论高度来看）</h3><ul>
+<li>有了 Servlet 标准，使用各种不同 Servlet 容器不需要修改上层代码</li>
+<li>有了 Servlet 标准，使用各种不同 Servlet 容器不需要修改上层代码<ul>
+<li>浏览器→HTTP→后端 Java 程序</li>
+<li>consumer→HTTP→provider</li>
+<li>移动端程序→HTTP→后端 Java 程序</li>
+</ul>
+</li>
+<li>JSON 格式：不同平台之间传输数据的统一格式</li>
+<li>Servlet、Filter、Listener 构成项目架构体系底层的基石，能够基于这三大组件搭建框架整合开发的环境</li>
+<li>使用请求域、会话域、应用域解决 Web 项目中数据临时存储问题</li>
+<li>使用会话控制机制，借助 Cookie、Session 保持用户会话状态</li>
+</ul>
+<h3 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h3><ul>
+<li>熟悉 mybatis-config.xml 全局配置文件中的配置</li>
+<li>熟悉 MyBatis 的映射配置文件的配置（XxxMapper.xml）</li>
+<li>熟悉 MyBatis 映射文件中动态 SQL 标签的配置</li>
+<li>能够使用 resultMap 标签中的子标签实现关联关系<ul>
+<li>association 标签+javaType 属性：对一关系</li>
+<li>collection 标签+ofType 属性：对多关系</li>
+</ul>
+</li>
+<li>熟练使用 MyBatis 逆向工程</li>
+<li>熟悉 MyBatis 一级缓存、二级缓存（不重要）</li>
+</ul>
+<h3 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h3><ul>
+<li>IOC<ul>
+<li>理解 IOC 含义</li>
+<li>使用 IOC 容器创建对象（基于 XML、基于注解）</li>
+<li>使用 IOC 容器实现自动装配（基于 XML、基于注解）</li>
+<li>属性注入<ul>
+<li>根据 set 方法注入属性</li>
+<li>根据构造器注入属性</li>
+</ul>
+</li>
+<li>bean 的生命周期</li>
+<li>bean 的作用域范围（singleton、prototype、Web 环境作用域）</li>
+</ul>
+</li>
+<li>AOP<ul>
+<li>面向切面编程</li>
+<li>底层原理<ul>
+<li>cglib</li>
+<li>动态代理</li>
+</ul>
+</li>
+<li>熟悉 AOP 常用术语</li>
+<li>熟练使用 AOP 中的各种通知<ul>
+<li>前置通知</li>
+<li>返回通知</li>
+<li>后置通知</li>
+<li>异常通知</li>
+<li>环绕通知</li>
+</ul>
+</li>
+<li>理解切面的优先级</li>
+</ul>
+</li>
+<li>声明式事务<ul>
+<li>基于 XML 配置</li>
+<li>基于注解配置</li>
+<li>事务属性<ul>
+<li>事务的传播行为<ul>
+<li>默认：REQUIRED</li>
+<li>建议：REQUIRES_NEW</li>
+</ul>
+</li>
+<li>事务的隔离级别</li>
+<li>只读属性</li>
+<li>超时属性</li>
+<li>回滚、不回滚的异常</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">能够基于 XML 配置或注解实现声明式事务并能够根据项目需要进一步设置“传播行为”、 “隔离级别”、“只读”、“超时”、“回滚、不回滚的异常”等事务属性</span><br></pre></td></tr></table></figure>
+
+<h3 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h3><ul>
+<li>在 SpringMVC 环境下基于 RESTFUL 风格进行开发 </li>
+<li>在 SpringMVC 环境下使用@RequestBody 注解接收请求体中的 JSON 数据 </li>
+<li>在 SpringMVC 环境下使用@ResponseBody 注解返回 JSON 数据作为响应体 </li>
+<li>熟 练 使 用 SpringMVC 的 常 用 注 解 ， 例 如 ： @RequestMapping 、 @RequestParam、@RequestBody、@ResponseBody、@PathVariable 等等 </li>
+<li>熟练使用 SpringMVC 的拦截器、异常映射、类型转换、数据校验等功能 </li>
+<li>熟悉 SpringMVC 运行流程 </li>
+</ul>
+<h3 id="中间件：Redis"><a href="#中间件：Redis" class="headerlink" title="中间件：Redis"></a>中间件：Redis</h3><ul>
+<li>熟悉 Redis 的五大数据类型<ul>
+<li>string、set、list、hash、zset</li>
+</ul>
+</li>
+<li>熟悉 Redis 的持久化机制<ul>
+<li>RDB：保存数据的快照</li>
+<li>AOF：生成数据的命令</li>
+</ul>
+</li>
+<li>理解 Redis 的事务控制方式</li>
+<li>能够搭建主从复制、读写分离集群，使用哨兵模式提高集群自动化程度。理解主观下线、客观下线含义</li>
+<li>熟练使用 Jedis 作为 Java 客户端程序远程操作 Redis</li>
+</ul>
+<h3 id="中间件：Nginx"><a href="#中间件：Nginx" class="headerlink" title="中间件：Nginx"></a>中间件：Nginx</h3><ul>
+<li>反向代理→负载均衡</li>
+<li>负载均衡策略（根据自己情况）<ul>
+<li>轮询</li>
+<li>权重（给权重高的服务器分配较多负载）</li>
+<li>IP 地址哈希一致性（根据 IP 地址分配）</li>
+<li>最小连接方式</li>
+<li>响应事件方式（第三方）</li>
+<li>依据 URL 分配方式（第三方）</li>
+</ul>
+</li>
+</ul>
+<h3 id="中间件：FastDFS"><a href="#中间件：FastDFS" class="headerlink" title="中间件：FastDFS"></a>中间件：FastDFS</h3><ul>
+<li>熟悉分布式文件存储系统 FastDFS </li>
+<li>理解 FastDFS 中 tracker、storage 工作机制 </li>
+<li>熟练使用 fastdfs-client-java 客户端把 Java 程序接收到的文件上传到 FastDFS 服务器 </li>
+<li>能够搭建 Nginx+FastDFS 服务器端环境 </li>
+</ul>
+<h3 id="中间件：ElasticSearch"><a href="#中间件：ElasticSearch" class="headerlink" title="中间件：ElasticSearch"></a>中间件：ElasticSearch</h3><ul>
+<li>理解倒排索引概念 </li>
+<li>理解 index/type/document/field </li>
+<li>理解 ElasticSearch 对集群和数据分片（主分片、复制分片）的自动化管理 </li>
+<li>会使用 Kibana 远程连接 ElasticSearch 调试 DSL 语句 </li>
+<li>会使用 IKAnalyzer 中文分词器，会使用它的停止词典、扩展词典 </li>
+<li>会安装 ElasticSearch 服务器端程序</li>
+</ul>
+<h3 id="中间件：Zookeeper"><a href="#中间件：Zookeeper" class="headerlink" title="中间件：Zookeeper"></a>中间件：Zookeeper</h3><ul>
+<li>树形目录结构 </li>
+<li>异步通知机制 </li>
+<li>leader/follower 集群</li>
+</ul>
+<h3 id="分布式框架：Dubbo"><a href="#分布式框架：Dubbo" class="headerlink" title="分布式框架：Dubbo"></a>分布式框架：Dubbo</h3><ul>
+<li>基于 Java 的开源高性能 RPC 框架 </li>
+<li>基于 XML 配置方式 </li>
+<li>基于注解配置方式 </li>
+</ul>
+<h3 id="分布式框架：SpringBoot"><a href="#分布式框架：SpringBoot" class="headerlink" title="分布式框架：SpringBoot"></a>分布式框架：SpringBoot</h3><ul>
+<li>理解 SpringBoot 提供的场景启动器 starter </li>
+<li>能够基于 SpringBoot 的 starter 整合第三方框架，例如：MyBatis、Redis、ElasticSearch、Thymeleaf…… </li>
+<li>熟悉 YAML 配置文件的语法格式和常用数据类型 </li>
+<li>理解 SpringBoot 的自动化配置原理</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">参考: http://39.108.113.88/content/part-02-distribution-architecture/spring-boot-working-principle.ht ml</span><br></pre></td></tr></table></figure>
+
+<h3 id="分布式框架：SpringCloud"><a href="#分布式框架：SpringCloud" class="headerlink" title="分布式框架：SpringCloud"></a>分布式框架：SpringCloud</h3><ul>
+<li>Eureka：注册中心 </li>
+<li>Ribbon：客户端负载均衡。根据微服务名称访问 Eureka 获取对应微服务的详细信息 </li>
+<li>Feign：远程接口的声明式调用 </li>
+<li>Hystrix <ul>
+<li>服务降级</li>
+<li>服务熔断</li>
+<li>服务运行状态监控</li>
+</ul>
+</li>
+<li>Zuul：网关，作为项目的统一入口</li>
+</ul>
+<h3 id="性能优化：MySQL-高级"><a href="#性能优化：MySQL-高级" class="headerlink" title="性能优化：MySQL 高级"></a>性能优化：MySQL 高级</h3><ul>
+<li>索引优化<ul>
+<li>批量数据脚本</li>
+<li>单表使用索引及常见索引失效</li>
+<li>关联查询优化</li>
+<li>子查询优化</li>
+<li>排序分组优化</li>
+<li>覆盖索引</li>
+</ul>
+</li>
+<li>查询截取分析</li>
+<li>MySQL 主从复制</li>
+<li>分库分表/MyCat\</li>
+</ul>
+<h3 id="性能优化：JVM"><a href="#性能优化：JVM" class="headerlink" title="性能优化：JVM"></a>性能优化：JVM</h3><ul>
+<li>垃圾回收机制</li>
+<li>内存模型<ul>
+<li>伊甸园区</li>
+<li>幸存者 0 区</li>
+<li>幸存者 1 区</li>
+<li>新生代</li>
+<li>老年代</li>
+</ul>
+</li>
+</ul>
+<h3 id="性能优化：JUC"><a href="#性能优化：JUC" class="headerlink" title="性能优化：JUC"></a>性能优化：JUC</h3><ul>
+<li>java.util.concurrent 包 API </li>
+<li>Lock 同步锁 </li>
+<li>线程池 </li>
+<li>线程调度 </li>
+<li>ConcurrentHashMap 锁分段机制</li>
+</ul>
+<h3 id="开发与部署相关"><a href="#开发与部署相关" class="headerlink" title="开发与部署相关"></a>开发与部署相关</h3><ul>
+<li>Maven </li>
+<li>SVN </li>
+<li>Git/GitHub </li>
+<li>Docker</li>
+</ul>
+<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>在简历中“技能清单”部分写至少 15 条。建议：上面 20 个部分每个部分自己组织语言提炼成 1 条</p>
+<h1 id="项目经验"><a href="#项目经验" class="headerlink" title="项目经验"></a>项目经验</h1><h2 id="项目描述"><a href="#项目描述" class="headerlink" title="项目描述"></a>项目描述</h2><p>用平实的语言简单介绍一下这个项目即可。让读者能够知道这个项目是解决现实生活中的什么问题。在项目描述这个部分中，项目的架构可写可不写。要<span style="color:blue"><strong>简洁明了</strong></span>，不要长篇大论。</p>
+<p>众筹：在互联网上打造一个金融平台，让有志于创业的人在这个平台上可以募集到资金。而支持创业项目的用户可以得到相应的回报。</p>
+<p>电商：互联网购物平台。进一步介绍商业模式，是 B2C、B2C、C2C 等等中的哪一种。再介绍一下销售的是什么产品，例如：综合性电商什么都卖、专注某一个细分市场（电子产品、服装、食品、体育用品……）。有些电商会有自己的特色，例如：社交电商。</p>
+<p>在线：互联网学习平台。进一步介绍内容来源：平台自己生产内容还是商家入驻等等。</p>
+<h2 id="责任描述"><a href="#责任描述" class="headerlink" title="责任描述"></a>责任描述</h2><p>说明本人在开发这个项目时负责的模块</p>
+<table>
+<thead>
+<tr>
+<th align="center">功能</th>
+<th align="center">开发者</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">单点登录</td>
+<td align="center">张三</td>
+</tr>
+<tr>
+<td align="center">后台管理</td>
+<td align="center">张三</td>
+</tr>
+<tr>
+<td align="center">商品检索</td>
+<td align="center">李四</td>
+</tr>
+<tr>
+<td align="center">购物车</td>
+<td align="center">李四</td>
+</tr>
+<tr>
+<td align="center">订单</td>
+<td align="center">张三</td>
+</tr>
+<tr>
+<td align="center">支付</td>
+<td align="center">王五</td>
+</tr>
+<tr>
+<td align="center">库存</td>
+<td align="center">王五</td>
+</tr>
+<tr>
+<td align="center">物流</td>
+<td align="center">王五</td>
+</tr>
+<tr>
+<td align="center">商品展示</td>
+<td align="center">李四</td>
+</tr>
+<tr>
+<td align="center">……</td>
+<td align="center">……</td>
+</tr>
+</tbody></table>
+<p>所以在简历上，可以有所区分：</p>
+<ul>
+<li>负责的模块：开发了该模块大部分功能 </li>
+<li>参与的模块：开发了该模块较少部分功能</li>
+</ul>
+<p>各个模块不必再展开介绍，因为一般来说看模块的名字就知道这个模块的功能。也不必写这个模块用到的技术，因为后面在技术描述中会专门罗列项目中用到的技术。、</p>
+<p>结论：责任描述的部分就是简简单单的写模块名字列表即可。</p>
+<h2 id="技术描述"><a href="#技术描述" class="headerlink" title="技术描述"></a>技术描述</h2><p><span style="color:blue"><strong>注意点</strong> <strong>1</strong></span>：不要把项目 A 的技术描述直接复制到项目 B 里面。不同项目的技术描述中可以包含相同技术点，但是要结合各个项目的具体功能，进行不同描述。</p>
+<ul>
+<li>正确例子：<ul>
+<li>项目 A：使用 Redis 缓存“众筹项目”数据。</li>
+<li>项目 B：使用 Redis 缓存用户登录的 token。</li>
+</ul>
+</li>
+<li>错误例子：<ul>
+<li>项目 A：使用 POI 将统计数据导出到 Excel 文件中。</li>
+<li>项目 B：使用 POI 将统计数据导出到 Excel 文件中。</li>
+</ul>
+</li>
+</ul>
+<p><span style="color:blue"><strong>注意点</strong> <strong>2</strong></span>；让技术点和项目中的功能结合到一起。让技术的描述更饱满，能够体现出来是真的在项目中用到过。</p>
+<ul>
+<li>正确例子：<ul>
+<li>项目 A：使用 <span style="color:blue"><strong>Redis</strong></span> <span style="color:red"><strong>缓存“众筹项目”数据</strong></span>。</li>
+<li>项目 B：使用 <span style="color:blue"><strong>Redis</strong></span> <span style="color:red"><strong>缓存用户登录的</strong> <strong>token</strong></span>。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">“Redis”是技术点，“缓存‘众筹项目’数据”和“缓存用户登录的 token”,是项目中的功能。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>错误例子：<ul>
+<li>使用了 Redis。 </li>
+<li>使用了 ElasticSearch。 </li>
+<li>使用了 POI。 </li>
+<li>使用了 Echarts。</li>
+</ul>
+</li>
+</ul>
+<h1 id="项目技术点回顾"><a href="#项目技术点回顾" class="headerlink" title="项目技术点回顾"></a>项目技术点回顾</h1><h2 id="OA"><a href="#OA" class="headerlink" title="OA"></a>OA</h2><ul>
+<li>单一架构：后台管理系统<ul>
+<li>使用 Maven 作为构建和依赖管理工具</li>
+<li>使用 SSM 整合环境作为基础架构</li>
+<li>使用 MyBatis 的 PageHelper 插件实现分页</li>
+<li>在数据库表中使用 pid 字段建立记录之间的父子关系</li>
+<li>在页面上使用 zTree 展示树形结构 </li>
+<li>使用 SpringSecurity 完成后台管理系统的权限控制</li>
+<li>使用 BCryptPasswordEncoder 实现带盐值的密码加密</li>
+</ul>
+</li>
+<li>分布式架构：前台会员系统<ul>
+<li>使用 SpringBoot+SpringCloud 搭建底层分布式开发环境 </li>
+<li>调用第三方短信接口在注册用户时发送验证码短信</li>
+<li>调用阿里云的 OSS 对象存储服务存储用户发布项目时上传的图片</li>
+<li>调用蚂蚁金服的支付接口</li>
+<li>使用 SpringSession 解决分布式环境下 Session 共享问题，使用 Redis 作为 Session 库</li>
+<li>使用 swagger 生成接口文档</li>
+<li>Redis 缓存对应用户登录状态的 token</li>
+<li>使用 Redis 临时保存项目发布过程中的数据，全部数据收集完毕保存到数据库</li>
+</ul>
+</li>
+</ul>
+<h2 id="电商"><a href="#电商" class="headerlink" title="电商"></a>电商</h2><ul>
+<li>数据结构设计<ul>
+<li>spu+sku</li>
+<li>产品图片存储：FastDFS，使用 Nginx 做 Web 代理服务器接受访问</li>
+</ul>
+</li>
+<li>缓存<ul>
+<li>缓存商品数据提高查询效率</li>
+<li>分布式锁<ul>
+<li>为了避免在 Redis 缓存服务器宕机后把 MySQL 服务器压垮，另外在其他 Redis 服务器中存储分布式锁，访问商品数据需要拿到锁，排队访问。</li>
+<li>lua 脚本或者同步锁值判断防止并发时错误删除同步锁</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>销售属性<ul>
+<li>动态切换同类商品的解决方案</li>
+<li>销售属性静态化，生成销售属性 hash 文件存入浏览器，避免二次访问服务器</li>
+</ul>
+</li>
+<li>搜索<ul>
+<li>使用 ES 作为商品数据的搜索引擎</li>
+<li>ES 集群搭建</li>
+<li>ES 集群管理</li>
+<li>ES 集群通讯</li>
+<li>ES 数据结构</li>
+<li>ES 数据导入查询等客户端 API</li>
+<li>中文分词器：IKAnalyzer</li>
+</ul>
+</li>
+<li>搜索功能的解决方案<ul>
+<li>关键词搜索</li>
+<li>平台属性过滤</li>
+<li>面包屑</li>
+<li>高亮显示、分页、排序、聚合等</li>
+</ul>
+</li>
+<li>购物车解决方案<ul>
+<li>分别在 Cookie、Redis、MySQL 中存储购物车数据</li>
+<li>用户未登录时在 Cookie 中存储购物车数据</li>
+<li>用户登录后要进行合并</li>
+<li>Redis 中使用 hash 类型存储的</li>
+</ul>
+</li>
+<li>异步服务和消息队列<ul>
+<li>订单、支付、库存等系统在用户提交订单时通过消息队列启动异步服务</li>
+<li>用户登录时，启动异步服务，同步购物车、短信平台、站内信、日志等系统（相对我们自己来说属于其他开发人员负责的系统）</li>
+<li>使用延迟队列检查商品订单的支付情况</li>
+<li>在缓存中存入“交易码”，来保证结算不能重复提交，一次结算页面只能 提交一次订单 </li>
+<li>死信队列，消息阻塞等情况处理（理解）</li>
+</ul>
+</li>
+<li>支付<ul>
+<li>调用支付宝的支付接口</li>
+<li>使用 rsa 非对称密钥的签名验证</li>
+<li>交易结果查询、支付状态查询、对账等（这些功能在电商系统中肯定要具备，但是不是由单个一个程序员完成）</li>
+</ul>
+</li>
+<li>库存和物流业务对接<ul>
+<li>库存和物流的调用关系（理解） </li>
+<li>拆掉业务流程（把购物车中的数据分配到不同仓库分别进行出库）</li>
+</ul>
+</li>
+<li>多线程应用<ul>
+<li>技术上使用 juc 中 FutureTask 创建多线程</li>
+<li>提交订单时用于验证和查询价格、库存、修改优惠券、满减资格状态等等</li>
+<li>对于过期、超时退单等无效订单集中处理</li>
+<li>新增或者修改商品信息以后，对相关商品的优惠、活动、券、折扣等服务调用</li>
+</ul>
+</li>
+</ul>
+<h2 id="在线"><a href="#在线" class="headerlink" title="在线"></a>在线</h2><ul>
+<li>后端基础架构<ul>
+<li>SpringBoot、SpringCloud、MyBatis-Plus</li>
+</ul>
+</li>
+<li>前端基础架构<ul>
+<li>Vue、Node.js</li>
+</ul>
+</li>
+<li>中间件<ul>
+<li>Redis、ActiveMQ、阿里云 OSS、视频点播</li>
+</ul>
+</li>
+<li>插件<ul>
+<li>使用 ECharts 绘制统计图表</li>
+<li>使用 POI 完成用户信息批量上传、注册</li>
+</ul>
+</li>
+<li>分布式单点登录使用 JWT 生成 token</li>
+<li>支付功能使用支付宝</li>
+<li>第三方登录</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>简历上要至少写 3 个项目</li>
+<li>平均每个项目中的技术描述要达到 15+条</li>
+<li>大家根据本文档列出的内容自己组织语言编写</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+        <tag>简历</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>20个解放双手的 IDEA 插件</title>
+    <url>/2021/09/18/4/</url>
+    <content><![CDATA[<h1 id="GenerateAllSetter"><a href="#GenerateAllSetter" class="headerlink" title="GenerateAllSetter"></a>GenerateAllSetter</h1><p>实际的开发中，可能会经常为某个对象中多个属性进行 <code>set</code> 赋值，尽管可以用<code>BeanUtil.copyProperties()</code>方式批量赋值，但这种方式有一些弊端，存在属性值覆盖的问题，所以不少场景还是需要手动 <code>set</code>。如果一个对象属性太多 <code>set</code> 起来也很痛苦，<code>GenerateAllSetter</code>可以一键将对象属性都 <code>set</code> 出来。</p>
+<p>快捷键：<code>Alt+Enter</code></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/GenerateAllSetter.gif" alt="img"></p>
+<span id="more"></span>
+
+<h1 id="Alibaba-Java-Coding-Guidelines"><a href="#Alibaba-Java-Coding-Guidelines" class="headerlink" title="Alibaba Java Coding Guidelines"></a>Alibaba Java Coding Guidelines</h1><p>阿里出品的《Java 开发手册》时下已经成为了很多公司新员工入职必读的手册，前一段阿里发布了《Java 开发手册(泰山版)》， 又一次对<code>Java</code>开发规范做了完善。不过，又臭又长的手册背下来是不可能的，但集成到<code>IDEA</code>开发工具中就方便很多。</p>
+<p>举个栗子：开发手册上不允许用<code>Executors</code>去创建线程池，而是通过<code>ThreadPoolExecutor</code>的方式。</p>
+<blockquote>
+<p><span style="color:red">【强制】</span>线程池不允许使用<code>Executors</code>去创建，而是通过ThreadPoolExecutor的方式，这样的处理方式能让人更加明确线程池的运行规则，规避资源耗尽的风险。</p>
+<p><span style="color:#ffff4d">说明：</span>Executors返回的线程池对象的弊端如下：</p>
+<ol>
+<li><span style="color:#ff77bb">FixedThreadPool</span>和<span style="color:#ff77bb">SingleThreadPool</span>：<ol>
+<li>允许的请求队列长度为Integer.MAX_VALUE，可能会堆积大量的请求，从而导致OOM</li>
+</ol>
+</li>
+<li><span style="color:#ff77bb">CachedThreadPool</span>：<ol>
+<li>允许的创建线程数量为Integer.MAX_VALUE，可能会创建大量线程，从而导致OOM</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<p>集成插件后会再去使用<code>Executors</code>去创建线程池会有如下的提示。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Alibaba%20Java%20Coding%20Guidelines.gif" alt="img"></p>
+<h1 id="GsonFormat"><a href="#GsonFormat" class="headerlink" title="GsonFormat"></a>GsonFormat</h1><p><code>GsonFormat</code> 个人觉得是一个非常非常实用的插件，它可以将<code>JSON</code>字符串自动转换成<code>Java</code>实体类。特别是在和其他系统对接时，往往以<code>JSON</code>格式传输数据，而我们需要用<code>Java</code>实体接收数据入库或者包装转发，如果字段太多一个一个编写那就太麻烦了。</p>
+<p>快捷键：<code>Alt+ S</code></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/GsonFormat.gif" alt="img"></p>
+<h1 id="Maven-Helper"><a href="#Maven-Helper" class="headerlink" title="Maven Helper"></a>Maven Helper</h1><p><code>Maven Helper</code> 是解决<code>Maven</code>依赖冲突的利器，可以快速查找项目中的依赖冲突。安装后打开<code>pom</code>文件，底部有 <code>Dependency Analyzer</code> 视图。显示红色表示存在依赖冲突，点进去直接在包上右键<code>Exclude</code>排除，<code>pom</code>文件中会做出相应排除包的操作。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Maven%20Helper.gif" alt="img"></p>
+<ul>
+<li>Conflicts(冲突)</li>
+<li>All Dependencies as List(列表形式查看所有依赖)</li>
+<li>All Dependencies as Tree(树结构查看所有依赖)，并且这个页面还支持搜索。</li>
+</ul>
+<h1 id="Codota"><a href="#Codota" class="headerlink" title="Codota"></a>Codota</h1><p>用了<code>Codota</code> 后不再怕对<code>API</code>不会用，举个栗子：当我们用<code>stream().filter()</code>对<code>List</code>操作，可是对<code>filter()</code>用法不熟，按常理我们会百度一下，而用<code>Codota</code> 会提示很多<code>filter()</code>用法，节省不少查阅资料的时间。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Codota.gif" alt="img"></p>
+<h1 id="Free-MyBatis-Plugin"><a href="#Free-MyBatis-Plugin" class="headerlink" title="Free MyBatis Plugin"></a>Free MyBatis Plugin</h1><p>在使用<code>MyBatis</code> 作为持久框架时有一个尴尬的问题：<code>SQL</code> <code>xml</code>文件和定义的<code>Java</code>接口无法相互跳转，不能像Java接口间调用那样，只能全局搜索稍显麻烦。<code>Free MyBatis Plugin</code>将两者之间进行关联。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Free%20MyBatis%20Plugin.gif" alt="img"></p>
+<h1 id="IntelliJad"><a href="#IntelliJad" class="headerlink" title="IntelliJad"></a>IntelliJad</h1><p><code>IntelliJad</code>是一个Java class文件的反编译工具，需要在 <code>setting</code> 中设置本地<code>Java</code> <code>jad.exe</code>工具的地址。随便找个<code>Jar</code>架包选择<code>class</code>文件右键<code>Decompile</code>，会出现反编译的结果。</p>
+<h1 id="Properties-to-YAML-Converter"><a href="#Properties-to-YAML-Converter" class="headerlink" title="Properties to YAML Converter"></a>Properties to YAML Converter</h1><p>将<code>Properties</code> 配置文件一键转换成<code>YAML</code> 文件，很实用的一个插件。<strong>「注意：要提前备份原<code>Properties</code> 文件」</strong></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Properties%20to%20YAML%20Converter.gif" alt="img"></p>
+<h1 id="Lombok"><a href="#Lombok" class="headerlink" title="Lombok"></a>Lombok</h1><p><code>Lombok</code> 插件应该比较熟，它替我们解决了那些繁琐又重复的代码，比如<code>Setter</code>、<code>Getter</code>、<code>toString</code>、<code>equals</code>等方法。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Lombok.gif" alt="img"></p>
+<h1 id="CodeGlance"><a href="#CodeGlance" class="headerlink" title="CodeGlance"></a>CodeGlance</h1><p><code>CodeGlance</code> 是一款代码编辑区迷你缩放图插件，可以很方便的知道我们方法大致在什么位置。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/CodeGlance.gif" alt="img"></p>
+<h1 id="aiXcoder"><a href="#aiXcoder" class="headerlink" title="aiXcoder"></a>aiXcoder</h1><p><code>aiXcoder</code> 一款国产代码开发工具，提供了比较强大的代码补全、预测的功能，它的宗旨就是让我们少些代码，能自动生成的绝不手写，上手感受下就会爱上它。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/aiXcoder.gif" alt="img"></p>
+<p>实际开发中我会结合<code>IDEA</code>的<code>postfix completion</code>和<code>aiXcoder</code>配置使用，<code>IDEA</code>本身就已经提供了许多快速补全的快捷方式，不过我发现组内很多人并没有真正用起来。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%BC%94%E7%A4%BA.gif" alt="img"></p>
+<p>也可以自行定义快捷方式生成的代码块。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/%E8%87%AA%E8%A1%8C%E5%AE%9A%E4%B9%89%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81%E5%9D%97.hc" alt="img"></p>
+<p><code>aiXcoder</code>支持相似代码搜索功能，如果哪个<code>API</code>不会用，直接选中右键全网搜索实用案例。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/%E6%BC%94%E7%A4%BA1.png" alt="img"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/%E6%BC%94%E7%A4%BA2.png" alt="img"></p>
+<h1 id="Java-Stream-Debugger"><a href="#Java-Stream-Debugger" class="headerlink" title="Java Stream Debugger"></a>Java Stream Debugger</h1><p><code>Java8</code>的<code>stream API</code>很大程度的简化了我们的代码量，可在使用过程中总会出现奇奇怪怪的<code>bug</code>而且不能<code>debug</code>。</p>
+<p><code>Java Stream Debugger</code>支持了对<code>stream API</code>的调试，可以清晰的看到每一步操作数据的变化过程。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/1460000039974382.webp" alt="img"></p>
+<h1 id="easy-javadoc"><a href="#easy-javadoc" class="headerlink" title="easy_javadoc"></a>easy_javadoc</h1><p><code>easy_javadoc</code>一个可以快速为<code>Java</code>的类、方法、属性加注释的插件，还支持自定义注释样式，<code>IDEA</code>自身的<code>Live Templates</code>也支持，不过操作稍显繁琐，使用时效率不太高。</p>
+<p>在为类、方法、属性加注释时，不仅会生成注释，还是会将对应变量、类、方法翻译成中文名，不过翻译的怎么样还要取决于你的命名水平。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/easy_javadoc.gif" alt="img"></p>
+<p>快捷键：<code>crtl + \</code></p>
+<p>是不是觉得一点点加注释效率太低了，你也可以尝试批量添加注释。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/2220547361-6b88806d3f00a022.gif" alt="img"></p>
+<p>快捷键：<code>crtl + shift + \</code></p>
+<p>如果现有的注释样式不适合你，可以自定义你的注释模板。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/1212121.png" alt="img"></p>
+<h1 id="Easy-Code"><a href="#Easy-Code" class="headerlink" title="Easy Code"></a>Easy Code</h1><p><code>Easy Code</code>我个人在写博客案例<code>demo</code>时用的比较多，它可以快速的将数据库表映射成Java中的<code>entity</code>、<code>controller</code>、<code>service</code>、<code>dao</code>、<code>mapper</code>等文件，少量编码实现快速开发。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Easy%20Code1.png" alt="img"></p>
+<p>先用<code>database</code>连接数据库，在对应表上直接右键执行<code>EasyCode</code>即可生成相应Java代码，真的很方便。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Easy%20Code2.png" alt="img"></p>
+<h1 id="Restfultoolkit"><a href="#Restfultoolkit" class="headerlink" title="Restfultoolkit"></a>Restfultoolkit</h1><p><code>Restfultoolkit</code>一套<code>RESTful</code>服务开发辅助工具集，维护项目通常会涉及到查找一个请求所对应的类，一般用<code>ctrl + shift + f</code>进行全局搜索，但是如果项目文件太多，这种查找方式的效率就很低。</p>
+<p><code>Restfultoolkit</code>管理项目中全部的请求链接，可以快速查找。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Restfultoolkit.png" alt="img"></p>
+<p>快捷键：<code>ctrl+ alt + n</code></p>
+<p>可以复制当前请求的<code>全路径</code>和<code>JSON</code>格式的参数，开发测试中非常的实用。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/620977942-a6a221100ee14bbf.gif" alt="img"></p>
+<p><code>IDEA</code>右侧会出现一栏<code>RestServices</code>，这里有整个项目的<code>http</code>请求，还会显示每个请求的入参、出参<code>JSON</code>数据，可以进行简单的模拟请求。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/520459743-b49d19a73e4bcb36_fix732.png" alt="img"></p>
+<h1 id="Key-promoter-X"><a href="#Key-promoter-X" class="headerlink" title="Key promoter X"></a>Key promoter X</h1><p><code>Key promoter X</code>是<code>IDEA</code>的快捷键提示插件，这是我个人非常喜欢的一个功能，它让我快速的记忆了很多操作的快捷键。当你点击某个功能且该功能有快捷键时，会提示当前操作的快捷方式。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Key%20promoter%20X.gif" alt="img"></p>
+<h1 id="String-Manipulation"><a href="#String-Manipulation" class="headerlink" title="String Manipulation"></a>String Manipulation</h1><p><code>String Manipulation</code>一个比较实用的字符串转换工具，比如我们平时的变量命名可以一键转换驼峰等格式，还支持对字符串的各种加、解密（<code>MD5</code>、<code>Base64</code>等）操作。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/String%20Manipulation.gif" alt="img"></p>
+<p>快捷键：<code>alt + m</code></p>
+<h1 id="Translation"><a href="#Translation" class="headerlink" title="Translation"></a>Translation</h1><p><code>Translation</code>一个很方便的翻译插件，比如选中代码、控制台的报错信息可直接翻译。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Translation.gif" alt="img"></p>
+<h1 id="Git-Auto-Pull"><a href="#Git-Auto-Pull" class="headerlink" title="Git Auto Pull"></a>Git Auto Pull</h1><p>团队多人开发项目时，由于频繁提交代码，等我在<code>commit</code>本地代码的时必须先进行<code>pull</code>，否则就会代码冲突产生<code>merge</code>记录。</p>
+<p><code>GitAutoPull</code>插件帮我们在<code>push</code>前先进行<code>pull</code>，避免了不必要的代码冲突。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Git%20Auto%20Pull1.png" alt="img"></p>
+<h1 id="ignore"><a href="#ignore" class="headerlink" title=".ignore"></a>.ignore</h1><p>当我们在向<code>github</code>提交代码时，有一些文件不希望一并提交，这时候我们可以创建一个<code>.gitignore</code>文件来忽略某些文件的提交。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/ignore.png" alt="img"></p>
+<p>也可以添加指定文件到<code>.gitignore</code>中，被忽略的文件将变成灰色。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/gitignore.png" alt="img"></p>
+]]></content>
+      <tags>
+        <tag>IDEA</tag>
+        <tag>插件</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基础篇</title>
     <url>/2021/09/18/3/</url>
     <content><![CDATA[<h1 id="JDK-常用的包"><a href="#JDK-常用的包" class="headerlink" title="JDK 常用的包"></a>JDK 常用的包</h1><p><strong>java.lang：</strong> 这个是系统的基础类，比如 <code>String</code>、<code>Math</code>、<code>Integer</code>、<code>System</code> 和 <code>Thread</code>，提供常用功能。</p>
@@ -2490,6 +2590,101 @@
       </tags>
   </entry>
   <entry>
+    <title>JVM内存区域分布与作用</title>
+    <url>/2021/09/18/6/</url>
+    <content><![CDATA[<p>在开始介绍Java内存区域之前，先放一张内存区域的图，方便后面介绍的时候可以对照着看。</p>
+<blockquote>
+<p><strong>须知：</strong>本文是根据JDK8来介绍的。</p>
+</blockquote>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%86%E5%B8%83%E4%B8%8E%E4%BD%9C%E7%94%A8/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F.png" alt="img"></p>
+<span id="more"></span>
+
+<h1 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h1><p>首先它是线程私有的，它也称为代码的行号指示器，字节码解释器就是通过改变程序计数器的位置来确定下一行要执行的代码，它不存在OOM。</p>
+<p>如果线程正在执行一个Java方法，那么它记录的是正在执行虚拟机字节码指令的地址，如果是一个本地方法那么它的值为空。</p>
+<h1 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h1><p>它也是线程私有的，它的声明周期和线程一致。每个线程创建时都会创建一个虚拟机栈，内部保存了一个个的栈帧，每个栈帧就对应着一次方法的调用。既然知道了虚拟机栈里面存放的是一个个的栈帧，那么也不难猜出虚拟机栈里面都存储了什么东西。</p>
+<p>Java虚拟机栈是存在OOM的，当线程所请求的栈的深度大于虚拟机栈的深度或者虚拟机栈可以动态扩容，当栈扩展时无法申请到足够的内存时，就会抛出OOM。</p>
+<ul>
+<li><strong>虚拟机栈内部结构</strong>：</li>
+</ul>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%86%E5%B8%83%E4%B8%8E%E4%BD%9C%E7%94%A8/%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84.png" alt="img"></p>
+<ul>
+<li><p><strong>局部变量表</strong>：</p>
+<p>主要存储方法的参数，所有的基本类型数据和对象地址，以及返回地址类型（return address）。它以变量槽为最小的存储单位，Java虚拟机并没有规定一个变量槽占用多少内存空间，但是规定了一个变量槽可以存放一个32位以内的数据类型。如果存储的数据类型超过32位，比如long、double，那么就使用两个变量槽进行存储。</p>
+</li>
+<li><p><strong>操作数栈</strong>：</p>
+<p>操作数栈是一个先进后出的操作数栈，当一个方法刚开始执行的时候，一个新的栈帧也会随之被创建出来，这个方法的操作数栈是空的，它主要用于保存计算过程的中间结果，同时作为计算过程中变量临时的存储空间。如果被调用的方法有返回值，那么返回值将会被压入当前栈帧的操作数栈中。操作数栈并非采用索引的方式进行数据访问，而是通过入栈（push）和出栈（pop）操作来完成数据的访问。</p>
+</li>
+<li><p><strong>动态链接</strong>：</p>
+<p>大白话就是，栈帧中保存了一个方法的引用，当执行方法的时候，可以拿着这个引用到运行时常量池中找到这个方法。</p>
+<p>动态链接的作用就是将这些方法的符号引用转换为调用方法的直接引用。</p>
+</li>
+<li><p><strong>方法返回地址</strong>：</p>
+<p>就是在方法执行结束之后，要返回下一条要执行代码位置的值，也就是程序计数器的值。</p>
+<p>那么除了方法正常执行结束退出外，还有另外一种情况就是异常导致的方法退出，那么这种情况下是不会返回任何值的。对于抛出的异常，栈帧中不会做任何记录，但是会记录在一个异常表中。</p>
+</li>
+</ul>
+<h1 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h1><p>Java虚拟机栈为虚拟机执行Java方法服务，本地方法栈则为虚拟机使用到的本地方法服务。像JVM就有好多C语言写的方法，这个就需要本地方法栈来执行。</p>
+<h1 id="Java堆"><a href="#Java堆" class="headerlink" title="Java堆"></a>Java堆</h1><p>Java堆是虚拟机中最大的一块内存空间，它被所有的线程共享，在虚拟机启动时创建。它唯一的目的就是存放对象实例。</p>
+<p>如果面试被问到，所有的对象实例都是在堆中分配内存吗？这个时候你一定要回答，不是。</p>
+<p>随着即时编译技术的发展进步，尤其是逃逸分析技术的日渐强大，栈上分配、变量替换等优化手段，让实例在”只在堆“中分配不再成为绝对。</p>
+<p>Java堆是垃圾收集的主要区域，Java堆中也经常出现新生代、老年代、永久代等等，这里需要注意，这些并不是Java堆物理上的内存布局，它是作为垃圾收集器而划分一种内存布局。</p>
+<h1 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h1><p>方法区也是线程共享的区域，它主要用于存储被虚拟机加载的类型信息、常量、静态变量、即时编译器编译后的代码缓存等数据。</p>
+<p>方法区它是可以被垃圾收集器进行回收的，主要针对类型的卸载和常量池的回收。</p>
+<p>方法区也可以产生OOM，当方法区无法满足新的内存分配需求时，将抛出OutOfMemoryError异常。</p>
+<h1 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h1><p>运行时常量池是方法区的一部分。Class文件中除了有类的版本、字段、方法、接口等信息外，还有一项信息是常量池表，它用来存储编译期生成的各种字面量和符号引用。</p>
+<p>如果动态链接那块没看懂，那么看了运行常量池再翻回去看看是不是好理解了。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+        <tag>JVM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>虚拟DOM与Diff算法的实现原理</title>
+    <url>/2021/09/18/7/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Vue 源码中虚拟 DOM 与 Diff 算法的实现借鉴了 <code>snabbdom</code> 这个库，<code>snabbdom</code> 是一个虚拟 DOM 库，它专注于简单，模块化，强大的功能和性能。要彻底明白虚拟 DOM 与 Diff 算法就得分析 <code>snabbdom</code> 这个库到底做了什么？</p>
+<span id="more"></span>
+
+<h1 id="获取源代码"><a href="#获取源代码" class="headerlink" title="获取源代码"></a>获取源代码</h1><p>可以通过<code>npm i snabbdom -D</code> 来下载 <code>snabbdom</code> 库，这样我们既能看到 <code>src</code> 下用 Typescript 编写的源码，也能看到编译好的 JavaScript 代码。下面贴的源码是 <code>2.1.0</code> 版本，现在已经更新到 <code>3.0.3</code> 版本了。建议将下方出现的源码复制到下载的 <code>snabbdom</code> 库中相应位置，这样看源码比较清晰。那我们就开始分析源码吧。</p>
+<h1 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h1><h2 id="JavaScript-对象模拟真实-DOM-树"><a href="#JavaScript-对象模拟真实-DOM-树" class="headerlink" title="JavaScript 对象模拟真实 DOM 树"></a>JavaScript 对象模拟真实 DOM 树</h2><p>通过调用 <code>snabbdom</code> 库中的 <code>h</code>函数就可以对真实 DOM 节点进行抽象。我们先来看看一个完整的虚拟 DOM 节点（vnode）是什么样的：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005003084.png" alt="image-20210609005003084"></p>
+<p>实际上，<code>h</code>函数的作用就是用 JavaScript 对象模拟真实的 DOM 树，对真实 DOM 树进行抽象。调用 <code>h</code>函数就能得到由 vnode 组成的虚拟 DOM 树。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005038727.png" alt="image-20210609005038727"></p>
+<p>调用 <code>h</code>函数有多种形式：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005127609.png" alt="image-20210609005127609"></p>
+<p>使得 <code>h</code>函数的第二和第三个参数比较灵活，要判断的情况也比较多，下面把这部分的核心源码分析贴一下：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005208697.png" alt="image-20210609005208697"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005236275.png" alt="image-20210609005236275"></p>
+<h2 id="diff-算法–入口函数"><a href="#diff-算法–入口函数" class="headerlink" title="diff 算法–入口函数"></a>diff 算法–入口函数</h2><p>通过 <code>h</code>函数得到新旧虚拟节点 DOM 对象后就可以进行差异比较了。在实际使用过程中，我们是直接调用 <code>snabbdom</code> 的 <code>patch</code> 函数，然后传入两个参数，通过 <code>patch</code> 函数内部处理就可以得到新旧虚拟节点 DOM 对象的差异，并将差异部分更新到真正的 DOM 树上。</p>
+<p>首先，<code>patch</code> 函数会去判断 <code>oldVnode</code> 是否是真实DOM节点，如果是则需要先转换为虚拟DOM节点 <code>oldVnode = emptyNodeAt(oldVnode)</code> ；然后去比较新旧 vnode 是否是同一个节点 <code>sameVnode(oldVnode, vnode)</code>，如果是同一节点则精确比较新旧 vnode <code>patchVnode(oldVnode, vnode, insertedVnodeQueue)</code> ，如果不是则直接创建新 vnode 对应的真实 DOM 节点 <code>createElm(vnode, insertedVnodeQueue)</code>，在 createElm 函数中创建新 vnode 的真实 DOM 节点以及它对应的子节点，并把子节点插入到相应位置。如果 oldVnode.elm 有父节点则把新 vnode 对应的真实 DOM 节点作为子节点插入到相应位置，并且删除旧节点。下面贴一下 <code>patch</code> 函数的源码解析：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005305899.png" alt="image-20210609005305899"></p>
+<p><code>patch</code> 函数中用到了 <code>emptyNodeAt</code> 函数，这个函数主要是处理 <code>patch</code> 函数第一个参数为真实DOM节点的情况。下面贴一下这个函数的源码解析：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005328771.png" alt="image-20210609005328771"></p>
+<p><code>patch</code> 函数中用到了 <code>sameVnode</code> 函数，这个函数主要用来比较两个虚拟DOM节点是否是同一个虚拟节点。下面贴一下这个函数的源码分析：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005349669.png" alt="image-20210609005349669"></p>
+<h2 id="diff-算法–新旧-vnode-不是同一个节点的情况"><a href="#diff-算法–新旧-vnode-不是同一个节点的情况" class="headerlink" title="diff 算法–新旧 vnode 不是同一个节点的情况"></a>diff 算法–新旧 vnode 不是同一个节点的情况</h2><p>根据 <code>sameVnode</code> 函数返回的结果，新旧 vnode 不是同一个虚拟节点。首先获取到 oldVnode 对应真实 DOM 节点的父节点 <code>parent</code> ，然后调用 <code>createElm</code> 函数去创建 vnode 对应的真实 DOM 节点以及它的子节点和标签属性等等。判断是否有 <code>parent</code>， 如果有则将 vnode.elm 对应的DOM节点作为子节点插入到 <code>parent</code> 节点下的相应位置。部分源码分析在<code>patch</code>函数中，下面贴一下 <code>createElm</code> 函数的源码分析：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005419230.png" alt="image-20210609005419230"></p>
+<h2 id="diff-算法–新旧-vnode-是同一个节点的情况"><a href="#diff-算法–新旧-vnode-是同一个节点的情况" class="headerlink" title="diff 算法–新旧 vnode 是同一个节点的情况"></a>diff 算法–新旧 vnode 是同一个节点的情况</h2><p>上面分析了新旧 vnode 不是同一个虚拟节点，那么是同一个虚拟节点又该怎么去处理？首先，调用 <code>patchVnode</code> 函数 <code>patchVnode(oldVnode, vnode, insertedVnodeQueue)</code>，这个函数会对新旧 vnode 进行精确比较：</p>
+<p>① 如果新旧虚拟 DOM 对象全等 <code>oldVnode === vnode</code> ，那么不做任何操作，直接返回；</p>
+<p>② 然后判断 vnode 是否有文本节点 <code>isUndef(vnode.text)</code> ，如果没有文本节点则判断 oldVnode 与 vnode 有没有子节点 <code>isDef(oldCh) &amp;&amp; isDef(ch)</code>，如果都有子节点且不相等则调用 <code>updateChildren</code> 函数去更新子节点；</p>
+<p>③ 如果只有 vnode 有子节点而 oldVnode 有文本节点或没有内容，将 oldVnode 的文本节点置空或不做处理，调用 <code>addVnodes</code> 函数将 vnode 的子节点创建出对应的真实DOM并循环插入到父节点下；</p>
+<p>④ 如果只有 oldVnode 有子节点而 vnode 没有内容，则直接删除 oldVnode 下的子节点；</p>
+<p>⑤ 如果只有 oldVnode 有文本节点而 vnode 没有内容，则将 oldVnode 对应的真实 DOM 节点的文本置空;</p>
+<p>⑥ 如果 vnode 有文本节点，oldVnode 有子节点就将对应真实 DOM 节点的子节点删除，没有就不处理，然后将 vnode 的文本节点作为子节点插入到对应真实 DOM 节点下。</p>
+<p>部分源码分析在<code>patch</code>函数中，下面贴一下 <code>patchVnode</code> 函数的源码分析：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005456999.png" alt="image-20210609005456999"></p>
+<h2 id="diff-算法–新旧-vnode-子节点的更新策略"><a href="#diff-算法–新旧-vnode-子节点的更新策略" class="headerlink" title="diff 算法–新旧 vnode 子节点的更新策略"></a>diff 算法–新旧 vnode 子节点的更新策略</h2><p>当新旧 vnode 都有子节点时，<code>diff</code> 算法定义了四个指针来处理子节点，四个指针分别是：<code>oldStartVnode(旧前vnode)</code>/<code>newStartVnode(新前vnode)</code>/<code>oldEndVnode(旧后vnode)</code>/<code>newEndVnode(新后vnode)</code> 。进入循环体内后，新旧 vnode 的子节点两两比较，这里提供了一套比较规则，如下图：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005624407.png" alt="image-20210609005624407"></p>
+<p>如果上面四个规则都不满足，将 oldVnode 的子节点从旧的前索引 <code>oldStartIdx</code> 到旧的后索引 <code>oldEndIdx</code> 做一个 key 与对应位置序号的映射 <code>oldKeyToIdx</code> ，通过新 vnode 的 key 去找 <code>oldKeyToIdx</code> 中是否有对应的索引值，若没有，表明 <code>oldVnode</code> 没有对应的旧节点，是一个新增的节点，进行插入操作；若有，表明 <code>oldVnode</code> 有对应的旧节点，不是一个新增节点，进行移动操作。下面贴一下源码解析：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005645424.png" alt="image-20210609005645424"></p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005703911.png" alt="image-20210609005703911"></p>
+]]></content>
+      <tags>
+        <tag>vue.js</tag>
+        <tag>源码解析</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>10个解放双手的超实用在线工具</title>
     <url>/2021/09/18/5/</url>
     <content><![CDATA[<h1 id="Aliyun-Java-Initializr"><a href="#Aliyun-Java-Initializr" class="headerlink" title="Aliyun Java Initializr"></a>Aliyun Java Initializr</h1><p>在日常开发工作和自己学习跑<code>demo</code>的时候，往往都需要快速构建一个<code>springboot</code>基础工程。除了用<code>IDEA</code>开发工具构建，更多就是用<code>Spring Initializr</code>来生成，但用的时间长了发现，它也就仅仅只能帮我们引入一些必要的<code>jar</code>包，其他插件轮子还是得自己配置。</p>
@@ -2555,198 +2750,183 @@
       </tags>
   </entry>
   <entry>
-    <title>20个解放双手的 IDEA 插件</title>
-    <url>/2021/09/18/4/</url>
-    <content><![CDATA[<h1 id="GenerateAllSetter"><a href="#GenerateAllSetter" class="headerlink" title="GenerateAllSetter"></a>GenerateAllSetter</h1><p>实际的开发中，可能会经常为某个对象中多个属性进行 <code>set</code> 赋值，尽管可以用<code>BeanUtil.copyProperties()</code>方式批量赋值，但这种方式有一些弊端，存在属性值覆盖的问题，所以不少场景还是需要手动 <code>set</code>。如果一个对象属性太多 <code>set</code> 起来也很痛苦，<code>GenerateAllSetter</code>可以一键将对象属性都 <code>set</code> 出来。</p>
-<p>快捷键：<code>Alt+Enter</code></p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/GenerateAllSetter.gif" alt="img"></p>
+    <title>源码级别理解 Redis 持久化</title>
+    <url>/2021/09/18/8/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家都知道 Redis 是一个内存数据库，数据都存储在内存中，这也是 Redis 非常快的原因之一。虽然速度提上来了，但是如果数据一直放在内存中，是非常容易丢失的。比如 服务器关闭或宕机了，内存中的数据就木有了。为了解决这一问题，Redis 提供了 持久化 机制。分别是 <strong>RDB</strong> 以及 <strong>AOF</strong> 持久化。</p>
 <span id="more"></span>
 
-<h1 id="Alibaba-Java-Coding-Guidelines"><a href="#Alibaba-Java-Coding-Guidelines" class="headerlink" title="Alibaba Java Coding Guidelines"></a>Alibaba Java Coding Guidelines</h1><p>阿里出品的《Java 开发手册》时下已经成为了很多公司新员工入职必读的手册，前一段阿里发布了《Java 开发手册(泰山版)》， 又一次对<code>Java</code>开发规范做了完善。不过，又臭又长的手册背下来是不可能的，但集成到<code>IDEA</code>开发工具中就方便很多。</p>
-<p>举个栗子：开发手册上不允许用<code>Executors</code>去创建线程池，而是通过<code>ThreadPoolExecutor</code>的方式。</p>
-<blockquote>
-<p><span style="color:red">【强制】</span>线程池不允许使用<code>Executors</code>去创建，而是通过ThreadPoolExecutor的方式，这样的处理方式能让人更加明确线程池的运行规则，规避资源耗尽的风险。</p>
-<p><span style="color:#ffff4d">说明：</span>Executors返回的线程池对象的弊端如下：</p>
+<h1 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h1><h2 id="什么是-RDB-持久化"><a href="#什么是-RDB-持久化" class="headerlink" title="什么是 RDB 持久化?"></a>什么是 RDB 持久化?</h2><p>RDB 持久化可以在指定的时间间隔内生成数据集的时间点快照(point-in-time snapshot)。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/1e5c87e44b494a20864323f2872c5dee_tplv-k3u1fbpfcp-zoom-1.jpg" alt="img"></p>
+<h2 id="RDB-的优点？"><a href="#RDB-的优点？" class="headerlink" title="RDB 的优点？"></a>RDB 的优点？</h2><ul>
+<li>RDB 是一种表示某个即时点的 Redis 数据的紧凑文件。RDB 文件适用于备份。例如，你可能想要每小时归档最近24小时的 RDB 文件，每天保存近30天的 RDB 快照。这允许你很容易的恢复不同版本的数据集以容灾。</li>
+<li>RDB 非常适合于灾难恢复，作为一个紧凑的单一文件，可以被传输到远程的数据中心。</li>
+<li>RDB 最大化了 Redis 的性能。因为 Redis 父进程持久化时唯一需要做的是启动(fork)一个子进程，由子进程完成所有剩余的工作。父进程实例不需要执行像磁盘IO这样的操作。</li>
+<li>RDB 在重启保存了大数据集的实例比 AOF 快。</li>
+</ul>
+<h2 id="RDB-的缺点？"><a href="#RDB-的缺点？" class="headerlink" title="RDB 的缺点？"></a>RDB 的缺点？</h2><ul>
+<li>当你需要在Redis停止工作(例如停电)时最小化数据丢失，RDB可能不太好。你可以配置不同的保存点(save point)来保存RDB文件(例如，至少5分钟和对数据集100次写之后，但是你可以有多个保存点)。然而，你通常每隔5分钟或更久创建一个RDB快照，所以一旦Redis因为任何原因没有正确关闭而停止工作，你就得做好最近几分钟数据丢失的准备了。</li>
+<li>RDB需要经常调用fork()子进程来持久化到磁盘。如果数据集很大的话，fork()比较耗时，结果就是，当数据集非常大并且CPU性能不够强大的话，Redis会停止服务客户端几毫秒甚至一秒。AOF也需要fork()，但是你可以调整多久频率重写日志而不会有损(trade-off)持久性(durability)。</li>
+</ul>
+<h2 id="RDB-文件的创建与载入"><a href="#RDB-文件的创建与载入" class="headerlink" title="RDB 文件的创建与载入"></a>RDB 文件的创建与载入</h2><p>有个两个 Redis 命令可以用于生成 RDB 文件，一个是 <strong>SAVE</strong>，另一个是 <strong>BGSAVE</strong>。</p>
+<p><strong>SAVE</strong> 命令会阻塞 Redis 服务器进程，直到 RDB 文件创建完毕为止，在服务器进程阻塞期间，服务器不能处理任何命令请求。</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; SAVE     // 一直等到 RDB 文件创建完毕</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<p>和 SAVE 命令直接阻塞服务器进程不同的是，BGSAVE 命令会派生出一个子进程，然后由子进程负责创建 RDB 文件，服务器进程(父进程)继续处理命令进程。</p>
+<p><strong>执行fork的时候操作系统（类Unix操作系统）会使用写时复制（copy-on-write）策略，即fork函数发生的一刻父子进程共享同一内存数据，当父进程要更改其中某片数据时（如执行一个写命令 ），操作系统会将该片数据复制一份以保证子进程的数据不受影响，所以新的RDB文件存储的是执行fork一刻的内存数据。</strong></p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; BGSAVE  // 派生子进程，并由子进程创建 RDB 文件</span><br><span class="line">Background saving started</span><br></pre></td></tr></table></figure>
+
+<p>生成 RDB 文件由两种方式：<strong>一种是手动，就是上边介绍的用命令的方式；另一种是自动的方式。</strong></p>
+<p>接下来详细介绍一下自动生成 RDB 文件的流程。</p>
+<p>Redis 允许用户通过设置服务器配置的 <strong>save</strong> 选项，让服务器每隔一段时间自动执行一次 BGSAVE 命令。</p>
+<p>用户可以通过在 redis.conf 配置文件中的 SNAPSHOTTING 下 save 选项设置多个保存条件，但只要其中任意一个条件被满足，服务器就会执行 BGSAEVE 命令。</p>
+<p>如，以下配置：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">save <span class="number">900</span> <span class="number">1</span></span><br><span class="line">save <span class="number">300</span> <span class="number">10</span></span><br><span class="line">save <span class="number">60</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+
+<p>上边三个配置的含义是：</p>
+<ul>
+<li>服务器在 900 秒内，对数据库进行了至少 1 次修改。</li>
+<li>服务器在 300 秒内，对数据库进行了至少 10 次修改。</li>
+<li>服务器在 60 秒内，对数据库进行了至少 10000 次修改。</li>
+</ul>
+<p>如果没有手动去配置 save 选项，那么服务器会为 save 选项配置默认参数：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">save <span class="number">900</span> <span class="number">1</span></span><br><span class="line">save <span class="number">300</span> <span class="number">10</span></span><br><span class="line">save <span class="number">60</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+
+<p>接着，服务器就会根据 save 选项的配置，去设置服务器状态 redisServer 结构的 saveparams 属性：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">redisServer</span>&#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 记录了保存条件的数组</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">saveparams</span> *<span class="title">saveparams</span>;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>saveparams 属性是一个数组，数组中的每一个元素都是一个 saveparam 结构，每个 saveparam 结构都保存了一个 save 选项设置的保存条件：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">saveparam</span> &#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 秒数</span></span><br><span class="line">  <span class="keyword">time_t</span> seconds;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 修改数</span></span><br><span class="line">  <span class="keyword">int</span> changes;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>除了 saveparams 数组之外，服务器状态还维持着一个 dirty 计数器，以及一个 lastsave 属性；</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">redisServer</span> &#123;</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 修改计数器</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> dirty;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 上一次执行保存时间</span></span><br><span class="line">     <span class="keyword">time_t</span> lastsave;</span><br><span class="line">     </span><br><span class="line">     <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>dirty 计数器记录距离上一次成功执行 SAVE 或 BGSAVE 命令之后，服务器对数据库状态(服务器中的所有数据库)进行了多少次修改(包括写入、删除、更新等操作)。</li>
+<li>lastsave 属性是一个 UNIX 时间戳，记录了服务器上一次执行 SAVE 或 BGSAVE 命令的时间。</li>
+</ul>
+<h3 id="检查条件是否满足触发-RDB"><a href="#检查条件是否满足触发-RDB" class="headerlink" title="检查条件是否满足触发 RDB"></a>检查条件是否满足触发 RDB</h3><p>Redis 的服务器周期性操作函数 serverCron 默认每隔 100 毫秒执行一次，该函数用于对正在运行的服务器进行维护，它的其中一项工作就是检查 save 选项所设置的保存条件是否已经满足，如果满足的话就执行 BGSAVE 命令。</p>
+<p>Redis serverCron 源码解析如下：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/1623916411.jpg" alt="img"></p>
+<p>程序会遍历并检查 saveparams 数组中的所有保存条件，只要有任意一个条件被满足，服务器就会执行 BGSAVE 命令。</p>
+<p>下面是 rdbSaveBackground 的源码流程：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/1623916516.jpg" alt="img"></p>
+<h2 id="RDB-文件结构"><a href="#RDB-文件结构" class="headerlink" title="RDB 文件结构"></a>RDB 文件结构</h2><p>下图展示了一个完整 RDB 文件所包含的各个部分。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/6ccb6e0fb4354db2bf8da17ebf908f7c_tplv-k3u1fbpfcp-zoom-1.jpg" alt="img"></p>
+<p>redis 文件的最开头是 <strong>REDIS</strong> 部分，这个部分的长度是 5 字节，保存着 “REDIS” 五个字符。通过这五个字符，程序可以在载入文件时，快速检查所载入的文件是否时 RDB 文件。</p>
+<p><strong>db_version</strong> 长度为 4 字节，他的值时一个字符串表示的整数，这个整数记录了 RDB 文件的版本号，比如 “0006” 就代表 RDB 文件的版本为第六版。</p>
+<p><strong>database</strong> 部分包含着零个或任意多个数据库，以及各个数据库中的键值对数据：</p>
+<ul>
+<li>如果服务器的数据库状态为空(所有数据库都是空的)，那么这个部分也为空，长度为 0 字节。</li>
+<li>如果服务器的数据库状态为非空(有至少一个数据库非空)，那么这个部分也为非空，根据数据库所保存键值对的数量、类型和内容不同，这个部分的长度也会有所不同。</li>
+</ul>
+<p><strong>EOF</strong> 常量的长度为 1 字节，这个常量标志着 RDB 文件正文内容的结束，当读入程序遇到这个值后，他知道所有数据库的所有键值对已经载入完毕了。</p>
+<p><strong>check_sum</strong> 是一个 8 字节长的无符号整数，保存着一个校验和，这个校验和时程序通过对 REDIS、db_version、database、EOF 四个部分的内容进行计算得出的。服务器在载入 RDB 文件时，会将载入数据所计算出的校验和与 check_sum 所记录的校验和进行对比，以此来检查 RDB 是否有出错或者损坏的情况。</p>
+<p>举个例子：下图是一个 0 号数据库和 3 号数据库的 RDB 文件。第一个就是 “REDIS” 表示是一个 RDB 文件，之后的 “0006” 表示这是第六版的 REDIS 文件，然后是两个数据库，之后就是 EOF 结束标识符，最后就是 check_sum。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/847161c1b0414aa69109e3f3a0c43797_tplv-k3u1fbpfcp-zoom-1.png" alt="img"></p>
+<h1 id="AOF-持久化"><a href="#AOF-持久化" class="headerlink" title="AOF 持久化"></a>AOF 持久化</h1><h2 id="什么是-AOF-持久化"><a href="#什么是-AOF-持久化" class="headerlink" title="什么是 AOF 持久化"></a>什么是 AOF 持久化</h2><p>AOF持久化方式记录每次对服务器写的操作,当服务器重启的时候会重新执行这些命令来恢复原始的数据,AOF命令以redis协议追加保存每次写的操作到文件末尾.Redis还能对AOF文件进行后台重写,使得AOF文件的体积不至于过大. </p>
+<h2 id="AOF-的优点？"><a href="#AOF-的优点？" class="headerlink" title="AOF 的优点？"></a>AOF 的优点？</h2><ul>
+<li>使用AOF 会让你的Redis更加耐久: 你可以使用不同的fsync策略：无fsync,每秒fsync,每次写的时候fsync.使用默认的每秒fsync策略,Redis的性能依然很好(fsync是由后台线程进行处理的,主线程会尽力处理客户端请求),一旦出现故障，你最多丢失1秒的数据.</li>
+<li>AOF文件是一个只进行追加的日志文件,所以不需要写入seek,即使由于某些原因(磁盘空间已满，写的过程中宕机等等)未执行完整的写入命令,你也也可使用redis-check-aof工具修复这些问题.</li>
+<li>Redis 可以在 AOF 文件体积变得过大时，自动地在后台对 AOF 进行重写： 重写后的新 AOF 文件包含了恢复当前数据集所需的最小命令集合。 整个重写操作是绝对安全的，因为 Redis 在创建新 AOF 文件的过程中，会继续将命令追加到现有的 AOF 文件里面，即使重写过程中发生停机，现有的 AOF 文件也不会丢失。 而一旦新 AOF 文件创建完毕，Redis 就会从旧 AOF 文件切换到新 AOF 文件，并开始对新 AOF 文件进行追加操作。</li>
+<li>AOF 文件有序地保存了对数据库执行的所有写入操作， 这些写入操作以 Redis 协议的格式保存， 因此 AOF 文件的内容非常容易被人读懂， 对文件进行分析（parse）也很轻松。 导出（export） AOF 文件也非常简单： 举个例子， 如果你不小心执行了 FLUSHALL 命令， 但只要 AOF 文件未被重写， 那么只要停止服务器， 移除 AOF 文件末尾的 FLUSHALL 命令， 并重启 Redis ， 就可以将数据集恢复到 FLUSHALL 执行之前的状态。</li>
+</ul>
+<h2 id="AOF-的缺点？"><a href="#AOF-的缺点？" class="headerlink" title="AOF 的缺点？"></a>AOF 的缺点？</h2><ul>
+<li>对于相同的数据集来说，AOF 文件的体积通常要大于 RDB 文件的体积。</li>
+<li>根据所使用的 fsync 策略，AOF 的速度可能会慢于 RDB 。 在一般情况下， 每秒 fsync 的性能依然非常高， 而关闭 fsync 可以让 AOF 的速度和 RDB 一样快， 即使在高负荷之下也是如此。 不过在处理巨大的写入载入时，RDB 可以提供更有保证的最大延迟时间（latency）。</li>
+</ul>
+<h2 id="AOF持久化的实现"><a href="#AOF持久化的实现" class="headerlink" title="AOF持久化的实现"></a>AOF持久化的实现</h2><p>AOF持久化功能的实现可以分为命令追加（append）、文件写入、文件同步（sync）三个步骤。</p>
+<h3 id="命令追加"><a href="#命令追加" class="headerlink" title="命令追加"></a>命令追加</h3><p>当 AOF 持久化功能处于打开状态时，服务器在执行完一个写命令之后，会以协议格式将被执行的写命令追加到服务器状态的 aof_buf 缓冲区的末尾。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">redisServer</span> &#123;</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="comment">// AOF 缓冲区  </span></span><br><span class="line">  sds aof_buf;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ..</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>如果客户端向服务器发送以下命令：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; <span class="built_in">set</span> KEY VALUE</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<p>那么服务器在执行这个 set 命令之后，会将以下协议内容追加到 aof_buf 缓冲区的末尾；</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">*<span class="number">3</span>\r\n$<span class="number">3</span>\r\nSET\r\n$<span class="number">3</span>\r\nKEY\r\n$<span class="number">5</span>\r\nVALUE\r\n</span><br></pre></td></tr></table></figure>
+
+<h3 id="AOF-文件的写入与同步"><a href="#AOF-文件的写入与同步" class="headerlink" title="AOF 文件的写入与同步"></a>AOF 文件的写入与同步</h3><p>Redis的服务器进程就是一个事件循环（loop），这个循环中的文件事件负责接收客户端 的命令请求，以及向客户端发送命令回复，而时间事件则负责执行像 serverCron 函数这样需 要定时运行的函数。</p>
+<p>因为服务器在处理文件事件时可能会执行写命令，使得一些内容被追加到aof_buf缓冲区 里面，所以在服务器每次结束一个事件循环之前，它都会调用 <strong>flushAppendOnlyFile</strong> 函数，考 虑是否需要将aof_buf缓冲区中的内容写入和保存到AOF文件里面，这个过程可以用以下伪代 码表示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">def <span class="title">eventLoop</span><span class="params">()</span>:</span></span><br><span class="line"><span class="function">  while True:</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    #处理文件事件，接收命令请求以及发送命令回复</span></span><br><span class="line"><span class="function">    #处理命令请求时可能会有新内容被追加到 aof_buf缓冲区中</span></span><br><span class="line"><span class="function">    processFileEvents()</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    #处理时间事件</span></span><br><span class="line"><span class="function">    processTimeEvents()</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    #考虑是否要将 aof_buf中的内容写入和保存到 AOF文件里面</span></span><br><span class="line"><span class="function">    flushAppendOnlyFile()</span></span><br></pre></td></tr></table></figure>
+
+<p>flushAppendOnlyFile函数的行为由服务器配置的 <strong>appendfsync</strong> 选项的值来决定，各个不同 值产生的行为如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th align="center">appendfsync 选项的值</th>
+<th align="center">flushAppendOnlyFile 函数的行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">always</td>
+<td align="center">将 aof_buf 缓冲区中的所有内容写入并同步到 AOF 文件</td>
+</tr>
+<tr>
+<td align="center">everysec</td>
+<td align="center">将 aof_buf 缓冲区中的所有内容写入到 AOF 文件，如果上次同步 AOF 文件的时间距离现在超过一秒钟，那么再次对 AOF 文件进行同步，并且这个同步操作是由一个线程专门负责执行的</td>
+</tr>
+<tr>
+<td align="center">no</td>
+<td align="center">将 aof_buf 缓冲区中的所有内容写入到 AOF 文件，但并不对 AOF 文件进行同步，何时同步由操作系统来决定</td>
+</tr>
+</tbody></table>
+<p>如果用户没有主动为appendfsync选项设置值，那么appendfsync选项的默认值为everysec。</p>
+<p><strong>写入：将 aof_buf 中的数据写入到 AOF 文件中。</strong></p>
+<p><strong>同步：调用 fsync 以及 fdatasync 函数，将 AOF 文件中的数据保存到磁盘中。</strong>通俗地讲就是，你要往一个文件写东西，写的过程就是写入，而同步则是将文件保存，数据落到磁盘上。</p>
+<p>大家之前看文章的时候是不是大多都说 AOF 最多丢失一秒钟的数据，那是因为 redis AOF 默认是 everysec 策略，这个策略每秒执行一次，所以 AOF 持久化最多丢失一秒钟的数据。</p>
+<h3 id="AOF-文件的载入与数据还原"><a href="#AOF-文件的载入与数据还原" class="headerlink" title="AOF 文件的载入与数据还原"></a>AOF 文件的载入与数据还原</h3><p>因为AOF文件里面包含了重建数据库状态所需的所有写命令，所以服务器只要读入并重新执行一遍AOF文件里面保存的写命令，就可以还原服务器关闭之前的数据库状态。 Redis读取AOF文件并还原数据库状态的详细步骤如下：</p>
 <ol>
-<li><span style="color:#ff77bb">FixedThreadPool</span>和<span style="color:#ff77bb">SingleThreadPool</span>：<ol>
-<li>允许的请求队列长度为Integer.MAX_VALUE，可能会堆积大量的请求，从而导致OOM</li>
+<li>创建一个不带网络连接的伪客户端（fake client）：因为Redis的命令只能在客户端上 下文中执行，而载入AOF文件时所使用的命令直接来源于AOF文件而不是网络连接，所以服 务器使用了一个没有网络连接的伪客户端来执行AOF文件保存的写命令，伪客户端执行命令 的效果和带网络连接的客户端执行命令的效果完全一样。</li>
+<li>从AOF文件中分析并读取出一条写命令。</li>
+<li>使用伪客户端执行被读出的写命令。</li>
+<li>一直执行步骤2和步骤3，直到AOF文件中的所有写命令都被处理完毕为止。</li>
 </ol>
-</li>
-<li><span style="color:#ff77bb">CachedThreadPool</span>：<ol>
-<li>允许的创建线程数量为Integer.MAX_VALUE，可能会创建大量线程，从而导致OOM</li>
-</ol>
-</li>
-</ol>
-</blockquote>
-<p>集成插件后会再去使用<code>Executors</code>去创建线程池会有如下的提示。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Alibaba%20Java%20Coding%20Guidelines.gif" alt="img"></p>
-<h1 id="GsonFormat"><a href="#GsonFormat" class="headerlink" title="GsonFormat"></a>GsonFormat</h1><p><code>GsonFormat</code> 个人觉得是一个非常非常实用的插件，它可以将<code>JSON</code>字符串自动转换成<code>Java</code>实体类。特别是在和其他系统对接时，往往以<code>JSON</code>格式传输数据，而我们需要用<code>Java</code>实体接收数据入库或者包装转发，如果字段太多一个一个编写那就太麻烦了。</p>
-<p>快捷键：<code>Alt+ S</code></p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/GsonFormat.gif" alt="img"></p>
-<h1 id="Maven-Helper"><a href="#Maven-Helper" class="headerlink" title="Maven Helper"></a>Maven Helper</h1><p><code>Maven Helper</code> 是解决<code>Maven</code>依赖冲突的利器，可以快速查找项目中的依赖冲突。安装后打开<code>pom</code>文件，底部有 <code>Dependency Analyzer</code> 视图。显示红色表示存在依赖冲突，点进去直接在包上右键<code>Exclude</code>排除，<code>pom</code>文件中会做出相应排除包的操作。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Maven%20Helper.gif" alt="img"></p>
-<ul>
-<li>Conflicts(冲突)</li>
-<li>All Dependencies as List(列表形式查看所有依赖)</li>
-<li>All Dependencies as Tree(树结构查看所有依赖)，并且这个页面还支持搜索。</li>
-</ul>
-<h1 id="Codota"><a href="#Codota" class="headerlink" title="Codota"></a>Codota</h1><p>用了<code>Codota</code> 后不再怕对<code>API</code>不会用，举个栗子：当我们用<code>stream().filter()</code>对<code>List</code>操作，可是对<code>filter()</code>用法不熟，按常理我们会百度一下，而用<code>Codota</code> 会提示很多<code>filter()</code>用法，节省不少查阅资料的时间。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Codota.gif" alt="img"></p>
-<h1 id="Free-MyBatis-Plugin"><a href="#Free-MyBatis-Plugin" class="headerlink" title="Free MyBatis Plugin"></a>Free MyBatis Plugin</h1><p>在使用<code>MyBatis</code> 作为持久框架时有一个尴尬的问题：<code>SQL</code> <code>xml</code>文件和定义的<code>Java</code>接口无法相互跳转，不能像Java接口间调用那样，只能全局搜索稍显麻烦。<code>Free MyBatis Plugin</code>将两者之间进行关联。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Free%20MyBatis%20Plugin.gif" alt="img"></p>
-<h1 id="IntelliJad"><a href="#IntelliJad" class="headerlink" title="IntelliJad"></a>IntelliJad</h1><p><code>IntelliJad</code>是一个Java class文件的反编译工具，需要在 <code>setting</code> 中设置本地<code>Java</code> <code>jad.exe</code>工具的地址。随便找个<code>Jar</code>架包选择<code>class</code>文件右键<code>Decompile</code>，会出现反编译的结果。</p>
-<h1 id="Properties-to-YAML-Converter"><a href="#Properties-to-YAML-Converter" class="headerlink" title="Properties to YAML Converter"></a>Properties to YAML Converter</h1><p>将<code>Properties</code> 配置文件一键转换成<code>YAML</code> 文件，很实用的一个插件。<strong>「注意：要提前备份原<code>Properties</code> 文件」</strong></p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Properties%20to%20YAML%20Converter.gif" alt="img"></p>
-<h1 id="Lombok"><a href="#Lombok" class="headerlink" title="Lombok"></a>Lombok</h1><p><code>Lombok</code> 插件应该比较熟，它替我们解决了那些繁琐又重复的代码，比如<code>Setter</code>、<code>Getter</code>、<code>toString</code>、<code>equals</code>等方法。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Lombok.gif" alt="img"></p>
-<h1 id="CodeGlance"><a href="#CodeGlance" class="headerlink" title="CodeGlance"></a>CodeGlance</h1><p><code>CodeGlance</code> 是一款代码编辑区迷你缩放图插件，可以很方便的知道我们方法大致在什么位置。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/CodeGlance.gif" alt="img"></p>
-<h1 id="aiXcoder"><a href="#aiXcoder" class="headerlink" title="aiXcoder"></a>aiXcoder</h1><p><code>aiXcoder</code> 一款国产代码开发工具，提供了比较强大的代码补全、预测的功能，它的宗旨就是让我们少些代码，能自动生成的绝不手写，上手感受下就会爱上它。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/aiXcoder.gif" alt="img"></p>
-<p>实际开发中我会结合<code>IDEA</code>的<code>postfix completion</code>和<code>aiXcoder</code>配置使用，<code>IDEA</code>本身就已经提供了许多快速补全的快捷方式，不过我发现组内很多人并没有真正用起来。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%BC%94%E7%A4%BA.gif" alt="img"></p>
-<p>也可以自行定义快捷方式生成的代码块。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/%E8%87%AA%E8%A1%8C%E5%AE%9A%E4%B9%89%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81%E5%9D%97.hc" alt="img"></p>
-<p><code>aiXcoder</code>支持相似代码搜索功能，如果哪个<code>API</code>不会用，直接选中右键全网搜索实用案例。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/%E6%BC%94%E7%A4%BA1.png" alt="img"></p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/%E6%BC%94%E7%A4%BA2.png" alt="img"></p>
-<h1 id="Java-Stream-Debugger"><a href="#Java-Stream-Debugger" class="headerlink" title="Java Stream Debugger"></a>Java Stream Debugger</h1><p><code>Java8</code>的<code>stream API</code>很大程度的简化了我们的代码量，可在使用过程中总会出现奇奇怪怪的<code>bug</code>而且不能<code>debug</code>。</p>
-<p><code>Java Stream Debugger</code>支持了对<code>stream API</code>的调试，可以清晰的看到每一步操作数据的变化过程。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/1460000039974382.webp" alt="img"></p>
-<h1 id="easy-javadoc"><a href="#easy-javadoc" class="headerlink" title="easy_javadoc"></a>easy_javadoc</h1><p><code>easy_javadoc</code>一个可以快速为<code>Java</code>的类、方法、属性加注释的插件，还支持自定义注释样式，<code>IDEA</code>自身的<code>Live Templates</code>也支持，不过操作稍显繁琐，使用时效率不太高。</p>
-<p>在为类、方法、属性加注释时，不仅会生成注释，还是会将对应变量、类、方法翻译成中文名，不过翻译的怎么样还要取决于你的命名水平。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/easy_javadoc.gif" alt="img"></p>
-<p>快捷键：<code>crtl + \</code></p>
-<p>是不是觉得一点点加注释效率太低了，你也可以尝试批量添加注释。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/2220547361-6b88806d3f00a022.gif" alt="img"></p>
-<p>快捷键：<code>crtl + shift + \</code></p>
-<p>如果现有的注释样式不适合你，可以自定义你的注释模板。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/1212121.png" alt="img"></p>
-<h1 id="Easy-Code"><a href="#Easy-Code" class="headerlink" title="Easy Code"></a>Easy Code</h1><p><code>Easy Code</code>我个人在写博客案例<code>demo</code>时用的比较多，它可以快速的将数据库表映射成Java中的<code>entity</code>、<code>controller</code>、<code>service</code>、<code>dao</code>、<code>mapper</code>等文件，少量编码实现快速开发。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Easy%20Code1.png" alt="img"></p>
-<p>先用<code>database</code>连接数据库，在对应表上直接右键执行<code>EasyCode</code>即可生成相应Java代码，真的很方便。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Easy%20Code2.png" alt="img"></p>
-<h1 id="Restfultoolkit"><a href="#Restfultoolkit" class="headerlink" title="Restfultoolkit"></a>Restfultoolkit</h1><p><code>Restfultoolkit</code>一套<code>RESTful</code>服务开发辅助工具集，维护项目通常会涉及到查找一个请求所对应的类，一般用<code>ctrl + shift + f</code>进行全局搜索，但是如果项目文件太多，这种查找方式的效率就很低。</p>
-<p><code>Restfultoolkit</code>管理项目中全部的请求链接，可以快速查找。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Restfultoolkit.png" alt="img"></p>
-<p>快捷键：<code>ctrl+ alt + n</code></p>
-<p>可以复制当前请求的<code>全路径</code>和<code>JSON</code>格式的参数，开发测试中非常的实用。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/620977942-a6a221100ee14bbf.gif" alt="img"></p>
-<p><code>IDEA</code>右侧会出现一栏<code>RestServices</code>，这里有整个项目的<code>http</code>请求，还会显示每个请求的入参、出参<code>JSON</code>数据，可以进行简单的模拟请求。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/520459743-b49d19a73e4bcb36_fix732.png" alt="img"></p>
-<h1 id="Key-promoter-X"><a href="#Key-promoter-X" class="headerlink" title="Key promoter X"></a>Key promoter X</h1><p><code>Key promoter X</code>是<code>IDEA</code>的快捷键提示插件，这是我个人非常喜欢的一个功能，它让我快速的记忆了很多操作的快捷键。当你点击某个功能且该功能有快捷键时，会提示当前操作的快捷方式。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Key%20promoter%20X.gif" alt="img"></p>
-<h1 id="String-Manipulation"><a href="#String-Manipulation" class="headerlink" title="String Manipulation"></a>String Manipulation</h1><p><code>String Manipulation</code>一个比较实用的字符串转换工具，比如我们平时的变量命名可以一键转换驼峰等格式，还支持对字符串的各种加、解密（<code>MD5</code>、<code>Base64</code>等）操作。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/String%20Manipulation.gif" alt="img"></p>
-<p>快捷键：<code>alt + m</code></p>
-<h1 id="Translation"><a href="#Translation" class="headerlink" title="Translation"></a>Translation</h1><p><code>Translation</code>一个很方便的翻译插件，比如选中代码、控制台的报错信息可直接翻译。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Translation.gif" alt="img"></p>
-<h1 id="Git-Auto-Pull"><a href="#Git-Auto-Pull" class="headerlink" title="Git Auto Pull"></a>Git Auto Pull</h1><p>团队多人开发项目时，由于频繁提交代码，等我在<code>commit</code>本地代码的时必须先进行<code>pull</code>，否则就会代码冲突产生<code>merge</code>记录。</p>
-<p><code>GitAutoPull</code>插件帮我们在<code>push</code>前先进行<code>pull</code>，避免了不必要的代码冲突。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/Git%20Auto%20Pull1.png" alt="img"></p>
-<h1 id="ignore"><a href="#ignore" class="headerlink" title=".ignore"></a>.ignore</h1><p>当我们在向<code>github</code>提交代码时，有一些文件不希望一并提交，这时候我们可以创建一个<code>.gitignore</code>文件来忽略某些文件的提交。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/ignore.png" alt="img"></p>
-<p>也可以添加指定文件到<code>.gitignore</code>中，被忽略的文件将变成灰色。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/20%E4%B8%AA%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E7%9A%84%20IDEA%20%E6%8F%92%E4%BB%B6/gitignore.png" alt="img"></p>
-]]></content>
-      <tags>
-        <tag>IDEA</tag>
-        <tag>插件</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>虚拟DOM与Diff算法的实现原理</title>
-    <url>/2021/09/18/7/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Vue 源码中虚拟 DOM 与 Diff 算法的实现借鉴了 <code>snabbdom</code> 这个库，<code>snabbdom</code> 是一个虚拟 DOM 库，它专注于简单，模块化，强大的功能和性能。要彻底明白虚拟 DOM 与 Diff 算法就得分析 <code>snabbdom</code> 这个库到底做了什么？</p>
-<span id="more"></span>
+<p>当完成以上步骤之后，AOF文件所保存的数据库状态就会被完整地还原出来，整个过程 如下图所示。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/56d0faae5d5a4183925755bdcfa816cb_tplv-k3u1fbpfcp-zoom-1.jpg" alt="img"></p>
+<h3 id="AOF-重写"><a href="#AOF-重写" class="headerlink" title="AOF 重写"></a>AOF 重写</h3><p>因为AOF持久化是通过保存被执行的写命令来记录数据库状态的，所以随着服务器运行 时间的流逝，AOF文件中的内容会越来越多，文件的体积也会越来越大，如果不加以控制的 话，体积过大的AOF文件很可能对Redis服务器、甚至整个宿主计算机造成影响，并且AOF文 件的体积越大，使用AOF文件来进行数据还原所需的时间就越多。</p>
+<p>如 客户端执行了以下命令是：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; rpush list &quot;A&quot; &quot;B&quot;</span><br><span class="line">OK</span><br><span class="line">&gt; rpush list &quot;C&quot;</span><br><span class="line">OK</span><br><span class="line">&gt; rpush list &quot;D&quot;</span><br><span class="line">OK</span><br><span class="line">&gt; rpush list &quot;E&quot; &quot;F&quot;</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
 
-<h1 id="获取源代码"><a href="#获取源代码" class="headerlink" title="获取源代码"></a>获取源代码</h1><p>可以通过<code>npm i snabbdom -D</code> 来下载 <code>snabbdom</code> 库，这样我们既能看到 <code>src</code> 下用 Typescript 编写的源码，也能看到编译好的 JavaScript 代码。下面贴的源码是 <code>2.1.0</code> 版本，现在已经更新到 <code>3.0.3</code> 版本了。建议将下方出现的源码复制到下载的 <code>snabbdom</code> 库中相应位置，这样看源码比较清晰。那我们就开始分析源码吧。</p>
-<h1 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h1><h2 id="JavaScript-对象模拟真实-DOM-树"><a href="#JavaScript-对象模拟真实-DOM-树" class="headerlink" title="JavaScript 对象模拟真实 DOM 树"></a>JavaScript 对象模拟真实 DOM 树</h2><p>通过调用 <code>snabbdom</code> 库中的 <code>h</code>函数就可以对真实 DOM 节点进行抽象。我们先来看看一个完整的虚拟 DOM 节点（vnode）是什么样的：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005003084.png" alt="image-20210609005003084"></p>
-<p>实际上，<code>h</code>函数的作用就是用 JavaScript 对象模拟真实的 DOM 树，对真实 DOM 树进行抽象。调用 <code>h</code>函数就能得到由 vnode 组成的虚拟 DOM 树。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005038727.png" alt="image-20210609005038727"></p>
-<p>调用 <code>h</code>函数有多种形式：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005127609.png" alt="image-20210609005127609"></p>
-<p>使得 <code>h</code>函数的第二和第三个参数比较灵活，要判断的情况也比较多，下面把这部分的核心源码分析贴一下：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005208697.png" alt="image-20210609005208697"></p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005236275.png" alt="image-20210609005236275"></p>
-<h2 id="diff-算法–入口函数"><a href="#diff-算法–入口函数" class="headerlink" title="diff 算法–入口函数"></a>diff 算法–入口函数</h2><p>通过 <code>h</code>函数得到新旧虚拟节点 DOM 对象后就可以进行差异比较了。在实际使用过程中，我们是直接调用 <code>snabbdom</code> 的 <code>patch</code> 函数，然后传入两个参数，通过 <code>patch</code> 函数内部处理就可以得到新旧虚拟节点 DOM 对象的差异，并将差异部分更新到真正的 DOM 树上。</p>
-<p>首先，<code>patch</code> 函数会去判断 <code>oldVnode</code> 是否是真实DOM节点，如果是则需要先转换为虚拟DOM节点 <code>oldVnode = emptyNodeAt(oldVnode)</code> ；然后去比较新旧 vnode 是否是同一个节点 <code>sameVnode(oldVnode, vnode)</code>，如果是同一节点则精确比较新旧 vnode <code>patchVnode(oldVnode, vnode, insertedVnodeQueue)</code> ，如果不是则直接创建新 vnode 对应的真实 DOM 节点 <code>createElm(vnode, insertedVnodeQueue)</code>，在 createElm 函数中创建新 vnode 的真实 DOM 节点以及它对应的子节点，并把子节点插入到相应位置。如果 oldVnode.elm 有父节点则把新 vnode 对应的真实 DOM 节点作为子节点插入到相应位置，并且删除旧节点。下面贴一下 <code>patch</code> 函数的源码解析：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005305899.png" alt="image-20210609005305899"></p>
-<p><code>patch</code> 函数中用到了 <code>emptyNodeAt</code> 函数，这个函数主要是处理 <code>patch</code> 函数第一个参数为真实DOM节点的情况。下面贴一下这个函数的源码解析：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005328771.png" alt="image-20210609005328771"></p>
-<p><code>patch</code> 函数中用到了 <code>sameVnode</code> 函数，这个函数主要用来比较两个虚拟DOM节点是否是同一个虚拟节点。下面贴一下这个函数的源码分析：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005349669.png" alt="image-20210609005349669"></p>
-<h2 id="diff-算法–新旧-vnode-不是同一个节点的情况"><a href="#diff-算法–新旧-vnode-不是同一个节点的情况" class="headerlink" title="diff 算法–新旧 vnode 不是同一个节点的情况"></a>diff 算法–新旧 vnode 不是同一个节点的情况</h2><p>根据 <code>sameVnode</code> 函数返回的结果，新旧 vnode 不是同一个虚拟节点。首先获取到 oldVnode 对应真实 DOM 节点的父节点 <code>parent</code> ，然后调用 <code>createElm</code> 函数去创建 vnode 对应的真实 DOM 节点以及它的子节点和标签属性等等。判断是否有 <code>parent</code>， 如果有则将 vnode.elm 对应的DOM节点作为子节点插入到 <code>parent</code> 节点下的相应位置。部分源码分析在<code>patch</code>函数中，下面贴一下 <code>createElm</code> 函数的源码分析：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005419230.png" alt="image-20210609005419230"></p>
-<h2 id="diff-算法–新旧-vnode-是同一个节点的情况"><a href="#diff-算法–新旧-vnode-是同一个节点的情况" class="headerlink" title="diff 算法–新旧 vnode 是同一个节点的情况"></a>diff 算法–新旧 vnode 是同一个节点的情况</h2><p>上面分析了新旧 vnode 不是同一个虚拟节点，那么是同一个虚拟节点又该怎么去处理？首先，调用 <code>patchVnode</code> 函数 <code>patchVnode(oldVnode, vnode, insertedVnodeQueue)</code>，这个函数会对新旧 vnode 进行精确比较：</p>
-<p>① 如果新旧虚拟 DOM 对象全等 <code>oldVnode === vnode</code> ，那么不做任何操作，直接返回；</p>
-<p>② 然后判断 vnode 是否有文本节点 <code>isUndef(vnode.text)</code> ，如果没有文本节点则判断 oldVnode 与 vnode 有没有子节点 <code>isDef(oldCh) &amp;&amp; isDef(ch)</code>，如果都有子节点且不相等则调用 <code>updateChildren</code> 函数去更新子节点；</p>
-<p>③ 如果只有 vnode 有子节点而 oldVnode 有文本节点或没有内容，将 oldVnode 的文本节点置空或不做处理，调用 <code>addVnodes</code> 函数将 vnode 的子节点创建出对应的真实DOM并循环插入到父节点下；</p>
-<p>④ 如果只有 oldVnode 有子节点而 vnode 没有内容，则直接删除 oldVnode 下的子节点；</p>
-<p>⑤ 如果只有 oldVnode 有文本节点而 vnode 没有内容，则将 oldVnode 对应的真实 DOM 节点的文本置空;</p>
-<p>⑥ 如果 vnode 有文本节点，oldVnode 有子节点就将对应真实 DOM 节点的子节点删除，没有就不处理，然后将 vnode 的文本节点作为子节点插入到对应真实 DOM 节点下。</p>
-<p>部分源码分析在<code>patch</code>函数中，下面贴一下 <code>patchVnode</code> 函数的源码分析：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005456999.png" alt="image-20210609005456999"></p>
-<h2 id="diff-算法–新旧-vnode-子节点的更新策略"><a href="#diff-算法–新旧-vnode-子节点的更新策略" class="headerlink" title="diff 算法–新旧 vnode 子节点的更新策略"></a>diff 算法–新旧 vnode 子节点的更新策略</h2><p>当新旧 vnode 都有子节点时，<code>diff</code> 算法定义了四个指针来处理子节点，四个指针分别是：<code>oldStartVnode(旧前vnode)</code>/<code>newStartVnode(新前vnode)</code>/<code>oldEndVnode(旧后vnode)</code>/<code>newEndVnode(新后vnode)</code> 。进入循环体内后，新旧 vnode 的子节点两两比较，这里提供了一套比较规则，如下图：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005624407.png" alt="image-20210609005624407"></p>
-<p>如果上面四个规则都不满足，将 oldVnode 的子节点从旧的前索引 <code>oldStartIdx</code> 到旧的后索引 <code>oldEndIdx</code> 做一个 key 与对应位置序号的映射 <code>oldKeyToIdx</code> ，通过新 vnode 的 key 去找 <code>oldKeyToIdx</code> 中是否有对应的索引值，若没有，表明 <code>oldVnode</code> 没有对应的旧节点，是一个新增的节点，进行插入操作；若有，表明 <code>oldVnode</code> 有对应的旧节点，不是一个新增节点，进行移动操作。下面贴一下源码解析：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005645424.png" alt="image-20210609005645424"></p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/image-20210609005703911.png" alt="image-20210609005703911"></p>
+<p>那么光是为了记录这个list键的状态，AOF文件就需要保存四条命令。</p>
+<p>对于实际的应用程度来说，写命令执行的次数和频率会比上面的简单示例要高得多，所 以造成的问题也会严重得多。 为了解决AOF文件体积膨胀的问题，Redis提供了AOF文件重写（rewrite）功能。通过该 功能，Redis服务器可以创建一个新的AOF文件来替代现有的AOF文件，新旧两个AOF文件所 保存的数据库状态相同，但新AOF文件不会包含任何浪费空间的冗余命令，所以新AOF文件 的体积通常会比旧AOF文件的体积要小得多。 在接下来的内容中，我们将介绍AOF文件重写的实现原理，以及BGREWEITEAOF命令 的实现原理。</p>
+<p>虽然Redis将生成新AOF文件替换旧AOF文件的功能命名为“AOF文件重写”，但实际上， AOF文件重写并不需要对现有的AOF文件进行任何读取、分析或者写入操作，这个功能是通 过读取服务器当前的数据库状态来实现的。</p>
+<p>就像上面的情况，服务器完全可以将这六条命令合并成一条。</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; rpush list &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot;</span><br></pre></td></tr></table></figure>
+
+<p>除了上面列举的列表键之外，其他所有类型的键都可以用同样的方法去减少 AOF文件中的命令数量。首先从数据库中读取键现在的值，然后用一条命令去记录键值对，代替之前记录这个键值对的多条命令，这就是AOF重写功能的实现原理。</p>
+<p>在实际中，为了避免在执行命令时造成客户端输入缓冲区溢出，重写程序在处理列表、 哈希表、集合、有序集合这四种可能会带有多个元素的键时，会先检查键所包含的元素数 量，如果元素的数量超过了redis.h/REDIS_AOF_REWRITE_ITEMS_PER_CMD常量的值，那 么重写程序将使用多条命令来记录键的值，而不单单使用一条命令。 在目前版本中，REDIS_AOF_REWRITE_ITEMS_PER_CMD常量的值为64，这也就是 说，如果一个集合键包含了超过64个元素，那么重写程序会用多条SADD命令来记录这个集 合，并且每条命令设置的元素数量也为64个。</p>
+<h3 id="AOF-后台重写"><a href="#AOF-后台重写" class="headerlink" title="AOF 后台重写"></a>AOF 后台重写</h3><p>AOF 重写会执行大量的写操作，这样会影响主线程，所以redis AOF 重写放到了子进程去执行。这样可以达到两个目的：</p>
+<ul>
+<li>子进程进行AOF重写期间，服务器进程（父进程）可以继续处理命令请求。</li>
+<li>子进程带有服务器进程的数据副本，使用子进程而不是线程，可以在避免使用锁的情况 下，保证数据的安全性。</li>
+</ul>
+<p>但是有一个问题，当子进程重写数据时，主进程依然在处理新的数据，这也就会造成数据不一致情况。</p>
+<p><strong>为了解决这种数据不一致问题，Redis服务器设置了一个AOF重写缓冲区，这个缓冲区在 服务器创建子进程之后开始使用，当Redis服务器执行完一个写命令之后，它会同时将这个写 命令发送给AOF缓冲区和AOF重写缓冲区</strong>，如下图：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/1623917247.jpg" alt="img"></p>
+<p>这也就是说，在子进程执行AOF重写期间，服务器进程需要执行以下三个工作：</p>
+<ol>
+<li>执行客户端发来的命令。</li>
+<li>将执行后的写命令追加到AOF缓冲区。</li>
+<li>将执行后的写命令追加到AOF重写缓冲区。</li>
+</ol>
+<p>这样一来可以保证：</p>
+<ul>
+<li>AOF缓冲区的内容会定期被写入和同步到AOF文件，对现有AOF文件的处理工作会如常 进行。</li>
+<li>从创建子进程开始，服务器执行的所有写命令都会被记录到AOF重写缓冲区里面。</li>
+</ul>
+<p>当子进程完成AOF重写工作之后，它会向父进程发送一个信号，父进程在接到该信号之 后，会调用一个信号处理函数，并执行以下工作：</p>
+<ol>
+<li>将AOF重写缓冲区中的所有内容写入到新AOF文件中，这时新AOF文件所保存的数 据库状态将和服务器当前的数据库状态一致。</li>
+<li>对新的AOF文件进行改名，原子地（atomic）覆盖现有的AOF文件，完成新旧两个 AOF文件的替换。</li>
+</ol>
+<p>这个信号处理函数执行完毕之后，父进程就可以继续像往常一样接受命令请求了。</p>
+<p>在整个AOF后台重写过程中，只有信号处理函数执行时会对服务器进程（父进程）造成 阻塞，在其他时候，AOF后台重写都不会阻塞父进程，这将AOF重写对服务器性能造成的影 响降到了最低。</p>
+<h1 id="Redis-混合持久化"><a href="#Redis-混合持久化" class="headerlink" title="Redis 混合持久化"></a>Redis 混合持久化</h1><p>Redis 还可以同时使用 AOF 持久化和 RDB 持久化。 在这种情况下， 当 Redis 重启时， 它会优先使用 AOF 文件来还原数据集， 因为 AOF 文件保存的数据集通常比 RDB 文件所保存的数据集更完整。但是 AOF 恢复比较慢，Redis 4.0 推出了<strong>混合持久化</strong>。</p>
+<p>混合持久化： 将 rdb 文件的内容和增量的 AOF 日志文件存在一起。这里的 AOF 日志不再是全量的日志，而是 自持久化开始到持久化结束 的这段时间发生的增量 AOF 日志，通常这部分 AOF 日志很小。</p>
+<p>于是在 Redis 重启的时候，可以先加载 <strong>RDB</strong> 的内容，然后再重放增量 AOF 日志就可以完全替代之前的 AOF 全量文件重放，重启效率因此大幅得到提升。</p>
 ]]></content>
       <tags>
-        <tag>vue.js</tag>
         <tag>源码解析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JVM内存区域分布与作用</title>
-    <url>/2021/09/18/6/</url>
-    <content><![CDATA[<p>在开始介绍Java内存区域之前，先放一张内存区域的图，方便后面介绍的时候可以对照着看。</p>
-<blockquote>
-<p><strong>须知：</strong>本文是根据JDK8来介绍的。</p>
-</blockquote>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%86%E5%B8%83%E4%B8%8E%E4%BD%9C%E7%94%A8/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F.png" alt="img"></p>
-<span id="more"></span>
-
-<h1 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h1><p>首先它是线程私有的，它也称为代码的行号指示器，字节码解释器就是通过改变程序计数器的位置来确定下一行要执行的代码，它不存在OOM。</p>
-<p>如果线程正在执行一个Java方法，那么它记录的是正在执行虚拟机字节码指令的地址，如果是一个本地方法那么它的值为空。</p>
-<h1 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h1><p>它也是线程私有的，它的声明周期和线程一致。每个线程创建时都会创建一个虚拟机栈，内部保存了一个个的栈帧，每个栈帧就对应着一次方法的调用。既然知道了虚拟机栈里面存放的是一个个的栈帧，那么也不难猜出虚拟机栈里面都存储了什么东西。</p>
-<p>Java虚拟机栈是存在OOM的，当线程所请求的栈的深度大于虚拟机栈的深度或者虚拟机栈可以动态扩容，当栈扩展时无法申请到足够的内存时，就会抛出OOM。</p>
-<ul>
-<li><strong>虚拟机栈内部结构</strong>：</li>
-</ul>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%86%E5%B8%83%E4%B8%8E%E4%BD%9C%E7%94%A8/%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84.png" alt="img"></p>
-<ul>
-<li><p><strong>局部变量表</strong>：</p>
-<p>主要存储方法的参数，所有的基本类型数据和对象地址，以及返回地址类型（return address）。它以变量槽为最小的存储单位，Java虚拟机并没有规定一个变量槽占用多少内存空间，但是规定了一个变量槽可以存放一个32位以内的数据类型。如果存储的数据类型超过32位，比如long、double，那么就使用两个变量槽进行存储。</p>
-</li>
-<li><p><strong>操作数栈</strong>：</p>
-<p>操作数栈是一个先进后出的操作数栈，当一个方法刚开始执行的时候，一个新的栈帧也会随之被创建出来，这个方法的操作数栈是空的，它主要用于保存计算过程的中间结果，同时作为计算过程中变量临时的存储空间。如果被调用的方法有返回值，那么返回值将会被压入当前栈帧的操作数栈中。操作数栈并非采用索引的方式进行数据访问，而是通过入栈（push）和出栈（pop）操作来完成数据的访问。</p>
-</li>
-<li><p><strong>动态链接</strong>：</p>
-<p>大白话就是，栈帧中保存了一个方法的引用，当执行方法的时候，可以拿着这个引用到运行时常量池中找到这个方法。</p>
-<p>动态链接的作用就是将这些方法的符号引用转换为调用方法的直接引用。</p>
-</li>
-<li><p><strong>方法返回地址</strong>：</p>
-<p>就是在方法执行结束之后，要返回下一条要执行代码位置的值，也就是程序计数器的值。</p>
-<p>那么除了方法正常执行结束退出外，还有另外一种情况就是异常导致的方法退出，那么这种情况下是不会返回任何值的。对于抛出的异常，栈帧中不会做任何记录，但是会记录在一个异常表中。</p>
-</li>
-</ul>
-<h1 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h1><p>Java虚拟机栈为虚拟机执行Java方法服务，本地方法栈则为虚拟机使用到的本地方法服务。像JVM就有好多C语言写的方法，这个就需要本地方法栈来执行。</p>
-<h1 id="Java堆"><a href="#Java堆" class="headerlink" title="Java堆"></a>Java堆</h1><p>Java堆是虚拟机中最大的一块内存空间，它被所有的线程共享，在虚拟机启动时创建。它唯一的目的就是存放对象实例。</p>
-<p>如果面试被问到，所有的对象实例都是在堆中分配内存吗？这个时候你一定要回答，不是。</p>
-<p>随着即时编译技术的发展进步，尤其是逃逸分析技术的日渐强大，栈上分配、变量替换等优化手段，让实例在”只在堆“中分配不再成为绝对。</p>
-<p>Java堆是垃圾收集的主要区域，Java堆中也经常出现新生代、老年代、永久代等等，这里需要注意，这些并不是Java堆物理上的内存布局，它是作为垃圾收集器而划分一种内存布局。</p>
-<h1 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h1><p>方法区也是线程共享的区域，它主要用于存储被虚拟机加载的类型信息、常量、静态变量、即时编译器编译后的代码缓存等数据。</p>
-<p>方法区它是可以被垃圾收集器进行回收的，主要针对类型的卸载和常量池的回收。</p>
-<p>方法区也可以产生OOM，当方法区无法满足新的内存分配需求时，将抛出OutOfMemoryError异常。</p>
-<h1 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h1><p>运行时常量池是方法区的一部分。Class文件中除了有类的版本、字段、方法、接口等信息外，还有一项信息是常量池表，它用来存储编译期生成的各种字面量和符号引用。</p>
-<p>如果动态链接那块没看懂，那么看了运行常量池再翻回去看看是不是好理解了。</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-        <tag>JVM</tag>
+        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
@@ -2955,186 +3135,6 @@
         <tag>Tomcat</tag>
         <tag>MySQL</tag>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>源码级别理解 Redis 持久化</title>
-    <url>/2021/09/18/8/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家都知道 Redis 是一个内存数据库，数据都存储在内存中，这也是 Redis 非常快的原因之一。虽然速度提上来了，但是如果数据一直放在内存中，是非常容易丢失的。比如 服务器关闭或宕机了，内存中的数据就木有了。为了解决这一问题，Redis 提供了 持久化 机制。分别是 <strong>RDB</strong> 以及 <strong>AOF</strong> 持久化。</p>
-<span id="more"></span>
-
-<h1 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h1><h2 id="什么是-RDB-持久化"><a href="#什么是-RDB-持久化" class="headerlink" title="什么是 RDB 持久化?"></a>什么是 RDB 持久化?</h2><p>RDB 持久化可以在指定的时间间隔内生成数据集的时间点快照(point-in-time snapshot)。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/1e5c87e44b494a20864323f2872c5dee_tplv-k3u1fbpfcp-zoom-1.jpg" alt="img"></p>
-<h2 id="RDB-的优点？"><a href="#RDB-的优点？" class="headerlink" title="RDB 的优点？"></a>RDB 的优点？</h2><ul>
-<li>RDB 是一种表示某个即时点的 Redis 数据的紧凑文件。RDB 文件适用于备份。例如，你可能想要每小时归档最近24小时的 RDB 文件，每天保存近30天的 RDB 快照。这允许你很容易的恢复不同版本的数据集以容灾。</li>
-<li>RDB 非常适合于灾难恢复，作为一个紧凑的单一文件，可以被传输到远程的数据中心。</li>
-<li>RDB 最大化了 Redis 的性能。因为 Redis 父进程持久化时唯一需要做的是启动(fork)一个子进程，由子进程完成所有剩余的工作。父进程实例不需要执行像磁盘IO这样的操作。</li>
-<li>RDB 在重启保存了大数据集的实例比 AOF 快。</li>
-</ul>
-<h2 id="RDB-的缺点？"><a href="#RDB-的缺点？" class="headerlink" title="RDB 的缺点？"></a>RDB 的缺点？</h2><ul>
-<li>当你需要在Redis停止工作(例如停电)时最小化数据丢失，RDB可能不太好。你可以配置不同的保存点(save point)来保存RDB文件(例如，至少5分钟和对数据集100次写之后，但是你可以有多个保存点)。然而，你通常每隔5分钟或更久创建一个RDB快照，所以一旦Redis因为任何原因没有正确关闭而停止工作，你就得做好最近几分钟数据丢失的准备了。</li>
-<li>RDB需要经常调用fork()子进程来持久化到磁盘。如果数据集很大的话，fork()比较耗时，结果就是，当数据集非常大并且CPU性能不够强大的话，Redis会停止服务客户端几毫秒甚至一秒。AOF也需要fork()，但是你可以调整多久频率重写日志而不会有损(trade-off)持久性(durability)。</li>
-</ul>
-<h2 id="RDB-文件的创建与载入"><a href="#RDB-文件的创建与载入" class="headerlink" title="RDB 文件的创建与载入"></a>RDB 文件的创建与载入</h2><p>有个两个 Redis 命令可以用于生成 RDB 文件，一个是 <strong>SAVE</strong>，另一个是 <strong>BGSAVE</strong>。</p>
-<p><strong>SAVE</strong> 命令会阻塞 Redis 服务器进程，直到 RDB 文件创建完毕为止，在服务器进程阻塞期间，服务器不能处理任何命令请求。</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; SAVE     // 一直等到 RDB 文件创建完毕</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
-
-<p>和 SAVE 命令直接阻塞服务器进程不同的是，BGSAVE 命令会派生出一个子进程，然后由子进程负责创建 RDB 文件，服务器进程(父进程)继续处理命令进程。</p>
-<p><strong>执行fork的时候操作系统（类Unix操作系统）会使用写时复制（copy-on-write）策略，即fork函数发生的一刻父子进程共享同一内存数据，当父进程要更改其中某片数据时（如执行一个写命令 ），操作系统会将该片数据复制一份以保证子进程的数据不受影响，所以新的RDB文件存储的是执行fork一刻的内存数据。</strong></p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; BGSAVE  // 派生子进程，并由子进程创建 RDB 文件</span><br><span class="line">Background saving started</span><br></pre></td></tr></table></figure>
-
-<p>生成 RDB 文件由两种方式：<strong>一种是手动，就是上边介绍的用命令的方式；另一种是自动的方式。</strong></p>
-<p>接下来详细介绍一下自动生成 RDB 文件的流程。</p>
-<p>Redis 允许用户通过设置服务器配置的 <strong>save</strong> 选项，让服务器每隔一段时间自动执行一次 BGSAVE 命令。</p>
-<p>用户可以通过在 redis.conf 配置文件中的 SNAPSHOTTING 下 save 选项设置多个保存条件，但只要其中任意一个条件被满足，服务器就会执行 BGSAEVE 命令。</p>
-<p>如，以下配置：</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">save <span class="number">900</span> <span class="number">1</span></span><br><span class="line">save <span class="number">300</span> <span class="number">10</span></span><br><span class="line">save <span class="number">60</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
-
-<p>上边三个配置的含义是：</p>
-<ul>
-<li>服务器在 900 秒内，对数据库进行了至少 1 次修改。</li>
-<li>服务器在 300 秒内，对数据库进行了至少 10 次修改。</li>
-<li>服务器在 60 秒内，对数据库进行了至少 10000 次修改。</li>
-</ul>
-<p>如果没有手动去配置 save 选项，那么服务器会为 save 选项配置默认参数：</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">save <span class="number">900</span> <span class="number">1</span></span><br><span class="line">save <span class="number">300</span> <span class="number">10</span></span><br><span class="line">save <span class="number">60</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
-
-<p>接着，服务器就会根据 save 选项的配置，去设置服务器状态 redisServer 结构的 saveparams 属性：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">redisServer</span>&#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 记录了保存条件的数组</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">saveparams</span> *<span class="title">saveparams</span>;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>saveparams 属性是一个数组，数组中的每一个元素都是一个 saveparam 结构，每个 saveparam 结构都保存了一个 save 选项设置的保存条件：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">saveparam</span> &#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 秒数</span></span><br><span class="line">  <span class="keyword">time_t</span> seconds;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 修改数</span></span><br><span class="line">  <span class="keyword">int</span> changes;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>除了 saveparams 数组之外，服务器状态还维持着一个 dirty 计数器，以及一个 lastsave 属性；</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">redisServer</span> &#123;</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 修改计数器</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> dirty;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 上一次执行保存时间</span></span><br><span class="line">     <span class="keyword">time_t</span> lastsave;</span><br><span class="line">     </span><br><span class="line">     <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>dirty 计数器记录距离上一次成功执行 SAVE 或 BGSAVE 命令之后，服务器对数据库状态(服务器中的所有数据库)进行了多少次修改(包括写入、删除、更新等操作)。</li>
-<li>lastsave 属性是一个 UNIX 时间戳，记录了服务器上一次执行 SAVE 或 BGSAVE 命令的时间。</li>
-</ul>
-<h3 id="检查条件是否满足触发-RDB"><a href="#检查条件是否满足触发-RDB" class="headerlink" title="检查条件是否满足触发 RDB"></a>检查条件是否满足触发 RDB</h3><p>Redis 的服务器周期性操作函数 serverCron 默认每隔 100 毫秒执行一次，该函数用于对正在运行的服务器进行维护，它的其中一项工作就是检查 save 选项所设置的保存条件是否已经满足，如果满足的话就执行 BGSAVE 命令。</p>
-<p>Redis serverCron 源码解析如下：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/1623916411.jpg" alt="img"></p>
-<p>程序会遍历并检查 saveparams 数组中的所有保存条件，只要有任意一个条件被满足，服务器就会执行 BGSAVE 命令。</p>
-<p>下面是 rdbSaveBackground 的源码流程：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/1623916516.jpg" alt="img"></p>
-<h2 id="RDB-文件结构"><a href="#RDB-文件结构" class="headerlink" title="RDB 文件结构"></a>RDB 文件结构</h2><p>下图展示了一个完整 RDB 文件所包含的各个部分。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/6ccb6e0fb4354db2bf8da17ebf908f7c_tplv-k3u1fbpfcp-zoom-1.jpg" alt="img"></p>
-<p>redis 文件的最开头是 <strong>REDIS</strong> 部分，这个部分的长度是 5 字节，保存着 “REDIS” 五个字符。通过这五个字符，程序可以在载入文件时，快速检查所载入的文件是否时 RDB 文件。</p>
-<p><strong>db_version</strong> 长度为 4 字节，他的值时一个字符串表示的整数，这个整数记录了 RDB 文件的版本号，比如 “0006” 就代表 RDB 文件的版本为第六版。</p>
-<p><strong>database</strong> 部分包含着零个或任意多个数据库，以及各个数据库中的键值对数据：</p>
-<ul>
-<li>如果服务器的数据库状态为空(所有数据库都是空的)，那么这个部分也为空，长度为 0 字节。</li>
-<li>如果服务器的数据库状态为非空(有至少一个数据库非空)，那么这个部分也为非空，根据数据库所保存键值对的数量、类型和内容不同，这个部分的长度也会有所不同。</li>
-</ul>
-<p><strong>EOF</strong> 常量的长度为 1 字节，这个常量标志着 RDB 文件正文内容的结束，当读入程序遇到这个值后，他知道所有数据库的所有键值对已经载入完毕了。</p>
-<p><strong>check_sum</strong> 是一个 8 字节长的无符号整数，保存着一个校验和，这个校验和时程序通过对 REDIS、db_version、database、EOF 四个部分的内容进行计算得出的。服务器在载入 RDB 文件时，会将载入数据所计算出的校验和与 check_sum 所记录的校验和进行对比，以此来检查 RDB 是否有出错或者损坏的情况。</p>
-<p>举个例子：下图是一个 0 号数据库和 3 号数据库的 RDB 文件。第一个就是 “REDIS” 表示是一个 RDB 文件，之后的 “0006” 表示这是第六版的 REDIS 文件，然后是两个数据库，之后就是 EOF 结束标识符，最后就是 check_sum。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/847161c1b0414aa69109e3f3a0c43797_tplv-k3u1fbpfcp-zoom-1.png" alt="img"></p>
-<h1 id="AOF-持久化"><a href="#AOF-持久化" class="headerlink" title="AOF 持久化"></a>AOF 持久化</h1><h2 id="什么是-AOF-持久化"><a href="#什么是-AOF-持久化" class="headerlink" title="什么是 AOF 持久化"></a>什么是 AOF 持久化</h2><p>AOF持久化方式记录每次对服务器写的操作,当服务器重启的时候会重新执行这些命令来恢复原始的数据,AOF命令以redis协议追加保存每次写的操作到文件末尾.Redis还能对AOF文件进行后台重写,使得AOF文件的体积不至于过大. </p>
-<h2 id="AOF-的优点？"><a href="#AOF-的优点？" class="headerlink" title="AOF 的优点？"></a>AOF 的优点？</h2><ul>
-<li>使用AOF 会让你的Redis更加耐久: 你可以使用不同的fsync策略：无fsync,每秒fsync,每次写的时候fsync.使用默认的每秒fsync策略,Redis的性能依然很好(fsync是由后台线程进行处理的,主线程会尽力处理客户端请求),一旦出现故障，你最多丢失1秒的数据.</li>
-<li>AOF文件是一个只进行追加的日志文件,所以不需要写入seek,即使由于某些原因(磁盘空间已满，写的过程中宕机等等)未执行完整的写入命令,你也也可使用redis-check-aof工具修复这些问题.</li>
-<li>Redis 可以在 AOF 文件体积变得过大时，自动地在后台对 AOF 进行重写： 重写后的新 AOF 文件包含了恢复当前数据集所需的最小命令集合。 整个重写操作是绝对安全的，因为 Redis 在创建新 AOF 文件的过程中，会继续将命令追加到现有的 AOF 文件里面，即使重写过程中发生停机，现有的 AOF 文件也不会丢失。 而一旦新 AOF 文件创建完毕，Redis 就会从旧 AOF 文件切换到新 AOF 文件，并开始对新 AOF 文件进行追加操作。</li>
-<li>AOF 文件有序地保存了对数据库执行的所有写入操作， 这些写入操作以 Redis 协议的格式保存， 因此 AOF 文件的内容非常容易被人读懂， 对文件进行分析（parse）也很轻松。 导出（export） AOF 文件也非常简单： 举个例子， 如果你不小心执行了 FLUSHALL 命令， 但只要 AOF 文件未被重写， 那么只要停止服务器， 移除 AOF 文件末尾的 FLUSHALL 命令， 并重启 Redis ， 就可以将数据集恢复到 FLUSHALL 执行之前的状态。</li>
-</ul>
-<h2 id="AOF-的缺点？"><a href="#AOF-的缺点？" class="headerlink" title="AOF 的缺点？"></a>AOF 的缺点？</h2><ul>
-<li>对于相同的数据集来说，AOF 文件的体积通常要大于 RDB 文件的体积。</li>
-<li>根据所使用的 fsync 策略，AOF 的速度可能会慢于 RDB 。 在一般情况下， 每秒 fsync 的性能依然非常高， 而关闭 fsync 可以让 AOF 的速度和 RDB 一样快， 即使在高负荷之下也是如此。 不过在处理巨大的写入载入时，RDB 可以提供更有保证的最大延迟时间（latency）。</li>
-</ul>
-<h2 id="AOF持久化的实现"><a href="#AOF持久化的实现" class="headerlink" title="AOF持久化的实现"></a>AOF持久化的实现</h2><p>AOF持久化功能的实现可以分为命令追加（append）、文件写入、文件同步（sync）三个步骤。</p>
-<h3 id="命令追加"><a href="#命令追加" class="headerlink" title="命令追加"></a>命令追加</h3><p>当 AOF 持久化功能处于打开状态时，服务器在执行完一个写命令之后，会以协议格式将被执行的写命令追加到服务器状态的 aof_buf 缓冲区的末尾。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">redisServer</span> &#123;</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="comment">// AOF 缓冲区  </span></span><br><span class="line">  sds aof_buf;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ..</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>如果客户端向服务器发送以下命令：</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; <span class="built_in">set</span> KEY VALUE</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
-
-<p>那么服务器在执行这个 set 命令之后，会将以下协议内容追加到 aof_buf 缓冲区的末尾；</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">*<span class="number">3</span>\r\n$<span class="number">3</span>\r\nSET\r\n$<span class="number">3</span>\r\nKEY\r\n$<span class="number">5</span>\r\nVALUE\r\n</span><br></pre></td></tr></table></figure>
-
-<h3 id="AOF-文件的写入与同步"><a href="#AOF-文件的写入与同步" class="headerlink" title="AOF 文件的写入与同步"></a>AOF 文件的写入与同步</h3><p>Redis的服务器进程就是一个事件循环（loop），这个循环中的文件事件负责接收客户端 的命令请求，以及向客户端发送命令回复，而时间事件则负责执行像 serverCron 函数这样需 要定时运行的函数。</p>
-<p>因为服务器在处理文件事件时可能会执行写命令，使得一些内容被追加到aof_buf缓冲区 里面，所以在服务器每次结束一个事件循环之前，它都会调用 <strong>flushAppendOnlyFile</strong> 函数，考 虑是否需要将aof_buf缓冲区中的内容写入和保存到AOF文件里面，这个过程可以用以下伪代 码表示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">def <span class="title">eventLoop</span><span class="params">()</span>:</span></span><br><span class="line"><span class="function">  while True:</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    #处理文件事件，接收命令请求以及发送命令回复</span></span><br><span class="line"><span class="function">    #处理命令请求时可能会有新内容被追加到 aof_buf缓冲区中</span></span><br><span class="line"><span class="function">    processFileEvents()</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    #处理时间事件</span></span><br><span class="line"><span class="function">    processTimeEvents()</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    #考虑是否要将 aof_buf中的内容写入和保存到 AOF文件里面</span></span><br><span class="line"><span class="function">    flushAppendOnlyFile()</span></span><br></pre></td></tr></table></figure>
-
-<p>flushAppendOnlyFile函数的行为由服务器配置的 <strong>appendfsync</strong> 选项的值来决定，各个不同 值产生的行为如下表所示。</p>
-<table>
-<thead>
-<tr>
-<th align="center">appendfsync 选项的值</th>
-<th align="center">flushAppendOnlyFile 函数的行为</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">always</td>
-<td align="center">将 aof_buf 缓冲区中的所有内容写入并同步到 AOF 文件</td>
-</tr>
-<tr>
-<td align="center">everysec</td>
-<td align="center">将 aof_buf 缓冲区中的所有内容写入到 AOF 文件，如果上次同步 AOF 文件的时间距离现在超过一秒钟，那么再次对 AOF 文件进行同步，并且这个同步操作是由一个线程专门负责执行的</td>
-</tr>
-<tr>
-<td align="center">no</td>
-<td align="center">将 aof_buf 缓冲区中的所有内容写入到 AOF 文件，但并不对 AOF 文件进行同步，何时同步由操作系统来决定</td>
-</tr>
-</tbody></table>
-<p>如果用户没有主动为appendfsync选项设置值，那么appendfsync选项的默认值为everysec。</p>
-<p><strong>写入：将 aof_buf 中的数据写入到 AOF 文件中。</strong></p>
-<p><strong>同步：调用 fsync 以及 fdatasync 函数，将 AOF 文件中的数据保存到磁盘中。</strong>通俗地讲就是，你要往一个文件写东西，写的过程就是写入，而同步则是将文件保存，数据落到磁盘上。</p>
-<p>大家之前看文章的时候是不是大多都说 AOF 最多丢失一秒钟的数据，那是因为 redis AOF 默认是 everysec 策略，这个策略每秒执行一次，所以 AOF 持久化最多丢失一秒钟的数据。</p>
-<h3 id="AOF-文件的载入与数据还原"><a href="#AOF-文件的载入与数据还原" class="headerlink" title="AOF 文件的载入与数据还原"></a>AOF 文件的载入与数据还原</h3><p>因为AOF文件里面包含了重建数据库状态所需的所有写命令，所以服务器只要读入并重新执行一遍AOF文件里面保存的写命令，就可以还原服务器关闭之前的数据库状态。 Redis读取AOF文件并还原数据库状态的详细步骤如下：</p>
-<ol>
-<li>创建一个不带网络连接的伪客户端（fake client）：因为Redis的命令只能在客户端上 下文中执行，而载入AOF文件时所使用的命令直接来源于AOF文件而不是网络连接，所以服 务器使用了一个没有网络连接的伪客户端来执行AOF文件保存的写命令，伪客户端执行命令 的效果和带网络连接的客户端执行命令的效果完全一样。</li>
-<li>从AOF文件中分析并读取出一条写命令。</li>
-<li>使用伪客户端执行被读出的写命令。</li>
-<li>一直执行步骤2和步骤3，直到AOF文件中的所有写命令都被处理完毕为止。</li>
-</ol>
-<p>当完成以上步骤之后，AOF文件所保存的数据库状态就会被完整地还原出来，整个过程 如下图所示。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/56d0faae5d5a4183925755bdcfa816cb_tplv-k3u1fbpfcp-zoom-1.jpg" alt="img"></p>
-<h3 id="AOF-重写"><a href="#AOF-重写" class="headerlink" title="AOF 重写"></a>AOF 重写</h3><p>因为AOF持久化是通过保存被执行的写命令来记录数据库状态的，所以随着服务器运行 时间的流逝，AOF文件中的内容会越来越多，文件的体积也会越来越大，如果不加以控制的 话，体积过大的AOF文件很可能对Redis服务器、甚至整个宿主计算机造成影响，并且AOF文 件的体积越大，使用AOF文件来进行数据还原所需的时间就越多。</p>
-<p>如 客户端执行了以下命令是：</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; rpush list &quot;A&quot; &quot;B&quot;</span><br><span class="line">OK</span><br><span class="line">&gt; rpush list &quot;C&quot;</span><br><span class="line">OK</span><br><span class="line">&gt; rpush list &quot;D&quot;</span><br><span class="line">OK</span><br><span class="line">&gt; rpush list &quot;E&quot; &quot;F&quot;</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
-
-<p>那么光是为了记录这个list键的状态，AOF文件就需要保存四条命令。</p>
-<p>对于实际的应用程度来说，写命令执行的次数和频率会比上面的简单示例要高得多，所 以造成的问题也会严重得多。 为了解决AOF文件体积膨胀的问题，Redis提供了AOF文件重写（rewrite）功能。通过该 功能，Redis服务器可以创建一个新的AOF文件来替代现有的AOF文件，新旧两个AOF文件所 保存的数据库状态相同，但新AOF文件不会包含任何浪费空间的冗余命令，所以新AOF文件 的体积通常会比旧AOF文件的体积要小得多。 在接下来的内容中，我们将介绍AOF文件重写的实现原理，以及BGREWEITEAOF命令 的实现原理。</p>
-<p>虽然Redis将生成新AOF文件替换旧AOF文件的功能命名为“AOF文件重写”，但实际上， AOF文件重写并不需要对现有的AOF文件进行任何读取、分析或者写入操作，这个功能是通 过读取服务器当前的数据库状态来实现的。</p>
-<p>就像上面的情况，服务器完全可以将这六条命令合并成一条。</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; rpush list &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot;</span><br></pre></td></tr></table></figure>
-
-<p>除了上面列举的列表键之外，其他所有类型的键都可以用同样的方法去减少 AOF文件中的命令数量。首先从数据库中读取键现在的值，然后用一条命令去记录键值对，代替之前记录这个键值对的多条命令，这就是AOF重写功能的实现原理。</p>
-<p>在实际中，为了避免在执行命令时造成客户端输入缓冲区溢出，重写程序在处理列表、 哈希表、集合、有序集合这四种可能会带有多个元素的键时，会先检查键所包含的元素数 量，如果元素的数量超过了redis.h/REDIS_AOF_REWRITE_ITEMS_PER_CMD常量的值，那 么重写程序将使用多条命令来记录键的值，而不单单使用一条命令。 在目前版本中，REDIS_AOF_REWRITE_ITEMS_PER_CMD常量的值为64，这也就是 说，如果一个集合键包含了超过64个元素，那么重写程序会用多条SADD命令来记录这个集 合，并且每条命令设置的元素数量也为64个。</p>
-<h3 id="AOF-后台重写"><a href="#AOF-后台重写" class="headerlink" title="AOF 后台重写"></a>AOF 后台重写</h3><p>AOF 重写会执行大量的写操作，这样会影响主线程，所以redis AOF 重写放到了子进程去执行。这样可以达到两个目的：</p>
-<ul>
-<li>子进程进行AOF重写期间，服务器进程（父进程）可以继续处理命令请求。</li>
-<li>子进程带有服务器进程的数据副本，使用子进程而不是线程，可以在避免使用锁的情况 下，保证数据的安全性。</li>
-</ul>
-<p>但是有一个问题，当子进程重写数据时，主进程依然在处理新的数据，这也就会造成数据不一致情况。</p>
-<p><strong>为了解决这种数据不一致问题，Redis服务器设置了一个AOF重写缓冲区，这个缓冲区在 服务器创建子进程之后开始使用，当Redis服务器执行完一个写命令之后，它会同时将这个写 命令发送给AOF缓冲区和AOF重写缓冲区</strong>，如下图：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/1623917247.jpg" alt="img"></p>
-<p>这也就是说，在子进程执行AOF重写期间，服务器进程需要执行以下三个工作：</p>
-<ol>
-<li>执行客户端发来的命令。</li>
-<li>将执行后的写命令追加到AOF缓冲区。</li>
-<li>将执行后的写命令追加到AOF重写缓冲区。</li>
-</ol>
-<p>这样一来可以保证：</p>
-<ul>
-<li>AOF缓冲区的内容会定期被写入和同步到AOF文件，对现有AOF文件的处理工作会如常 进行。</li>
-<li>从创建子进程开始，服务器执行的所有写命令都会被记录到AOF重写缓冲区里面。</li>
-</ul>
-<p>当子进程完成AOF重写工作之后，它会向父进程发送一个信号，父进程在接到该信号之 后，会调用一个信号处理函数，并执行以下工作：</p>
-<ol>
-<li>将AOF重写缓冲区中的所有内容写入到新AOF文件中，这时新AOF文件所保存的数 据库状态将和服务器当前的数据库状态一致。</li>
-<li>对新的AOF文件进行改名，原子地（atomic）覆盖现有的AOF文件，完成新旧两个 AOF文件的替换。</li>
-</ol>
-<p>这个信号处理函数执行完毕之后，父进程就可以继续像往常一样接受命令请求了。</p>
-<p>在整个AOF后台重写过程中，只有信号处理函数执行时会对服务器进程（父进程）造成 阻塞，在其他时候，AOF后台重写都不会阻塞父进程，这将AOF重写对服务器性能造成的影 响降到了最低。</p>
-<h1 id="Redis-混合持久化"><a href="#Redis-混合持久化" class="headerlink" title="Redis 混合持久化"></a>Redis 混合持久化</h1><p>Redis 还可以同时使用 AOF 持久化和 RDB 持久化。 在这种情况下， 当 Redis 重启时， 它会优先使用 AOF 文件来还原数据集， 因为 AOF 文件保存的数据集通常比 RDB 文件所保存的数据集更完整。但是 AOF 恢复比较慢，Redis 4.0 推出了<strong>混合持久化</strong>。</p>
-<p>混合持久化： 将 rdb 文件的内容和增量的 AOF 日志文件存在一起。这里的 AOF 日志不再是全量的日志，而是 自持久化开始到持久化结束 的这段时间发生的增量 AOF 日志，通常这部分 AOF 日志很小。</p>
-<p>于是在 Redis 重启的时候，可以先加载 <strong>RDB</strong> 的内容，然后再重放增量 AOF 日志就可以完全替代之前的 AOF 全量文件重放，重启效率因此大幅得到提升。</p>
-]]></content>
-      <tags>
-        <tag>源码解析</tag>
-        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
