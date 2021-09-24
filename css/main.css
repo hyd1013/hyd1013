@@ -1252,7 +1252,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #1c11ff;
+  background: #4529ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2542,14 +2542,24 @@ hr {
   text-align: center;
 }
 .post-button .btn {
-  background: none;
-  border: 0;
-  border-bottom: 2px solid var(--btn-default-border-color);
-  padding: 0;
-  transition-property: border;
+  background: #fff;
+  border: 2px solid #555;
+  border-radius: 2px;
+  color: #555;
+  display: inline-block;
+  font-size: 0.875em;
+  line-height: 2;
+  padding: 0 20px;
+  text-decoration: none;
+  transition-property: background-color;
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
 }
 .post-button .btn:hover {
-  border-bottom-color: var(--btn-default-hover-border-color);
+  background: #222;
+  border-color: #222;
+  color: #fff;
 }
 .sidebar {
   left: -320px;
