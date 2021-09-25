@@ -1252,7 +1252,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #78fff7;
+  background: #ffffd0;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2832,11 +2832,11 @@ code {
   background-position-y: 200px;
   transition: all 0.2s ease-in-out 0s;
 }
+.fa-download {
+  margin-right: 4px;
+}
 .btn:hover {
   background: #222;
   border-color: #222;
   color: #fff;
-}
-.fa-download {
-  margin-right: 4px;
 }
