@@ -1252,7 +1252,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffff81;
+  background: #fff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2833,6 +2833,9 @@ code {
   transition: all 0.2s ease-in-out 0s;
 }
 .fa-download {
+  margin-right: 4px;
+}
+.fa-paper-plane {
   margin-right: 4px;
 }
 .btn:hover {
