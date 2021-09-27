@@ -24,7 +24,7 @@
   <meta name="description" content="前言大家都知道 Redis 是一个内存数据库，数据都存储在内存中，这也是 Redis 非常快的原因之一。虽然速度提上来了，但是如果数据一直放在内存中，是非常容易丢失的。比如 服务器关闭或宕机了，内存中的数据就木有了。为了解决这一问题，Redis 提供了 持久化 机制。分别是 RDB 以及 AOF 持久化。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="源码级别理解 Redis 持久化">
-<meta property="og:url" content="http://hyd0.cc/2021/09/18/8/index.html">
+<meta property="og:url" content="http://hyd0.cc/2021/09/18/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/index.html">
 <meta property="og:site_name" content="信仰的个人博客">
 <meta property="og:description" content="前言大家都知道 Redis 是一个内存数据库，数据都存储在内存中，这也是 Redis 非常快的原因之一。虽然速度提上来了，但是如果数据一直放在内存中，是非常容易丢失的。比如 服务器关闭或宕机了，内存中的数据就木有了。为了解决这一问题，Redis 提供了 持久化 机制。分别是 RDB 以及 AOF 持久化。">
 <meta property="og:locale" content="zh_CN">
@@ -38,12 +38,12 @@
 <meta property="article:published_time" content="2021-09-18T01:19:32.289Z">
 <meta property="article:modified_time" content="2021-09-18T08:47:08.434Z">
 <meta property="article:author" content="信仰">
-<meta property="article:tag" content="源码解析">
 <meta property="article:tag" content="Redis">
+<meta property="article:tag" content="源码解析">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/1e5c87e44b494a20864323f2872c5dee_tplv-k3u1fbpfcp-zoom-1.jpg">
 
-<link rel="canonical" href="http://hyd0.cc/2021/09/18/8/">
+<link rel="canonical" href="http://hyd0.cc/2021/09/18/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/">
 
 
 <script id="page-configurations">
@@ -142,11 +142,6 @@
     <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
 
   </li>
-        <li class="menu-item menu-item-tool">
-
-    <a href="/tool/" rel="section"><i class="fa fa-fw fa-rocket"></i>工具</a>
-
-  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -203,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://hyd0.cc/2021/09/18/8/">
+    <link itemprop="mainEntityOfPage" href="http://hyd0.cc/2021/09/18/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://wanglin.love/images/网站配置/avatar.png">
@@ -231,7 +226,7 @@
             </span>
 
           
-            <span id="/2021/09/18/8/" class="post-meta-item leancloud_visitors" data-flag-title="源码级别理解 Redis 持久化" title="阅读次数">
+            <span id="/2021/09/18/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/" class="post-meta-item leancloud_visitors" data-flag-title="源码级别理解 Redis 持久化" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -253,8 +248,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/09/18/8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/18/8/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/09/18/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/18/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -489,7 +484,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://hyd0.cc/2021/09/18/8/" title="源码级别理解 Redis 持久化">http://hyd0.cc/2021/09/18/8/</a>
+    <a href="http://hyd0.cc/2021/09/18/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/" title="源码级别理解 Redis 持久化">http://hyd0.cc/2021/09/18/源码级别理解Redis持久化/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章，均在可信时间戳认证机构完成确权，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处，侵权必究！商业性使用请联系主理人购买授权许可。
@@ -501,8 +496,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" rel="tag"><i class="fa fa-tag"></i> 源码解析</a>
               <a href="/tags/Redis/" rel="tag"><i class="fa fa-tag"></i> Redis</a>
+              <a href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" rel="tag"><i class="fa fa-tag"></i> 源码解析</a>
           </div>
 
         
@@ -511,12 +506,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/09/18/6/" rel="prev" title="JVM内存区域分布与作用">
-      <i class="fa fa-chevron-left"></i> JVM内存区域分布与作用
+    <a href="/2021/09/18/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDiff%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" rel="prev" title="虚拟DOM与Diff算法的实现原理">
+      <i class="fa fa-chevron-left"></i> 虚拟DOM与Diff算法的实现原理
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/09/18/7/" rel="next" title="虚拟DOM与Diff算法的实现原理">
-      虚拟DOM与Diff算法的实现原理 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/09/18/CentOS6.x~7.x%E4%B8%8B%E5%AE%89%E8%A3%85JDK%E3%80%81Tomcat%E3%80%81MySQL/" rel="next" title="CentOS6.x~7.x下安装JDK、Tomcat、MySQL">
+      CentOS6.x~7.x下安装JDK、Tomcat、MySQL <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -593,18 +588,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">文章</span>
         </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -626,7 +617,7 @@
                 <h3 class="widget-title">标签</h3>
                 <div id="myCanvasContainer" class="widget tagcloud">
                     <canvas width="250" height="250" id="resCanvas" style="width=100%">
-                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/" rel="tag">JDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Loading%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB/" rel="tag">Loading加载动画</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/" rel="tag">RabbitMQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-js/" rel="tag">vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88/" rel="tag">实施工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag">微服务</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">消息中间件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" rel="tag">源码解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag">面试题</a><span class="tag-list-count">4</span></li></ul>
+                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/" rel="tag">JDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Loading%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB/" rel="tag">Loading加载动画</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-js/" rel="tag">vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88/" rel="tag">实施工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" rel="tag">源码解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag">面试题</a><span class="tag-list-count">4</span></li></ul>
                     </canvas>
                 </div>
             </div>
@@ -659,13 +650,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">177k</span>
+    <span title="站点总字数">135k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:41</span>
+    <span title="站点阅读时长">2:03</span>
 </div>
       <!-- 网站运行时间的设置 -->
     <span id="timeDate">载入天数...</span>
