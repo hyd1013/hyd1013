@@ -424,6 +424,404 @@
       </tags>
   </entry>
   <entry>
+    <title>基础篇</title>
+    <url>/2021/09/18/%E5%9F%BA%E7%A1%80%E7%AF%87/</url>
+    <content><![CDATA[<h1 id="JDK-常用的包"><a href="#JDK-常用的包" class="headerlink" title="JDK 常用的包"></a>JDK 常用的包</h1><p><strong>java.lang：</strong> 这个是系统的基础类，比如 <code>String</code>、<code>Math</code>、<code>Integer</code>、<code>System</code> 和 <code>Thread</code>，提供常用功能。</p>
+<p><strong>java.io:</strong> 这里面是所有输入输出有关的类，比如文件操作等</p>
+<p><strong>java.net:</strong> 这里面是与网络有关的类，比如 <code>URL</code>,<code>URLConnection</code> 等。</p>
+<p><strong>java.util :</strong> 这个是系统辅助类，特别是集合类 <code>Collection</code>,<code>List</code>,<code>Map</code> 等。</p>
+<p><strong>java.sql:</strong> 这个是数据库操作的类，<code>Connection</code>, <code>Statememt</code>，<code>ResultSet</code> 等</p>
+<span id="more"></span>
+
+<h1 id="Get-和-Post-的区别"><a href="#Get-和-Post-的区别" class="headerlink" title="Get 和 Post 的区别"></a>Get 和 Post 的区别</h1><h2 id="初级回答："><a href="#初级回答：" class="headerlink" title="初级回答："></a>初级回答：</h2><ol>
+<li><code>get</code> 是从服务器上获取数据，<code>post</code> 是向服务器传送数据， </li>
+<li><code>get</code> 传送的数据量较小，不能大于 2KB。<code>post</code> 传送的数据量较大，一般被默认为不</li>
+<li><code>get</code> 安全性非常低，<code>post</code> 安全性较高。但是执行效率却比 <code>Post</code> 方法好。 </li>
+<li>在进行文件上传时只能使用 <code>post</code> 而不能是 <code>get</code>。</li>
+</ol>
+<h2 id="中级回答：【推荐】"><a href="#中级回答：【推荐】" class="headerlink" title="中级回答：【推荐】"></a><span style="color:red">中级回答：【推荐】</span></h2><ol>
+<li><p><code>get</code> 是从服务器上获取数据，post 是向服务器传送数据。 </p>
+</li>
+<li><p>get 是把参数数据队列加到提交表单的 <code>ACTION</code> 属性所指的 <code>URL</code> 中，值和表单内各个字段一一对应，在 <code>URL</code> 中可以看到。<code>post</code> 是通过 <code>HTTP post</code> 机制，将表单内各个 字段与其内容放置在 <code>HTML HEADER</code> 内一起传送到 <code>ACTION</code> 属性所指的 <code>URL</code> 地址。用户看不到这个过程。 </p>
+</li>
+<li><p>对于 <code>get</code> 方式，服务器端用 <code>Request.QueryString</code> 获取变量的值，对于 <code>post</code> 方式，服务器端用 <code>Request.Form</code> 获取提交的数据 </p>
+</li>
+<li><p><code>get</code> 传送的数据量较小，不能大于 2KB。<code>post</code> 传送的数据量较大，一般被默认为不受限制。但理论上，<code>IIS4</code> 中最大量为 80KB，<code>IIS5</code>中为 100KB。 </p>
+</li>
+<li><p><code>get</code> 安全性非常低，<code>post</code> 安全性较高</p>
+</li>
+<li><p><code>get</code> 传递参数的时候【有时候】服务端获取的参数不会乱码，而 <code>post</code> 不会，<code>get</code> 请求参数是通过 <code>URL</code> 传递的，浏览器默认的会对中文进行 <code>gbk</code> 编码(<code>URL</code> 中如果含有中文等非 <code>ASCII</code> 字符，则浏览器会对它们进行 <code>URLEncode</code> </p>
+</li>
+</ol>
+<h1 id="Java-多态的具体体现"><a href="#Java-多态的具体体现" class="headerlink" title="Java 多态的具体体现"></a>Java 多态的具体体现</h1><p>面向对象编程有四个特征：抽象，封装，继承，多态。</p>
+<blockquote>
+<p>多态有四种体现形式：</p>
+<ol>
+<li>接口和接口的继承</li>
+<li>类和类的继承</li>
+<li>重载</li>
+<li>重写</li>
+</ol>
+</blockquote>
+<p>其中重载和重写为核心：</p>
+<blockquote>
+<p><strong>重载</strong>：重载发生在同一个类中，在该类中如果存在多个同名方法，但是方法的参数类型和个数不一样，那么说明该方法被重载了。</p>
+<p><strong>重写</strong>：重写发生在子类继承父类的关系中，父类中的方法被子类继承，方法名，返回值类型，参数完全一样，但是方法体不一样，那么说明父类中的该方法被子类重写了。</p>
+</blockquote>
+<h1 id="StringBuffer-StringBuilder-String-区别"><a href="#StringBuffer-StringBuilder-String-区别" class="headerlink" title="StringBuffer StringBuilder String 区别"></a>StringBuffer StringBuilder String 区别</h1><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">底层</th>
+<th align="center">可变性</th>
+<th align="center">安全性</th>
+<th align="center">拼接方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">String</td>
+<td align="center">字符串常量</td>
+<td align="center">不可变</td>
+<td align="center">线程安全</td>
+<td align="center">使用字符串拼接时是不同的 2 个空间</td>
+</tr>
+<tr>
+<td align="center">StringBuffer</td>
+<td align="center">字符串变量</td>
+<td align="center">可变</td>
+<td align="center">线程安全</td>
+<td align="center">字符串拼接直接在字符串后追加</td>
+</tr>
+<tr>
+<td align="center">StringBuilder</td>
+<td align="center">字符串变量</td>
+<td align="center">可变</td>
+<td align="center">非线程安全</td>
+<td align="center">字符串拼接直接在字符串后追加</td>
+</tr>
+</tbody></table>
+<ol>
+<li><code>StringBuilder</code> 执行效率高于 <code>StringBuffer</code> 高于 <code>String</code></li>
+<li><code>String</code> 是一个常量，是不可变的，所以对于每一次+=赋值都会创建一个新的对象， <code>StringBuffer</code> 和 <code>StringBuilder</code> 都是可变的，当进行字符串拼接时采用 <code>append</code> 方法，在原来的基础上进行追加，所以性能比 <code>String</code> 要高，又因为 <code>StringBuffer</code> 是线程安全的而 <code>StringBuilder</code> 是线程非安全的，所以 <code>StringBuilder</code> 的效率高于<code>StringBuffer</code></li>
+<li>对于大数据量的字符串的拼接，采用 <code>StringBuffer</code>,<code>StringBuilder</code></li>
+</ol>
+<h1 id="Hashtable-与-HashMap-的区别"><a href="#Hashtable-与-HashMap-的区别" class="headerlink" title="Hashtable 与 HashMap 的区别"></a>Hashtable 与 HashMap 的区别</h1><blockquote>
+<p><code>HashMap</code> 不是线程安全的，<code>HashTable</code> 是线程安全。 </p>
+<p><code>HashMap</code> 允许空（<code>null</code>）的键和值（<code>key</code>），<code>HashTable</code> 则不允许。 </p>
+<p><code>HashMap</code> 性能优于 <code>Hashtable</code>。 </p>
+</blockquote>
+<ol>
+<li><code>Map</code> 是一个以键值对存储的接口。<code>Map</code> 下有两个具体的实现，分别是 <code>HashMap</code> 和 <code>HashTable</code></li>
+<li><code>HashMap</code> 是线程非安全的，<code>HashTable</code> 是线程安全的，所以 <code>HashMap</code> 的效率高于 <code>HashTable</code></li>
+<li><code>HashMap</code> 允许键或值为空，而 <code>HashTable</code> 不允许键或值为空</li>
+</ol>
+<h1 id="九大隐式对象"><a href="#九大隐式对象" class="headerlink" title="九大隐式对象"></a>九大隐式对象</h1><p>输入/输出对象： <code>request</code>、<code>response</code>、<code>out</code></p>
+<p>作用域通信对象： <code>session</code>、<code>application</code>、<code>pageContext</code></p>
+<p>Servlet 对象： <code>page</code>、<code>config</code></p>
+<p>错误对象： <code>exception</code></p>
+<h1 id="Forword-请求转发-与-Redirect-重定向"><a href="#Forword-请求转发-与-Redirect-重定向" class="headerlink" title="Forword(请求转发)与 Redirect(重定向)"></a>Forword(请求转发)与 Redirect(重定向)</h1><ol>
+<li>从数据共享上<ol>
+<li><code>Forword</code> 是一个请求的延续，可以共享 <code>request</code> 的数据</li>
+<li><code>Redirect</code> 开启一个新的请求，不可以共享 <code>request</code> 的数据</li>
+</ol>
+</li>
+<li>从地址栏<ol>
+<li><code>Forword</code> 转发地址栏不发生变化</li>
+<li><code>Redirect</code> 转发地址栏发生变化</li>
+</ol>
+</li>
+</ol>
+<h1 id="JQurey-总结"><a href="#JQurey-总结" class="headerlink" title="JQurey 总结"></a>JQurey 总结</h1><p><code>jquery</code> 是一个轻量级的 <code>js</code> 框架，具有跨浏览器的特性，兼容性好，并且封装了很多工具，方便使用。 </p>
+<p>常用的有: 选择器 ，<code>dom</code> 操作 ，<code>ajax</code>(<code>ajax</code> 不能跨域) ，特效，工具类</p>
+<h1 id="XML-和-Json-的特点"><a href="#XML-和-Json-的特点" class="headerlink" title="XML 和 Json 的特点"></a>XML 和 Json 的特点</h1><p><strong>Xml 特点：</strong></p>
+<ol>
+<li>有且只有一个根节点；</li>
+<li>数据传输的载体 </li>
+<li>所有的标签都需要自定义 </li>
+<li>是纯文本文件 </li>
+</ol>
+<p><strong>Json（JavaScript Object Notation）特点：</strong></p>
+<ol>
+<li><code>json</code> 对象(就是在{}中存储键值对，键和值之间用冒号分隔， 键 值 对之间用逗号分隔)</li>
+<li><code>json</code> 数组(就是[]中存储多个 <code>json</code> 对象，<code>json</code> 对象之间用逗号分隔)（两者间可以进行相互嵌套）数据传输的载体之一</li>
+</ol>
+<p><strong>区别：</strong></p>
+<p>传输同样格式的数据，xml 需要使用更多的字符进行描述，流行的是基于 json 的数据传输,xml 的层次结构比 json 更清晰</p>
+<p><strong>共同点：</strong></p>
+<p>xml 和 json 都是数据传输的载体，并且具有跨平台跨语言的特性。</p>
+<h1 id="Page-和-PageContext-的区别"><a href="#Page-和-PageContext-的区别" class="headerlink" title="Page 和 PageContext 的区别"></a>Page 和 PageContext 的区别</h1><p><code>Page</code> 是 <code>servlet</code> 对象；使用 <code>this</code> 关键字，它的作用范围是在同一页面。<code>PageContext</code> 是作用域通信对象；通常使用<code>setAttribute()</code>和 <code>getAttribute()</code>来设置和获取存放对象的值。</p>
+<h1 id="JSP9-大隐视对象中四个作用域的大小与作用范围"><a href="#JSP9-大隐视对象中四个作用域的大小与作用范围" class="headerlink" title="JSP9 大隐视对象中四个作用域的大小与作用范围"></a>JSP9 大隐视对象中四个作用域的大小与作用范围</h1><p>四个作用域从大到小：<code>appliaction</code> &gt; <code>session</code> &gt; <code>request</code> &gt; <code>page</code></p>
+<table>
+<thead>
+<tr>
+<th align="center">作用域</th>
+<th align="center">范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">application</td>
+<td align="center">全局作用范围，整个应用程序共享.生命周期为：应用程序启动到停止</td>
+</tr>
+<tr>
+<td align="center">session</td>
+<td align="center">会话作用域，当用户首次访问时，产生一个新的会话，以后服务器就可以记 住这个会话状态</td>
+</tr>
+<tr>
+<td align="center">request</td>
+<td align="center">请求作用域，就是客户端的一次请求</td>
+</tr>
+<tr>
+<td align="center">page</td>
+<td align="center">一个 JSP 页面</td>
+</tr>
+</tbody></table>
+<p>以上作用范围使越来越小， <code>request</code> 和 <code>page</code> 的生命周期都是短暂的，他们之间的区别就是：一个 <code>request</code> 可以包含多个 <code>page</code> 页(<code>include</code>，<code>forward</code>)</p>
+<h1 id="List-Set-Collection-Collections"><a href="#List-Set-Collection-Collections" class="headerlink" title="List,Set,Collection,Collections"></a>List,Set,Collection,Collections</h1><ol>
+<li><code>List</code> 和 <code>Set</code> 都是接口，他们都继承于接口 <code>Collection</code>,<code>List</code> 是一个有序的可重复的集合，而 <code>Set</code> 的无序的不可重复的集合。<code>Collection</code> 是集合的顶层接口，<code>Collections</code> 是一个封装了众多关于集合操作的静态方法的工具类,因为构造方法是私有的，所以不能实例化。</li>
+<li><code>List</code> 接口实现类有 <code>ArrayList</code>,<code>LinkedList</code>,<code>Vector</code>。<code>ArrayList</code> 和 <code>Vector</code> 是基于数组实现的,所以查询的时候速度快，而在进行增加和删除的时候速度较慢 <code>LinkedList</code> 是基于链式存储结构，所以在进行查询的时候速度较慢但在进行增加和删除的时候速度较快。又因为<code>Vector</code> 是线程安全的，所以他和 <code>ArrayList</code> 相比而言，查询效率要低。</li>
+</ol>
+<h1 id="java-的基本数据类型"><a href="#java-的基本数据类型" class="headerlink" title="java 的基本数据类型"></a>java 的基本数据类型</h1><table>
+<thead>
+<tr>
+<th align="center">数据类型</th>
+<th align="center">大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">byte(字节)</td>
+<td align="center">1(8 位)</td>
+</tr>
+<tr>
+<td align="center">shot(短整型)</td>
+<td align="center">2(16 位)</td>
+</tr>
+<tr>
+<td align="center">int(整型)</td>
+<td align="center">4(32 位)</td>
+</tr>
+<tr>
+<td align="center">long(长整型)</td>
+<td align="center">8(32 位)</td>
+</tr>
+<tr>
+<td align="center">float(浮点型)</td>
+<td align="center">4(32 位)</td>
+</tr>
+<tr>
+<td align="center">double(双精度)</td>
+<td align="center">8(64 位)</td>
+</tr>
+<tr>
+<td align="center">char(字符型)</td>
+<td align="center">2(16 位)</td>
+</tr>
+<tr>
+<td align="center">boolean(布尔型)</td>
+<td align="center">1 位</td>
+</tr>
+</tbody></table>
+<p>附加：</p>
+<ol>
+<li>String 是基本数据类型吗?(String 不是基本数据类型)</li>
+<li>String 的长度是多少，有限制?(长度受内存大小的影响)</li>
+</ol>
+<h1 id="UE-和-UI-的区别"><a href="#UE-和-UI-的区别" class="headerlink" title="UE 和 UI 的区别"></a>UE 和 UI 的区别</h1><blockquote>
+<p>UE 是用户体验度 </p>
+<p>UI 界面原型（用户界面）（相当于买房时用的模型）</p>
+</blockquote>
+<p>设计 UI 的作用： </p>
+<ol>
+<li>帮助程序员工作（界面已由美工设计完成） </li>
+<li>提前让用户对项目有个宏观的了解，知道效果是什么样子。</li>
+</ol>
+<h1 id="osi-七层模型"><a href="#osi-七层模型" class="headerlink" title="osi 七层模型"></a>osi 七层模型</h1><blockquote>
+<p>第一层：物理层 </p>
+<p>第二层：数据链路层 </p>
+<p>第三层：网络层 </p>
+<p>第四层：传输层 </p>
+<p>第五层：会话层 </p>
+<p>第六层：表示层 </p>
+<p>第七层：应用层</p>
+</blockquote>
+<h1 id="线程和进程的区别"><a href="#线程和进程的区别" class="headerlink" title="线程和进程的区别"></a>线程和进程的区别</h1><ol>
+<li>线程(Thread)与进程（Process）进程定义的是应用程序与应用程序之间的边界，通常来说一个进程就代表一个与之对应的应用程序。不同的进程之间不能共享代码和数据空间，而同一进程的不同线程可以共享代码和数据空间。 </li>
+<li>.一个进程可以包括若干个线程，同时创建多个线程来完成某项任务，便是多线程</li>
+<li>实现线程的两种方式：继承 Thread 类，实现 Runable 接口</li>
+</ol>
+<h1 id="jvm-的内存结构"><a href="#jvm-的内存结构" class="headerlink" title="jvm 的内存结构"></a>jvm 的内存结构</h1><p><code>java</code> 虚拟机的内存结构分为堆(<code>heap</code>)和栈(<code>stack</code>),堆里面存放是对象实例也就是 <code>new</code>出来的对象。栈里面存放的是基本数据类型以及引用数据类型的地址。</p>
+<p>对于所谓的常量是存储在方法区的常量池里面</p>
+<h1 id="内存泄露和内存溢出"><a href="#内存泄露和内存溢出" class="headerlink" title="内存泄露和内存溢出"></a>内存泄露和内存溢出</h1><p>内存泄露 (<code>memory leak</code>)，是指应用程序在申请内存后，无法释放已经申请的内存空间.一次内存泄露危害可以忽略，但如果任其发展最终会导致内存溢出(<code>out of memory</code>).如读取文件后流要进行及时的关闭以及对数据库连接的释放。</p>
+<p>内存溢出（<code>out of memory</code>）是指应用程序在申请内存时，没有足够的内存空间供其使用。如我们在项目中对于大批量数据的导入，采用分段批量提交的方式。</p>
+<h1 id="项目的生命周期"><a href="#项目的生命周期" class="headerlink" title="项目的生命周期"></a>项目的生命周期</h1><blockquote>
+<p>1.需求分析 </p>
+<p>2.概要设计 </p>
+<p>3.详细设计(用例图，流程图，类图) </p>
+<p>4.数据库设计(powerdesigner) </p>
+<p>5.代码开发（编写） </p>
+<p>6.单元测试（junit 白盒测试）(开发人员) </p>
+<p>svn 版本管理工具(提交，更新代码，文档) </p>
+<p>7.集成测试 （黑盒测试，loadrunner（编写测试脚本）(高级测试)） </p>
+<p>8.上线试运行 （用户自己体验） </p>
+<p>9.压力测试（loadrunner） </p>
+<p>10.正式上线 </p>
+<p>11.维护 </p>
+</blockquote>
+<h1 id="session-和-cookie-的区别"><a href="#session-和-cookie-的区别" class="headerlink" title="session 和 cookie 的区别"></a>session 和 cookie 的区别</h1><p><code>session</code> 是存储在服务器端，<code>cookie</code> 是存储在客户端的，所以安全来讲 <code>session</code> 的安全性要比<code>cookie</code> 高，然后我们获取 <code>session</code> 里的信息是通过存放在会话 <code>cookie</code> 里的 <code>sessionid</code> 获取的。又由于 <code>session</code> 是存放在服务器的内存中，所以 <code>session</code> 里的东西不断增加会造成服务器的负担，所以会把很重要的信息存储在 <code>session</code> 中，而把一些次要东西存储在客户端的 <code>cookie</code> 里，然后 <code>cookie</code> 确切的说分为两大类分为会话 <code>cookie</code> 和持久化 <code>cookie</code>，会话 <code>cookie</code> 确切的说是，存放在客户端浏览器的内存中,所以说他的生命周期和浏览器是一致的，浏览器关了会话<code>cookie</code> 也就消失了，然而持久化 <code>cookie</code> 是存放在客户端硬盘中，而持久化 <code>cookie</code> 的生命周期就是我们在设置 <code>cookie</code> 时候设置的那个保存时间，然后我们考虑一问题当浏览器关闭时<code>session</code> 会不会丢失，从上面叙述分析 <code>session</code> 的信息是通过会话 <code>cookie</code> 的 <code>sessionid</code> 获取的，当浏览器关闭的时候会话 <code>cookie</code> 消失所以我们的 <code>sessionid</code> 也就消失了，但是 <code>session</code> 的信息还存在服务器端，<span style="background:red">这时我们只是查不到所谓的 <code>session</code> 但它并不是不存在</span>。那么，<code>session</code> 在什么情况下丢失，就是在服务器关闭的时候，或者是 <code>session</code> 过期(默认时间是 30 分钟)，再或 者 调 用 了 <code>invalidate()</code> 的 或 者 是 我 们 想 要 <code>session</code> 中 的 某 一 条 数 据 消 失 调 用<code>session.removeAttribute()</code>方法，然后 <code>session</code> 在什么时候被创建呢，确切的说是通过调用<code>getsession()</code>来创建，这就是 <code>session</code> 与 <code>cookie</code> 的区别.</p>
+<p><span style="color:blue">访问 <code>HTML</code> 页面是不会创建 <code>session</code>,但是访问 <code>index.JSP</code> 时会创建 <code>session</code>(<code>JSP</code> 实际上是一个 <code>Servlet</code>, <code>Servlet</code> 中有 <code>getSession</code> 方法) </span></p>
+<h1 id="字节流与字符流的区别"><a href="#字节流与字符流的区别" class="headerlink" title="字节流与字符流的区别"></a>字节流与字符流的区别</h1><p><code>stream</code> 结尾都是字节流，<code>reader</code> 和 <code>writer</code> 结尾都是字符流 </p>
+<p>两者的区别就是读写的时候一个是按字节读写，一个是按字符。 </p>
+<p>实际使用通常差不多。 </p>
+<p>在读写文件需要对内容按行处理，比如比较特定字符，处理某一行数据的时候一般会选择字符流。 </p>
+<p>只是读写文件，和文件内容无关的，一般选择字节流。</p>
+<h1 id="final-finally-finalize-三者区别"><a href="#final-finally-finalize-三者区别" class="headerlink" title="final,finally,finalize 三者区别"></a>final,finally,finalize 三者区别</h1><blockquote>
+<p><code>Final</code> 是一个修饰符： </p>
+<p>当 <code>final</code> 修饰一个变量的时候，变量变成一个常量，它不能被二次赋值当 <code>final</code> 修饰的变量为静态变量（即由 <code>static</code> 修饰）时，必须在声明这个变量的时候给它赋值</p>
+<p>当 <code>final</code> 修饰方法时，该方法不能被重写 </p>
+<p>当 <code>final</code> 修饰类时，该类不能被继承 </p>
+<p><code>Final</code> 不能修饰抽象类，因为抽象类中会有需要子类实现的抽象方法，（抽象类中可以有抽象方法，也可以有普通方法，当一个抽象类中没有抽象方法时，这个抽象类也就没有了它存在的必要） </p>
+<p><code>Final</code> 不能修饰接口，因为接口中有需要其实现类来实现的方法</p>
+</blockquote>
+<blockquote>
+<p><code>Finally</code>： </p>
+<p><code>Finally</code> 只能与 <code>try</code>/<code>catch</code> 语句结合使用，<code>finally</code> 语句块中的语句一定会执行， 并且会在<code>return</code>，<code>continue</code>，<code>break</code> 关键字之前执行</p>
+</blockquote>
+<blockquote>
+<p><code>finalize</code>： </p>
+<p><code>Finalize</code> 是一个方法，属于 <code>java.lang.Object</code> 类，<code>finalize()</code>方法是 <code>GC</code>（<code>garbage collector</code> 垃圾回收）运行机制的一部分，<code>finalize()</code>方法是在 <code>GC</code> 清理它所从属的对象时被调用的</p>
+</blockquote>
+<h1 id="JavaSE-JavaEE-JavaME区别"><a href="#JavaSE-JavaEE-JavaME区别" class="headerlink" title="JavaSE JavaEE JavaME区别"></a>JavaSE JavaEE JavaME区别</h1><h2 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h2><div class="note success modern">
+            <p>Java SE = Java Standard Edition = j2se = java 标准版 </p>
+          </div>
+
+<div class="note success modern">
+            <p>Java EE = Java Enterprise Edition = j2ee = java 企业版 </p>
+          </div>
+
+<div class="note success modern">
+            <p>Java ME = Java Mobile Edition = j2me = java 移动版 </p>
+          </div>
+
+<h2 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h2><p>SE 主要用于桌面程序（swing）,控制台开发(main 程序)。</p>
+<p>EE 企业级开发(JSP,EJB,Spring MVC,Struts,hibernate,ibatis 等)，用于企业级软件开发，网络开发，web 开发。</p>
+<p>ME 嵌入式开发(手机,小家电，PDA)。[苹果的 ios，黑莓] </p>
+<h2 id="三者之间的关系："><a href="#三者之间的关系：" class="headerlink" title="三者之间的关系："></a>三者之间的关系：</h2><p>Java SE（Java Platform, Standard Edition，Java 标准版）就是基于 JDK 和 JRE的。</p>
+<p>Java SE 为 Java EE 提供了基础。</p>
+<p>Java EE 除了基于我们这个所谓的 Java SE 外，还新加了企业应用所需的类库</p>
+<h1 id="JDK-JRE-JVM-的区别："><a href="#JDK-JRE-JVM-的区别：" class="headerlink" title="JDK JRE JVM 的区别："></a>JDK JRE JVM 的区别：</h1><h2 id="JDK："><a href="#JDK：" class="headerlink" title="JDK："></a>JDK：</h2><p><strong>【Java Development ToolKit】</strong>就是 <code>java</code> 开发工具箱， <strong>JDK</strong> 是整个 <strong>JAVA</strong> 的核心里边包含了 <strong>jre</strong>，它除了包含 <strong>jre</strong> 之外还包含了一些 <strong>javac</strong> 的工具类，把 <strong>java</strong> 源文件编译成 <strong>class</strong> 文件，<strong>java</strong> 文件是用来运行这个程序的，除此之外，里边还包含了 <strong>java</strong>源生的 <strong>API</strong>，<code>java.lang.integer</code> 在 <strong>return</strong>  的 <strong>jar</strong> 包里边【可以在项目中看到】，通过 <strong>return</strong> 这个 <strong>jar</strong> 包来调用我们的这些 <strong>io</strong> 流写入写出等</p>
+<h3 id="JDK-有以下三种版本："><a href="#JDK-有以下三种版本：" class="headerlink" title="JDK 有以下三种版本："></a>JDK 有以下三种版本：</h3><blockquote>
+<p>J2SE，standard edition，标准版，是我们通常用的一个版本 </p>
+<p>J2EE，enterpsise edtion，企业版，使用这种 JDK 开发 J2EE 应用程序 </p>
+<p>J2ME，micro edtion，主要用于移动设备、嵌入式设备上的 java 应用程序</p>
+</blockquote>
+<h2 id="JRE："><a href="#JRE：" class="headerlink" title="JRE："></a>JRE：</h2><p><strong>【Java Runtime Enviromental】</strong>是 <code>java</code> 运行时环境，那么所谓的 <code>java</code> 运行时环境，就是为了保证 <code>java</code> 程序能够运行时，所必备的一基础环境，也就是它只是保证 <code>java</code> 程序运行的，不能用来开发，而 <code>jdk</code> 才是用来开发的，所有的 <strong>Java</strong> 程序都要在<strong>JRE</strong> 下才能运行。</p>
+<p>包括 <strong>JVM</strong> 和 <strong>JAVA</strong> 核心类库和支持文件。与 <strong>JDK</strong> 相比，它不包含开发工具——编译器、调试器和其它工具。</p>
+<div class="note warning modern">
+            <p>JRE里面包含JVM</p>
+          </div>
+
+<h2 id="Jvm："><a href="#Jvm：" class="headerlink" title="Jvm："></a>Jvm：</h2><p><strong>【Java Virtual Mechinal</strong>】因为 <code>jre</code> 是 <code>java</code> 运行时环境，<code>java</code> 运行靠什么运行，而底层就是依赖于 <code>jvm</code>，即 <code>java</code> 虚拟机，<code>java</code> 虚拟机用来加载类文件，<code>java</code> 中之所以有跨平台的作用，就是因为我们的 <code>jvm</code> </p>
+<h2 id="关系："><a href="#关系：" class="headerlink" title="关系："></a>关系：</h2><div class="note success modern">
+            <p>J2se 是基于 jdk 和 jre，JDK 是整个 JAVA 的核心里边包含了 jre，Jre 里边包含 jvm</p>
+          </div>
+
+<h1 id="报错的状态码："><a href="#报错的状态码：" class="headerlink" title="报错的状态码："></a>报错的状态码：</h1><table>
+<thead>
+<tr>
+<th align="center">状态码</th>
+<th align="center">状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">301</td>
+<td align="center">永久重定向</td>
+</tr>
+<tr>
+<td align="center">302</td>
+<td align="center">临时重定向</td>
+</tr>
+<tr>
+<td align="center">304</td>
+<td align="center">服务端 未改变</td>
+</tr>
+<tr>
+<td align="center">403</td>
+<td align="center">访问无权限</td>
+</tr>
+<tr>
+<td align="center">200</td>
+<td align="center">正常</td>
+</tr>
+<tr>
+<td align="center">404</td>
+<td align="center">路径</td>
+</tr>
+<tr>
+<td align="center">500</td>
+<td align="center">内部错误</td>
+</tr>
+</tbody></table>
+<h1 id="协议以及默认的端口号"><a href="#协议以及默认的端口号" class="headerlink" title="协议以及默认的端口号"></a>协议以及默认的端口号</h1><table>
+<thead>
+<tr>
+<th align="center">协议</th>
+<th align="center">端口</th>
+<th align="center">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ftp</td>
+<td align="center">21</td>
+<td align="center">文件传输协议</td>
+</tr>
+<tr>
+<td align="center">Pop3</td>
+<td align="center">110</td>
+<td align="center">它是因特网电子邮箱的第一个离线协议标准</td>
+</tr>
+<tr>
+<td align="center">Smtp</td>
+<td align="center">25</td>
+<td align="center">简单邮件传输协议</td>
+</tr>
+<tr>
+<td align="center">http</td>
+<td align="center">80</td>
+<td align="center">超文本传输协议</td>
+</tr>
+<tr>
+<td align="center">oracle</td>
+<td align="center">1521</td>
+<td align="center">默认端口号</td>
+</tr>
+<tr>
+<td align="center">mysql</td>
+<td align="center">3306</td>
+<td align="center">默认端口号</td>
+</tr>
+</tbody></table>
+<h1 id="抽象类与接口的区别"><a href="#抽象类与接口的区别" class="headerlink" title="抽象类与接口的区别"></a>抽象类与接口的区别</h1><ol>
+<li>一个类只能进行单继承，但可以实现多个接口。</li>
+<li>有抽象方法的类一定是抽象类，但是抽象类里面不一定有抽象方法；接口里面所有的方法的默认修饰符为 <code>public abstract</code>，接口里的成员变量默认的修饰符为 <code>pulbic static final</code>。</li>
+</ol>
+<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><blockquote>
+<p>接口和接口       ==&gt;     继承 </p>
+<p>接口和抽象类   ==&gt;     抽象类实现接口 </p>
+<p>类和抽象类      ==&gt;     类继承抽象类 </p>
+<p>类和类             ==&gt;     继承</p>
+</blockquote>
+<h1 id="request-跟-session-的区别"><a href="#request-跟-session-的区别" class="headerlink" title="request 跟 session 的区别"></a>request 跟 session 的区别</h1><ol>
+<li>他们的生命周期不同，<code>request</code>对应的是一次请求，<code>session</code>对应的是一次会话 </li>
+<li><code>request</code>占用资源比较少,相对来说缺乏持续性,而<code>session</code>资源消耗比较大，所以通常使用<code>request</code>来保存信息</li>
+</ol>
+<h1 id="反射的描述"><a href="#反射的描述" class="headerlink" title="反射的描述"></a>反射的描述</h1><p>通过字符串可以动态创建<code>java</code>对象，并且可以动态访问方法，属性等。 </p>
+<p>我们在项目中的时候封装过数据库<code>jdbc</code>的持久层，其中就利用反射这项技术来达到通用和灵活的目的。 </p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+        <tag>面试题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>实施工程师面试题</title>
     <url>/2021/09/18/%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
     <content><![CDATA[<h1 id="两电脑都在同一个网络环境中，A-电脑访问不到-B-电脑的共享文件。此现象可能是哪些-方面所导致？怎样处理？"><a href="#两电脑都在同一个网络环境中，A-电脑访问不到-B-电脑的共享文件。此现象可能是哪些-方面所导致？怎样处理？" class="headerlink" title="两电脑都在同一个网络环境中，A 电脑访问不到 B 电脑的共享文件。此现象可能是哪些 方面所导致？怎样处理？"></a>两电脑都在同一个网络环境中，A 电脑访问不到 B 电脑的共享文件。此现象可能是哪些 方面所导致？怎样处理？</h1><p>首先你要确定是不是在一个工作组内，只有在一个工作组内才可以共享文件，然后看一个看一看有没有防火墙之类的，然后确定文件是不是已经共享</p>
@@ -824,8 +1222,188 @@
 <h2 id="立项审批—项目计划—-需求确认—设计架构—构建—系统集成测试—部署阶段—移交运维—维保支持。"><a href="#立项审批—项目计划—-需求确认—设计架构—构建—系统集成测试—部署阶段—移交运维—维保支持。" class="headerlink" title="立项审批—项目计划—-需求确认—设计架构—构建—系统集成测试—部署阶段—移交运维—维保支持。"></a>立项审批—项目计划—-需求确认—设计架构—构建—系统集成测试—部署阶段—移交运维—维保支持。</h2><p>从运维在项目的生命周期来说，从设计架构开始一直到最后，都是要运维参与设计，构架，测试，部署的。只有这样才能运维才能真正胜任运维角色。不是简简单单部署移交就万事大吉的。实施上线要是算点燃的火炬，那高效的运维就是持续稳定的燃料！没有燃料再好的火炬也只是摆设。</p>
 ]]></content>
       <tags>
-        <tag>实施工程师</tag>
         <tag>面试题</tag>
+        <tag>实施工程师</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>源码级别理解 Redis 持久化</title>
+    <url>/2021/09/18/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家都知道 Redis 是一个内存数据库，数据都存储在内存中，这也是 Redis 非常快的原因之一。虽然速度提上来了，但是如果数据一直放在内存中，是非常容易丢失的。比如 服务器关闭或宕机了，内存中的数据就木有了。为了解决这一问题，Redis 提供了 持久化 机制。分别是 <strong>RDB</strong> 以及 <strong>AOF</strong> 持久化。</p>
+<span id="more"></span>
+
+<h1 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h1><h2 id="什么是-RDB-持久化"><a href="#什么是-RDB-持久化" class="headerlink" title="什么是 RDB 持久化?"></a>什么是 RDB 持久化?</h2><p>RDB 持久化可以在指定的时间间隔内生成数据集的时间点快照(point-in-time snapshot)。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/1e5c87e44b494a20864323f2872c5dee_tplv-k3u1fbpfcp-zoom-1.jpg" alt="img"></p>
+<h2 id="RDB-的优点？"><a href="#RDB-的优点？" class="headerlink" title="RDB 的优点？"></a>RDB 的优点？</h2><ul>
+<li>RDB 是一种表示某个即时点的 Redis 数据的紧凑文件。RDB 文件适用于备份。例如，你可能想要每小时归档最近24小时的 RDB 文件，每天保存近30天的 RDB 快照。这允许你很容易的恢复不同版本的数据集以容灾。</li>
+<li>RDB 非常适合于灾难恢复，作为一个紧凑的单一文件，可以被传输到远程的数据中心。</li>
+<li>RDB 最大化了 Redis 的性能。因为 Redis 父进程持久化时唯一需要做的是启动(fork)一个子进程，由子进程完成所有剩余的工作。父进程实例不需要执行像磁盘IO这样的操作。</li>
+<li>RDB 在重启保存了大数据集的实例比 AOF 快。</li>
+</ul>
+<h2 id="RDB-的缺点？"><a href="#RDB-的缺点？" class="headerlink" title="RDB 的缺点？"></a>RDB 的缺点？</h2><ul>
+<li>当你需要在Redis停止工作(例如停电)时最小化数据丢失，RDB可能不太好。你可以配置不同的保存点(save point)来保存RDB文件(例如，至少5分钟和对数据集100次写之后，但是你可以有多个保存点)。然而，你通常每隔5分钟或更久创建一个RDB快照，所以一旦Redis因为任何原因没有正确关闭而停止工作，你就得做好最近几分钟数据丢失的准备了。</li>
+<li>RDB需要经常调用fork()子进程来持久化到磁盘。如果数据集很大的话，fork()比较耗时，结果就是，当数据集非常大并且CPU性能不够强大的话，Redis会停止服务客户端几毫秒甚至一秒。AOF也需要fork()，但是你可以调整多久频率重写日志而不会有损(trade-off)持久性(durability)。</li>
+</ul>
+<h2 id="RDB-文件的创建与载入"><a href="#RDB-文件的创建与载入" class="headerlink" title="RDB 文件的创建与载入"></a>RDB 文件的创建与载入</h2><p>有个两个 Redis 命令可以用于生成 RDB 文件，一个是 <strong>SAVE</strong>，另一个是 <strong>BGSAVE</strong>。</p>
+<p><strong>SAVE</strong> 命令会阻塞 Redis 服务器进程，直到 RDB 文件创建完毕为止，在服务器进程阻塞期间，服务器不能处理任何命令请求。</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; SAVE     // 一直等到 RDB 文件创建完毕</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<p>和 SAVE 命令直接阻塞服务器进程不同的是，BGSAVE 命令会派生出一个子进程，然后由子进程负责创建 RDB 文件，服务器进程(父进程)继续处理命令进程。</p>
+<p><strong>执行fork的时候操作系统（类Unix操作系统）会使用写时复制（copy-on-write）策略，即fork函数发生的一刻父子进程共享同一内存数据，当父进程要更改其中某片数据时（如执行一个写命令 ），操作系统会将该片数据复制一份以保证子进程的数据不受影响，所以新的RDB文件存储的是执行fork一刻的内存数据。</strong></p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; BGSAVE  // 派生子进程，并由子进程创建 RDB 文件</span><br><span class="line">Background saving started</span><br></pre></td></tr></table></figure>
+
+<p>生成 RDB 文件由两种方式：<strong>一种是手动，就是上边介绍的用命令的方式；另一种是自动的方式。</strong></p>
+<p>接下来详细介绍一下自动生成 RDB 文件的流程。</p>
+<p>Redis 允许用户通过设置服务器配置的 <strong>save</strong> 选项，让服务器每隔一段时间自动执行一次 BGSAVE 命令。</p>
+<p>用户可以通过在 redis.conf 配置文件中的 SNAPSHOTTING 下 save 选项设置多个保存条件，但只要其中任意一个条件被满足，服务器就会执行 BGSAEVE 命令。</p>
+<p>如，以下配置：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">save <span class="number">900</span> <span class="number">1</span></span><br><span class="line">save <span class="number">300</span> <span class="number">10</span></span><br><span class="line">save <span class="number">60</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+
+<p>上边三个配置的含义是：</p>
+<ul>
+<li>服务器在 900 秒内，对数据库进行了至少 1 次修改。</li>
+<li>服务器在 300 秒内，对数据库进行了至少 10 次修改。</li>
+<li>服务器在 60 秒内，对数据库进行了至少 10000 次修改。</li>
+</ul>
+<p>如果没有手动去配置 save 选项，那么服务器会为 save 选项配置默认参数：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">save <span class="number">900</span> <span class="number">1</span></span><br><span class="line">save <span class="number">300</span> <span class="number">10</span></span><br><span class="line">save <span class="number">60</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+
+<p>接着，服务器就会根据 save 选项的配置，去设置服务器状态 redisServer 结构的 saveparams 属性：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">redisServer</span>&#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 记录了保存条件的数组</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">saveparams</span> *<span class="title">saveparams</span>;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>saveparams 属性是一个数组，数组中的每一个元素都是一个 saveparam 结构，每个 saveparam 结构都保存了一个 save 选项设置的保存条件：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">saveparam</span> &#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 秒数</span></span><br><span class="line">  <span class="keyword">time_t</span> seconds;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 修改数</span></span><br><span class="line">  <span class="keyword">int</span> changes;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>除了 saveparams 数组之外，服务器状态还维持着一个 dirty 计数器，以及一个 lastsave 属性；</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">redisServer</span> &#123;</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 修改计数器</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> dirty;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 上一次执行保存时间</span></span><br><span class="line">     <span class="keyword">time_t</span> lastsave;</span><br><span class="line">     </span><br><span class="line">     <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>dirty 计数器记录距离上一次成功执行 SAVE 或 BGSAVE 命令之后，服务器对数据库状态(服务器中的所有数据库)进行了多少次修改(包括写入、删除、更新等操作)。</li>
+<li>lastsave 属性是一个 UNIX 时间戳，记录了服务器上一次执行 SAVE 或 BGSAVE 命令的时间。</li>
+</ul>
+<h3 id="检查条件是否满足触发-RDB"><a href="#检查条件是否满足触发-RDB" class="headerlink" title="检查条件是否满足触发 RDB"></a>检查条件是否满足触发 RDB</h3><p>Redis 的服务器周期性操作函数 serverCron 默认每隔 100 毫秒执行一次，该函数用于对正在运行的服务器进行维护，它的其中一项工作就是检查 save 选项所设置的保存条件是否已经满足，如果满足的话就执行 BGSAVE 命令。</p>
+<p>Redis serverCron 源码解析如下：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/1623916411.jpg" alt="img"></p>
+<p>程序会遍历并检查 saveparams 数组中的所有保存条件，只要有任意一个条件被满足，服务器就会执行 BGSAVE 命令。</p>
+<p>下面是 rdbSaveBackground 的源码流程：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/1623916516.jpg" alt="img"></p>
+<h2 id="RDB-文件结构"><a href="#RDB-文件结构" class="headerlink" title="RDB 文件结构"></a>RDB 文件结构</h2><p>下图展示了一个完整 RDB 文件所包含的各个部分。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/6ccb6e0fb4354db2bf8da17ebf908f7c_tplv-k3u1fbpfcp-zoom-1.jpg" alt="img"></p>
+<p>redis 文件的最开头是 <strong>REDIS</strong> 部分，这个部分的长度是 5 字节，保存着 “REDIS” 五个字符。通过这五个字符，程序可以在载入文件时，快速检查所载入的文件是否时 RDB 文件。</p>
+<p><strong>db_version</strong> 长度为 4 字节，他的值时一个字符串表示的整数，这个整数记录了 RDB 文件的版本号，比如 “0006” 就代表 RDB 文件的版本为第六版。</p>
+<p><strong>database</strong> 部分包含着零个或任意多个数据库，以及各个数据库中的键值对数据：</p>
+<ul>
+<li>如果服务器的数据库状态为空(所有数据库都是空的)，那么这个部分也为空，长度为 0 字节。</li>
+<li>如果服务器的数据库状态为非空(有至少一个数据库非空)，那么这个部分也为非空，根据数据库所保存键值对的数量、类型和内容不同，这个部分的长度也会有所不同。</li>
+</ul>
+<p><strong>EOF</strong> 常量的长度为 1 字节，这个常量标志着 RDB 文件正文内容的结束，当读入程序遇到这个值后，他知道所有数据库的所有键值对已经载入完毕了。</p>
+<p><strong>check_sum</strong> 是一个 8 字节长的无符号整数，保存着一个校验和，这个校验和时程序通过对 REDIS、db_version、database、EOF 四个部分的内容进行计算得出的。服务器在载入 RDB 文件时，会将载入数据所计算出的校验和与 check_sum 所记录的校验和进行对比，以此来检查 RDB 是否有出错或者损坏的情况。</p>
+<p>举个例子：下图是一个 0 号数据库和 3 号数据库的 RDB 文件。第一个就是 “REDIS” 表示是一个 RDB 文件，之后的 “0006” 表示这是第六版的 REDIS 文件，然后是两个数据库，之后就是 EOF 结束标识符，最后就是 check_sum。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/847161c1b0414aa69109e3f3a0c43797_tplv-k3u1fbpfcp-zoom-1.png" alt="img"></p>
+<h1 id="AOF-持久化"><a href="#AOF-持久化" class="headerlink" title="AOF 持久化"></a>AOF 持久化</h1><h2 id="什么是-AOF-持久化"><a href="#什么是-AOF-持久化" class="headerlink" title="什么是 AOF 持久化"></a>什么是 AOF 持久化</h2><p>AOF持久化方式记录每次对服务器写的操作,当服务器重启的时候会重新执行这些命令来恢复原始的数据,AOF命令以redis协议追加保存每次写的操作到文件末尾.Redis还能对AOF文件进行后台重写,使得AOF文件的体积不至于过大. </p>
+<h2 id="AOF-的优点？"><a href="#AOF-的优点？" class="headerlink" title="AOF 的优点？"></a>AOF 的优点？</h2><ul>
+<li>使用AOF 会让你的Redis更加耐久: 你可以使用不同的fsync策略：无fsync,每秒fsync,每次写的时候fsync.使用默认的每秒fsync策略,Redis的性能依然很好(fsync是由后台线程进行处理的,主线程会尽力处理客户端请求),一旦出现故障，你最多丢失1秒的数据.</li>
+<li>AOF文件是一个只进行追加的日志文件,所以不需要写入seek,即使由于某些原因(磁盘空间已满，写的过程中宕机等等)未执行完整的写入命令,你也也可使用redis-check-aof工具修复这些问题.</li>
+<li>Redis 可以在 AOF 文件体积变得过大时，自动地在后台对 AOF 进行重写： 重写后的新 AOF 文件包含了恢复当前数据集所需的最小命令集合。 整个重写操作是绝对安全的，因为 Redis 在创建新 AOF 文件的过程中，会继续将命令追加到现有的 AOF 文件里面，即使重写过程中发生停机，现有的 AOF 文件也不会丢失。 而一旦新 AOF 文件创建完毕，Redis 就会从旧 AOF 文件切换到新 AOF 文件，并开始对新 AOF 文件进行追加操作。</li>
+<li>AOF 文件有序地保存了对数据库执行的所有写入操作， 这些写入操作以 Redis 协议的格式保存， 因此 AOF 文件的内容非常容易被人读懂， 对文件进行分析（parse）也很轻松。 导出（export） AOF 文件也非常简单： 举个例子， 如果你不小心执行了 FLUSHALL 命令， 但只要 AOF 文件未被重写， 那么只要停止服务器， 移除 AOF 文件末尾的 FLUSHALL 命令， 并重启 Redis ， 就可以将数据集恢复到 FLUSHALL 执行之前的状态。</li>
+</ul>
+<h2 id="AOF-的缺点？"><a href="#AOF-的缺点？" class="headerlink" title="AOF 的缺点？"></a>AOF 的缺点？</h2><ul>
+<li>对于相同的数据集来说，AOF 文件的体积通常要大于 RDB 文件的体积。</li>
+<li>根据所使用的 fsync 策略，AOF 的速度可能会慢于 RDB 。 在一般情况下， 每秒 fsync 的性能依然非常高， 而关闭 fsync 可以让 AOF 的速度和 RDB 一样快， 即使在高负荷之下也是如此。 不过在处理巨大的写入载入时，RDB 可以提供更有保证的最大延迟时间（latency）。</li>
+</ul>
+<h2 id="AOF持久化的实现"><a href="#AOF持久化的实现" class="headerlink" title="AOF持久化的实现"></a>AOF持久化的实现</h2><p>AOF持久化功能的实现可以分为命令追加（append）、文件写入、文件同步（sync）三个步骤。</p>
+<h3 id="命令追加"><a href="#命令追加" class="headerlink" title="命令追加"></a>命令追加</h3><p>当 AOF 持久化功能处于打开状态时，服务器在执行完一个写命令之后，会以协议格式将被执行的写命令追加到服务器状态的 aof_buf 缓冲区的末尾。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">redisServer</span> &#123;</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="comment">// AOF 缓冲区  </span></span><br><span class="line">  sds aof_buf;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ..</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>如果客户端向服务器发送以下命令：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; <span class="built_in">set</span> KEY VALUE</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<p>那么服务器在执行这个 set 命令之后，会将以下协议内容追加到 aof_buf 缓冲区的末尾；</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">*<span class="number">3</span>\r\n$<span class="number">3</span>\r\nSET\r\n$<span class="number">3</span>\r\nKEY\r\n$<span class="number">5</span>\r\nVALUE\r\n</span><br></pre></td></tr></table></figure>
+
+<h3 id="AOF-文件的写入与同步"><a href="#AOF-文件的写入与同步" class="headerlink" title="AOF 文件的写入与同步"></a>AOF 文件的写入与同步</h3><p>Redis的服务器进程就是一个事件循环（loop），这个循环中的文件事件负责接收客户端 的命令请求，以及向客户端发送命令回复，而时间事件则负责执行像 serverCron 函数这样需 要定时运行的函数。</p>
+<p>因为服务器在处理文件事件时可能会执行写命令，使得一些内容被追加到aof_buf缓冲区 里面，所以在服务器每次结束一个事件循环之前，它都会调用 <strong>flushAppendOnlyFile</strong> 函数，考 虑是否需要将aof_buf缓冲区中的内容写入和保存到AOF文件里面，这个过程可以用以下伪代 码表示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">def <span class="title">eventLoop</span><span class="params">()</span>:</span></span><br><span class="line"><span class="function">  while True:</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    #处理文件事件，接收命令请求以及发送命令回复</span></span><br><span class="line"><span class="function">    #处理命令请求时可能会有新内容被追加到 aof_buf缓冲区中</span></span><br><span class="line"><span class="function">    processFileEvents()</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    #处理时间事件</span></span><br><span class="line"><span class="function">    processTimeEvents()</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    #考虑是否要将 aof_buf中的内容写入和保存到 AOF文件里面</span></span><br><span class="line"><span class="function">    flushAppendOnlyFile()</span></span><br></pre></td></tr></table></figure>
+
+<p>flushAppendOnlyFile函数的行为由服务器配置的 <strong>appendfsync</strong> 选项的值来决定，各个不同 值产生的行为如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th align="center">appendfsync 选项的值</th>
+<th align="center">flushAppendOnlyFile 函数的行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">always</td>
+<td align="center">将 aof_buf 缓冲区中的所有内容写入并同步到 AOF 文件</td>
+</tr>
+<tr>
+<td align="center">everysec</td>
+<td align="center">将 aof_buf 缓冲区中的所有内容写入到 AOF 文件，如果上次同步 AOF 文件的时间距离现在超过一秒钟，那么再次对 AOF 文件进行同步，并且这个同步操作是由一个线程专门负责执行的</td>
+</tr>
+<tr>
+<td align="center">no</td>
+<td align="center">将 aof_buf 缓冲区中的所有内容写入到 AOF 文件，但并不对 AOF 文件进行同步，何时同步由操作系统来决定</td>
+</tr>
+</tbody></table>
+<p>如果用户没有主动为appendfsync选项设置值，那么appendfsync选项的默认值为everysec。</p>
+<p><strong>写入：将 aof_buf 中的数据写入到 AOF 文件中。</strong></p>
+<p><strong>同步：调用 fsync 以及 fdatasync 函数，将 AOF 文件中的数据保存到磁盘中。</strong>通俗地讲就是，你要往一个文件写东西，写的过程就是写入，而同步则是将文件保存，数据落到磁盘上。</p>
+<p>大家之前看文章的时候是不是大多都说 AOF 最多丢失一秒钟的数据，那是因为 redis AOF 默认是 everysec 策略，这个策略每秒执行一次，所以 AOF 持久化最多丢失一秒钟的数据。</p>
+<h3 id="AOF-文件的载入与数据还原"><a href="#AOF-文件的载入与数据还原" class="headerlink" title="AOF 文件的载入与数据还原"></a>AOF 文件的载入与数据还原</h3><p>因为AOF文件里面包含了重建数据库状态所需的所有写命令，所以服务器只要读入并重新执行一遍AOF文件里面保存的写命令，就可以还原服务器关闭之前的数据库状态。 Redis读取AOF文件并还原数据库状态的详细步骤如下：</p>
+<ol>
+<li>创建一个不带网络连接的伪客户端（fake client）：因为Redis的命令只能在客户端上 下文中执行，而载入AOF文件时所使用的命令直接来源于AOF文件而不是网络连接，所以服 务器使用了一个没有网络连接的伪客户端来执行AOF文件保存的写命令，伪客户端执行命令 的效果和带网络连接的客户端执行命令的效果完全一样。</li>
+<li>从AOF文件中分析并读取出一条写命令。</li>
+<li>使用伪客户端执行被读出的写命令。</li>
+<li>一直执行步骤2和步骤3，直到AOF文件中的所有写命令都被处理完毕为止。</li>
+</ol>
+<p>当完成以上步骤之后，AOF文件所保存的数据库状态就会被完整地还原出来，整个过程 如下图所示。</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/56d0faae5d5a4183925755bdcfa816cb_tplv-k3u1fbpfcp-zoom-1.jpg" alt="img"></p>
+<h3 id="AOF-重写"><a href="#AOF-重写" class="headerlink" title="AOF 重写"></a>AOF 重写</h3><p>因为AOF持久化是通过保存被执行的写命令来记录数据库状态的，所以随着服务器运行 时间的流逝，AOF文件中的内容会越来越多，文件的体积也会越来越大，如果不加以控制的 话，体积过大的AOF文件很可能对Redis服务器、甚至整个宿主计算机造成影响，并且AOF文 件的体积越大，使用AOF文件来进行数据还原所需的时间就越多。</p>
+<p>如 客户端执行了以下命令是：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; rpush list &quot;A&quot; &quot;B&quot;</span><br><span class="line">OK</span><br><span class="line">&gt; rpush list &quot;C&quot;</span><br><span class="line">OK</span><br><span class="line">&gt; rpush list &quot;D&quot;</span><br><span class="line">OK</span><br><span class="line">&gt; rpush list &quot;E&quot; &quot;F&quot;</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<p>那么光是为了记录这个list键的状态，AOF文件就需要保存四条命令。</p>
+<p>对于实际的应用程度来说，写命令执行的次数和频率会比上面的简单示例要高得多，所 以造成的问题也会严重得多。 为了解决AOF文件体积膨胀的问题，Redis提供了AOF文件重写（rewrite）功能。通过该 功能，Redis服务器可以创建一个新的AOF文件来替代现有的AOF文件，新旧两个AOF文件所 保存的数据库状态相同，但新AOF文件不会包含任何浪费空间的冗余命令，所以新AOF文件 的体积通常会比旧AOF文件的体积要小得多。 在接下来的内容中，我们将介绍AOF文件重写的实现原理，以及BGREWEITEAOF命令 的实现原理。</p>
+<p>虽然Redis将生成新AOF文件替换旧AOF文件的功能命名为“AOF文件重写”，但实际上， AOF文件重写并不需要对现有的AOF文件进行任何读取、分析或者写入操作，这个功能是通 过读取服务器当前的数据库状态来实现的。</p>
+<p>就像上面的情况，服务器完全可以将这六条命令合并成一条。</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; rpush list &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot;</span><br></pre></td></tr></table></figure>
+
+<p>除了上面列举的列表键之外，其他所有类型的键都可以用同样的方法去减少 AOF文件中的命令数量。首先从数据库中读取键现在的值，然后用一条命令去记录键值对，代替之前记录这个键值对的多条命令，这就是AOF重写功能的实现原理。</p>
+<p>在实际中，为了避免在执行命令时造成客户端输入缓冲区溢出，重写程序在处理列表、 哈希表、集合、有序集合这四种可能会带有多个元素的键时，会先检查键所包含的元素数 量，如果元素的数量超过了redis.h/REDIS_AOF_REWRITE_ITEMS_PER_CMD常量的值，那 么重写程序将使用多条命令来记录键的值，而不单单使用一条命令。 在目前版本中，REDIS_AOF_REWRITE_ITEMS_PER_CMD常量的值为64，这也就是 说，如果一个集合键包含了超过64个元素，那么重写程序会用多条SADD命令来记录这个集 合，并且每条命令设置的元素数量也为64个。</p>
+<h3 id="AOF-后台重写"><a href="#AOF-后台重写" class="headerlink" title="AOF 后台重写"></a>AOF 后台重写</h3><p>AOF 重写会执行大量的写操作，这样会影响主线程，所以redis AOF 重写放到了子进程去执行。这样可以达到两个目的：</p>
+<ul>
+<li>子进程进行AOF重写期间，服务器进程（父进程）可以继续处理命令请求。</li>
+<li>子进程带有服务器进程的数据副本，使用子进程而不是线程，可以在避免使用锁的情况 下，保证数据的安全性。</li>
+</ul>
+<p>但是有一个问题，当子进程重写数据时，主进程依然在处理新的数据，这也就会造成数据不一致情况。</p>
+<p><strong>为了解决这种数据不一致问题，Redis服务器设置了一个AOF重写缓冲区，这个缓冲区在 服务器创建子进程之后开始使用，当Redis服务器执行完一个写命令之后，它会同时将这个写 命令发送给AOF缓冲区和AOF重写缓冲区</strong>，如下图：</p>
+<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/1623917247.jpg" alt="img"></p>
+<p>这也就是说，在子进程执行AOF重写期间，服务器进程需要执行以下三个工作：</p>
+<ol>
+<li>执行客户端发来的命令。</li>
+<li>将执行后的写命令追加到AOF缓冲区。</li>
+<li>将执行后的写命令追加到AOF重写缓冲区。</li>
+</ol>
+<p>这样一来可以保证：</p>
+<ul>
+<li>AOF缓冲区的内容会定期被写入和同步到AOF文件，对现有AOF文件的处理工作会如常 进行。</li>
+<li>从创建子进程开始，服务器执行的所有写命令都会被记录到AOF重写缓冲区里面。</li>
+</ul>
+<p>当子进程完成AOF重写工作之后，它会向父进程发送一个信号，父进程在接到该信号之 后，会调用一个信号处理函数，并执行以下工作：</p>
+<ol>
+<li>将AOF重写缓冲区中的所有内容写入到新AOF文件中，这时新AOF文件所保存的数 据库状态将和服务器当前的数据库状态一致。</li>
+<li>对新的AOF文件进行改名，原子地（atomic）覆盖现有的AOF文件，完成新旧两个 AOF文件的替换。</li>
+</ol>
+<p>这个信号处理函数执行完毕之后，父进程就可以继续像往常一样接受命令请求了。</p>
+<p>在整个AOF后台重写过程中，只有信号处理函数执行时会对服务器进程（父进程）造成 阻塞，在其他时候，AOF后台重写都不会阻塞父进程，这将AOF重写对服务器性能造成的影 响降到了最低。</p>
+<h1 id="Redis-混合持久化"><a href="#Redis-混合持久化" class="headerlink" title="Redis 混合持久化"></a>Redis 混合持久化</h1><p>Redis 还可以同时使用 AOF 持久化和 RDB 持久化。 在这种情况下， 当 Redis 重启时， 它会优先使用 AOF 文件来还原数据集， 因为 AOF 文件保存的数据集通常比 RDB 文件所保存的数据集更完整。但是 AOF 恢复比较慢，Redis 4.0 推出了<strong>混合持久化</strong>。</p>
+<p>混合持久化： 将 rdb 文件的内容和增量的 AOF 日志文件存在一起。这里的 AOF 日志不再是全量的日志，而是 自持久化开始到持久化结束 的这段时间发生的增量 AOF 日志，通常这部分 AOF 日志很小。</p>
+<p>于是在 Redis 重启的时候，可以先加载 <strong>RDB</strong> 的内容，然后再重放增量 AOF 日志就可以完全替代之前的 AOF 全量文件重放，重启效率因此大幅得到提升。</p>
+]]></content>
+      <tags>
+        <tag>Redis</tag>
+        <tag>源码解析</tag>
       </tags>
   </entry>
   <entry>
@@ -1273,584 +1851,6 @@
       <tags>
         <tag>Java</tag>
         <tag>面试题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基础篇</title>
-    <url>/2021/09/18/%E5%9F%BA%E7%A1%80%E7%AF%87/</url>
-    <content><![CDATA[<h1 id="JDK-常用的包"><a href="#JDK-常用的包" class="headerlink" title="JDK 常用的包"></a>JDK 常用的包</h1><p><strong>java.lang：</strong> 这个是系统的基础类，比如 <code>String</code>、<code>Math</code>、<code>Integer</code>、<code>System</code> 和 <code>Thread</code>，提供常用功能。</p>
-<p><strong>java.io:</strong> 这里面是所有输入输出有关的类，比如文件操作等</p>
-<p><strong>java.net:</strong> 这里面是与网络有关的类，比如 <code>URL</code>,<code>URLConnection</code> 等。</p>
-<p><strong>java.util :</strong> 这个是系统辅助类，特别是集合类 <code>Collection</code>,<code>List</code>,<code>Map</code> 等。</p>
-<p><strong>java.sql:</strong> 这个是数据库操作的类，<code>Connection</code>, <code>Statememt</code>，<code>ResultSet</code> 等</p>
-<span id="more"></span>
-
-<h1 id="Get-和-Post-的区别"><a href="#Get-和-Post-的区别" class="headerlink" title="Get 和 Post 的区别"></a>Get 和 Post 的区别</h1><h2 id="初级回答："><a href="#初级回答：" class="headerlink" title="初级回答："></a>初级回答：</h2><ol>
-<li><code>get</code> 是从服务器上获取数据，<code>post</code> 是向服务器传送数据， </li>
-<li><code>get</code> 传送的数据量较小，不能大于 2KB。<code>post</code> 传送的数据量较大，一般被默认为不</li>
-<li><code>get</code> 安全性非常低，<code>post</code> 安全性较高。但是执行效率却比 <code>Post</code> 方法好。 </li>
-<li>在进行文件上传时只能使用 <code>post</code> 而不能是 <code>get</code>。</li>
-</ol>
-<h2 id="中级回答：【推荐】"><a href="#中级回答：【推荐】" class="headerlink" title="中级回答：【推荐】"></a><span style="color:red">中级回答：【推荐】</span></h2><ol>
-<li><p><code>get</code> 是从服务器上获取数据，post 是向服务器传送数据。 </p>
-</li>
-<li><p>get 是把参数数据队列加到提交表单的 <code>ACTION</code> 属性所指的 <code>URL</code> 中，值和表单内各个字段一一对应，在 <code>URL</code> 中可以看到。<code>post</code> 是通过 <code>HTTP post</code> 机制，将表单内各个 字段与其内容放置在 <code>HTML HEADER</code> 内一起传送到 <code>ACTION</code> 属性所指的 <code>URL</code> 地址。用户看不到这个过程。 </p>
-</li>
-<li><p>对于 <code>get</code> 方式，服务器端用 <code>Request.QueryString</code> 获取变量的值，对于 <code>post</code> 方式，服务器端用 <code>Request.Form</code> 获取提交的数据 </p>
-</li>
-<li><p><code>get</code> 传送的数据量较小，不能大于 2KB。<code>post</code> 传送的数据量较大，一般被默认为不受限制。但理论上，<code>IIS4</code> 中最大量为 80KB，<code>IIS5</code>中为 100KB。 </p>
-</li>
-<li><p><code>get</code> 安全性非常低，<code>post</code> 安全性较高</p>
-</li>
-<li><p><code>get</code> 传递参数的时候【有时候】服务端获取的参数不会乱码，而 <code>post</code> 不会，<code>get</code> 请求参数是通过 <code>URL</code> 传递的，浏览器默认的会对中文进行 <code>gbk</code> 编码(<code>URL</code> 中如果含有中文等非 <code>ASCII</code> 字符，则浏览器会对它们进行 <code>URLEncode</code> </p>
-</li>
-</ol>
-<h1 id="Java-多态的具体体现"><a href="#Java-多态的具体体现" class="headerlink" title="Java 多态的具体体现"></a>Java 多态的具体体现</h1><p>面向对象编程有四个特征：抽象，封装，继承，多态。</p>
-<blockquote>
-<p>多态有四种体现形式：</p>
-<ol>
-<li>接口和接口的继承</li>
-<li>类和类的继承</li>
-<li>重载</li>
-<li>重写</li>
-</ol>
-</blockquote>
-<p>其中重载和重写为核心：</p>
-<blockquote>
-<p><strong>重载</strong>：重载发生在同一个类中，在该类中如果存在多个同名方法，但是方法的参数类型和个数不一样，那么说明该方法被重载了。</p>
-<p><strong>重写</strong>：重写发生在子类继承父类的关系中，父类中的方法被子类继承，方法名，返回值类型，参数完全一样，但是方法体不一样，那么说明父类中的该方法被子类重写了。</p>
-</blockquote>
-<h1 id="StringBuffer-StringBuilder-String-区别"><a href="#StringBuffer-StringBuilder-String-区别" class="headerlink" title="StringBuffer StringBuilder String 区别"></a>StringBuffer StringBuilder String 区别</h1><table>
-<thead>
-<tr>
-<th align="center">类型</th>
-<th align="center">底层</th>
-<th align="center">可变性</th>
-<th align="center">安全性</th>
-<th align="center">拼接方式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">String</td>
-<td align="center">字符串常量</td>
-<td align="center">不可变</td>
-<td align="center">线程安全</td>
-<td align="center">使用字符串拼接时是不同的 2 个空间</td>
-</tr>
-<tr>
-<td align="center">StringBuffer</td>
-<td align="center">字符串变量</td>
-<td align="center">可变</td>
-<td align="center">线程安全</td>
-<td align="center">字符串拼接直接在字符串后追加</td>
-</tr>
-<tr>
-<td align="center">StringBuilder</td>
-<td align="center">字符串变量</td>
-<td align="center">可变</td>
-<td align="center">非线程安全</td>
-<td align="center">字符串拼接直接在字符串后追加</td>
-</tr>
-</tbody></table>
-<ol>
-<li><code>StringBuilder</code> 执行效率高于 <code>StringBuffer</code> 高于 <code>String</code></li>
-<li><code>String</code> 是一个常量，是不可变的，所以对于每一次+=赋值都会创建一个新的对象， <code>StringBuffer</code> 和 <code>StringBuilder</code> 都是可变的，当进行字符串拼接时采用 <code>append</code> 方法，在原来的基础上进行追加，所以性能比 <code>String</code> 要高，又因为 <code>StringBuffer</code> 是线程安全的而 <code>StringBuilder</code> 是线程非安全的，所以 <code>StringBuilder</code> 的效率高于<code>StringBuffer</code></li>
-<li>对于大数据量的字符串的拼接，采用 <code>StringBuffer</code>,<code>StringBuilder</code></li>
-</ol>
-<h1 id="Hashtable-与-HashMap-的区别"><a href="#Hashtable-与-HashMap-的区别" class="headerlink" title="Hashtable 与 HashMap 的区别"></a>Hashtable 与 HashMap 的区别</h1><blockquote>
-<p><code>HashMap</code> 不是线程安全的，<code>HashTable</code> 是线程安全。 </p>
-<p><code>HashMap</code> 允许空（<code>null</code>）的键和值（<code>key</code>），<code>HashTable</code> 则不允许。 </p>
-<p><code>HashMap</code> 性能优于 <code>Hashtable</code>。 </p>
-</blockquote>
-<ol>
-<li><code>Map</code> 是一个以键值对存储的接口。<code>Map</code> 下有两个具体的实现，分别是 <code>HashMap</code> 和 <code>HashTable</code></li>
-<li><code>HashMap</code> 是线程非安全的，<code>HashTable</code> 是线程安全的，所以 <code>HashMap</code> 的效率高于 <code>HashTable</code></li>
-<li><code>HashMap</code> 允许键或值为空，而 <code>HashTable</code> 不允许键或值为空</li>
-</ol>
-<h1 id="九大隐式对象"><a href="#九大隐式对象" class="headerlink" title="九大隐式对象"></a>九大隐式对象</h1><p>输入/输出对象： <code>request</code>、<code>response</code>、<code>out</code></p>
-<p>作用域通信对象： <code>session</code>、<code>application</code>、<code>pageContext</code></p>
-<p>Servlet 对象： <code>page</code>、<code>config</code></p>
-<p>错误对象： <code>exception</code></p>
-<h1 id="Forword-请求转发-与-Redirect-重定向"><a href="#Forword-请求转发-与-Redirect-重定向" class="headerlink" title="Forword(请求转发)与 Redirect(重定向)"></a>Forword(请求转发)与 Redirect(重定向)</h1><ol>
-<li>从数据共享上<ol>
-<li><code>Forword</code> 是一个请求的延续，可以共享 <code>request</code> 的数据</li>
-<li><code>Redirect</code> 开启一个新的请求，不可以共享 <code>request</code> 的数据</li>
-</ol>
-</li>
-<li>从地址栏<ol>
-<li><code>Forword</code> 转发地址栏不发生变化</li>
-<li><code>Redirect</code> 转发地址栏发生变化</li>
-</ol>
-</li>
-</ol>
-<h1 id="JQurey-总结"><a href="#JQurey-总结" class="headerlink" title="JQurey 总结"></a>JQurey 总结</h1><p><code>jquery</code> 是一个轻量级的 <code>js</code> 框架，具有跨浏览器的特性，兼容性好，并且封装了很多工具，方便使用。 </p>
-<p>常用的有: 选择器 ，<code>dom</code> 操作 ，<code>ajax</code>(<code>ajax</code> 不能跨域) ，特效，工具类</p>
-<h1 id="XML-和-Json-的特点"><a href="#XML-和-Json-的特点" class="headerlink" title="XML 和 Json 的特点"></a>XML 和 Json 的特点</h1><p><strong>Xml 特点：</strong></p>
-<ol>
-<li>有且只有一个根节点；</li>
-<li>数据传输的载体 </li>
-<li>所有的标签都需要自定义 </li>
-<li>是纯文本文件 </li>
-</ol>
-<p><strong>Json（JavaScript Object Notation）特点：</strong></p>
-<ol>
-<li><code>json</code> 对象(就是在{}中存储键值对，键和值之间用冒号分隔， 键 值 对之间用逗号分隔)</li>
-<li><code>json</code> 数组(就是[]中存储多个 <code>json</code> 对象，<code>json</code> 对象之间用逗号分隔)（两者间可以进行相互嵌套）数据传输的载体之一</li>
-</ol>
-<p><strong>区别：</strong></p>
-<p>传输同样格式的数据，xml 需要使用更多的字符进行描述，流行的是基于 json 的数据传输,xml 的层次结构比 json 更清晰</p>
-<p><strong>共同点：</strong></p>
-<p>xml 和 json 都是数据传输的载体，并且具有跨平台跨语言的特性。</p>
-<h1 id="Page-和-PageContext-的区别"><a href="#Page-和-PageContext-的区别" class="headerlink" title="Page 和 PageContext 的区别"></a>Page 和 PageContext 的区别</h1><p><code>Page</code> 是 <code>servlet</code> 对象；使用 <code>this</code> 关键字，它的作用范围是在同一页面。<code>PageContext</code> 是作用域通信对象；通常使用<code>setAttribute()</code>和 <code>getAttribute()</code>来设置和获取存放对象的值。</p>
-<h1 id="JSP9-大隐视对象中四个作用域的大小与作用范围"><a href="#JSP9-大隐视对象中四个作用域的大小与作用范围" class="headerlink" title="JSP9 大隐视对象中四个作用域的大小与作用范围"></a>JSP9 大隐视对象中四个作用域的大小与作用范围</h1><p>四个作用域从大到小：<code>appliaction</code> &gt; <code>session</code> &gt; <code>request</code> &gt; <code>page</code></p>
-<table>
-<thead>
-<tr>
-<th align="center">作用域</th>
-<th align="center">范围</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">application</td>
-<td align="center">全局作用范围，整个应用程序共享.生命周期为：应用程序启动到停止</td>
-</tr>
-<tr>
-<td align="center">session</td>
-<td align="center">会话作用域，当用户首次访问时，产生一个新的会话，以后服务器就可以记 住这个会话状态</td>
-</tr>
-<tr>
-<td align="center">request</td>
-<td align="center">请求作用域，就是客户端的一次请求</td>
-</tr>
-<tr>
-<td align="center">page</td>
-<td align="center">一个 JSP 页面</td>
-</tr>
-</tbody></table>
-<p>以上作用范围使越来越小， <code>request</code> 和 <code>page</code> 的生命周期都是短暂的，他们之间的区别就是：一个 <code>request</code> 可以包含多个 <code>page</code> 页(<code>include</code>，<code>forward</code>)</p>
-<h1 id="List-Set-Collection-Collections"><a href="#List-Set-Collection-Collections" class="headerlink" title="List,Set,Collection,Collections"></a>List,Set,Collection,Collections</h1><ol>
-<li><code>List</code> 和 <code>Set</code> 都是接口，他们都继承于接口 <code>Collection</code>,<code>List</code> 是一个有序的可重复的集合，而 <code>Set</code> 的无序的不可重复的集合。<code>Collection</code> 是集合的顶层接口，<code>Collections</code> 是一个封装了众多关于集合操作的静态方法的工具类,因为构造方法是私有的，所以不能实例化。</li>
-<li><code>List</code> 接口实现类有 <code>ArrayList</code>,<code>LinkedList</code>,<code>Vector</code>。<code>ArrayList</code> 和 <code>Vector</code> 是基于数组实现的,所以查询的时候速度快，而在进行增加和删除的时候速度较慢 <code>LinkedList</code> 是基于链式存储结构，所以在进行查询的时候速度较慢但在进行增加和删除的时候速度较快。又因为<code>Vector</code> 是线程安全的，所以他和 <code>ArrayList</code> 相比而言，查询效率要低。</li>
-</ol>
-<h1 id="java-的基本数据类型"><a href="#java-的基本数据类型" class="headerlink" title="java 的基本数据类型"></a>java 的基本数据类型</h1><table>
-<thead>
-<tr>
-<th align="center">数据类型</th>
-<th align="center">大小</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">byte(字节)</td>
-<td align="center">1(8 位)</td>
-</tr>
-<tr>
-<td align="center">shot(短整型)</td>
-<td align="center">2(16 位)</td>
-</tr>
-<tr>
-<td align="center">int(整型)</td>
-<td align="center">4(32 位)</td>
-</tr>
-<tr>
-<td align="center">long(长整型)</td>
-<td align="center">8(32 位)</td>
-</tr>
-<tr>
-<td align="center">float(浮点型)</td>
-<td align="center">4(32 位)</td>
-</tr>
-<tr>
-<td align="center">double(双精度)</td>
-<td align="center">8(64 位)</td>
-</tr>
-<tr>
-<td align="center">char(字符型)</td>
-<td align="center">2(16 位)</td>
-</tr>
-<tr>
-<td align="center">boolean(布尔型)</td>
-<td align="center">1 位</td>
-</tr>
-</tbody></table>
-<p>附加：</p>
-<ol>
-<li>String 是基本数据类型吗?(String 不是基本数据类型)</li>
-<li>String 的长度是多少，有限制?(长度受内存大小的影响)</li>
-</ol>
-<h1 id="UE-和-UI-的区别"><a href="#UE-和-UI-的区别" class="headerlink" title="UE 和 UI 的区别"></a>UE 和 UI 的区别</h1><blockquote>
-<p>UE 是用户体验度 </p>
-<p>UI 界面原型（用户界面）（相当于买房时用的模型）</p>
-</blockquote>
-<p>设计 UI 的作用： </p>
-<ol>
-<li>帮助程序员工作（界面已由美工设计完成） </li>
-<li>提前让用户对项目有个宏观的了解，知道效果是什么样子。</li>
-</ol>
-<h1 id="osi-七层模型"><a href="#osi-七层模型" class="headerlink" title="osi 七层模型"></a>osi 七层模型</h1><blockquote>
-<p>第一层：物理层 </p>
-<p>第二层：数据链路层 </p>
-<p>第三层：网络层 </p>
-<p>第四层：传输层 </p>
-<p>第五层：会话层 </p>
-<p>第六层：表示层 </p>
-<p>第七层：应用层</p>
-</blockquote>
-<h1 id="线程和进程的区别"><a href="#线程和进程的区别" class="headerlink" title="线程和进程的区别"></a>线程和进程的区别</h1><ol>
-<li>线程(Thread)与进程（Process）进程定义的是应用程序与应用程序之间的边界，通常来说一个进程就代表一个与之对应的应用程序。不同的进程之间不能共享代码和数据空间，而同一进程的不同线程可以共享代码和数据空间。 </li>
-<li>.一个进程可以包括若干个线程，同时创建多个线程来完成某项任务，便是多线程</li>
-<li>实现线程的两种方式：继承 Thread 类，实现 Runable 接口</li>
-</ol>
-<h1 id="jvm-的内存结构"><a href="#jvm-的内存结构" class="headerlink" title="jvm 的内存结构"></a>jvm 的内存结构</h1><p><code>java</code> 虚拟机的内存结构分为堆(<code>heap</code>)和栈(<code>stack</code>),堆里面存放是对象实例也就是 <code>new</code>出来的对象。栈里面存放的是基本数据类型以及引用数据类型的地址。</p>
-<p>对于所谓的常量是存储在方法区的常量池里面</p>
-<h1 id="内存泄露和内存溢出"><a href="#内存泄露和内存溢出" class="headerlink" title="内存泄露和内存溢出"></a>内存泄露和内存溢出</h1><p>内存泄露 (<code>memory leak</code>)，是指应用程序在申请内存后，无法释放已经申请的内存空间.一次内存泄露危害可以忽略，但如果任其发展最终会导致内存溢出(<code>out of memory</code>).如读取文件后流要进行及时的关闭以及对数据库连接的释放。</p>
-<p>内存溢出（<code>out of memory</code>）是指应用程序在申请内存时，没有足够的内存空间供其使用。如我们在项目中对于大批量数据的导入，采用分段批量提交的方式。</p>
-<h1 id="项目的生命周期"><a href="#项目的生命周期" class="headerlink" title="项目的生命周期"></a>项目的生命周期</h1><blockquote>
-<p>1.需求分析 </p>
-<p>2.概要设计 </p>
-<p>3.详细设计(用例图，流程图，类图) </p>
-<p>4.数据库设计(powerdesigner) </p>
-<p>5.代码开发（编写） </p>
-<p>6.单元测试（junit 白盒测试）(开发人员) </p>
-<p>svn 版本管理工具(提交，更新代码，文档) </p>
-<p>7.集成测试 （黑盒测试，loadrunner（编写测试脚本）(高级测试)） </p>
-<p>8.上线试运行 （用户自己体验） </p>
-<p>9.压力测试（loadrunner） </p>
-<p>10.正式上线 </p>
-<p>11.维护 </p>
-</blockquote>
-<h1 id="session-和-cookie-的区别"><a href="#session-和-cookie-的区别" class="headerlink" title="session 和 cookie 的区别"></a>session 和 cookie 的区别</h1><p><code>session</code> 是存储在服务器端，<code>cookie</code> 是存储在客户端的，所以安全来讲 <code>session</code> 的安全性要比<code>cookie</code> 高，然后我们获取 <code>session</code> 里的信息是通过存放在会话 <code>cookie</code> 里的 <code>sessionid</code> 获取的。又由于 <code>session</code> 是存放在服务器的内存中，所以 <code>session</code> 里的东西不断增加会造成服务器的负担，所以会把很重要的信息存储在 <code>session</code> 中，而把一些次要东西存储在客户端的 <code>cookie</code> 里，然后 <code>cookie</code> 确切的说分为两大类分为会话 <code>cookie</code> 和持久化 <code>cookie</code>，会话 <code>cookie</code> 确切的说是，存放在客户端浏览器的内存中,所以说他的生命周期和浏览器是一致的，浏览器关了会话<code>cookie</code> 也就消失了，然而持久化 <code>cookie</code> 是存放在客户端硬盘中，而持久化 <code>cookie</code> 的生命周期就是我们在设置 <code>cookie</code> 时候设置的那个保存时间，然后我们考虑一问题当浏览器关闭时<code>session</code> 会不会丢失，从上面叙述分析 <code>session</code> 的信息是通过会话 <code>cookie</code> 的 <code>sessionid</code> 获取的，当浏览器关闭的时候会话 <code>cookie</code> 消失所以我们的 <code>sessionid</code> 也就消失了，但是 <code>session</code> 的信息还存在服务器端，<span style="background:red">这时我们只是查不到所谓的 <code>session</code> 但它并不是不存在</span>。那么，<code>session</code> 在什么情况下丢失，就是在服务器关闭的时候，或者是 <code>session</code> 过期(默认时间是 30 分钟)，再或 者 调 用 了 <code>invalidate()</code> 的 或 者 是 我 们 想 要 <code>session</code> 中 的 某 一 条 数 据 消 失 调 用<code>session.removeAttribute()</code>方法，然后 <code>session</code> 在什么时候被创建呢，确切的说是通过调用<code>getsession()</code>来创建，这就是 <code>session</code> 与 <code>cookie</code> 的区别.</p>
-<p><span style="color:blue">访问 <code>HTML</code> 页面是不会创建 <code>session</code>,但是访问 <code>index.JSP</code> 时会创建 <code>session</code>(<code>JSP</code> 实际上是一个 <code>Servlet</code>, <code>Servlet</code> 中有 <code>getSession</code> 方法) </span></p>
-<h1 id="字节流与字符流的区别"><a href="#字节流与字符流的区别" class="headerlink" title="字节流与字符流的区别"></a>字节流与字符流的区别</h1><p><code>stream</code> 结尾都是字节流，<code>reader</code> 和 <code>writer</code> 结尾都是字符流 </p>
-<p>两者的区别就是读写的时候一个是按字节读写，一个是按字符。 </p>
-<p>实际使用通常差不多。 </p>
-<p>在读写文件需要对内容按行处理，比如比较特定字符，处理某一行数据的时候一般会选择字符流。 </p>
-<p>只是读写文件，和文件内容无关的，一般选择字节流。</p>
-<h1 id="final-finally-finalize-三者区别"><a href="#final-finally-finalize-三者区别" class="headerlink" title="final,finally,finalize 三者区别"></a>final,finally,finalize 三者区别</h1><blockquote>
-<p><code>Final</code> 是一个修饰符： </p>
-<p>当 <code>final</code> 修饰一个变量的时候，变量变成一个常量，它不能被二次赋值当 <code>final</code> 修饰的变量为静态变量（即由 <code>static</code> 修饰）时，必须在声明这个变量的时候给它赋值</p>
-<p>当 <code>final</code> 修饰方法时，该方法不能被重写 </p>
-<p>当 <code>final</code> 修饰类时，该类不能被继承 </p>
-<p><code>Final</code> 不能修饰抽象类，因为抽象类中会有需要子类实现的抽象方法，（抽象类中可以有抽象方法，也可以有普通方法，当一个抽象类中没有抽象方法时，这个抽象类也就没有了它存在的必要） </p>
-<p><code>Final</code> 不能修饰接口，因为接口中有需要其实现类来实现的方法</p>
-</blockquote>
-<blockquote>
-<p><code>Finally</code>： </p>
-<p><code>Finally</code> 只能与 <code>try</code>/<code>catch</code> 语句结合使用，<code>finally</code> 语句块中的语句一定会执行， 并且会在<code>return</code>，<code>continue</code>，<code>break</code> 关键字之前执行</p>
-</blockquote>
-<blockquote>
-<p><code>finalize</code>： </p>
-<p><code>Finalize</code> 是一个方法，属于 <code>java.lang.Object</code> 类，<code>finalize()</code>方法是 <code>GC</code>（<code>garbage collector</code> 垃圾回收）运行机制的一部分，<code>finalize()</code>方法是在 <code>GC</code> 清理它所从属的对象时被调用的</p>
-</blockquote>
-<h1 id="JavaSE-JavaEE-JavaME区别"><a href="#JavaSE-JavaEE-JavaME区别" class="headerlink" title="JavaSE JavaEE JavaME区别"></a>JavaSE JavaEE JavaME区别</h1><h2 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h2><div class="note success modern">
-            <p>Java SE = Java Standard Edition = j2se = java 标准版 </p>
-          </div>
-
-<div class="note success modern">
-            <p>Java EE = Java Enterprise Edition = j2ee = java 企业版 </p>
-          </div>
-
-<div class="note success modern">
-            <p>Java ME = Java Mobile Edition = j2me = java 移动版 </p>
-          </div>
-
-<h2 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h2><p>SE 主要用于桌面程序（swing）,控制台开发(main 程序)。</p>
-<p>EE 企业级开发(JSP,EJB,Spring MVC,Struts,hibernate,ibatis 等)，用于企业级软件开发，网络开发，web 开发。</p>
-<p>ME 嵌入式开发(手机,小家电，PDA)。[苹果的 ios，黑莓] </p>
-<h2 id="三者之间的关系："><a href="#三者之间的关系：" class="headerlink" title="三者之间的关系："></a>三者之间的关系：</h2><p>Java SE（Java Platform, Standard Edition，Java 标准版）就是基于 JDK 和 JRE的。</p>
-<p>Java SE 为 Java EE 提供了基础。</p>
-<p>Java EE 除了基于我们这个所谓的 Java SE 外，还新加了企业应用所需的类库</p>
-<h1 id="JDK-JRE-JVM-的区别："><a href="#JDK-JRE-JVM-的区别：" class="headerlink" title="JDK JRE JVM 的区别："></a>JDK JRE JVM 的区别：</h1><h2 id="JDK："><a href="#JDK：" class="headerlink" title="JDK："></a>JDK：</h2><p><strong>【Java Development ToolKit】</strong>就是 <code>java</code> 开发工具箱， <strong>JDK</strong> 是整个 <strong>JAVA</strong> 的核心里边包含了 <strong>jre</strong>，它除了包含 <strong>jre</strong> 之外还包含了一些 <strong>javac</strong> 的工具类，把 <strong>java</strong> 源文件编译成 <strong>class</strong> 文件，<strong>java</strong> 文件是用来运行这个程序的，除此之外，里边还包含了 <strong>java</strong>源生的 <strong>API</strong>，<code>java.lang.integer</code> 在 <strong>return</strong>  的 <strong>jar</strong> 包里边【可以在项目中看到】，通过 <strong>return</strong> 这个 <strong>jar</strong> 包来调用我们的这些 <strong>io</strong> 流写入写出等</p>
-<h3 id="JDK-有以下三种版本："><a href="#JDK-有以下三种版本：" class="headerlink" title="JDK 有以下三种版本："></a>JDK 有以下三种版本：</h3><blockquote>
-<p>J2SE，standard edition，标准版，是我们通常用的一个版本 </p>
-<p>J2EE，enterpsise edtion，企业版，使用这种 JDK 开发 J2EE 应用程序 </p>
-<p>J2ME，micro edtion，主要用于移动设备、嵌入式设备上的 java 应用程序</p>
-</blockquote>
-<h2 id="JRE："><a href="#JRE：" class="headerlink" title="JRE："></a>JRE：</h2><p><strong>【Java Runtime Enviromental】</strong>是 <code>java</code> 运行时环境，那么所谓的 <code>java</code> 运行时环境，就是为了保证 <code>java</code> 程序能够运行时，所必备的一基础环境，也就是它只是保证 <code>java</code> 程序运行的，不能用来开发，而 <code>jdk</code> 才是用来开发的，所有的 <strong>Java</strong> 程序都要在<strong>JRE</strong> 下才能运行。</p>
-<p>包括 <strong>JVM</strong> 和 <strong>JAVA</strong> 核心类库和支持文件。与 <strong>JDK</strong> 相比，它不包含开发工具——编译器、调试器和其它工具。</p>
-<div class="note warning modern">
-            <p>JRE里面包含JVM</p>
-          </div>
-
-<h2 id="Jvm："><a href="#Jvm：" class="headerlink" title="Jvm："></a>Jvm：</h2><p><strong>【Java Virtual Mechinal</strong>】因为 <code>jre</code> 是 <code>java</code> 运行时环境，<code>java</code> 运行靠什么运行，而底层就是依赖于 <code>jvm</code>，即 <code>java</code> 虚拟机，<code>java</code> 虚拟机用来加载类文件，<code>java</code> 中之所以有跨平台的作用，就是因为我们的 <code>jvm</code> </p>
-<h2 id="关系："><a href="#关系：" class="headerlink" title="关系："></a>关系：</h2><div class="note success modern">
-            <p>J2se 是基于 jdk 和 jre，JDK 是整个 JAVA 的核心里边包含了 jre，Jre 里边包含 jvm</p>
-          </div>
-
-<h1 id="报错的状态码："><a href="#报错的状态码：" class="headerlink" title="报错的状态码："></a>报错的状态码：</h1><table>
-<thead>
-<tr>
-<th align="center">状态码</th>
-<th align="center">状态</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">301</td>
-<td align="center">永久重定向</td>
-</tr>
-<tr>
-<td align="center">302</td>
-<td align="center">临时重定向</td>
-</tr>
-<tr>
-<td align="center">304</td>
-<td align="center">服务端 未改变</td>
-</tr>
-<tr>
-<td align="center">403</td>
-<td align="center">访问无权限</td>
-</tr>
-<tr>
-<td align="center">200</td>
-<td align="center">正常</td>
-</tr>
-<tr>
-<td align="center">404</td>
-<td align="center">路径</td>
-</tr>
-<tr>
-<td align="center">500</td>
-<td align="center">内部错误</td>
-</tr>
-</tbody></table>
-<h1 id="协议以及默认的端口号"><a href="#协议以及默认的端口号" class="headerlink" title="协议以及默认的端口号"></a>协议以及默认的端口号</h1><table>
-<thead>
-<tr>
-<th align="center">协议</th>
-<th align="center">端口</th>
-<th align="center">释义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">ftp</td>
-<td align="center">21</td>
-<td align="center">文件传输协议</td>
-</tr>
-<tr>
-<td align="center">Pop3</td>
-<td align="center">110</td>
-<td align="center">它是因特网电子邮箱的第一个离线协议标准</td>
-</tr>
-<tr>
-<td align="center">Smtp</td>
-<td align="center">25</td>
-<td align="center">简单邮件传输协议</td>
-</tr>
-<tr>
-<td align="center">http</td>
-<td align="center">80</td>
-<td align="center">超文本传输协议</td>
-</tr>
-<tr>
-<td align="center">oracle</td>
-<td align="center">1521</td>
-<td align="center">默认端口号</td>
-</tr>
-<tr>
-<td align="center">mysql</td>
-<td align="center">3306</td>
-<td align="center">默认端口号</td>
-</tr>
-</tbody></table>
-<h1 id="抽象类与接口的区别"><a href="#抽象类与接口的区别" class="headerlink" title="抽象类与接口的区别"></a>抽象类与接口的区别</h1><ol>
-<li>一个类只能进行单继承，但可以实现多个接口。</li>
-<li>有抽象方法的类一定是抽象类，但是抽象类里面不一定有抽象方法；接口里面所有的方法的默认修饰符为 <code>public abstract</code>，接口里的成员变量默认的修饰符为 <code>pulbic static final</code>。</li>
-</ol>
-<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><blockquote>
-<p>接口和接口       ==&gt;     继承 </p>
-<p>接口和抽象类   ==&gt;     抽象类实现接口 </p>
-<p>类和抽象类      ==&gt;     类继承抽象类 </p>
-<p>类和类             ==&gt;     继承</p>
-</blockquote>
-<h1 id="request-跟-session-的区别"><a href="#request-跟-session-的区别" class="headerlink" title="request 跟 session 的区别"></a>request 跟 session 的区别</h1><ol>
-<li>他们的生命周期不同，<code>request</code>对应的是一次请求，<code>session</code>对应的是一次会话 </li>
-<li><code>request</code>占用资源比较少,相对来说缺乏持续性,而<code>session</code>资源消耗比较大，所以通常使用<code>request</code>来保存信息</li>
-</ol>
-<h1 id="反射的描述"><a href="#反射的描述" class="headerlink" title="反射的描述"></a>反射的描述</h1><p>通过字符串可以动态创建<code>java</code>对象，并且可以动态访问方法，属性等。 </p>
-<p>我们在项目中的时候封装过数据库<code>jdbc</code>的持久层，其中就利用反射这项技术来达到通用和灵活的目的。 </p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-        <tag>面试题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>源码级别理解 Redis 持久化</title>
-    <url>/2021/09/18/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家都知道 Redis 是一个内存数据库，数据都存储在内存中，这也是 Redis 非常快的原因之一。虽然速度提上来了，但是如果数据一直放在内存中，是非常容易丢失的。比如 服务器关闭或宕机了，内存中的数据就木有了。为了解决这一问题，Redis 提供了 持久化 机制。分别是 <strong>RDB</strong> 以及 <strong>AOF</strong> 持久化。</p>
-<span id="more"></span>
-
-<h1 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h1><h2 id="什么是-RDB-持久化"><a href="#什么是-RDB-持久化" class="headerlink" title="什么是 RDB 持久化?"></a>什么是 RDB 持久化?</h2><p>RDB 持久化可以在指定的时间间隔内生成数据集的时间点快照(point-in-time snapshot)。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/1e5c87e44b494a20864323f2872c5dee_tplv-k3u1fbpfcp-zoom-1.jpg" alt="img"></p>
-<h2 id="RDB-的优点？"><a href="#RDB-的优点？" class="headerlink" title="RDB 的优点？"></a>RDB 的优点？</h2><ul>
-<li>RDB 是一种表示某个即时点的 Redis 数据的紧凑文件。RDB 文件适用于备份。例如，你可能想要每小时归档最近24小时的 RDB 文件，每天保存近30天的 RDB 快照。这允许你很容易的恢复不同版本的数据集以容灾。</li>
-<li>RDB 非常适合于灾难恢复，作为一个紧凑的单一文件，可以被传输到远程的数据中心。</li>
-<li>RDB 最大化了 Redis 的性能。因为 Redis 父进程持久化时唯一需要做的是启动(fork)一个子进程，由子进程完成所有剩余的工作。父进程实例不需要执行像磁盘IO这样的操作。</li>
-<li>RDB 在重启保存了大数据集的实例比 AOF 快。</li>
-</ul>
-<h2 id="RDB-的缺点？"><a href="#RDB-的缺点？" class="headerlink" title="RDB 的缺点？"></a>RDB 的缺点？</h2><ul>
-<li>当你需要在Redis停止工作(例如停电)时最小化数据丢失，RDB可能不太好。你可以配置不同的保存点(save point)来保存RDB文件(例如，至少5分钟和对数据集100次写之后，但是你可以有多个保存点)。然而，你通常每隔5分钟或更久创建一个RDB快照，所以一旦Redis因为任何原因没有正确关闭而停止工作，你就得做好最近几分钟数据丢失的准备了。</li>
-<li>RDB需要经常调用fork()子进程来持久化到磁盘。如果数据集很大的话，fork()比较耗时，结果就是，当数据集非常大并且CPU性能不够强大的话，Redis会停止服务客户端几毫秒甚至一秒。AOF也需要fork()，但是你可以调整多久频率重写日志而不会有损(trade-off)持久性(durability)。</li>
-</ul>
-<h2 id="RDB-文件的创建与载入"><a href="#RDB-文件的创建与载入" class="headerlink" title="RDB 文件的创建与载入"></a>RDB 文件的创建与载入</h2><p>有个两个 Redis 命令可以用于生成 RDB 文件，一个是 <strong>SAVE</strong>，另一个是 <strong>BGSAVE</strong>。</p>
-<p><strong>SAVE</strong> 命令会阻塞 Redis 服务器进程，直到 RDB 文件创建完毕为止，在服务器进程阻塞期间，服务器不能处理任何命令请求。</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; SAVE     // 一直等到 RDB 文件创建完毕</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
-
-<p>和 SAVE 命令直接阻塞服务器进程不同的是，BGSAVE 命令会派生出一个子进程，然后由子进程负责创建 RDB 文件，服务器进程(父进程)继续处理命令进程。</p>
-<p><strong>执行fork的时候操作系统（类Unix操作系统）会使用写时复制（copy-on-write）策略，即fork函数发生的一刻父子进程共享同一内存数据，当父进程要更改其中某片数据时（如执行一个写命令 ），操作系统会将该片数据复制一份以保证子进程的数据不受影响，所以新的RDB文件存储的是执行fork一刻的内存数据。</strong></p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; BGSAVE  // 派生子进程，并由子进程创建 RDB 文件</span><br><span class="line">Background saving started</span><br></pre></td></tr></table></figure>
-
-<p>生成 RDB 文件由两种方式：<strong>一种是手动，就是上边介绍的用命令的方式；另一种是自动的方式。</strong></p>
-<p>接下来详细介绍一下自动生成 RDB 文件的流程。</p>
-<p>Redis 允许用户通过设置服务器配置的 <strong>save</strong> 选项，让服务器每隔一段时间自动执行一次 BGSAVE 命令。</p>
-<p>用户可以通过在 redis.conf 配置文件中的 SNAPSHOTTING 下 save 选项设置多个保存条件，但只要其中任意一个条件被满足，服务器就会执行 BGSAEVE 命令。</p>
-<p>如，以下配置：</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">save <span class="number">900</span> <span class="number">1</span></span><br><span class="line">save <span class="number">300</span> <span class="number">10</span></span><br><span class="line">save <span class="number">60</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
-
-<p>上边三个配置的含义是：</p>
-<ul>
-<li>服务器在 900 秒内，对数据库进行了至少 1 次修改。</li>
-<li>服务器在 300 秒内，对数据库进行了至少 10 次修改。</li>
-<li>服务器在 60 秒内，对数据库进行了至少 10000 次修改。</li>
-</ul>
-<p>如果没有手动去配置 save 选项，那么服务器会为 save 选项配置默认参数：</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">save <span class="number">900</span> <span class="number">1</span></span><br><span class="line">save <span class="number">300</span> <span class="number">10</span></span><br><span class="line">save <span class="number">60</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
-
-<p>接着，服务器就会根据 save 选项的配置，去设置服务器状态 redisServer 结构的 saveparams 属性：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">redisServer</span>&#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 记录了保存条件的数组</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">saveparams</span> *<span class="title">saveparams</span>;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>saveparams 属性是一个数组，数组中的每一个元素都是一个 saveparam 结构，每个 saveparam 结构都保存了一个 save 选项设置的保存条件：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">saveparam</span> &#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 秒数</span></span><br><span class="line">  <span class="keyword">time_t</span> seconds;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 修改数</span></span><br><span class="line">  <span class="keyword">int</span> changes;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>除了 saveparams 数组之外，服务器状态还维持着一个 dirty 计数器，以及一个 lastsave 属性；</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">redisServer</span> &#123;</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 修改计数器</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> dirty;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 上一次执行保存时间</span></span><br><span class="line">     <span class="keyword">time_t</span> lastsave;</span><br><span class="line">     </span><br><span class="line">     <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>dirty 计数器记录距离上一次成功执行 SAVE 或 BGSAVE 命令之后，服务器对数据库状态(服务器中的所有数据库)进行了多少次修改(包括写入、删除、更新等操作)。</li>
-<li>lastsave 属性是一个 UNIX 时间戳，记录了服务器上一次执行 SAVE 或 BGSAVE 命令的时间。</li>
-</ul>
-<h3 id="检查条件是否满足触发-RDB"><a href="#检查条件是否满足触发-RDB" class="headerlink" title="检查条件是否满足触发 RDB"></a>检查条件是否满足触发 RDB</h3><p>Redis 的服务器周期性操作函数 serverCron 默认每隔 100 毫秒执行一次，该函数用于对正在运行的服务器进行维护，它的其中一项工作就是检查 save 选项所设置的保存条件是否已经满足，如果满足的话就执行 BGSAVE 命令。</p>
-<p>Redis serverCron 源码解析如下：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/1623916411.jpg" alt="img"></p>
-<p>程序会遍历并检查 saveparams 数组中的所有保存条件，只要有任意一个条件被满足，服务器就会执行 BGSAVE 命令。</p>
-<p>下面是 rdbSaveBackground 的源码流程：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/1623916516.jpg" alt="img"></p>
-<h2 id="RDB-文件结构"><a href="#RDB-文件结构" class="headerlink" title="RDB 文件结构"></a>RDB 文件结构</h2><p>下图展示了一个完整 RDB 文件所包含的各个部分。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/6ccb6e0fb4354db2bf8da17ebf908f7c_tplv-k3u1fbpfcp-zoom-1.jpg" alt="img"></p>
-<p>redis 文件的最开头是 <strong>REDIS</strong> 部分，这个部分的长度是 5 字节，保存着 “REDIS” 五个字符。通过这五个字符，程序可以在载入文件时，快速检查所载入的文件是否时 RDB 文件。</p>
-<p><strong>db_version</strong> 长度为 4 字节，他的值时一个字符串表示的整数，这个整数记录了 RDB 文件的版本号，比如 “0006” 就代表 RDB 文件的版本为第六版。</p>
-<p><strong>database</strong> 部分包含着零个或任意多个数据库，以及各个数据库中的键值对数据：</p>
-<ul>
-<li>如果服务器的数据库状态为空(所有数据库都是空的)，那么这个部分也为空，长度为 0 字节。</li>
-<li>如果服务器的数据库状态为非空(有至少一个数据库非空)，那么这个部分也为非空，根据数据库所保存键值对的数量、类型和内容不同，这个部分的长度也会有所不同。</li>
-</ul>
-<p><strong>EOF</strong> 常量的长度为 1 字节，这个常量标志着 RDB 文件正文内容的结束，当读入程序遇到这个值后，他知道所有数据库的所有键值对已经载入完毕了。</p>
-<p><strong>check_sum</strong> 是一个 8 字节长的无符号整数，保存着一个校验和，这个校验和时程序通过对 REDIS、db_version、database、EOF 四个部分的内容进行计算得出的。服务器在载入 RDB 文件时，会将载入数据所计算出的校验和与 check_sum 所记录的校验和进行对比，以此来检查 RDB 是否有出错或者损坏的情况。</p>
-<p>举个例子：下图是一个 0 号数据库和 3 号数据库的 RDB 文件。第一个就是 “REDIS” 表示是一个 RDB 文件，之后的 “0006” 表示这是第六版的 REDIS 文件，然后是两个数据库，之后就是 EOF 结束标识符，最后就是 check_sum。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/847161c1b0414aa69109e3f3a0c43797_tplv-k3u1fbpfcp-zoom-1.png" alt="img"></p>
-<h1 id="AOF-持久化"><a href="#AOF-持久化" class="headerlink" title="AOF 持久化"></a>AOF 持久化</h1><h2 id="什么是-AOF-持久化"><a href="#什么是-AOF-持久化" class="headerlink" title="什么是 AOF 持久化"></a>什么是 AOF 持久化</h2><p>AOF持久化方式记录每次对服务器写的操作,当服务器重启的时候会重新执行这些命令来恢复原始的数据,AOF命令以redis协议追加保存每次写的操作到文件末尾.Redis还能对AOF文件进行后台重写,使得AOF文件的体积不至于过大. </p>
-<h2 id="AOF-的优点？"><a href="#AOF-的优点？" class="headerlink" title="AOF 的优点？"></a>AOF 的优点？</h2><ul>
-<li>使用AOF 会让你的Redis更加耐久: 你可以使用不同的fsync策略：无fsync,每秒fsync,每次写的时候fsync.使用默认的每秒fsync策略,Redis的性能依然很好(fsync是由后台线程进行处理的,主线程会尽力处理客户端请求),一旦出现故障，你最多丢失1秒的数据.</li>
-<li>AOF文件是一个只进行追加的日志文件,所以不需要写入seek,即使由于某些原因(磁盘空间已满，写的过程中宕机等等)未执行完整的写入命令,你也也可使用redis-check-aof工具修复这些问题.</li>
-<li>Redis 可以在 AOF 文件体积变得过大时，自动地在后台对 AOF 进行重写： 重写后的新 AOF 文件包含了恢复当前数据集所需的最小命令集合。 整个重写操作是绝对安全的，因为 Redis 在创建新 AOF 文件的过程中，会继续将命令追加到现有的 AOF 文件里面，即使重写过程中发生停机，现有的 AOF 文件也不会丢失。 而一旦新 AOF 文件创建完毕，Redis 就会从旧 AOF 文件切换到新 AOF 文件，并开始对新 AOF 文件进行追加操作。</li>
-<li>AOF 文件有序地保存了对数据库执行的所有写入操作， 这些写入操作以 Redis 协议的格式保存， 因此 AOF 文件的内容非常容易被人读懂， 对文件进行分析（parse）也很轻松。 导出（export） AOF 文件也非常简单： 举个例子， 如果你不小心执行了 FLUSHALL 命令， 但只要 AOF 文件未被重写， 那么只要停止服务器， 移除 AOF 文件末尾的 FLUSHALL 命令， 并重启 Redis ， 就可以将数据集恢复到 FLUSHALL 执行之前的状态。</li>
-</ul>
-<h2 id="AOF-的缺点？"><a href="#AOF-的缺点？" class="headerlink" title="AOF 的缺点？"></a>AOF 的缺点？</h2><ul>
-<li>对于相同的数据集来说，AOF 文件的体积通常要大于 RDB 文件的体积。</li>
-<li>根据所使用的 fsync 策略，AOF 的速度可能会慢于 RDB 。 在一般情况下， 每秒 fsync 的性能依然非常高， 而关闭 fsync 可以让 AOF 的速度和 RDB 一样快， 即使在高负荷之下也是如此。 不过在处理巨大的写入载入时，RDB 可以提供更有保证的最大延迟时间（latency）。</li>
-</ul>
-<h2 id="AOF持久化的实现"><a href="#AOF持久化的实现" class="headerlink" title="AOF持久化的实现"></a>AOF持久化的实现</h2><p>AOF持久化功能的实现可以分为命令追加（append）、文件写入、文件同步（sync）三个步骤。</p>
-<h3 id="命令追加"><a href="#命令追加" class="headerlink" title="命令追加"></a>命令追加</h3><p>当 AOF 持久化功能处于打开状态时，服务器在执行完一个写命令之后，会以协议格式将被执行的写命令追加到服务器状态的 aof_buf 缓冲区的末尾。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">redisServer</span> &#123;</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="comment">// AOF 缓冲区  </span></span><br><span class="line">  sds aof_buf;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ..</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>如果客户端向服务器发送以下命令：</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; <span class="built_in">set</span> KEY VALUE</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
-
-<p>那么服务器在执行这个 set 命令之后，会将以下协议内容追加到 aof_buf 缓冲区的末尾；</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">*<span class="number">3</span>\r\n$<span class="number">3</span>\r\nSET\r\n$<span class="number">3</span>\r\nKEY\r\n$<span class="number">5</span>\r\nVALUE\r\n</span><br></pre></td></tr></table></figure>
-
-<h3 id="AOF-文件的写入与同步"><a href="#AOF-文件的写入与同步" class="headerlink" title="AOF 文件的写入与同步"></a>AOF 文件的写入与同步</h3><p>Redis的服务器进程就是一个事件循环（loop），这个循环中的文件事件负责接收客户端 的命令请求，以及向客户端发送命令回复，而时间事件则负责执行像 serverCron 函数这样需 要定时运行的函数。</p>
-<p>因为服务器在处理文件事件时可能会执行写命令，使得一些内容被追加到aof_buf缓冲区 里面，所以在服务器每次结束一个事件循环之前，它都会调用 <strong>flushAppendOnlyFile</strong> 函数，考 虑是否需要将aof_buf缓冲区中的内容写入和保存到AOF文件里面，这个过程可以用以下伪代 码表示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">def <span class="title">eventLoop</span><span class="params">()</span>:</span></span><br><span class="line"><span class="function">  while True:</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    #处理文件事件，接收命令请求以及发送命令回复</span></span><br><span class="line"><span class="function">    #处理命令请求时可能会有新内容被追加到 aof_buf缓冲区中</span></span><br><span class="line"><span class="function">    processFileEvents()</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    #处理时间事件</span></span><br><span class="line"><span class="function">    processTimeEvents()</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    #考虑是否要将 aof_buf中的内容写入和保存到 AOF文件里面</span></span><br><span class="line"><span class="function">    flushAppendOnlyFile()</span></span><br></pre></td></tr></table></figure>
-
-<p>flushAppendOnlyFile函数的行为由服务器配置的 <strong>appendfsync</strong> 选项的值来决定，各个不同 值产生的行为如下表所示。</p>
-<table>
-<thead>
-<tr>
-<th align="center">appendfsync 选项的值</th>
-<th align="center">flushAppendOnlyFile 函数的行为</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">always</td>
-<td align="center">将 aof_buf 缓冲区中的所有内容写入并同步到 AOF 文件</td>
-</tr>
-<tr>
-<td align="center">everysec</td>
-<td align="center">将 aof_buf 缓冲区中的所有内容写入到 AOF 文件，如果上次同步 AOF 文件的时间距离现在超过一秒钟，那么再次对 AOF 文件进行同步，并且这个同步操作是由一个线程专门负责执行的</td>
-</tr>
-<tr>
-<td align="center">no</td>
-<td align="center">将 aof_buf 缓冲区中的所有内容写入到 AOF 文件，但并不对 AOF 文件进行同步，何时同步由操作系统来决定</td>
-</tr>
-</tbody></table>
-<p>如果用户没有主动为appendfsync选项设置值，那么appendfsync选项的默认值为everysec。</p>
-<p><strong>写入：将 aof_buf 中的数据写入到 AOF 文件中。</strong></p>
-<p><strong>同步：调用 fsync 以及 fdatasync 函数，将 AOF 文件中的数据保存到磁盘中。</strong>通俗地讲就是，你要往一个文件写东西，写的过程就是写入，而同步则是将文件保存，数据落到磁盘上。</p>
-<p>大家之前看文章的时候是不是大多都说 AOF 最多丢失一秒钟的数据，那是因为 redis AOF 默认是 everysec 策略，这个策略每秒执行一次，所以 AOF 持久化最多丢失一秒钟的数据。</p>
-<h3 id="AOF-文件的载入与数据还原"><a href="#AOF-文件的载入与数据还原" class="headerlink" title="AOF 文件的载入与数据还原"></a>AOF 文件的载入与数据还原</h3><p>因为AOF文件里面包含了重建数据库状态所需的所有写命令，所以服务器只要读入并重新执行一遍AOF文件里面保存的写命令，就可以还原服务器关闭之前的数据库状态。 Redis读取AOF文件并还原数据库状态的详细步骤如下：</p>
-<ol>
-<li>创建一个不带网络连接的伪客户端（fake client）：因为Redis的命令只能在客户端上 下文中执行，而载入AOF文件时所使用的命令直接来源于AOF文件而不是网络连接，所以服 务器使用了一个没有网络连接的伪客户端来执行AOF文件保存的写命令，伪客户端执行命令 的效果和带网络连接的客户端执行命令的效果完全一样。</li>
-<li>从AOF文件中分析并读取出一条写命令。</li>
-<li>使用伪客户端执行被读出的写命令。</li>
-<li>一直执行步骤2和步骤3，直到AOF文件中的所有写命令都被处理完毕为止。</li>
-</ol>
-<p>当完成以上步骤之后，AOF文件所保存的数据库状态就会被完整地还原出来，整个过程 如下图所示。</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/56d0faae5d5a4183925755bdcfa816cb_tplv-k3u1fbpfcp-zoom-1.jpg" alt="img"></p>
-<h3 id="AOF-重写"><a href="#AOF-重写" class="headerlink" title="AOF 重写"></a>AOF 重写</h3><p>因为AOF持久化是通过保存被执行的写命令来记录数据库状态的，所以随着服务器运行 时间的流逝，AOF文件中的内容会越来越多，文件的体积也会越来越大，如果不加以控制的 话，体积过大的AOF文件很可能对Redis服务器、甚至整个宿主计算机造成影响，并且AOF文 件的体积越大，使用AOF文件来进行数据还原所需的时间就越多。</p>
-<p>如 客户端执行了以下命令是：</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; rpush list &quot;A&quot; &quot;B&quot;</span><br><span class="line">OK</span><br><span class="line">&gt; rpush list &quot;C&quot;</span><br><span class="line">OK</span><br><span class="line">&gt; rpush list &quot;D&quot;</span><br><span class="line">OK</span><br><span class="line">&gt; rpush list &quot;E&quot; &quot;F&quot;</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
-
-<p>那么光是为了记录这个list键的状态，AOF文件就需要保存四条命令。</p>
-<p>对于实际的应用程度来说，写命令执行的次数和频率会比上面的简单示例要高得多，所 以造成的问题也会严重得多。 为了解决AOF文件体积膨胀的问题，Redis提供了AOF文件重写（rewrite）功能。通过该 功能，Redis服务器可以创建一个新的AOF文件来替代现有的AOF文件，新旧两个AOF文件所 保存的数据库状态相同，但新AOF文件不会包含任何浪费空间的冗余命令，所以新AOF文件 的体积通常会比旧AOF文件的体积要小得多。 在接下来的内容中，我们将介绍AOF文件重写的实现原理，以及BGREWEITEAOF命令 的实现原理。</p>
-<p>虽然Redis将生成新AOF文件替换旧AOF文件的功能命名为“AOF文件重写”，但实际上， AOF文件重写并不需要对现有的AOF文件进行任何读取、分析或者写入操作，这个功能是通 过读取服务器当前的数据库状态来实现的。</p>
-<p>就像上面的情况，服务器完全可以将这六条命令合并成一条。</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">&gt; rpush list &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot;</span><br></pre></td></tr></table></figure>
-
-<p>除了上面列举的列表键之外，其他所有类型的键都可以用同样的方法去减少 AOF文件中的命令数量。首先从数据库中读取键现在的值，然后用一条命令去记录键值对，代替之前记录这个键值对的多条命令，这就是AOF重写功能的实现原理。</p>
-<p>在实际中，为了避免在执行命令时造成客户端输入缓冲区溢出，重写程序在处理列表、 哈希表、集合、有序集合这四种可能会带有多个元素的键时，会先检查键所包含的元素数 量，如果元素的数量超过了redis.h/REDIS_AOF_REWRITE_ITEMS_PER_CMD常量的值，那 么重写程序将使用多条命令来记录键的值，而不单单使用一条命令。 在目前版本中，REDIS_AOF_REWRITE_ITEMS_PER_CMD常量的值为64，这也就是 说，如果一个集合键包含了超过64个元素，那么重写程序会用多条SADD命令来记录这个集 合，并且每条命令设置的元素数量也为64个。</p>
-<h3 id="AOF-后台重写"><a href="#AOF-后台重写" class="headerlink" title="AOF 后台重写"></a>AOF 后台重写</h3><p>AOF 重写会执行大量的写操作，这样会影响主线程，所以redis AOF 重写放到了子进程去执行。这样可以达到两个目的：</p>
-<ul>
-<li>子进程进行AOF重写期间，服务器进程（父进程）可以继续处理命令请求。</li>
-<li>子进程带有服务器进程的数据副本，使用子进程而不是线程，可以在避免使用锁的情况 下，保证数据的安全性。</li>
-</ul>
-<p>但是有一个问题，当子进程重写数据时，主进程依然在处理新的数据，这也就会造成数据不一致情况。</p>
-<p><strong>为了解决这种数据不一致问题，Redis服务器设置了一个AOF重写缓冲区，这个缓冲区在 服务器创建子进程之后开始使用，当Redis服务器执行完一个写命令之后，它会同时将这个写 命令发送给AOF缓冲区和AOF重写缓冲区</strong>，如下图：</p>
-<p><img data-src="https://wanglin.love/hyd/bdqn/blog/images/%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%90%86%E8%A7%A3Redis%E6%8C%81%E4%B9%85%E5%8C%96/1623917247.jpg" alt="img"></p>
-<p>这也就是说，在子进程执行AOF重写期间，服务器进程需要执行以下三个工作：</p>
-<ol>
-<li>执行客户端发来的命令。</li>
-<li>将执行后的写命令追加到AOF缓冲区。</li>
-<li>将执行后的写命令追加到AOF重写缓冲区。</li>
-</ol>
-<p>这样一来可以保证：</p>
-<ul>
-<li>AOF缓冲区的内容会定期被写入和同步到AOF文件，对现有AOF文件的处理工作会如常 进行。</li>
-<li>从创建子进程开始，服务器执行的所有写命令都会被记录到AOF重写缓冲区里面。</li>
-</ul>
-<p>当子进程完成AOF重写工作之后，它会向父进程发送一个信号，父进程在接到该信号之 后，会调用一个信号处理函数，并执行以下工作：</p>
-<ol>
-<li>将AOF重写缓冲区中的所有内容写入到新AOF文件中，这时新AOF文件所保存的数 据库状态将和服务器当前的数据库状态一致。</li>
-<li>对新的AOF文件进行改名，原子地（atomic）覆盖现有的AOF文件，完成新旧两个 AOF文件的替换。</li>
-</ol>
-<p>这个信号处理函数执行完毕之后，父进程就可以继续像往常一样接受命令请求了。</p>
-<p>在整个AOF后台重写过程中，只有信号处理函数执行时会对服务器进程（父进程）造成 阻塞，在其他时候，AOF后台重写都不会阻塞父进程，这将AOF重写对服务器性能造成的影 响降到了最低。</p>
-<h1 id="Redis-混合持久化"><a href="#Redis-混合持久化" class="headerlink" title="Redis 混合持久化"></a>Redis 混合持久化</h1><p>Redis 还可以同时使用 AOF 持久化和 RDB 持久化。 在这种情况下， 当 Redis 重启时， 它会优先使用 AOF 文件来还原数据集， 因为 AOF 文件保存的数据集通常比 RDB 文件所保存的数据集更完整。但是 AOF 恢复比较慢，Redis 4.0 推出了<strong>混合持久化</strong>。</p>
-<p>混合持久化： 将 rdb 文件的内容和增量的 AOF 日志文件存在一起。这里的 AOF 日志不再是全量的日志，而是 自持久化开始到持久化结束 的这段时间发生的增量 AOF 日志，通常这部分 AOF 日志很小。</p>
-<p>于是在 Redis 重启的时候，可以先加载 <strong>RDB</strong> 的内容，然后再重放增量 AOF 日志就可以完全替代之前的 AOF 全量文件重放，重启效率因此大幅得到提升。</p>
-]]></content>
-      <tags>
-        <tag>Redis</tag>
-        <tag>源码解析</tag>
       </tags>
   </entry>
   <entry>
