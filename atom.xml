@@ -213,6 +213,29 @@
   </entry>
   
   <entry>
+    <title>基础篇</title>
+    <link href="http://hyd0.cc/2021/09/18/%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
+    <id>http://hyd0.cc/2021/09/18/%E5%9F%BA%E7%A1%80%E7%AF%87/</id>
+    <published>2021-09-18T01:19:32.227Z</published>
+    <updated>2021-09-18T08:46:45.954Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;JDK-常用的包&quot;&gt;&lt;a href=&quot;#JDK-常用的包&quot; class=&quot;headerlink&quot; title=&quot;JDK 常用的包&quot;&gt;&lt;/a&gt;JDK 常用的包&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;java.lang：&lt;/strong&gt; 这个是系统的基础类，比如 &lt;code&gt;String&lt;/code&gt;、&lt;code&gt;Math&lt;/code&gt;、&lt;code&gt;Integer&lt;/code&gt;、&lt;code&gt;System&lt;/code&gt; 和 &lt;code&gt;Thread&lt;/code&gt;，提供常用功能。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;java.io:&lt;/strong&gt; 这里面是所有输入输出有关的类，比如文件操作等&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;java.net:&lt;/strong&gt; 这里面是与网络有关的类，比如 &lt;code&gt;URL&lt;/code&gt;,&lt;code&gt;URLConnection&lt;/code&gt; 等。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;java.util :&lt;/strong&gt; 这个是系统辅助类，特别是集合类 &lt;code&gt;Collection&lt;/code&gt;,&lt;code&gt;List&lt;/code&gt;,&lt;code&gt;Map&lt;/code&gt; 等。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;java.sql:&lt;/strong&gt; 这个是数据库操作的类，&lt;code&gt;Connection&lt;/code&gt;, &lt;code&gt;Statememt&lt;/code&gt;，&lt;code&gt;ResultSet&lt;/code&gt; 等&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Java" scheme="http://hyd0.cc/tags/Java/"/>
+    
+    <category term="面试题" scheme="http://hyd0.cc/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
     <title>简历指导【非常重要】</title>
     <link href="http://hyd0.cc/2021/09/18/%E7%AE%80%E5%8E%86%E6%8C%87%E5%AF%BC/"/>
     <id>http://hyd0.cc/2021/09/18/%E7%AE%80%E5%8E%86%E6%8C%87%E5%AF%BC/</id>
@@ -233,29 +256,6 @@
     <category term="Java" scheme="http://hyd0.cc/tags/Java/"/>
     
     <category term="简历" scheme="http://hyd0.cc/tags/%E7%AE%80%E5%8E%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>基础篇</title>
-    <link href="http://hyd0.cc/2021/09/18/%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
-    <id>http://hyd0.cc/2021/09/18/%E5%9F%BA%E7%A1%80%E7%AF%87/</id>
-    <published>2021-09-18T01:19:32.227Z</published>
-    <updated>2021-09-18T08:46:45.954Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;JDK-常用的包&quot;&gt;&lt;a href=&quot;#JDK-常用的包&quot; class=&quot;headerlink&quot; title=&quot;JDK 常用的包&quot;&gt;&lt;/a&gt;JDK 常用的包&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;java.lang：&lt;/strong&gt; 这个是系统的基础类，比如 &lt;code&gt;String&lt;/code&gt;、&lt;code&gt;Math&lt;/code&gt;、&lt;code&gt;Integer&lt;/code&gt;、&lt;code&gt;System&lt;/code&gt; 和 &lt;code&gt;Thread&lt;/code&gt;，提供常用功能。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;java.io:&lt;/strong&gt; 这里面是所有输入输出有关的类，比如文件操作等&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;java.net:&lt;/strong&gt; 这里面是与网络有关的类，比如 &lt;code&gt;URL&lt;/code&gt;,&lt;code&gt;URLConnection&lt;/code&gt; 等。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;java.util :&lt;/strong&gt; 这个是系统辅助类，特别是集合类 &lt;code&gt;Collection&lt;/code&gt;,&lt;code&gt;List&lt;/code&gt;,&lt;code&gt;Map&lt;/code&gt; 等。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;java.sql:&lt;/strong&gt; 这个是数据库操作的类，&lt;code&gt;Connection&lt;/code&gt;, &lt;code&gt;Statememt&lt;/code&gt;，&lt;code&gt;ResultSet&lt;/code&gt; 等&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="Java" scheme="http://hyd0.cc/tags/Java/"/>
-    
-    <category term="面试题" scheme="http://hyd0.cc/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
   </entry>
   
