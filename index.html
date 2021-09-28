@@ -194,6 +194,127 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hyd0.cc/2021/09/28/%E5%8E%9F%E7%A0%81%EF%BC%8C%E5%8F%8D%E7%A0%81%EF%BC%8C%E8%A1%A5%E7%A0%81%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E4%B8%8E%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://wanglin.love/images/网站配置/avatar.png">
+      <meta itemprop="name" content="信仰">
+      <meta itemprop="description" content="学而不思则罔，思而不学则殆">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="信仰的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/28/%E5%8E%9F%E7%A0%81%EF%BC%8C%E5%8F%8D%E7%A0%81%EF%BC%8C%E8%A1%A5%E7%A0%81%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E4%B8%8E%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">原码、反码、补码的深入理解与原理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-28 14:31:27 / 修改时间：14:52:51" itemprop="dateCreated datePublished" datetime="2021-09-28T14:31:27+08:00">2021-09-28</time>
+            </span>
+
+          
+            <span id="/2021/09/28/%E5%8E%9F%E7%A0%81%EF%BC%8C%E5%8F%8D%E7%A0%81%EF%BC%8C%E8%A1%A5%E7%A0%81%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E4%B8%8E%E5%8E%9F%E7%90%86/" class="post-meta-item leancloud_visitors" data-flag-title="原码、反码、补码的深入理解与原理" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/09/28/%E5%8E%9F%E7%A0%81%EF%BC%8C%E5%8F%8D%E7%A0%81%EF%BC%8C%E8%A1%A5%E7%A0%81%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E4%B8%8E%E5%8E%9F%E7%90%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/28/%E5%8E%9F%E7%A0%81%EF%BC%8C%E5%8F%8D%E7%A0%81%EF%BC%8C%E8%A1%A5%E7%A0%81%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E4%B8%8E%E5%8E%9F%E7%90%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>878</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote class="blockquote-center">
+            <p>本文从原码讲起。通过简述原码，反码和补码存在的作用，加深对补码的认识。力争让你对补码的概念不再局限于：<code>负数的补码等于反码加一</code>。</p>
+
+          </blockquote>
+
+<p>接触过计算机或电子信息相关课程的同学，应该都或多或少看过补码这哥仨。每次都是在课本的最前几页，来上这么一段：<code>什么反码是原码除符号位，按位取反，补码等于反码加一</code>。然后给整得莫名其妙，稀里糊涂地，接着就是翻页，反正后面的内容也跟三码没多大关系。</p>
+<p>好了，废话不多说。开始我们的原码，反码，补码之旅。</p>
+<h1 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h1><p>认识二进制，十六进制。会二进制与十进制的相互转化运算。</p>
+<p>由计算机的硬件决定，任何存储于计算机中的数据，其<code>本质都是以二进制码存储</code>。</p>
+<p>根据冯~诺依曼提出的经典计算机体系结构框架。一台计算机由运算器，控制器，存储器，输入和输出设备组成。其中运算器，只有加法运算器，没有减法运算器（据说一开始是有的，后来由于减法器硬件开销太大，被废了 ）</p>
+<p>所以，<code>计算机中的没法直接做减法的，它的减法是通过加法来实现的</code>。你也许会说，现实世界中所有的减法也可以当成加法的，减去一个数，可以看作加上这个数的相反数。当然没错，但是前提是要先有负数的概念。这就为什么不得不引入一个该死的符号位。</p>
+<ol>
+<li>而且从硬件的角度上看，只有正数加负数才算减法。</li>
+<li>正数与正数相加，负数与负数相加，其实都可以通过加法器直接相加。</li>
+</ol>
+<div class="note default">
+            <p>原码，反码，补码的产生过程，就是为了解决，计算机做减法和引入符号位（正号和负号）的问题。 </p>
+          </div>
+
+<p>本文可能比较长，没必要一下子读完。原码，反码，补码，按章读。<br>重点在于讲补码，到了补码可能有些绕，建议带着笔，写出二进制数一起算。</p>
+<p>表达可能不够清楚严谨，望见谅。</p>
+<h1 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h1><div class="note default">
+            <p><strong>原码：</strong>是最简单的机器数表示法。用最高位表示符号位，‘1’表示负号，‘0’表示正号。其他位存放该数的二进制的绝对值。 </p>
+          </div>
+
+<p>若以带符号位的四位二进值数转十进制数为例 ：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1010：最高位为&#x27;1&#x27;，表示这是一个负数，其他三位为&#x27;010&#x27;,该数二进制的绝对值</span><br><span class="line">运算过程为：(0*2^2)+(1*2^1)+(0*2^0)=2(&#x27;^&#x27;表示幂运算符)</span><br><span class="line">所以1010表示十进制数(-2)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://hyd0.cc/2021/09/18/%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9D%A2%E8%AF%95%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1134,111 +1255,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://hyd0.cc/2021/09/18/%E5%9F%BA%E7%A1%80%E7%AF%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://wanglin.love/images/网站配置/avatar.png">
-      <meta itemprop="name" content="信仰">
-      <meta itemprop="description" content="学而不思则罔，思而不学则殆">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="信仰的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/18/%E5%9F%BA%E7%A1%80%E7%AF%87/" class="post-title-link" itemprop="url">基础篇</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-09-18 09:19:32 / 修改时间：16:46:45" itemprop="dateCreated datePublished" datetime="2021-09-18T09:19:32+08:00">2021-09-18</time>
-            </span>
-
-          
-            <span id="/2021/09/18/%E5%9F%BA%E7%A1%80%E7%AF%87/" class="post-meta-item leancloud_visitors" data-flag-title="基础篇" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/09/18/%E5%9F%BA%E7%A1%80%E7%AF%87/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/18/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>7.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="JDK-常用的包"><a href="#JDK-常用的包" class="headerlink" title="JDK 常用的包"></a>JDK 常用的包</h1><p><strong>java.lang：</strong> 这个是系统的基础类，比如 <code>String</code>、<code>Math</code>、<code>Integer</code>、<code>System</code> 和 <code>Thread</code>，提供常用功能。</p>
-<p><strong>java.io:</strong> 这里面是所有输入输出有关的类，比如文件操作等</p>
-<p><strong>java.net:</strong> 这里面是与网络有关的类，比如 <code>URL</code>,<code>URLConnection</code> 等。</p>
-<p><strong>java.util :</strong> 这个是系统辅助类，特别是集合类 <code>Collection</code>,<code>List</code>,<code>Map</code> 等。</p>
-<p><strong>java.sql:</strong> 这个是数据库操作的类，<code>Connection</code>, <code>Statememt</code>，<code>ResultSet</code> 等</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/18/%E5%9F%BA%E7%A1%80%E7%AF%87/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1310,14 +1326,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1339,7 +1355,7 @@
                 <h3 class="widget-title">标签</h3>
                 <div id="myCanvasContainer" class="widget tagcloud">
                     <canvas width="250" height="250" id="resCanvas" style="width=100%">
-                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/" rel="tag">JDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Loading%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB/" rel="tag">Loading加载动画</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-js/" rel="tag">vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88/" rel="tag">实施工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" rel="tag">源码解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag">面试题</a><span class="tag-list-count">4</span></li></ul>
+                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/" rel="tag">JDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Loading%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB/" rel="tag">Loading加载动画</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-js/" rel="tag">vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81%E3%80%81%E8%A1%A5%E7%A0%81/" rel="tag">原码、反码、补码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88/" rel="tag">实施工程师</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" rel="tag">源码解析</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag">面试题</a><span class="tag-list-count">4</span></li></ul>
                     </canvas>
                 </div>
             </div>
@@ -1372,13 +1388,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">135k</span>
+    <span title="站点总字数">136k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:03</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
       <!-- 网站运行时间的设置 -->
     <span id="timeDate">载入天数...</span>
