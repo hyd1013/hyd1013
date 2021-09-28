@@ -219,7 +219,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-09-28 14:31:27 / 修改时间：14:52:51" itemprop="dateCreated datePublished" datetime="2021-09-28T14:31:27+08:00">2021-09-28</time>
+              <time title="创建时间：2021-09-28 14:31:27 / 修改时间：15:14:12" itemprop="dateCreated datePublished" datetime="2021-09-28T14:31:27+08:00">2021-09-28</time>
             </span>
 
           
@@ -249,7 +249,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>878</span>
+              <span>1.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -293,9 +293,90 @@
             <p><strong>原码：</strong>是最简单的机器数表示法。用最高位表示符号位，‘1’表示负号，‘0’表示正号。其他位存放该数的二进制的绝对值。 </p>
           </div>
 
-<p>若以带符号位的四位二进值数转十进制数为例 ：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1010：最高位为&#x27;1&#x27;，表示这是一个负数，其他三位为&#x27;010&#x27;,该数二进制的绝对值</span><br><span class="line">运算过程为：(0*2^2)+(1*2^1)+(0*2^0)=2(&#x27;^&#x27;表示幂运算符)</span><br><span class="line">所以1010表示十进制数(-2)</span><br></pre></td></tr></table></figure>
+<p>若以带符号位的四位二进制数运算为例 ：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1010：最高位为&#x27;1&#x27;，表示这是一个负数，其他三位为&#x27;010&#x27;,表示该数二进制的绝对值</span><br><span class="line">运算过程为：(0*2^2)+(1*2^1)+(0*2^0)=2(&#x27;^&#x27;表示幂运算符)</span><br><span class="line">所以1010表示十进制数(-2)</span><br></pre></td></tr></table></figure>
 
+<p>下表给出部份正负数数的二进制原码表示法</p>
+<table>
+<thead>
+<tr>
+<th align="center">十进制数</th>
+<th align="center">二进制正数</th>
+<th align="center"></th>
+<th align="center">二进制负数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">0000</td>
+<td align="center">→</td>
+<td align="center">1000</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">0001</td>
+<td align="center">→</td>
+<td align="center">1001</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">0010</td>
+<td align="center">→</td>
+<td align="center">1010</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">0011</td>
+<td align="center">→</td>
+<td align="center">1011</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">0100</td>
+<td align="center">→</td>
+<td align="center">1100</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">0101</td>
+<td align="center">→</td>
+<td align="center">1101</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">0110</td>
+<td align="center">→</td>
+<td align="center">1110</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">0111</td>
+<td align="center">→</td>
+<td align="center">1111</td>
+</tr>
+</tbody></table>
+<p>OK，原码表示法很简单有没有，虽然出现了+0和-0，但是直观易懂。于是，我们高兴的开始运算：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0001+0010=0011  (1+2=3)			正数相加,OK,没问题</span><br><span class="line">0000+1000=1000  (+0+(-0)=-0)	emmm,问题不大</span><br><span class="line">0001+1001=1010  (+1+(-1)=-2)	......</span><br></pre></td></tr></table></figure>
+
+<p>噢，<code>1+(-1)=-2</code>,感情你搁这儿逗我呢！！！</p>
+<p>于是我们可以看到其实正数之间的加法通常是不会出错的，因为它就是一个很简单的二进制加法。</p>
+<p>而正数与负数相加，或负数与负数相加，就会引起莫名其妙的结果，这都是该死的符号位引起的。0分为<code>+0</code>和<code>-0</code>也是因他而起。</p>
+<p>所以原码，虽然直观易懂，易于正值转换。但用来实现加减法的话，运算规则总归是太复杂。于是反码来了。</p>
+<h1 id="反码"><a href="#反码" class="headerlink" title="反码"></a>反码</h1><p>我们知道，原码最大的问题就在于一个数加上他的相反数不等于零。</p>
+<p>例如：</p>
+<ol>
+<li><code>0001+1001=1010 (1+(-1)=-2)</code></li>
+<li><code>0010+1010=1100 (2+(-2)=-4)</code></li>
+</ol>
+<p>于是反码的设计思想就是冲着解决这一点，既然一个负数是一个正数的相反数，那我们干脆用一个正数按位取反来表示负数试试。</p>
+<div class="note default">
+            <p><strong>反码：</strong>正数的反码还是等于原码 </p><p>负数的反码就是他的原码除符号位外，按位取反。</p>
+          </div>
+
+<p>若以带符号位的四位二进制数运算为例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">3是正数，反码与原码相同，则可以表示为0011</span><br><span class="line">-3的原码是1011，符号位保持不变，低三位(011)按位取反得(100)</span><br><span class="line">所以-3的反码为1100</span><br></pre></td></tr></table></figure>
+
+<p>下表给出部分正负数的二进制数反码表示法</p>
 
       
     </div>
@@ -1388,13 +1469,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">136k</span>
+    <span title="站点总字数">137k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:04</span>
+    <span title="站点阅读时长">2:05</span>
 </div>
       <!-- 网站运行时间的设置 -->
     <span id="timeDate">载入天数...</span>
