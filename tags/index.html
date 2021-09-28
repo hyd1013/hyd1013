@@ -501,14 +501,5 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
 </script>
 
 </body>
-<script type="text/javascript">
-  $(function(){
-    let path = window.location.pathname;
-    if(path != "/" && path != "/archives/" && path != "/tags/"){
-      $(".main-inner").addClass("main-width");
-    }else{
-      $(".main-inner").removeClass("main-width");
-    }
-  })
-</script>
+<script type="text/javascript" src="/js/src/my_custom.js"></script>
 </html>
