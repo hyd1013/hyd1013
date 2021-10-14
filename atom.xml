@@ -6,7 +6,7 @@
   <link href="http://hyd0.cc/atom.xml" rel="self"/>
   
   <link href="http://hyd0.cc/"/>
-  <updated>2021-09-28T08:43:27.703Z</updated>
+  <updated>2021-10-14T00:54:46.512Z</updated>
   <id>http://hyd0.cc/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringBoot面试题</title>
+    <link href="http://hyd0.cc/2021/10/14/SpringBoot%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <id>http://hyd0.cc/2021/10/14/SpringBoot%E9%9D%A2%E8%AF%95%E9%A2%98/</id>
+    <published>2021-10-14T00:31:42.124Z</published>
+    <updated>2021-10-14T00:54:46.512Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;SpringBoot基础&quot;&gt;&lt;a href=&quot;#SpringBoot基础&quot; class=&quot;headerlink&quot; title=&quot;SpringBoot基础&quot;&gt;&lt;/a&gt;SpringBoot基础&lt;/h1&gt;&lt;h2 id=&quot;1-什么是SpringBoot？&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Java" scheme="http://hyd0.cc/tags/Java/"/>
+    
+    <category term="面试题" scheme="http://hyd0.cc/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+    <category term="SpringBoot" scheme="http://hyd0.cc/tags/SpringBoot/"/>
+    
+  </entry>
   
   <entry>
     <title>原码、反码、补码的深入理解与原理</title>
