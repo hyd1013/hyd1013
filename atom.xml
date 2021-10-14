@@ -6,7 +6,7 @@
   <link href="http://hyd0.cc/atom.xml" rel="self"/>
   
   <link href="http://hyd0.cc/"/>
-  <updated>2021-10-14T00:54:46.512Z</updated>
+  <updated>2021-10-14T01:04:22.354Z</updated>
   <id>http://hyd0.cc/</id>
   
   <author>
@@ -21,16 +21,19 @@
     <link href="http://hyd0.cc/2021/10/14/SpringBoot%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     <id>http://hyd0.cc/2021/10/14/SpringBoot%E9%9D%A2%E8%AF%95%E9%A2%98/</id>
     <published>2021-10-14T00:31:42.124Z</published>
-    <updated>2021-10-14T00:54:46.512Z</updated>
+    <updated>2021-10-14T01:04:22.354Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;SpringBoot基础&quot;&gt;&lt;a href=&quot;#SpringBoot基础&quot; class=&quot;headerlink&quot; title=&quot;SpringBoot基础&quot;&gt;&lt;/a&gt;SpringBoot基础&lt;/h1&gt;&lt;h2 id=&quot;1-什么是SpringBoot？&quot;&gt;&lt;a</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;SpringBoot基础&quot;&gt;&lt;a href=&quot;#SpringBoot基础&quot; class=&quot;headerlink&quot; title=&quot;SpringBoot基础&quot;&gt;&lt;/a&gt;SpringBoot基础&lt;/h1&gt;&lt;h2 id=&quot;1-什么是SpringBoot？&quot;&gt;&lt;a href=&quot;#1-什么是SpringBoot？&quot; class=&quot;headerlink&quot; title=&quot;1.什么是SpringBoot？&quot;&gt;&lt;/a&gt;1.什么是SpringBoot？&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;用来简化Spring应用的初始搭建以及开发过程，使用特定的方式来进行配置&lt;/li&gt;
+&lt;li&gt;创建独立的Spring引用程序main方法运行&lt;/li&gt;
+&lt;li&gt;嵌入的tomcat无需部署war文件&lt;/li&gt;
+&lt;li&gt;简化maven配置&lt;/li&gt;
+&lt;li&gt;自动配置Spring添加对应的功能starter自动化配置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SpringBoot来简化Spring应用开发，约定大于配置，去繁化简&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
     
     
     
